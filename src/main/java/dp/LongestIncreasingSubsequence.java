@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class LongestIncreasingSubsequence {
 	
-	 private Map<Integer, Integer> map = new HashMap<>();
+	 private Map<Integer, Integer> map = new HashMap<Integer, Integer>();
 	    private int maxLength = Integer.MIN_VALUE;
 	    
 	    public int lengthOfLIS(int[] nums) {

@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class MinimumTimeToCollectAllApples {
 	
-	private Map<Integer, Pair> map = new HashMap<>();
+	private Map<Integer, Pair> map = new HashMap<Integer, Pair>();
 	private GenericTreeNode root = null;
 	
 	public int minTime(int n, int[][] edges, List<Boolean> hasApple) {

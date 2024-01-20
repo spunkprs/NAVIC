@@ -6,12 +6,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="pt" />
+        <module name="multithreading" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="learningSpark" target="1.5" />
-      <module name="pt" target="1.5" />
-    </bytecodeTargetLevel>
   </component>
 </project>
