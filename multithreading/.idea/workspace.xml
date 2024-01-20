@@ -91,11 +91,11 @@
       </method>
     </configuration>
     <configuration name="WebServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="multithreading.buildingbasicwebserver.WebServer" />
+      <option name="MAIN_CLASS_NAME" value="multithreading.buildingbasicwebserver.threadpoolingdisabled.WebServer" />
       <module name="multithreading" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="multithreading.buildingbasicwebserver.*" />
+          <option name="PATTERN" value="multithreading.buildingbasicwebserver.threadpoolingdisabled.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>

@@ -1,4 +1,4 @@
-package multithreading.buildingbasicwebserver;
+package multithreading.buildingbasicwebserver.threadpoolingdisabled;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
