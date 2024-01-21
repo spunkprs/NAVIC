@@ -37,22 +37,9 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
-  <component name="RunManager" selected="Application.WebServer">
+  <component name="RunManager" selected="Application.SemaphoreApplication">
     <configuration name="DeadLockExample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="multithreading.explicitlocking.DeadLockExample" />
-      <module name="multithreading" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="multithreading.explicitlocking.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ModificationOfCommonVariableAcrossMultipleThreads" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="multithreading.explicitlocking.ModificationOfCommonVariableAcrossMultipleThreads" />
       <module name="multithreading" />
       <extension name="coverage">
         <pattern>
@@ -90,6 +77,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="SemaphoreApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="multithreading.semaphore.SemaphoreApplication" />
+      <module name="multithreading" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="multithreading.semaphore.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="WebServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="multithreading.buildingbasicwebserver.threadpoolingdisabled.WebServer" />
       <module name="multithreading" />
@@ -105,11 +105,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.SemaphoreApplication" />
         <item itemvalue="Application.WebServer" />
         <item itemvalue="Application.NotUnlocking" />
         <item itemvalue="Application.DeadLockExample" />
         <item itemvalue="Application.ProducerConsumerImplementationUsingReentrantLock" />
-        <item itemvalue="Application.ModificationOfCommonVariableAcrossMultipleThreads" />
       </list>
     </recent_temporary>
   </component>
