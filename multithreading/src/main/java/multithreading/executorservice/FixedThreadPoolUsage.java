@@ -12,6 +12,8 @@ public class FixedThreadPoolUsage {
     is equal to the size that we provide while instantiating the thread pool
     Important thing to notice here is Worker threads{the one executing the underlying tasks} are getting reused,
     same worker thread id is getting reused multiple once it performs underlying task
+    In case more detailing is required go through the source code, we will be able to find out that internally
+    Worker threads are getting spawned up to handle underlying task/thread
     * */
     public static void main(String[] args) {
         ExecutorService executorService = Executors.newFixedThreadPool(3);
