@@ -37,13 +37,13 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
-  <component name="RunManager" selected="Application.SingleThreadExecutor">
-    <configuration name="DeadLockExample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="multithreading.explicitlocking.DeadLockExample" />
+  <component name="RunManager" selected="Application.FixedThreadPoolUsage">
+    <configuration name="FixedThreadPoolUsage" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="multithreading.executorservice.FixedThreadPoolUsage" />
       <module name="multithreading" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="multithreading.explicitlocking.*" />
+          <option name="PATTERN" value="multithreading.executorservice.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -105,11 +105,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.FixedThreadPoolUsage" />
         <item itemvalue="Application.SingleThreadExecutor" />
         <item itemvalue="Application.SemaphoreApplication" />
         <item itemvalue="Application.WebServer" />
         <item itemvalue="Application.NotUnlocking" />
-        <item itemvalue="Application.DeadLockExample" />
       </list>
     </recent_temporary>
   </component>
