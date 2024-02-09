@@ -14,6 +14,8 @@ public class FixedThreadPoolUsage {
     same worker thread id is getting reused multiple once it performs underlying task
     In case more detailing is required go through the source code, we will be able to find out that internally
     Worker threads are getting spawned up to handle underlying task/thread
+
+    https://stackoverflow.com/questions/1250643/how-to-wait-for-all-threads-to-finish-using-executorservice
     * */
     public static void main(String[] args) {
         ExecutorService executorService = Executors.newFixedThreadPool(3);

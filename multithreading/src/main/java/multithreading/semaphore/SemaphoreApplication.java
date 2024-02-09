@@ -15,6 +15,8 @@ public class SemaphoreApplication {
     a.) Number of permits --> Number of allowed concurrent access post which thread trying to access it would go into
     blocking state
     b.) Fairness --> Longest waiting thread would get to access semaphore if it's set to true
+
+    https://stackoverflow.com/questions/1250643/how-to-wait-for-all-threads-to-finish-using-executorservice
     * */
     public static void main(String[] args) {
         Semaphore semaphore = new Semaphore(3, true);
