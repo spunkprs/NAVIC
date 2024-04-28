@@ -19,7 +19,6 @@ import java.util.concurrent.Executors;
 * */
 public class CountDownLatchApplication {
 
-
     /*
     * Following possibilities are possible depending on latches's count value -->
     * a.) count == number of dependent tasks --> Driver && dependent tasks will behave as expected
@@ -39,7 +38,7 @@ public class CountDownLatchApplication {
         CountDownLatch countDownLatchTwo = new CountDownLatch(5);
 
         System.out.println("Driver is going to command dependent workers to initiate their relevant tasks independently");
-        ExecutorService executorService = Executors.newSingleThreadExecutor();
+        ExecutorService executorService = Executors.newFixedThreadPool(5);
 
         for (int i = 0; i < 5; i++) {
             executorService.execute(new Worker(i, countDownLatchOne, countDownLatchTwo));
