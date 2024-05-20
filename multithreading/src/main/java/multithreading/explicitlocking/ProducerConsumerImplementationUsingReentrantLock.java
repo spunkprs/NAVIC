@@ -47,7 +47,8 @@ public class ProducerConsumerImplementationUsingReentrantLock {
 
         private void produce() {
             while (true) {
-                lock.lock();
+                lock.lock(); //Given thread will be barred from thread scheduling until it acquires lock, hence acquiring the lock is the first step before
+                //doing anything else if one is handling critical sections
                 try {
                     if (queue.size() == maxAllowedSize) {
                         System.out.println("Producer is waiting for consumer to consume ::");
