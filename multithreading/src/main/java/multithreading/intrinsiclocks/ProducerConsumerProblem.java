@@ -57,6 +57,16 @@ public class ProducerConsumerProblem {
         private int value;
         private boolean flag;
 
+        //Another way to make use of intrinsic locks/monitor, here in this case object of class Processor is the monitor
+        /*public void test() {
+            synchronized (this) {
+
+            }
+        }*/
+
+        //Call to method notify() inside Object class doesn't relinquish lock/monitor owned by current thread,
+        //in this specific case it gets relinquished once the flow moves out of synchronized block because lock is owned
+        //once you enter synchronized block && it's relinquished once you move out of it
         synchronized public void produce(int num) {
             while (flag != false) {
                 try {

@@ -58,7 +58,8 @@ public class ProducerConsumerImplementationUsingReentrantLock {
                         queue.add(generatedNumber);
                         System.out.println("Producer pushed number " + generatedNumber + " to the queue !!");
                         condition.signal();
-                        lock.unlock();
+                        lock.unlock(); //Explicit unlocking is essential because call to signal on the associated lock just wakes up one of the
+                        // waiting thread on the same lock but authority on already acquired lock is not given up
                         Thread.sleep(500);
                     }
                 } catch (Exception e) {
