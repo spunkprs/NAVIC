@@ -1,19 +1,21 @@
-package graph.numberofconnectedcomponents;
+package graph.redundantconnections;
 
 /*
-Time complexity of this Algorithm is O(E) i.e number of edges, because this makes use of find && union approach
-&& Space complexity is 2 * O(V) i.e number of vertices in the graph
-Out of all the solutions submitted for this problem, this one does best both in the context of time && space complexity
+This problem aims at finding that edge in the graph which is causing loop in the graph and it's removal will make this graph a tree
+i.e Only single loop is bound to be present in the graph
+Vertices are 1 based
+Time Complexity = O(E)
+Space Complexity = 2 * O(V)
 * */
-public class NumberOfConnectedComponentsUsingUnionAndFindApproach {
+public class RedundantConnectionsForUndirectedGraph {
 
-    private int connectedComponents = 0;
+    private int resultArray [] = new int[2];
 
-    public int countComponents(int n, int[][] edges) {
-        connectedComponents = n;
-        int parentArray[] = new int[n];
-        int degreeArray[] = new int[n];
-        for (int i = 0; i < n; i++) {
+    public int[] findRedundantConnection(int[][] edges) {
+        int parentArray[] = new int[edges.length];
+        int degreeArray[] = new int[edges.length];
+
+        for (int i = 0; i < edges.length; i++) {
             parentArray[i] = i;
             degreeArray[i] = 1;
         }
@@ -21,12 +23,13 @@ public class NumberOfConnectedComponentsUsingUnionAndFindApproach {
         for (int i = 0; i < edges.length; i++) {
             performFindAndUnionOperation(i, edges, parentArray, degreeArray);
         }
-        return connectedComponents;
+
+        return resultArray;
     }
 
     private void performFindAndUnionOperation(int index, int edges[][], int parentArray[], int degreeArray[]) {
-        int vertexOne = edges[index][0];
-        int vertexTwo = edges[index][1];
+        int vertexOne = edges[index][0] - 1;
+        int vertexTwo = edges[index][1] - 1;
 
         int parentVertexOne = fetchParentIndex(vertexOne, parentArray);
         int parentVertexTwo = fetchParentIndex(vertexTwo, parentArray);
@@ -39,7 +42,9 @@ public class NumberOfConnectedComponentsUsingUnionAndFindApproach {
                 degreeArray[parentVertexTwo] += degreeArray[parentVertexOne];
                 parentArray[parentVertexOne] = parentVertexTwo;
             }
-            connectedComponents--;
+        } else {
+            resultArray[0] = vertexOne + 1;
+            resultArray[1] = vertexTwo + 1;
         }
     }
 
@@ -49,4 +54,5 @@ public class NumberOfConnectedComponentsUsingUnionAndFindApproach {
         }
         return index;
     }
+
 }
