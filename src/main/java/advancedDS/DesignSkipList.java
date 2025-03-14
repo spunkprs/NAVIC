@@ -26,6 +26,7 @@ public class DesignSkipList {
         designSkipList.add(32);
         designSkipList.add(45);
         designSkipList.add(75);
+        System.out.println("All above nodes were inserted into skiplist ");
     }
 
     public boolean search(int target) {
@@ -71,14 +72,11 @@ public class DesignSkipList {
 
         if (head.forwardNodes.isEmpty()) {
             int level = 1;
-            //while (level <= height) {
                 head.forwardNodes.put(level, node);
                 tail.backwardNodes.put(level, node);
                 node.backwardNodes.put(level, head);
                 node.forwardNodes.put(level, tail);
                 node.setHeight(1);
-                //level++;
-            //}
             head.setHeight(head.forwardNodes.size());
             tail.setHeight(tail.backwardNodes.size());
         } else {
@@ -92,11 +90,9 @@ public class DesignSkipList {
 
     private void insertionProcess(Node parent, Node nodeToBeInserted) {
         int heightOfParent = parent.height;
-        //boolean allForwardNodesPointingToTail = true;
         while (heightOfParent >= 1 && continueWithInsertionProcess) {
             Node child = parent.forwardNodes.get(heightOfParent);
             if (child != tail) {
-                //allForwardNodesPointingToTail = false;
               if (child.num == nodeToBeInserted.num) {
                   child.setCount(child.count + 1);
                   continueWithInsertionProcess = false;
@@ -118,15 +114,8 @@ public class DesignSkipList {
             } else {
                 if (continueWithInsertionProcess) {
                     if (nodeToBeInserted.height >= heightOfParent) {
-                        //int level = parent.height;
                         maintainPointers(parent, nodeToBeInserted, heightOfParent);
-                    } /*else if (nodeToBeInserted.height < parent.height) {
-                        int level = nodeToBeInserted.height;
-                        maintainPointers(parent, nodeToBeInserted, level);
-                    } else {
-                        int level = parent.height;
-                        maintainPointers(parent, nodeToBeInserted, level);
-                    }*/
+                    }
                 }
             }
             heightOfParent--;
@@ -146,13 +135,13 @@ public class DesignSkipList {
     }
 
     private void maintainPointers(Node parent, Node nodeToBeInserted, int level) {
-        //while (level >= 1) {
             parent.forwardNodes.put(level, nodeToBeInserted);
             nodeToBeInserted.backwardNodes.put(level, parent);
             nodeToBeInserted.forwardNodes.put(level, tail);
             tail.backwardNodes.put(level, nodeToBeInserted);
-            //level--;
-        //}
+            if (level == 1) {
+                continueWithInsertionProcess = false;
+            }
     }
 
     private int fetchMaxLevelForTheNumberToBeInserted() {
