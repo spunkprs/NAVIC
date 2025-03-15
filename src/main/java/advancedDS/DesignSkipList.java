@@ -9,6 +9,7 @@ public class DesignSkipList {
     private Node head;
     private Node tail;
     private boolean continueWithInsertionProcess = true;
+    private boolean continueWithSearchProcess = true;
 
 
     /*
@@ -16,6 +17,8 @@ public class DesignSkipList {
     * */
     public static void main(String ar[]) {
         DesignSkipList designSkipList = new DesignSkipList();
+
+        System.out.println("Is number 100 present inside the skiplist :: " + designSkipList.search(100));
 
         //Add following nodes in this order to skiplist 30, 50, 40, 45, 65, 70
         designSkipList.add(30);
@@ -27,10 +30,37 @@ public class DesignSkipList {
         designSkipList.add(45);
         designSkipList.add(75);
         System.out.println("All above nodes were inserted into skiplist ");
+
+        //Multiple test cases to validate search functionality inside the skiplist
+        System.out.println("Is number 32 present inside the skiplist :: " + designSkipList.search(32));
+        System.out.println("Is number 38 present inside the skiplist :: " + designSkipList.search(38));
+        System.out.println("Is number 75 present inside the skiplist :: " + designSkipList.search(75));
+        System.out.println("Is number 30 present inside the skiplist :: " + designSkipList.search(30));
     }
 
     public boolean search(int target) {
-        return false;
+        if (head == null || head.forwardNodes.isEmpty()) {
+            return false;
+        } else {
+            continueWithSearchProcess = true;
+            processToSearchForAnElementInTheSkipList(head, target);
+        }
+        return !continueWithSearchProcess;
+    }
+
+    private void processToSearchForAnElementInTheSkipList(Node parent, int target) {
+        int heightOfParent = parent.height;
+        while (heightOfParent >= 1 && continueWithSearchProcess) {
+            Node child = parent.forwardNodes.get(heightOfParent);
+            if (child != tail) {
+                if (child.num < target) {
+                    processToSearchForAnElementInTheSkipList(child, target);
+                } else if (child.num == target) {
+                    continueWithSearchProcess = false;
+                }
+            }
+            heightOfParent--;
+        }
     }
 
     public void add(int num) {
