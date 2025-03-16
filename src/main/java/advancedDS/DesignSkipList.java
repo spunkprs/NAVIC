@@ -15,6 +15,8 @@ public class DesignSkipList {
 
     /*
     * Utility to test following methods/functionality that have been added as part of SkipList i.e add, search, erase
+    *
+    * Will have to get back here as I am seeing failing test cases with NPE && time complexity is also not acceptable
     * */
     public static void main(String ar[]) {
         DesignSkipList designSkipList = new DesignSkipList();
