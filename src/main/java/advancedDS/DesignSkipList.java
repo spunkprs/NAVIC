@@ -10,6 +10,7 @@ public class DesignSkipList {
     private Node tail;
     private boolean continueWithInsertionProcess = true;
     private boolean continueWithSearchProcess = true;
+    private boolean continueWithDeletionProcess = true;
 
 
     /*
@@ -36,6 +37,21 @@ public class DesignSkipList {
         System.out.println("Is number 38 present inside the skiplist :: " + designSkipList.search(38));
         System.out.println("Is number 75 present inside the skiplist :: " + designSkipList.search(75));
         System.out.println("Is number 30 present inside the skiplist :: " + designSkipList.search(30));
+
+        //Multiple test cases to validate erase/delete && search functionality together inside the skiplist
+        System.out.println("Delete number 32 from the skiplist :: " + designSkipList.erase(32));
+        System.out.println("Delete number 38 from the skiplist :: " + designSkipList.erase(38));
+        System.out.println("Is number 32 present inside the skiplist :: " + designSkipList.search(32));
+        System.out.println("Delete number 75 from the skiplist :: " + designSkipList.erase(75));
+        System.out.println("Delete number 30 from the skiplist:: " + designSkipList.erase(30));
+        System.out.println("Delete number 45 from the skiplist:: " + designSkipList.erase(45));
+        System.out.println("Is number 45 present inside the skiplist :: " + designSkipList.search(45));
+
+        System.out.println("Is number 30 present inside the skiplist :: " + designSkipList.search(30));
+        System.out.println("Is number 75 present inside the skiplist :: " + designSkipList.search(75));
+        System.out.println("Delete number 45 from the skiplist:: " + designSkipList.erase(45));
+
+        System.out.println("Is number 45 present inside the skiplist :: " + designSkipList.search(45));
     }
 
     public boolean search(int target) {
@@ -191,7 +207,48 @@ public class DesignSkipList {
     }
 
     public boolean erase(int num) {
-        return false;
+        if (head == null || head.forwardNodes.isEmpty()) {
+            return false;
+        } else {
+            continueWithDeletionProcess = true;
+            processToDeleteAnElementFromSkipList(head, num);
+        }
+        return !continueWithDeletionProcess;
+    }
+
+    private void processToDeleteAnElementFromSkipList(Node parent, int target) {
+        int heightOfParent = parent.height;
+        while (heightOfParent >= 1 && continueWithDeletionProcess) {
+            Node child = parent.forwardNodes.get(heightOfParent);
+            if (child != tail) {
+                if (child.num < target) {
+                    processToDeleteAnElementFromSkipList(child, target);
+                } else if (child.num == target) {
+                    continueWithDeletionProcess = false;
+                    if (child.count == 1) {
+                        maintainPointersPostDeletion(child);
+                    } else if (child.count > 1) {
+                        child.setCount(child.count - 1);
+                    }
+                }
+            }
+            heightOfParent--;
+        }
+    }
+
+    private void maintainPointersPostDeletion(Node node) {
+        Map<Integer, Node> forwardNodes = node.forwardNodes;
+        Map<Integer, Node> previousNodes = node.backwardNodes;
+
+        int heightOfNode = node.height;
+        while (heightOfNode >= 1) {
+            Node previousNode = previousNodes.get(heightOfNode);
+            Node forwardNode = forwardNodes.get(heightOfNode);
+
+            previousNode.forwardNodes.put(heightOfNode, forwardNode);
+            forwardNode.backwardNodes.put(heightOfNode, previousNode);
+            heightOfNode--;
+        }
     }
 
     class Node {
