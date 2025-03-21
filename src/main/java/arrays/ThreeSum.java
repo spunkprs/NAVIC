@@ -6,7 +6,6 @@ and nums[i] + nums[j] + nums[k] == 0.
 Notice that the solution set must not contain duplicate triplets.
 * */
 
-
 import java.util.*;
 
 public class ThreeSum {
@@ -18,7 +17,9 @@ public class ThreeSum {
     * */
 
     public static void main(String ar[]) {
-        int nums[] = {-1,0,1,2,-1,-4, 0, 0, 8, 0, -8};
+        //int nums[] = {-1,0,1,2,-1,-4, 0, 0, 8, 0, -8};
+
+        int nums[] = {-4,-2,-2,-2,0,1,2,2,2,3,3,4,4,6,6};
 
         ThreeSum obj = new ThreeSum();
 
@@ -109,6 +110,8 @@ public class ThreeSum {
         int numTwo;
         int numThree;
         int factor;
+        int countOfNonZeroDigits = 3;
+        int modSum;
 
         public Triplet(int numOne, int numTwo, int numThree) {
             this.numOne = numOne;
@@ -116,12 +119,17 @@ public class ThreeSum {
             this.numThree = numThree;
             this.factor = ((this.numOne == 0 ? 1 : this.numOne) * (this.numTwo == 0 ? 1 :
                     this.numTwo) * (this.numThree == 0 ? 1 : this.numThree));
+            this.modSum = Math.abs(this.numOne) + Math.abs(this.numTwo) + Math.abs(this.numThree);
+
+            if (this.numOne == 0 || this.numTwo == 0 || this.numThree == 0) {
+                countOfNonZeroDigits--;
+            }
         }
 
         @Override
         public boolean equals(Object o) {
             Triplet triplet = (Triplet) o;
-            return this.factor == triplet.factor;
+            return (this.factor == triplet.factor) && (this.countOfNonZeroDigits == triplet.countOfNonZeroDigits) && (this.modSum == triplet.modSum);
         }
 
         @Override
