@@ -14,6 +14,8 @@ public class ThreeSum {
     * Case 1: When one of the number is zero && remaining two are complement of each other
     * Case 2 : When one number is > 0 && remaining two are less than zero
     * Case 3 : When one number is < 0 && remaining two are > than zero
+    *
+    * Time complexity against Brute force approach as expected is O(pow(n, 3)) but the efficient solution would be to reduce it to O(pow(n, 2))
     * */
 
     public static void main(String ar[]) {
