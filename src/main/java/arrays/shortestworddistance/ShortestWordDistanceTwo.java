@@ -19,7 +19,7 @@ int shortest(String word1, String word2) returns the shortest distance between w
 public class ShortestWordDistanceTwo {
 
     private String[] dictionary;
-    Map<String, List<Integer>> map;
+    private Map<String, List<Integer>> map;
 
     public ShortestWordDistanceTwo(String[] wordsDict) {
         this.dictionary = wordsDict;
