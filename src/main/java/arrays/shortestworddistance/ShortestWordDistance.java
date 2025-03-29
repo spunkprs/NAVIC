@@ -31,6 +31,14 @@ public class ShortestWordDistance {
         System.out.println("Shortest distance between words makes && coding is : " + unit.shortestDistance(words, "coding", "makes"));
     }
 
+    /*
+    *
+    * Following are the detailing around time && space complexity
+    * a.) Brute force approach would give O(pow(n, 2)) time complexity && O(1) space complexity
+    * b.) Time Complexity = O(n)
+    * c.) Space Complexity = O(n)
+    * */
+
     public int shortestDistance(String[] wordsDict, String word1, String word2) {
         Map<String, List<Integer>> map = new HashMap();
         int minDistance = Integer.MAX_VALUE;
