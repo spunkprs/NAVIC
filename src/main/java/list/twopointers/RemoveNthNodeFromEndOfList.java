@@ -12,6 +12,26 @@ public class RemoveNthNodeFromEndOfList {
 
     public static void main(String ar[]) {
         RemoveNthNodeFromEndOfList unit = new RemoveNthNodeFromEndOfList();
+
+        //Adding test case
+        ListNode listNodeOne = new ListNode(23);
+        ListNode listNodeTwo = new ListNode(28);
+        ListNode listNodeThree = new ListNode(10);
+        ListNode listNodeFour = new ListNode(5);
+        ListNode listNodeFive = new ListNode(67);
+        ListNode listNodeSix = new ListNode(39);
+        ListNode listNodeSeven = new ListNode(70);
+        ListNode listNodeEight = new ListNode(28);
+
+        listNodeOne.next = listNodeTwo;
+        listNodeTwo.next = listNodeThree;
+        listNodeThree.next = listNodeFour;
+        listNodeFour.next = listNodeFive;
+        listNodeFive.next = listNodeSix;
+        listNodeSix.next = listNodeSeven;
+        listNodeSeven.next = listNodeEight;
+
+        unit.removeNthLastNode(listNodeOne, 2);
     }
 
     public ListNode removeNthLastNode(ListNode head, int n) {
@@ -64,7 +84,7 @@ public class RemoveNthNodeFromEndOfList {
         return length;
     }
 
-    class ListNode {
+    static class ListNode {
         int val;
         ListNode next;
 
