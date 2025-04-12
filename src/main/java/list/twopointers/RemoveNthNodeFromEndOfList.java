@@ -34,54 +34,43 @@ public class RemoveNthNodeFromEndOfList {
         unit.removeNthLastNode(listNodeOne, 2);
     }
 
-    public ListNode removeNthLastNode(ListNode head, int n) {
 
-        int lengthOfTheList = getLengthOfTheList(head);
-        int numberOfNodesToBeCovered = lengthOfTheList - n + 1;
+    /*
+     * Following cases needs to be covered :-
+     * 1.) Node to be removed is the head node
+     * 2.) Node to be removed is the tail node
+     * 3.) Node to be removed is intermediate node
+     * 4.) When length of the list is 1
+     * */
 
-        /*
-        * Following cases needs to be covered :-
-        * 1.) Node to be removed is the head node
-        * 2.) Node to be removed is the tail node
-        * 3.) Node to be removed is intermediate node
-        * */
-        return removeNode(head, numberOfNodesToBeCovered, lengthOfTheList);
+    public ListNode removeNthLastNode(ListNode node, int n) {
+        ListNode head = new ListNode(-100);
+        head.next = node;
+        return removeNode(head, n);
     }
 
-    private ListNode removeNode(ListNode head, int numberOfNodesToBeCovered, int lengthOfTheList) {
-        ListNode node = head;
-        if (numberOfNodesToBeCovered == 1) {
-            if (node.next != null) {
-                node = node.next;
-                head = node;
-            } else {
-                head = null;
-            }
+    private ListNode removeNode(ListNode head, int n) {
+        ListNode fastPointer = head;
+        ListNode slowPointer = head;
+
+        int count = 1;
+        while (count <= n) {
+            fastPointer = fastPointer.next;
+            count++;
+        }
+
+        while (fastPointer.next != null) {
+            fastPointer = fastPointer.next;
+            slowPointer = slowPointer.next;
+        }
+
+        if (slowPointer.next != fastPointer) {
+            ListNode temp = slowPointer.next;
+            slowPointer.next = temp.next;
         } else {
-            int nodesToBeCovered = numberOfNodesToBeCovered - 1;
-            int count = 1;
-            while (count < nodesToBeCovered) {
-                node = node.next;
-                count++;
-            }
-            if (numberOfNodesToBeCovered == lengthOfTheList) {
-                node.next = null;
-            } else {
-                ListNode nodeToBeRemoved = node.next;
-                node.next = nodeToBeRemoved.next;
-            }
+            slowPointer.next = null;
         }
-        return head;
-    }
-
-    private static int getLengthOfTheList(ListNode head) {
-        ListNode node = head;
-        int length = 1;
-        while (node.next != null) {
-            length++;
-            node = node.next;
-        }
-        return length;
+        return head.next;
     }
 
     static class ListNode {
