@@ -42,7 +42,6 @@ public class RemoveNthNodeFromEndOfList {
      * 3.) Node to be removed is intermediate node
      * 4.) When length of the list is 1
      * */
-
     public ListNode removeNthLastNode(ListNode node, int n) {
         ListNode head = new ListNode(-100);
         head.next = node;
@@ -82,5 +81,4 @@ public class RemoveNthNodeFromEndOfList {
         this.next = null;
         }
         }
-
 }
