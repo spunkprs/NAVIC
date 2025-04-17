@@ -34,23 +34,16 @@ public class SortColors {
 
     public int[] sortColors (int[] colors) {
         if (colors.length > 1) {
-            int indexOfNonZero = sortColorsOne(colors, 0, colors.length - 1);
-            if (indexOfNonZero != -1) {
-                sortColorsTwo(colors, indexOfNonZero, colors.length - 1);
-            } else {
-                sortColorsTwo(colors, 0, colors.length - 1);
-            }
+            sortColorsFinalApproach(colors, 0, colors.length - 1);
         }
         return colors;
     }
 
-    private int sortColorsOne(int []colors, int startIndex, int endIndex) {
+    private void sortColorsFinalApproach(int[] colors, int startIndex, int endIndex) {
         int i = startIndex;
         int j = endIndex;
-        int indexOfNonZero = -1;
 
-        while (i < j) {
-
+        while (i < j && i <= endIndex && j <= endIndex) {
             if ((colors[i] == 1 || colors[i] == 2) && colors[j] == 0) {
                 int temp = colors[i];
                 colors[i] = colors[j];
@@ -67,25 +60,22 @@ public class SortColors {
             if (colors[j] == 1 || colors[j] == 2) {
                 j--;
             }
-
         }
 
-        if ((colors[i] == colors[j]) && (colors[j] == 0)) {
-            if (i < colors.length - 1) {
-                indexOfNonZero = i + 1;
+        if (i == j) {
+            if (colors[i] == 0) {
+                startIndex = i + 1;
             } else {
-                indexOfNonZero = i;
+                startIndex = i;
             }
+        } else if (i > j) {
+            startIndex = i;
         }
-        return indexOfNonZero;
-    }
 
-    private void sortColorsTwo(int []colors, int startIndex, int endIndex) {
-        int i = startIndex;
-        int j = endIndex;
+        i = startIndex;
+        j = endIndex;
 
-        while (i < j) {
-
+        while (i < j && i <= endIndex && j <= endIndex) {
             if (colors[i] == 2 && colors[j] == 1) {
                 int temp = colors[i];
                 colors[i] = colors[j];
@@ -102,7 +92,6 @@ public class SortColors {
             if (colors[j] == 2) {
                 j--;
             }
-
         }
     }
 
