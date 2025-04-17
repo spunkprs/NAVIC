@@ -1,6 +1,5 @@
 package arrays.twopointers;
 
-
 /*
 *
 * Given an array, colors, which contains a combination of the following three elements:
@@ -34,6 +33,11 @@ public class SortColors {
 
     public int[] sortColors (int[] colors) {
         if (colors.length > 1) {
+            /*
+            Good refresher of memory that array variables are also treated as reference in Java, hence we are able to return same variable colors
+            which we are getting from above && we have void return type for method sortColorsFinalApproach
+            *
+            */
             sortColorsFinalApproach(colors, 0, colors.length - 1);
         }
         return colors;
