@@ -11,8 +11,6 @@ package arrays.fastandslowpointers;
 * NOTE : Needs to be solved in constant space
 * */
 
-
-
 public class FindDuplicateNumber {
 
     public int findDuplicate(int[] nums) {
