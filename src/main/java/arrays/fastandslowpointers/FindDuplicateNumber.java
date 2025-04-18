@@ -13,6 +13,12 @@ package arrays.fastandslowpointers;
 
 public class FindDuplicateNumber {
 
+    public static void main(String ar[]) {
+        FindDuplicateNumber unit = new FindDuplicateNumber();
+        int nums[] = {1, 4, 5, 2, 3, 2};
+        System.out.print("Only repeating number in the array nums :: " + unit.findDuplicate(nums));
+    }
+
     public int findDuplicate(int[] nums) {
         return 0;
     }
