@@ -29,7 +29,6 @@ Constraints:
 −5000 ≤ nums[i] ≤ 5000
 nums[i] !=0
 
-
 * * */
 
 import java.util.HashSet;
@@ -132,5 +131,4 @@ public class CircularArrayLoop {
             return -1;
         }
     }
-
 }
