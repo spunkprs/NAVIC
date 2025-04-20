@@ -17,6 +17,15 @@ public class LinkedListCycle {
 
     }
 
+    /*
+    * Following cases are possible as part of this problem :-
+    * Case 1 : When cycle does exists in the linked list && the length of the cycle > 1
+    * Case 2 : When cycle does exists in the linked list && the length of the cycle = 1 && length of the list is also 1
+    * Case 3 : When cycle does exists in the linked list && the length of the cycle = 1 && length of the list is > 1
+    * Case 4 : No cycle in the linked list
+    * Case 5 : Linked list is empty
+    * */
+
     public static int countCycleLength(ListNode head) {
         return 0;
     }
