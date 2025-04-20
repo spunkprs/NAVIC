@@ -10,7 +10,6 @@ Constraints:
 2.) pow(−10, 5) ≤ Node.value ≤ pow(10, 5)
 *
 * */
-
 public class LinkedListCycle {
 
     public static void main(String ar[]) {
@@ -102,7 +101,6 @@ public class LinkedListCycle {
         return result;
     }
 
-
     static class ListNode {
      private int val;
      private ListNode next;
@@ -112,6 +110,4 @@ public class LinkedListCycle {
          this.next = null;
      }
 }
-
-
 }
