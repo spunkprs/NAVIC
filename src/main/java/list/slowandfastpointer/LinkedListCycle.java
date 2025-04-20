@@ -14,7 +14,22 @@ Constraints:
 public class LinkedListCycle {
 
     public static void main(String ar[]) {
+        LinkedListCycle unit = new LinkedListCycle();
 
+        ListNode nodeOne = new ListNode(3);
+        ListNode nodeTwo = new ListNode(7);
+        ListNode nodeThree = new ListNode(9);
+        ListNode nodeFour = new ListNode(6);
+        ListNode nodeFive = new ListNode(8);
+
+        nodeOne.next = nodeTwo;
+        nodeTwo.next = nodeThree;
+        nodeThree.next = nodeFour;
+        nodeFour.next = nodeFive;
+
+        nodeFive.next = nodeThree;
+
+        System.out.print("Length of the cycle against the linked list :: " + unit.countCycleLength(nodeOne));
     }
 
     /*
@@ -26,8 +41,65 @@ public class LinkedListCycle {
     * Case 5 : Linked list is empty
     * */
 
-    public static int countCycleLength(ListNode head) {
+    public int countCycleLength(ListNode head) {
+        if (head != null) {
+            if (head == head.next) {
+                return 1;
+            } else {
+                ListNode meetingPointNode = findNodeAtWhichTwoPointersMet(head);
+                if (meetingPointNode != null) {
+                    return findLengthOfTheCycle(meetingPointNode);
+                }
+                return 0;
+            }
+        }
         return 0;
+    }
+
+    private int findLengthOfTheCycle(ListNode meetingPointNode) {
+        ListNode listNode = meetingPointNode.next;
+        int count = 1;
+
+        while (listNode != meetingPointNode) {
+            count++;
+            listNode = listNode.next;
+        }
+        return count;
+    }
+
+    private ListNode findNodeAtWhichTwoPointersMet(ListNode node) {
+        ListNode result = null;
+        boolean cycleExists = true;
+        ListNode sp = node;
+        ListNode fp = node;
+
+        ListNode fpIntermittent = fp.next;
+        ListNode fpNext = fpIntermittent.next;
+
+        if (fpIntermittent == null || fpNext == null) {
+            return result;
+        }
+
+        sp = sp.next;
+        fp = fpNext;
+
+        while (sp != fp) {
+            if (fp.next == null || fp.next.next == null) {
+                cycleExists = false;
+                break;
+            }
+
+            fpIntermittent = fp.next;
+            fpNext = fpIntermittent.next;
+
+            sp = sp.next;
+            fp = fpNext;
+        }
+
+        if (cycleExists) {
+            result = sp;
+        }
+        return result;
     }
 
 
