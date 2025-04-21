@@ -47,7 +47,7 @@ public class LongestSubStringWithoutRepeatingCharacters {
         map.add(arr[pointerOne]);
         int lengthOfLongestSubString = 1;
 
-        while (pointerOne <= pointerTwo && pointerTwo < arr.length - 1) {
+        while (pointerTwo < arr.length - 1) {
             if (map.contains(arr[pointerTwo + 1])) {
                 while(map.contains(arr[pointerTwo + 1])) {
                     map.remove(arr[pointerOne]);
@@ -69,6 +69,4 @@ public class LongestSubStringWithoutRepeatingCharacters {
     private int updateLengthofLongestSubstring(int length, Set<Character> set) {
         return length > set.size() ? length : set.size();
     }
-
-
 }
