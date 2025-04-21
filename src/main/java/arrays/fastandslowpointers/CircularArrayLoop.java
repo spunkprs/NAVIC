@@ -40,8 +40,8 @@ public class CircularArrayLoop {
 
     public static void main(String ar[]) {
         CircularArrayLoop unit = new CircularArrayLoop();
-        int nums[] = {5,4,-2,-1,3};
-        //int nums[] = {1, 2, -3, 4, -2};
+        //int nums[] = {5,4,-2,-1,3};
+        int nums[] = {1, 2, -3, 4, -2};
         System.out.print("Cycle detected in this circular array " + unit.circularArrayLoop(nums));
     }
 
