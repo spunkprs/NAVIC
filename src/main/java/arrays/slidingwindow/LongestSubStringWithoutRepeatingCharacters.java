@@ -6,15 +6,8 @@ package arrays.slidingwindow;
 
 Constraints:
 
-1
-≤ str.length ≤
-1
-0
-5
-≤10
-5
-
-str consists of English letters, digits, and spaces.
+1.) 1 ≤ str.length ≤ pow(10,5)
+2.) str consists of English letters, digits, and spaces.
 *
 * */
 
