@@ -10,6 +10,11 @@ Constraints:
 2.) s consists of only lowercase English characters
 3.) 0 ≤ k ≤ s.length
 *
+*
+*
+* Links that I have reffered to for solving this problem :-
+* a.) https://www.youtube.com/watch?v=gqXU1UyA8pk
+* b.) https://www.youtube.com/watch?v=_eNhaDCr6P0
 * */
 
 public class LongestRepeatingCharacterReplacement {
