@@ -12,22 +12,71 @@ Constraints:
 *
 *
 *
-* Links that I have reffered to for solving this problem :-
+* Links that I have referred to for solving this problem :-
 * a.) https://www.youtube.com/watch?v=gqXU1UyA8pk
 * b.) https://www.youtube.com/watch?v=_eNhaDCr6P0
 * */
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class LongestRepeatingCharacterReplacement {
 
     public static void main(String ar[]) {
         LongestRepeatingCharacterReplacement unit = new LongestRepeatingCharacterReplacement();
-        String inputWord = "aabccbb";
+        //String inputWord = "aabccbb";
+        //String inputWord = "pqqrt";
+        String inputWord = "lmno";
         int k = 2;
+        //int k = 0;
         System.out.print("Length of longest substring where all characters are identical :: " + unit.longestRepeatingCharacterReplacement(inputWord, k));
     }
 
     public int longestRepeatingCharacterReplacement(String s, int k) {
-        return -1;
+        char arr[] = s.toCharArray();
+        if (arr.length == 1) {
+            return 1;
+        }
+        return processToFindLongestRepeatingCharacterReplacement(arr, k);
+    }
+
+    private int processToFindLongestRepeatingCharacterReplacement(char[] arr, int k) {
+        int lengthOfLongestRepeatingSustring = 0;
+        Map<Character, Integer> map = new HashMap<>();
+        int leftIndex = 0;
+        int rightIndex = 0;
+
+        pushElementInTheMap(map, arr[rightIndex]);
+
+        while (rightIndex < arr.length - 1) {
+            pushElementInTheMap(map, arr[rightIndex + 1]);
+            int distance = rightIndex + 1 - leftIndex + 1;
+            int hf = highestFrequency(map);
+
+            if (distance - hf <= k) {
+                lengthOfLongestRepeatingSustring = distance > lengthOfLongestRepeatingSustring ? distance : lengthOfLongestRepeatingSustring;
+                rightIndex++;
+            } else {
+                if (map.containsKey(arr[leftIndex])) {
+                    map.put(arr[leftIndex], map.get(arr[leftIndex]) - 1);
+                    leftIndex++;
+                    rightIndex++;
+                }
+            }
+        }
+        return lengthOfLongestRepeatingSustring;
+    }
+
+    private int highestFrequency(Map<Character, Integer> map) {
+        return map.values().stream().max(Integer::compareTo).get();
+    }
+
+    private void pushElementInTheMap(Map<Character, Integer> map, char character) {
+        if (!map.containsKey(character)) {
+            map.put(character, 1);
+        } else {
+            map.put(character, map.get(character) + 1);
+        }
     }
 
 }
