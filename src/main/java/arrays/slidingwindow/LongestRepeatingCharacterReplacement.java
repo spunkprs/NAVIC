@@ -46,12 +46,12 @@ public class LongestRepeatingCharacterReplacement {
     }
 
     private int processToFindLongestRepeatingCharacterReplacement(char[] arr, int k) {
-        int lengthOfLongestRepeatingSustring = 0;
         Map<Character, Integer> map = new HashMap<>();
         int leftIndex = 0;
         int rightIndex = 0;
 
         pushElementInTheMap(map, arr[rightIndex]);
+        int lengthOfLongestRepeatingSustring = 1;
 
         while (rightIndex < arr.length - 1) {
             pushElementInTheMap(map, arr[rightIndex + 1]);
