@@ -10,8 +10,6 @@ Constraints:
 2.) s consists of only lowercase English characters
 3.) 0 ≤ k ≤ s.length
 *
-*
-*
 * Links that I have referred to for solving this problem :-
 * a.) https://www.youtube.com/watch?v=gqXU1UyA8pk
 * b.) https://www.youtube.com/watch?v=_eNhaDCr6P0
@@ -24,9 +22,9 @@ public class LongestRepeatingCharacterReplacement {
 
     public static void main(String ar[]) {
         LongestRepeatingCharacterReplacement unit = new LongestRepeatingCharacterReplacement();
-        //String inputWord = "aabccbb";
+        String inputWord = "aabccbb";
         //String inputWord = "pqqrt";
-        String inputWord = "lmno";
+        //String inputWord = "lmno";
         int k = 2;
         //int k = 0;
         System.out.print("Length of longest substring where all characters are identical :: " + unit.longestRepeatingCharacterReplacement(inputWord, k));
@@ -78,5 +76,4 @@ public class LongestRepeatingCharacterReplacement {
             map.put(character, map.get(character) + 1);
         }
     }
-
 }
