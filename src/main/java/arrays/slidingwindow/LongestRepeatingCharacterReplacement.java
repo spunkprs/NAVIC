@@ -20,6 +20,12 @@ import java.util.Map;
 
 public class LongestRepeatingCharacterReplacement {
 
+    /*
+    * Space Complexity = O(26) --> As only lower english characters are allowed in the i/p string
+    * Time Complexity = O(n * 26) --> Linear time is self explanatory in itself but * 26 is there because we are checking the highest value against each alphabet which can go upto
+    * 26 in the worst case
+    * */
+
     public static void main(String ar[]) {
         LongestRepeatingCharacterReplacement unit = new LongestRepeatingCharacterReplacement();
         String inputWord = "aabccbb";
