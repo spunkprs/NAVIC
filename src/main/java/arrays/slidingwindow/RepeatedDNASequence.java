@@ -61,7 +61,6 @@ public class RepeatedDNASequence {
             }
             startIndex++;
         }
-
         return prepareResult(map);
     }
 
@@ -90,5 +89,4 @@ public class RepeatedDNASequence {
             map.put(word, map.get(word) + 1);
         }
     }
-
 }
