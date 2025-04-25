@@ -29,7 +29,9 @@ public class LongestSubstringWithAtLeastKRepeatingCharacters {
     public static void main(String ar[]) {
         LongestSubstringWithAtLeastKRepeatingCharacters unit = new LongestSubstringWithAtLeastKRepeatingCharacters();
         String input = "pqrrqtpabbbaa";
+        //String input = "aaabb";
         int k = 2;
+        //int k = 3;
         System.out.print("Length of longest repeating substring for i/p " + input + " is : " + unit.longestSubstring(input, k));
     }
 
@@ -40,9 +42,9 @@ public class LongestSubstringWithAtLeastKRepeatingCharacters {
         int charMap[];
         for (int i = 1; i <= numberOfUniqueCharactersInTheString; i++) {
             charMap = new int[26];
-            processToFindLongestSubString(arr, charMap, i, k);
+            lengthOfLongestSubString = Math.max(lengthOfLongestSubString, processToFindLongestSubString(arr, charMap, i, k));
         }
-        return 0;
+        return lengthOfLongestSubString;
     }
 
     private int processToFindLongestSubString(char[] arr, int[] charFrequencyMap, int allowedDistinctCharacters, int allowedFrequency) {
@@ -55,27 +57,27 @@ public class LongestSubstringWithAtLeastKRepeatingCharacters {
             if (set.size() < allowedDistinctCharacters) {
                 set.add(arr[rightIndex]);
                 charFrequencyMap[arr[rightIndex] - 'a'] = charFrequencyMap[arr[rightIndex] - 'a'] + 1;
-                if (charFrequencyMap[arr[rightIndex] - 'a'] >= allowedFrequency) {
+                if (charFrequencyMap[arr[rightIndex] - 'a'] == allowedFrequency) {
                     count++;
                 }
                 rightIndex++;
             } else if (set.size() == allowedDistinctCharacters) {
-                if (count == allowedDistinctCharacters) {
-                    lengthOfLongestSubString = Math.max(lengthOfLongestSubString, rightIndex - leftIndex);
-                    set.remove(leftIndex);
-                    leftIndex++;
-                } else {
+                if (set.contains(arr[rightIndex])) {
                     charFrequencyMap[arr[rightIndex] - 'a'] = charFrequencyMap[arr[rightIndex] - 'a'] + 1;
-                    if (charFrequencyMap[arr[rightIndex] - 'a'] >= allowedFrequency) {
+                    if (charFrequencyMap[arr[rightIndex] - 'a'] == allowedFrequency) {
                         count++;
                     }
+                    if (count == allowedDistinctCharacters) {
+                        lengthOfLongestSubString = Math.max(lengthOfLongestSubString, rightIndex - leftIndex + 1);
+                    }
                     rightIndex++;
+                } else {
+                    set.remove(arr[leftIndex]);
+                    charFrequencyMap[arr[leftIndex] - 'a'] = charFrequencyMap[arr[leftIndex] - 'a'] - 1;
+                    leftIndex++;
+                    count = 0;
                 }
-            } /*else {
-                set.remove(arr[leftIndex]);
-                charFrequencyMap[arr[leftIndex] - 'a'] = charFrequencyMap[arr[leftIndex] - 'a'] - 1;
-                leftIndex++;
-            }*/
+            }
         }
         return lengthOfLongestSubString;
     }
