@@ -29,7 +29,7 @@ public class LongestSubstringWithAtLeastKRepeatingCharacters {
     public static void main(String ar[]) {
         LongestSubstringWithAtLeastKRepeatingCharacters unit = new LongestSubstringWithAtLeastKRepeatingCharacters();
         String input = "pqrrqtpabbbaa";
-        //String input = "aaabb";
+        //String input = "bbaaacbd";
         int k = 2;
         //int k = 3;
         System.out.print("Length of longest repeating substring for i/p " + input + " is : " + unit.longestSubstring(input, k));
@@ -37,14 +37,20 @@ public class LongestSubstringWithAtLeastKRepeatingCharacters {
 
     public int longestSubstring(String s, int k) {
         char arr[] = s.toCharArray();
-        int numberOfUniqueCharactersInTheString = fetchNumberOfUniqueCharacters(arr);
-        int lengthOfLongestSubString = 0;
-        int charMap[];
-        for (int i = 1; i <= numberOfUniqueCharactersInTheString; i++) {
-            charMap = new int[26];
-            lengthOfLongestSubString = Math.max(lengthOfLongestSubString, processToFindLongestSubString(arr, charMap, i, k));
+        if (s.length() == 1 && k == 1) {
+            return 1;
+        } else if (s.length() < k) {
+            return 0;
+        } else {
+            int numberOfUniqueCharactersInTheString = fetchNumberOfUniqueCharacters(arr);
+            int lengthOfLongestSubString = 0;
+            int charMap[];
+            for (int i = 1; i <= numberOfUniqueCharactersInTheString; i++) {
+                charMap = new int[26];
+                lengthOfLongestSubString = Math.max(lengthOfLongestSubString, processToFindLongestSubString(arr, charMap, i, k));
+            }
+            return lengthOfLongestSubString;
         }
-        return lengthOfLongestSubString;
     }
 
     private int processToFindLongestSubString(char[] arr, int[] charFrequencyMap, int allowedDistinctCharacters, int allowedFrequency) {
@@ -72,9 +78,9 @@ public class LongestSubstringWithAtLeastKRepeatingCharacters {
                     }
                     rightIndex++;
                 } else {
-                    set.remove(arr[leftIndex]);
-                    charFrequencyMap[arr[leftIndex] - 'a'] = charFrequencyMap[arr[leftIndex] - 'a'] - 1;
-                    leftIndex++;
+                    set = new HashSet<>();
+                    leftIndex = rightIndex;
+                    charFrequencyMap = new int[26];
                     count = 0;
                 }
             }
