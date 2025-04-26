@@ -30,6 +30,7 @@ public class LongestSubstringWithAtLeastKRepeatingCharacters {
         LongestSubstringWithAtLeastKRepeatingCharacters unit = new LongestSubstringWithAtLeastKRepeatingCharacters();
         //String input = "pqrrqtpabbbaa";
         String input = "zzzzzzzzzzaaaaaaaaabbbbbbbbhbhbhbhbhbhbhicbcbcibcbccccccccccbbbbbbbbaaaaaaaaafffaahhhhhiaahiiiiiiiiifeeeeeeeeee";
+        //String input = "aaaaaaaaabbbcccccddddd";
         int k = 10;
         //int k = 3;
         System.out.print("Length of longest repeating substring for i/p " + input + " is : " + unit.longestSubstring(input, k));
@@ -81,10 +82,15 @@ public class LongestSubstringWithAtLeastKRepeatingCharacters {
                     }
                     rightIndex++;
                 } else {
-                    set = new HashSet<>();
-                    leftIndex = rightIndex;
-                    charFrequencyMap = new int[26];
-                    count = 0;
+                    while (arr[leftIndex] == arr[leftIndex + 1]) {
+                        leftIndex++;
+                    }
+                    set.remove(arr[leftIndex]);
+                    if (charFrequencyMap[arr[leftIndex] - 'a'] >= allowedFrequency) {
+                        count--;
+                    }
+                    charFrequencyMap[arr[leftIndex] - 'a'] = 0;
+                    leftIndex++;
                 }
             }
         }
