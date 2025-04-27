@@ -17,7 +17,6 @@ c.) 1 <= k <= nums.length
 *
 * */
 
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -64,5 +63,4 @@ public class LongestSubArrayWithAtMostKFrequency {
     private int updatemaxLength(int maxLength, int leftIndex, int rightIndex) {
         return rightIndex - leftIndex + 1 > maxLength ? rightIndex - leftIndex + 1 : maxLength;
     }
-
 }
