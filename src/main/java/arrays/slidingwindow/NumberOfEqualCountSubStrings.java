@@ -46,6 +46,9 @@ s consists only of lowercase English letters.
 * */
 
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class NumberOfEqualCountSubStrings {
 
     public static void main(String ar[]) {
@@ -57,7 +60,90 @@ public class NumberOfEqualCountSubStrings {
     }
 
     public int equalCountSubstrings(String s, int count) {
-        return 0;
+        int result = 0;
+        if (count > s.length()) {
+            return 0;
+        } else {
+            //Find number of distinct characters
+            char arr[] = s.toCharArray();
+            int distinctCharacters = findDistinctCharacters(arr);
+
+            //Fetching count of valid substring against count of distinct characters from 1 to n{distinctCharacters}
+            for (int i = 1; i <= distinctCharacters; i++) {
+                result +=processToFindEqualCountSubstrings(arr, count, i);
+            }
+        }
+        return result;
+    }
+
+    private int processToFindEqualCountSubstrings(char[] arr, int allowedCount, int numberOfDistinctCharacters) {
+        int leftIndex = 0;
+        int rightIndex = 0;
+        Set<Character> set = new HashSet<>();
+        int charFrequencyMap[] = new int[26];
+        int count = 0;
+        int countOfSubStrings = 0;
+
+        while (rightIndex < arr.length) {
+            if (!set.contains(arr[rightIndex])) {
+                if (set.size() < numberOfDistinctCharacters) {
+                    set.add(arr[rightIndex]);
+                    charFrequencyMap[arr[rightIndex] - 'a'] = charFrequencyMap[arr[rightIndex] - 'a'] + 1;
+                    count = postAdditionSteps(set, charFrequencyMap, leftIndex, rightIndex, arr, numberOfDistinctCharacters, allowedCount, count);
+                    rightIndex++;
+                } else if (set.size() == numberOfDistinctCharacters) {
+                    while (set.size() == numberOfDistinctCharacters) {
+                        if (charFrequencyMap[arr[leftIndex] - 'a'] == 1) {
+                            set.remove(arr[leftIndex]);
+                        }
+                        if (charFrequencyMap[arr[leftIndex] - 'a'] == allowedCount) {
+                            count--;
+                        }
+                        charFrequencyMap[arr[rightIndex] - 'a'] = charFrequencyMap[arr[rightIndex] - 'a'] - 1;
+                        leftIndex++;
+                    }
+                }
+            } else {
+                if (set.size() == numberOfDistinctCharacters) {
+                    if (charFrequencyMap[arr[rightIndex] - 'a'] < allowedCount) {
+                        charFrequencyMap[arr[rightIndex] - 'a'] = charFrequencyMap[arr[rightIndex] - 'a'] + 1;
+                        count = postAdditionSteps(set, charFrequencyMap, leftIndex, rightIndex, arr, numberOfDistinctCharacters, allowedCount, count);
+                        rightIndex++;
+                    } else if (charFrequencyMap[arr[rightIndex] - 'a'] == allowedCount) {
+                        while (charFrequencyMap[arr[leftIndex] - 'a'] + 1 > allowedCount) {
+                            count--;
+                            if (allowedCount == 1) {
+                                set.remove(arr[leftIndex]);
+                            }
+                            charFrequencyMap[arr[rightIndex] - 'a'] = charFrequencyMap[arr[rightIndex] - 'a'] - 1;
+                            leftIndex++;
+                        }
+                    }
+
+                    if (count == numberOfDistinctCharacters) {
+                        countOfSubStrings++;
+                    }
+                }
+            }
+        }
+        return countOfSubStrings;
+    }
+
+    private int postAdditionSteps(Set<Character> set, int[] charFrequencyMap, int leftIndex, int rightIndex, char[] arr, int numberOfDistinctCharacters, int allowedCount, int count) {
+        if (set.size() == numberOfDistinctCharacters) {
+            if (charFrequencyMap[arr[rightIndex] - 'a'] == allowedCount) {
+                return count + 1;
+            }
+        }
+        return count;
+    }
+
+    private int findDistinctCharacters(char arr[]) {
+        Set<Character> set = new HashSet<>();
+        for (Character c : arr) {
+            set.add(c);
+        }
+        return set.size();
     }
 
 }
