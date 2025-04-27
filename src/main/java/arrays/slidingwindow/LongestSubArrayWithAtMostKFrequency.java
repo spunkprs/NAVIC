@@ -15,6 +15,9 @@ b.) 1 <= nums[i] <= pow(10,9)
 c.) 1 <= k <= nums.length
 *
 *
+* Time Complexity = O(n)
+* Space Complexity = O(n)
+*
 * */
 
 import java.util.HashMap;

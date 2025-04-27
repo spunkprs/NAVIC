@@ -43,6 +43,10 @@ Constraints:
 1 <= count <= 3 * pow(10,4)
 s consists only of lowercase English letters.
 *
+*
+* Time Complexity = O(n * 26) ~ O(n)
+* Space Complexity = O(26) ~ constant space
+*
 * */
 
 
