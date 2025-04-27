@@ -24,8 +24,8 @@ public class LongestSubArrayWithAtMostKFrequency {
 
     public static void main(String ar[]) {
         LongestSubArrayWithAtMostKFrequency unit = new LongestSubArrayWithAtMostKFrequency();
-        int inputArr[] = {1,2,1,2,1,2,1,2};
-        int k = 1;
+        int inputArr[] = {1,2,3,1,2,3,1,2};
+        int k = 2;
         System.out.print("Length of longest subarray for the above i/p is :: " + unit.maxSubarrayLength(inputArr, k));
     }
 
