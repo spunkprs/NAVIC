@@ -132,9 +132,20 @@ public class NumberOfEqualCountSubStrings {
                         }
                     }
                 } else if (set.size() < numberOfDistinctCharacters) {
-                    charFrequencyMap[arr[rightIndex] - 'a'] = charFrequencyMap[arr[rightIndex] - 'a'] + 1;
-                    count = postAdditionSteps(charFrequencyMap, rightIndex, arr, allowedCount, count);
-                    rightIndex++;
+                    if (charFrequencyMap[arr[rightIndex] - 'a'] < allowedCount) {
+                        charFrequencyMap[arr[rightIndex] - 'a'] = charFrequencyMap[arr[rightIndex] - 'a'] + 1;
+                        count = postAdditionSteps(charFrequencyMap, rightIndex, arr, allowedCount, count);
+                        rightIndex++;
+                    } else if (charFrequencyMap[arr[rightIndex] - 'a'] == allowedCount) {
+                        while (charFrequencyMap[arr[rightIndex] - 'a'] + 1 > allowedCount) {
+                            count--;
+                            if (charFrequencyMap[arr[leftIndex] - 'a'] == 1) {
+                                set.remove(arr[leftIndex]);
+                            }
+                            charFrequencyMap[arr[leftIndex] - 'a'] = charFrequencyMap[arr[leftIndex] - 'a'] - 1;
+                            leftIndex++;
+                        }
+                    }
                 }
             }
         }
@@ -144,8 +155,6 @@ public class NumberOfEqualCountSubStrings {
     private int postAdditionSteps(int[] charFrequencyMap, int rightIndex, char[] arr, int allowedCount, int count) {
         if (charFrequencyMap[arr[rightIndex] - 'a'] == allowedCount) {
             return count + 1;
-        } else if (charFrequencyMap[arr[rightIndex] - 'a'] > allowedCount) {
-            return count - 1;
         }
         return count;
     }
