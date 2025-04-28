@@ -57,8 +57,10 @@ public class NumberOfEqualCountSubStrings {
 
     public static void main(String ar[]) {
         NumberOfEqualCountSubStrings unit = new NumberOfEqualCountSubStrings();
-        String inputString = "aaabcbbcc";
-        int count = 3;
+        //String inputString = "aaabcbbcc";
+        String inputString = "kiegykd";
+        int count = 1;
+        //int count = 3;
         System.out.print("Number of equal count substrings for i/p " + inputString + " where count is " + count + " is :: " +
                 unit.equalCountSubstrings(inputString, count));
     }
@@ -93,7 +95,10 @@ public class NumberOfEqualCountSubStrings {
                 if (set.size() < numberOfDistinctCharacters) {
                     set.add(arr[rightIndex]);
                     charFrequencyMap[arr[rightIndex] - 'a'] = charFrequencyMap[arr[rightIndex] - 'a'] + 1;
-                    count = postAdditionSteps(set, charFrequencyMap, leftIndex, rightIndex, arr, numberOfDistinctCharacters, allowedCount, count);
+                    count = postAdditionSteps(charFrequencyMap, rightIndex, arr, allowedCount, count);
+                    if (count == numberOfDistinctCharacters) {
+                        countOfSubStrings++;
+                    }
                     rightIndex++;
                 } else if (set.size() == numberOfDistinctCharacters) {
                     while (set.size() == numberOfDistinctCharacters) {
@@ -103,7 +108,7 @@ public class NumberOfEqualCountSubStrings {
                         if (charFrequencyMap[arr[leftIndex] - 'a'] == allowedCount) {
                             count--;
                         }
-                        charFrequencyMap[arr[rightIndex] - 'a'] = charFrequencyMap[arr[rightIndex] - 'a'] - 1;
+                        charFrequencyMap[arr[leftIndex] - 'a'] = charFrequencyMap[arr[leftIndex] - 'a'] - 1;
                         leftIndex++;
                     }
                 }
@@ -111,33 +116,36 @@ public class NumberOfEqualCountSubStrings {
                 if (set.size() == numberOfDistinctCharacters) {
                     if (charFrequencyMap[arr[rightIndex] - 'a'] < allowedCount) {
                         charFrequencyMap[arr[rightIndex] - 'a'] = charFrequencyMap[arr[rightIndex] - 'a'] + 1;
-                        count = postAdditionSteps(set, charFrequencyMap, leftIndex, rightIndex, arr, numberOfDistinctCharacters, allowedCount, count);
+                        count = postAdditionSteps(charFrequencyMap, rightIndex, arr, allowedCount, count);
+                        if (count == numberOfDistinctCharacters) {
+                            countOfSubStrings++;
+                        }
                         rightIndex++;
                     } else if (charFrequencyMap[arr[rightIndex] - 'a'] == allowedCount) {
-                        while (charFrequencyMap[arr[leftIndex] - 'a'] + 1 > allowedCount) {
+                        while (charFrequencyMap[arr[rightIndex] - 'a'] + 1 > allowedCount) {
                             count--;
-                            if (allowedCount == 1) {
+                            if (charFrequencyMap[arr[leftIndex] - 'a'] == 1) {
                                 set.remove(arr[leftIndex]);
                             }
-                            charFrequencyMap[arr[rightIndex] - 'a'] = charFrequencyMap[arr[rightIndex] - 'a'] - 1;
+                            charFrequencyMap[arr[leftIndex] - 'a'] = charFrequencyMap[arr[leftIndex] - 'a'] - 1;
                             leftIndex++;
                         }
                     }
-
-                    if (count == numberOfDistinctCharacters) {
-                        countOfSubStrings++;
-                    }
+                } else if (set.size() < numberOfDistinctCharacters) {
+                    charFrequencyMap[arr[rightIndex] - 'a'] = charFrequencyMap[arr[rightIndex] - 'a'] + 1;
+                    count = postAdditionSteps(charFrequencyMap, rightIndex, arr, allowedCount, count);
+                    rightIndex++;
                 }
             }
         }
         return countOfSubStrings;
     }
 
-    private int postAdditionSteps(Set<Character> set, int[] charFrequencyMap, int leftIndex, int rightIndex, char[] arr, int numberOfDistinctCharacters, int allowedCount, int count) {
-        if (set.size() == numberOfDistinctCharacters) {
-            if (charFrequencyMap[arr[rightIndex] - 'a'] == allowedCount) {
-                return count + 1;
-            }
+    private int postAdditionSteps(int[] charFrequencyMap, int rightIndex, char[] arr, int allowedCount, int count) {
+        if (charFrequencyMap[arr[rightIndex] - 'a'] == allowedCount) {
+            return count + 1;
+        } else if (charFrequencyMap[arr[rightIndex] - 'a'] > allowedCount) {
+            return count - 1;
         }
         return count;
     }
