@@ -18,6 +18,35 @@ public class ThreadLocalWithInitialValueExample {
 
     public static void main(String ar[]) {
 
+        ThreadLocal<String> threadLocal = ThreadLocal.withInitial( () -> {
+           return "DEFAULT";
+        });
+
+        Thread threadOne = new Thread(() -> {
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("Value fetched from ThreadLocal against Thread1 before modification :: " + threadLocal.get());
+            threadLocal.set("Thread 1");
+            System.out.println("Value fetched from ThreadLocal against Thread1 post modification :: " + threadLocal.get());
+        });
+
+        Thread threadTwo = new Thread(() -> {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            System.out.println("Value fetched from ThreadLocal against Thread2 before modification :: " + threadLocal.get());
+            threadLocal.set("Thread 2");
+            System.out.println("Value fetched from ThreadLocal against Thread2 post modification :: " + threadLocal.get());
+        });
+
+        threadOne.start();
+        threadTwo.start();
     }
 
 }
