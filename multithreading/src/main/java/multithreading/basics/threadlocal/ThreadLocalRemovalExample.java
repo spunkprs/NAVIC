@@ -20,7 +20,7 @@ public class ThreadLocalRemovalExample {
         Thread threadOne = new Thread(() -> {
             threadLocal.set("Thread One");
             try {
-                Thread.sleep(2000);
+                Thread.sleep(3000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -32,12 +32,14 @@ public class ThreadLocalRemovalExample {
         Thread threadTwo = new Thread(() -> {
             threadLocal.set("Thread two");
             try {
-                Thread.sleep(3000);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
 
-            System.out.println("Value fetched from ThreadLocal against Thread2 :: " + threadLocal.get());
+            System.out.println("Value fetched from ThreadLocal against Thread2 before reintialisation :: " + threadLocal.get());
+            threadLocal.set("Thread two value altered");
+            System.out.println("Value fetched from ThreadLocal against Thread2 post reintialisation :: " + threadLocal.get());
         });
 
         threadOne.start();
