@@ -4,6 +4,7 @@ package multithreading.basics.immutable;
 *
 * Have made class final && all it's fields as final too
 * NO setter methods have been exposed to alter the state of the object
+* Object once created can't be altered later
 * */
 
 public final class Holder {

@@ -19,6 +19,7 @@ public class AccessingImmutableObjects {
 
     public static void main(String ar[]) {
 
+        //Object once created can't be altered later
         Holder holder = new Holder(10);
 
         Thread threadOne = new Thread(() -> {
