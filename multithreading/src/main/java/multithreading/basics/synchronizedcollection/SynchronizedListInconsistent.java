@@ -2,11 +2,11 @@ package multithreading.basics.synchronizedcollection;
 
 import java.util.List;
 
-public class SynchronizedList {
+public class SynchronizedListInconsistent {
 
     private List<String> synchronizedList;
 
-    public SynchronizedList(List<String> synchronizedList) {
+    public SynchronizedListInconsistent(List<String> synchronizedList) {
         this.synchronizedList = synchronizedList;
     }
 

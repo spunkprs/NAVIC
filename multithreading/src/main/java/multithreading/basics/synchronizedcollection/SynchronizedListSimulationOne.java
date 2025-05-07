@@ -34,7 +34,7 @@ public class SynchronizedListSimulationOne {
 
         words = Collections.synchronizedList(words);
 
-        SynchronizedList synchronizedList = new SynchronizedList(words);
+        SynchronizedListInconsistent synchronizedList = new SynchronizedListInconsistent(words);
 
         //This thread will try to remove last element
         Thread threadOne = new Thread(() -> {
