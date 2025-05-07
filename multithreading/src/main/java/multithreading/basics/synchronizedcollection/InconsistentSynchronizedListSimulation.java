@@ -22,10 +22,10 @@ import java.util.List;
 *
 * */
 
-public class SynchronizedListSimulationOne {
+public class InconsistentSynchronizedListSimulation {
 
     public static void main(String ar[]) {
-        SynchronizedListSimulationOne unit = new SynchronizedListSimulationOne();
+        InconsistentSynchronizedListSimulation unit = new InconsistentSynchronizedListSimulation();
         try {
             for (int i = 1; i < 10000; i++) {
                 unit.triggerSimulation();
