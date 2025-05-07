@@ -1,13 +1,18 @@
 package multithreading.basics.synchronizedcollection;
 
+import java.util.Collections;
 import java.util.List;
+
+/*
+* Example of using synchronized list where client locking is not enabled hence chances of IndexOutOfBoundsException is there
+* */
 
 public class SynchronizedListInconsistent {
 
     private List<String> synchronizedList;
 
-    public SynchronizedListInconsistent(List<String> synchronizedList) {
-        this.synchronizedList = synchronizedList;
+    public SynchronizedListInconsistent(List<String> list) {
+        this.synchronizedList = Collections.synchronizedList(list);
     }
 
     public String getLast() {
