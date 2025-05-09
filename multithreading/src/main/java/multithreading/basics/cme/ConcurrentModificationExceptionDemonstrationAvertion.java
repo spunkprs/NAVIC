@@ -35,7 +35,6 @@ public class ConcurrentModificationExceptionDemonstrationAvertion {
         try {
             while (it.hasNext()) {
                 /*
-                *
                 Again pushing key/value pairs into map but important thing to notice
                 is no new key is pushed rather values are altered against the same set
                 of keys hence we don't run into ConcurrentModificationException

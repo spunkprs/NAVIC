@@ -8,7 +8,7 @@ import java.util.ConcurrentModificationException;
 /*
 *
 * This class is the demonstration against running into ConcurrentModificationException while working in the single
-* threaded environment
+* threaded environment when when map is getting altered while traversing it simultaneously
 * Important thing to notice here is CME doesn't even come under java.util.concurrent package
 * */
 
@@ -29,8 +29,11 @@ public class ConcurrentModificationExceptionDemonstrationBasic {
 
             try {
                 while (it.hasNext()) {
-                    // Add a new key/value pair while the map is
-                    // being traversed.
+                    /*
+                    Again pushing key/value pairs into map but important thing to notice
+                    is new key are getting pushed into map hence state of it's keyset would be altered
+                    leading to ConcurrentModificationException
+                    * */
                     map.put("key-" + i, i);
                     it.next();
                     i++;
