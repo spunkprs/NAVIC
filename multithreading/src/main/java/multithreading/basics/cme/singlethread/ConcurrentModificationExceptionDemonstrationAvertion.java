@@ -1,4 +1,4 @@
-package multithreading.basics.cme;
+package multithreading.basics.cme.singlethread;
 
 import java.util.ConcurrentModificationException;
 import java.util.HashMap;
