@@ -6,7 +6,6 @@ public class InterupptedExceptionSimulationOne {
             InterruptExample.example();
         }
 
-
     static class InterruptExample {
 
             public static void example() throws InterruptedException {
@@ -54,6 +53,4 @@ public class InterupptedExceptionSimulationOne {
             sleepyThread.join();
         }
     }
-
-
 }
