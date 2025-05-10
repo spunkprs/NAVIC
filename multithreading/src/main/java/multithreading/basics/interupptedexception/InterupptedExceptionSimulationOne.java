@@ -44,6 +44,10 @@ public class InterupptedExceptionSimulationOne {
                             System.out.println("The interrupt flag against secondaryThread is cleared : " + Thread.interrupted() + " " + Thread.currentThread().isInterrupted());
                             Thread.currentThread().interrupt();
                             synchronized (lock) {
+                                /*
+                                * No impact by the waiting time because interrupted status was already set to true hence as soon as wait on the lock/monitor object
+                                * is called by the same thread immediately interrupted exception will be thrown
+                                * */
                                 lock.wait(10000);
                             }
                         } catch (InterruptedException e2) {
