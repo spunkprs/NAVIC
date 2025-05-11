@@ -1,5 +1,23 @@
 package multithreading.basics;
 
+
+/*
+*
+You are given an instance of the class PrintNumberSeries that has three functions:-
+a.) printZero
+b.) printOdd
+c.) printEven
+
+The same instance of PrintNumberSeries will be passed to three different threads:
+
+Thread A: calls printZero() that should only output 0's.
+Thread B: calls printOdd() that should only output odd numbers.
+Thread C: calls printEven() that should only output even numbers.
+
+Modify the given class to output the series "010203040506..." where the length of the series must be 2n.
+*
+* */
+
 public class PrintNumberSeriesImplementation {
 
     static class PrintNumberSeries {
