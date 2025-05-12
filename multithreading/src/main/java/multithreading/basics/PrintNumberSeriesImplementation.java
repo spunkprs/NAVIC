@@ -15,7 +15,6 @@ Thread B: calls printOdd() that should only output odd numbers.
 Thread C: calls printEven() that should only output even numbers.
 
 Modify the given class to output the series "010203040506..." where the length of the series must be 2n.
-*
 * */
 
 public class PrintNumberSeriesImplementation {
@@ -23,14 +22,14 @@ public class PrintNumberSeriesImplementation {
     static class PrintNumberSeries {
         private int n;
         private int number;
-        private boolean printZero = true;
+        private boolean printZero;
 
         public PrintNumberSeries(int n) {
             this.n = n;
         }
 
         public void printZero() {
-            System.out.print("0");
+            System.out.print(0);
         }
 
         public void printOdd() {
@@ -44,7 +43,9 @@ public class PrintNumberSeriesImplementation {
 
     public static void main(String ar[]) {
 
-        PrintNumberSeries printNumberSeries = new PrintNumberSeries(5);
+        PrintNumberSeries printNumberSeries = new PrintNumberSeries(4);
+        printNumberSeries.printZero = true;
+        printNumberSeries.number = 1;
 
         Thread printZeroThread = new Thread(new Runnable() {
 
@@ -88,16 +89,19 @@ public class PrintNumberSeriesImplementation {
                                 printNumberSeries.printOdd();
                                 try {
                                     if (printNumberSeries.number < printNumberSeries.n) {
+                                        printNumberSeries.number = printNumberSeries.number + 1;
+                                        printNumberSeries.printZero = true;
                                         printNumberSeries.wait();
                                     } else {
                                         flag = false;
+                                        printNumberSeries.number = printNumberSeries.number + 1;
                                         printNumberSeries.notifyAll();
                                     }
-                                    printNumberSeries.number = printNumberSeries.number + 1;
-                                    printNumberSeries.printZero = true;
                                 } catch (InterruptedException e) {
                                     e.printStackTrace();
                                 }
+                            } else if (printNumberSeries.number > printNumberSeries.n) {
+                                flag = false;
                             }
                         } else {
                             printNumberSeries.notifyAll();
@@ -118,10 +122,16 @@ public class PrintNumberSeriesImplementation {
                         if (!printNumberSeries.printZero) {
                             if (printNumberSeries.number <= printNumberSeries.n && printNumberSeries.number % 2 == 0) {
                                 printNumberSeries.printEven();
-                                printNumberSeries.number = printNumberSeries.number + 1;
-                                printNumberSeries.printZero = true;
                                 try {
-                                    printNumberSeries.wait();
+                                    if (printNumberSeries.number < printNumberSeries.n) {
+                                        printNumberSeries.number = printNumberSeries.number + 1;
+                                        printNumberSeries.printZero = true;
+                                        printNumberSeries.wait();
+                                    } else {
+                                        flag = false;
+                                        printNumberSeries.number = printNumberSeries.number + 1;
+                                        printNumberSeries.notifyAll();
+                                    }
                                 } catch (InterruptedException e) {
                                     e.printStackTrace();
                                 }
@@ -135,5 +145,20 @@ public class PrintNumberSeriesImplementation {
                 }
             }
         });
+
+
+        //Start the individual threads
+        printZeroThread.start();
+        printOddNumThread.start();
+        printEvenNumThread.start();
+
+        try {
+            printZeroThread.join();
+            printOddNumThread.join();
+            printEvenNumThread.join();
+        } catch (InterruptedException e) {
+            System.out.print("Exception thrown inside main thread while for individual threads to complete !!");
+            e.printStackTrace();
+        }
     }
 }
