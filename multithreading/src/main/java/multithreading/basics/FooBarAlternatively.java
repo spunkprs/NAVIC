@@ -1,5 +1,17 @@
 package multithreading.basics;
 
+
+/*
+This class aims at printing foo && bar alternatively n number of times
+Responsibility of printing foo && bar is given to individual threads
+
+Constraints :-
+1 <= n <= 1000
+
+Made sure to make use of java monitor pattern to get a hold of the problem
+
+* */
+
 public class FooBarAlternatively {
 
     public static void main(String ar[]) {
