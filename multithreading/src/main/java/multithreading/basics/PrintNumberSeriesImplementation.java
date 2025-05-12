@@ -14,7 +14,10 @@ Thread A: calls printZero() that should only output 0's.
 Thread B: calls printOdd() that should only output odd numbers.
 Thread C: calls printEven() that should only output even numbers.
 
-Modify the given class to output the series "010203040506..." where the length of the series must be 2n.
+Modify the given class to output the series "010203040506..." where the length of the series must be 2n
+
+This solution makes use of monitor/intrinsic lock on the object that's shared among three threads to handle critical section
+
 * */
 
 public class PrintNumberSeriesImplementation {
