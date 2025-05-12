@@ -1,12 +1,33 @@
 package multithreading.basics;
 
+
+/*
+Problem in which a program prints a number series from 1 to n such that for
+every number that is a multiple of 3 it prints “fizz”,
+for every number that is a multiple of 5 it prints “buzz”
+and for every number that is a multiple of both 3 and 5 it prints “fizzbuzz”
+Suppose we have four threads t1, t2, t3 and t4.
+Thread t1 checks if the number is divisible by 3 and prints fizz
+Thread t2 checks if the number is divisible by 5 and prints buzz
+Thread t3 checks if the number is divisible by both 3 and 5 and prints fizzbuzz
+Thread t4 prints numbers that are not divisible by 3 or 5
+
+Constraints :-
+1 <= maxNum <= 1000
+
+For example, for maxNum = 15, the output should be: 12fizz4buzzfizz78fizzbuzz11fizz1314fizzbuzz.
+
+* */
+
+
+
 public class FizzBuzzProblem {
 
     public static void main(String ar[]) {
 
         FizzBuzz lockObject = new FizzBuzz();
         lockObject.counter = 1;
-        int maxNum = 12;
+        int maxNum = 15;
 
         Thread t1 = new Thread(new FizzBuzzThreadOne(maxNum, lockObject));
         Thread t2 = new Thread(new FizzBuzzThreadTwo(maxNum, lockObject));
