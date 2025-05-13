@@ -2,6 +2,14 @@ package multithreading.basics.semaphoreusage;
 
 import java.util.concurrent.Semaphore;
 
+
+/*
+This class presents an example of semaphore not getting released in one thread can cause unlimited waiting to acquire on the same semaphore for
+other threads
+
+Credits --> Educative
+* */
+
 public class IncorrectSemaphoreExampleDemonstartion {
 
     public static void main(String args[]) throws InterruptedException {
