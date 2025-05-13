@@ -4,7 +4,7 @@ package multithreading.basics.semaphoreusage;
 This class presents an example of handling semaphore that's not getting released in one thread can cause unlimited waiting to acquire on the same semaphore for
 other threads
 
-Unlimited waiting for other threads is already done in the example InCorrectSemaphoreExampleDemonstration
+Unlimited waiting for other threads is already presented/showcased in the example InCorrectSemaphoreExampleDemonstration
 
 Credits --> Educative
 * */
