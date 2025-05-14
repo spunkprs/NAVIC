@@ -18,6 +18,8 @@ and doubleToLongBits() for floating point numbers. Atomic scalar classes extend 
 
 Integer class has the same hashcode for the same integer value but that’s not the case for AtomicInteger.
 Thus Atomic* scalar classes are unsuitable as keys for collections that rely on hashcode
+
+Credits --> Educative
 * */
 
 public class NonPrimitivesDemonstration {
