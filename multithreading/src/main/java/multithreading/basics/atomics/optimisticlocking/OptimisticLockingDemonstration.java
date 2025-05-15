@@ -2,6 +2,21 @@ package multithreading.basics.atomics.optimisticlocking;
 
 import java.util.concurrent.atomic.AtomicLong;
 
+/*
+This class aims at demonstration of usage of atomic scalar here made use of AtomicLong, initialised a counter witn starting value of 10
+&& it's value gets altered by 4 concurrent threads final value of the counter shall be 14 && transition from value 10 to 14 is being taken care
+of by individual threads
+
+All 4 threads can enter critical section at the same time && won't be blocked unlike in the case of pessimistic locking hence saving CPU cycles
+but the commit to the shared variable will be done by only one i.e only single thread would be able to make commit at the same time in the contention
+period thus promoting optimistic locking
+
+References -->
+a.) https://www.youtube.com/watch?v=ufWVK7CHOAk&list=PLL8woMHwr36EDxjUoCzboZjedsnhLP1j4&index=19
+b.) https://cephas.net/blog/2006/09/06/atomicinteger/
+c.) https://medium.com/@kevinsheeranxyj/in-depth-analysis-of-java-atomicinteger-atomic-type-41fe9b840e83 {code taken from jdk 5}
+* */
+
 public class OptimisticLockingDemonstration {
 
     static class Counter {
