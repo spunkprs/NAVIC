@@ -27,12 +27,28 @@ public final int getAndAddInt(Object var1, long var2, int var4) {
         return var5;
     }
 
+Value that's going to be altered is volatile in all the Atomic scalars
+
+private volatile int value {pulled from AtomicInteger}
+
 
 Above code is self explanatory as stating the evidence of usage of optimistic locking enabled by the usage of method compareAndSwapInt() where it's
 clearly pointed out that in case of multithreaded environment all the threads would be able to enter into critical section but the changes to the
 shared variable will be committed successfully only via one of them for rest of them they will keep on trying until they get success response from
 method compareAndSwapInt()
 
+
+There are a total of sixteen atomic classes divided into four groups:
+
+a.) Scalars
+b.) Field updaters
+c.) Arrays
+d.) Compound variables
+
+Most well-known and commonly used are the scalar ones such as AtomicInteger, AtomicLong, AtomicReference, which support the CAS (compare-and-set).
+Other primitive types such as double and float can be simulated by casting short or byte values to and from int and using methods
+floatToIntBits() and doubleToLongBits() for floating point numbers.
+Atomic scalar classes extend from Number and don’t redefine hashCode() or equals()
 
 Glimpse of ABA problem -->
 
