@@ -11,6 +11,29 @@ All 4 threads can enter critical section at the same time && won't be blocked un
 but the commit to the shared variable will be done by only one i.e only single thread would be able to make commit at the same time in the contention
 period thus promoting optimistic locking
 
+Below code snippet is taken from AtomicInteger{from JDK 8} against the usage of public method getAndIncrement() -->
+
+public final int getAndIncrement() {
+        return unsafe.getAndAddInt(this, valueOffset, 1);
+    }
+
+
+public final int getAndAddInt(Object var1, long var2, int var4) {
+        int var5;
+        do {
+            var5 = this.getIntVolatile(var1, var2);
+        } while(!this.compareAndSwapInt(var1, var2, var5, var5 + var4));
+
+        return var5;
+    }
+
+
+Above code is self explanatory as stating the evidence of usage of optimistic locking enabled by the usage of method compareAndSwapInt() where it's
+clearly pointed out that in case of multithreaded environment all the threads would be able to enter into critical section but the changes to the
+shared variable will be committed successfully only via one of them for rest of them they will keep on trying until they get success response from
+method compareAndSwapInt()
+
+
 References -->
 a.) https://www.youtube.com/watch?v=ufWVK7CHOAk&list=PLL8woMHwr36EDxjUoCzboZjedsnhLP1j4&index=19
 b.) https://cephas.net/blog/2006/09/06/atomicinteger/
