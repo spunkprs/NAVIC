@@ -34,10 +34,34 @@ shared variable will be committed successfully only via one of them for rest of 
 method compareAndSwapInt()
 
 
+Glimpse of ABA problem -->
+
+The astute reader would recognize that CAS succeeds even if the value of a shared variable is changed from A to B and then back to A.
+Consider the following sequence:
+
+A thread T1 reads the value of a shared variable as A and desires to change it to B. After reading the variable’s value,
+thread T1 undergoes a context switch. Another thread, T2 comes along, changes the value of the shared variable from A to B and then back to A from B
+
+Thread T1 is scheduled again for execution and invokes CAS with A as the expected value and B as the new value. CAS succeeds since the current value of the variable is A,
+even though it changed to B and then back to A in the time thread T1 was context switched.
+
+For some algorithms the ABA problem may not be an issue but for others changing the value from A to B and then back to A may require
+re-executing some step(s) of an algorithm. This problem usually occurs when a program manages its own memory rather than leaving it to the Garbage Collector.
+For example, you may want to recycle the nodes in your linked list for performance reasons.
+Thus noting that the head of the list still references the same node, may not necessarily imply that the list wasn’t changed.
+One solution to this problem is to attach a version number with the value, i.e. instead of storing the value as A, we store it as a pair (A, V1).
+Another thread can change the value to (B, V1) but when it changes it back to A the associated version is different i.e. (A, V2).
+In this way, a collision can be detected.
+There are two classes in Java that can be used to address the ABA problem which are following :-
+
+a.) AtomicStampedReference
+b.) AtomicMarkableReference
+
 References -->
 a.) https://www.youtube.com/watch?v=ufWVK7CHOAk&list=PLL8woMHwr36EDxjUoCzboZjedsnhLP1j4&index=19
 b.) https://cephas.net/blog/2006/09/06/atomicinteger/
 c.) https://medium.com/@kevinsheeranxyj/in-depth-analysis-of-java-atomicinteger-atomic-type-41fe9b840e83 {code taken from jdk 5}
+d.) https://www.educative.io/courses/java-multithreading-for-senior-engineering-interviews/atomic-classes
 * */
 
 public class OptimisticLockingDemonstration {
