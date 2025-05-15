@@ -19,6 +19,9 @@ b.) Thread B reads the value of won which is false.
 c.) Thread A changes the value of won to true and the variable is updated in main memory for all threads to see.
 d.) Thread B doesn’t know Thread A had read the value of the variable won before Thread B accessed it.
 Thread B too updates the value of won to true
+
+Credits --> Educative
+
 * */
 
 public class VolatileNotEquivalentToAtomics {
