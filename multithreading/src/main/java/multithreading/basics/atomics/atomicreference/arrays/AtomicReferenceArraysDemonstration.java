@@ -3,6 +3,16 @@ package multithreading.basics.atomics.atomicreference.arrays;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicReferenceArray;
 
+/*
+This class aims at making use of AtomicReferenceArray and the core implementation of this program validates that
+each element of this array is initialized by an individual thread
+
+References -->
+a.) https://www.educative.io/courses/java-multithreading-for-senior-engineering-interviews/atomicreferencearray
+
+Credits --> Educative
+* */
+
 public class AtomicReferenceArraysDemonstration {
 
     public static void main( String args[] ) throws Exception {
