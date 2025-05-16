@@ -27,6 +27,7 @@ References -->
 a.) https://jenkov.com/tutorials/java-concurrency/non-blocking-algorithms.html
 b.) https://jenkov.com/tutorials/java-util-concurrent/atomicstampedreference.html
 c.) https://www.educative.io/courses/java-multithreading-for-senior-engineering-interviews/atomicstampedreference
+d.) https://www.educative.io/courses/java-multithreading-for-senior-engineering-interviews/atomic-classes {Glimpse of A-B-A problem}
 
 Credits --> Educative
 * */
