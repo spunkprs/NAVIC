@@ -1,4 +1,4 @@
-package multithreading.problems.blockingqueue;
+package multithreading.problems.blockingqueue.usinglock;
 
 /*
 Driver class for the simulation of Bounded Buffer problem -->

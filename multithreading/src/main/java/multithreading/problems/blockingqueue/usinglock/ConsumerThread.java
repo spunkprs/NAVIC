@@ -1,8 +1,10 @@
-package multithreading.problems.blockingqueue;
+package multithreading.problems.blockingqueue.usinglock;
 
 /*
 Consumer thread that pops items from BlockingQueue
  */
+
+import multithreading.problems.blockingqueue.usinglock.BlockingQueue;
 
 public class ConsumerThread<T> implements Runnable {
 

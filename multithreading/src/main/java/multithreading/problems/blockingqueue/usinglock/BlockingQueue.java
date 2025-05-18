@@ -1,4 +1,4 @@
-package multithreading.problems.blockingqueue;
+package multithreading.problems.blockingqueue.usinglock;
 
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
