@@ -5,9 +5,9 @@ public class ProducerThread<T> implements Runnable {
     private T item;
     private int number;
     private int sleepTimeInMillis;
-    private BlockingQueueImplementationUsingLock.BlockingQueue<T> blockingQueue;
+    private BlockingQueue<T> blockingQueue;
 
-    public ProducerThread(T item, int number, int sleepTimeInMillis, BlockingQueueImplementationUsingLock.BlockingQueue<T> blockingQueue) {
+    public ProducerThread(T item, int number, int sleepTimeInMillis, BlockingQueue<T> blockingQueue) {
         this.item = item;
         this.number = number;
         this.sleepTimeInMillis = sleepTimeInMillis;

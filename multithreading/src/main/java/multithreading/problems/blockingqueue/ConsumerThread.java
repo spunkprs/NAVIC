@@ -4,9 +4,9 @@ public class ConsumerThread<T> implements Runnable {
 
     private int number;
     private int sleepTimeInMillis;
-    private BlockingQueueImplementationUsingLock.BlockingQueue<T> blockingQueue;
+    private BlockingQueue<T> blockingQueue;
 
-    public ConsumerThread(int number, int sleepTimeInMillis, BlockingQueueImplementationUsingLock.BlockingQueue<T> blockingQueue) {
+    public ConsumerThread(int number, int sleepTimeInMillis, BlockingQueue<T> blockingQueue) {
         this.number = number;
         this.sleepTimeInMillis = sleepTimeInMillis;
         this.blockingQueue = blockingQueue;
