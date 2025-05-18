@@ -1,5 +1,9 @@
 package multithreading.problems.blockingqueue;
 
+/*
+Producer thread that pushes items into BlockingQueue
+ */
+
 public class ProducerThread<T> implements Runnable {
 
     private T item;

@@ -1,5 +1,9 @@
 package multithreading.problems.blockingqueue;
 
+/*
+Consumer thread that pops items from BlockingQueue
+ */
+
 public class ConsumerThread<T> implements Runnable {
 
     private int number;
