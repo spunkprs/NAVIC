@@ -10,6 +10,7 @@ a.) Here we have Blocking Queue which will be blocked for inserts once it reache
 b.) Have made use of singly linked list as an internal data structure {inserts are made at tail && removal from the head}
 c.) Operations on BlockingQueue are mutually exclusive
 d.) Only two operations {push && pop} are allowed
+e.) Mutual exclusion is achieved using explicit locking i.e ReentrantLock to be more specific
 * */
 
 public class BlockingQueue <T> {

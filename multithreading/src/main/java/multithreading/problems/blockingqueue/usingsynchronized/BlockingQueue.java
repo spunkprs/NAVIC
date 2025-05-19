@@ -1,5 +1,15 @@
 package multithreading.problems.blockingqueue.usingsynchronized;
 
+
+/*
+This class aims at presenting or coming up with producer/consumer problem solution, here are the following important points around it :-
+a.) Here we have Blocking Queue which will be blocked for inserts once it reaches it's maximum size && it's blocked for pops once it's size is zero
+b.) Have made use of singly linked list as an internal data structure {inserts are made at tail && removal from the head}
+c.) Operations on BlockingQueue are mutually exclusive
+d.) Only two operations {push && pop} are allowed
+e.) Mutual exclusion is achieved using java monitor pattern i.e intrinsic lock
+* */
+
 public class BlockingQueue <T> {
 
     private int capacity;
