@@ -37,7 +37,6 @@ public class BlockingQueueImplementationUsingLock {
         consumerThreadThree.start();
         consumerThreadFour.start();
         consumerThreadFive.start();
-
     }
 
 

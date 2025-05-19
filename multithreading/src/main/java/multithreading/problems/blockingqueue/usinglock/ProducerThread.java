@@ -2,9 +2,8 @@ package multithreading.problems.blockingqueue.usinglock;
 
 /*
 Producer thread that pushes items into BlockingQueue
- */
+*/
 
-import multithreading.problems.blockingqueue.usinglock.BlockingQueue;
 
 public class ProducerThread<T> implements Runnable {
 
@@ -19,8 +18,6 @@ public class ProducerThread<T> implements Runnable {
         this.sleepTimeInMillis = sleepTimeInMillis;
         this.blockingQueue = blockingQueue;
     }
-
-
 
     @Override
     public void run() {
