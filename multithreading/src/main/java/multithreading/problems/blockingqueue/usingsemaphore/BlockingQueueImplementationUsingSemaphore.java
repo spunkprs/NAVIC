@@ -7,6 +7,10 @@ Important points to notice that are following :-
 a.) Have kept size of buffer smaller than the available producer && consumer threads {though it's not imperative}
 b.) Velocity of consumption i.e consumer threads is less compared to producer, hence producer threads would be waiting individually
 for the consumer threads to consume something before producer can further go ahead && produce
+
+References --> https://www.educative.io/courses/java-multithreading-for-senior-engineering-interviews/continued-m2r9WlmxPPn
+Credits --> Educative
+
 * */
 
 public class BlockingQueueImplementationUsingSemaphore {

@@ -2,6 +2,9 @@ package multithreading.problems.ratelimiter;
 
 /*
 Driver class for the simulation of RateLimiter problem -->
+
+References --> https://www.educative.io/courses/java-multithreading-for-senior-engineering-interviews/rate-limiting-using-token-bucket-filter
+Credits --> Educative
 * */
 
 public class RateLimiterDemonstration {
