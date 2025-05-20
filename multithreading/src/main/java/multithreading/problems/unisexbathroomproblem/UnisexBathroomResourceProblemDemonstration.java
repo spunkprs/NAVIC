@@ -3,6 +3,13 @@ package multithreading.problems.unisexbathroomproblem;
 import java.util.Arrays;
 import java.util.List;
 
+/*
+Driver class for running the solution against UnisexBathroomProblem -->
+
+References --> https://www.educative.io/courses/java-multithreading-for-senior-engineering-interviews/unisex-bathroom-problem
+Credits --> Educative
+* */
+
 public class UnisexBathroomResourceProblemDemonstration {
 
     public static void main(String ar[]) {

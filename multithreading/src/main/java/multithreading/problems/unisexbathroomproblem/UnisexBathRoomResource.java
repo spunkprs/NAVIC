@@ -1,5 +1,18 @@
 package multithreading.problems.unisexbathroomproblem;
 
+/*
+Problem Statement -->
+
+A bathroom is being designed for the use of both males and females in an office but requires the following constraints to be maintained:-
+
+a.) There cannot be men and women in the bathroom at the same time.
+b.) There should never be more than three employees in the bathroom simultaneously
+
+This implementation is the clear example of mindful locking to enhance throughput, go through the methods to understand it
+as entire method was not locked using monitor, rather critical section was divided into parts and guard it mindfully using monitors,
+as per the requirements of the problem
+* */
+
 public class UnisexBathRoomResource {
 
     private int maxPeopleAllowed;
