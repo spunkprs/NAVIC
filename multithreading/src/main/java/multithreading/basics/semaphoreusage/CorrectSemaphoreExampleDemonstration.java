@@ -6,6 +6,14 @@ other threads
 
 Unlimited waiting for other threads is already presented/showcased in the example InCorrectSemaphoreExampleDemonstration
 
+Salient feature -->
+a.) Methods like acquire() && release() are atomic i.e no two threads can access these methods at the same time that guarantee consistency
+
+References -->
+1.) https://docs.oracle.com/cd/E19683-01/806-6867/sync-34/index.html
+2.) https://www.educative.io/courses/java-multithreading-for-senior-engineering-interviews/mutex-vs-semaphore
+3.) https://www.educative.io/courses/java-multithreading-for-senior-engineering-interviews/semaphore-vs-monitor
+
 Credits --> Educative
 * */
 
