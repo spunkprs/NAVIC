@@ -8,6 +8,10 @@ This class aims at demonstrating the usage of CountDownLatch -->
 It shall be used in the scenario where an action is dependent on several other N number of actions or same dependent action but that needs to be
 executed N number of times then this tool becomes handy
 
+References -->
+a.) https://www.educative.io/courses/java-multithreading-for-senior-engineering-interviews/countdownlatch
+Credits --> Educative
+
 Little briefing about CountDownLatch -->
 
 A synchronization aid that allows one or more threads to wait until a set of operations being performed in other threads completes
