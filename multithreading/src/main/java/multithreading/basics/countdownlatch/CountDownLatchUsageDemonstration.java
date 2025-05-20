@@ -5,6 +5,7 @@ import java.util.concurrent.CountDownLatch;
 /*
 This class aims at demonstrating the usage of CountDownLatch -->
 
+Scenarios where it can be used -->
 It shall be used in the scenario where an action is dependent on several other N number of actions or same dependent action but that needs to be
 executed N number of times then this tool becomes handy
 
