@@ -1,5 +1,9 @@
 package multithreading.problems.parkinglotsystem;
 
+/*
+This class enacts as a vehicle thread which plans to unpark vehicle from the the parking lot resource
+ */
+
 public class CarUnparkAction implements Runnable {
 
     private String vehicleNumber;
