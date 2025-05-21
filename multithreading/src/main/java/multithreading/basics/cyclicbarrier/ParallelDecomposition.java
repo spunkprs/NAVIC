@@ -5,6 +5,22 @@ import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.CyclicBarrier;
 
+/*
+This class aims at solving a problem where a 2D array is provided && we need to parse each row individually, need to perform an action when
+all the running individual threads reach a common barrier point
+Post that merger process will be keep on waiting for the results of the individual threads to arrive then only it can proceed towards the merge process
+
+Making use of following tools to solve the problem -->
+1.) CyclicBarrier --> To make sure all the individual running threads wait for each other till they a reach a common barrier point, once the last exits the
+barrier BarrierAction thread will be triggered{before the individual threads are released}
+2.) CountDownLatch --> Merger thread whose responsibility is to combine results from individual threads will wait till results
+from each involved thread is not available
+
+References -->
+a.) https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CyclicBarrier.html
+b.) https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CountDownLatch.html
+* */
+
 public class ParallelDecomposition {
 
     public static void main(String ar[]) {
