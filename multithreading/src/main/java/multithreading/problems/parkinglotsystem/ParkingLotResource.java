@@ -94,6 +94,16 @@ public class ParkingLotResource {
         }
     }
 
+    /*
+    This method will make sure that all the vehicles which once granted a parking slot index can exit from parking lot system,
+    in case this thread gets CPU first than it's corresponding parking thread then it will keep on waiting till the parking thread
+    park the mentioned vehicle first
+
+    Entire method is not guarded by lock rather only critical sections are guarded by lock which guarantee atomicity.
+    Intermittent notification && final notification against computation of parking charges doesn't come under critical
+    section hence not needed to be guarded by lock
+    */
+
     public void unParkVehicle(String vehicleNumber) {
         synchronized (lock) {
             while (!vehicleToTicketMap.containsKey(vehicleNumber)) {

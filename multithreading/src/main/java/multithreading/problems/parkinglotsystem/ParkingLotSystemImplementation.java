@@ -1,5 +1,19 @@
 package multithreading.problems.parkinglotsystem;
 
+
+/*
+This class aims at simulating the parking lot system where multiple vehicles can entry into &&
+exit from parking lot
+
+For the sake of simplicity have kept maximum size of parking lot as 3{but that's dynamic}
+
+Have kept 7 threads i.e vehicles that wish to enter into parking lot {some together, few later} intermittently
+few vehicles leaving the parking lot system too
+
+Another salient feature of this parking lot system is it's ability to compute parking charges{that gets computed using entry && exit time
+of the vehicle}
+*/
+
 public class ParkingLotSystemImplementation {
 
     public static void main(String ar[]) throws InterruptedException {
