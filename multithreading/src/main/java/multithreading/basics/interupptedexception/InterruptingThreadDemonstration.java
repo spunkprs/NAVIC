@@ -1,5 +1,9 @@
 package multithreading.basics.interupptedexception;
 
+/*
+This class aims at showcasing the demonstration of main thread interrupting other running threads
+* */
+
 public class InterruptingThreadDemonstration {
 
         public static void main( String args[] ) throws InterruptedException {
