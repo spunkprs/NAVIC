@@ -3,6 +3,24 @@ package multithreading.basics.executorservice.schedulingtasksusingtimer;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/*
+This class aims at demonstrating that multiple tasks submitted to Timer has following potential issues :-
+
+a.) If a task misbehaves and never terminates, all other tasks would not be executed
+
+b.) If a task takes too long to execute, it can block timely execution of other tasks.
+Say two tasks are submitted and the first is scheduled to execute after 100ms and the second is scheduled to execute after 500ms.
+Now if the first task takes 5 minutes to execute then the second task would get delayed by 5 minutes rather than the intended 500ms.
+{We are demonstrating this use case as part of this example}
+
+c.) In the above example, if the second task is scheduled to run periodically after every 500ms, then when it finally gets a chance
+to run after 5 minutes, it'll run for all the times it missed its turns, one after the other, without any delay between consecutive runs.
+
+The achilles' heel of the Timer class is its use of a single thread to execute submitted tasks. Timer has a single worker thread that
+attempts to execute all user submitted tasks
+
+* */
+
 public class SchedulingTasksUsingTimerDemonstrationOne {
 
         public static void main( String args[] ) throws Exception {
@@ -15,7 +33,6 @@ public class SchedulingTasksUsingTimerDemonstrationOne {
                     // it will run forever
                     while (true)
                         ;
-
                 }
             };
 
