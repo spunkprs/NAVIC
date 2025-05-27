@@ -28,11 +28,11 @@ public class Worker implements Runnable {
                 taskAllocated.run();
             } catch (Exception e) {
                 System.out.println("Exception during execution of the task by worker " + this.workerName);
+                stoppedAbruptly = true;
                 throw e;
             } finally {
-                stoppedAbruptly = true;
+                taskAllocated = null;
             }
-
         }
     }
 }
