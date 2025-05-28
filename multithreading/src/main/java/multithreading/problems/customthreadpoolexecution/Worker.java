@@ -46,7 +46,7 @@ public class Worker implements Runnable {
                     System.out.println(this.workerName + " stopped abruptly !!");
             } catch (Exception e) {
                 if (stoppedAbruptly)
-                System.out.println("Raised exception during processing of worker " + this.workerName + " caught safely !!");
+                System.out.println("Raised exception during processing of worker " + this.workerName + " caught gracefully !!");
             }
             System.out.println(this.workerName + " heading towards exit !!");
             customThreadPool.removeWorker(this);
