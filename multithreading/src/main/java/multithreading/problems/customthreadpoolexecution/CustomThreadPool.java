@@ -26,7 +26,6 @@ public class CustomThreadPool {
                 lock.lock();
                 if (workers != null && workers.size() >= 1 && workers.contains(worker)) {
                     workers.remove(worker);
-                    this.currentEngagedWorkers--;
                 }
             } finally {
                 lock.unlock();
@@ -38,7 +37,7 @@ public class CustomThreadPool {
             lock.lock();
                 if (currentEngagedWorkers < maxWorkerThreads) {
                     //Add worker
-                    Worker worker = new Worker(task, "worker- " + this.workerThreadNumber, nodeUtility, this);
+                    Worker worker = new Worker(task, "worker - " + this.workerThreadNumber, nodeUtility, this);
                     workers.add(worker);
                     Thread runningThread = worker.getRunningThread();
                     runningThread.start();
