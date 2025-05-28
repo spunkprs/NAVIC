@@ -17,6 +17,7 @@ public class CustomThreadPool {
         this.lock = new ReentrantLock();
         this.workerThreadNumber = 1;
         this.nodeUtility = new NodeUtility(maxTasksCapacity);
+        this.workers = new HashSet<>();
     }
 
 
@@ -32,7 +33,7 @@ public class CustomThreadPool {
             }
     }
 
-    public void submitTask(Runnable task) throws RuntimeException {
+    public void submitTask(Runnable task, String taskName) throws RuntimeException {
         try {
             lock.lock();
                 if (currentEngagedWorkers < maxWorkerThreads) {
@@ -46,6 +47,7 @@ public class CustomThreadPool {
                     lock.unlock();
                 } else if (currentEngagedWorkers == maxWorkerThreads) {
                     lock.unlock();
+                    System.out.println("Task with name " + taskName + " getting inserted into queue !!");
                     nodeUtility.addNode(new Node(task));
                 }
         } finally {
