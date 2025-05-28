@@ -23,8 +23,12 @@ public class Worker implements Runnable {
     @Override
     public void run() {
         boolean stoppedAbruptly = true;
+        CustomThreadPool.Node tempNode = null;
         try {
-            while (taskAllocated != null || (taskAllocated = nodeUtility.removeNode().getTask()) != null) {
+            while (taskAllocated != null || (tempNode = nodeUtility.removeNode()) != null) {
+                if (taskAllocated == null && tempNode != null) {
+                    taskAllocated = tempNode.getTask();
+                }
                 System.out.println(this.workerName + " going to trigger task !!");
                 try {
                     taskAllocated.run();

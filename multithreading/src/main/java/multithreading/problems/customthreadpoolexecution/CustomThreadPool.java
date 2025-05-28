@@ -9,8 +9,6 @@ public class CustomThreadPool {
     private HashSet<Worker> workers;
     private int maxTasksCapacity;
     private Object lock;
-    private Node head;
-    private Node tail;
     private int currentEngagedWorkers;
     private int workerThreadNumber;
     private NodeUtility nodeUtility;
