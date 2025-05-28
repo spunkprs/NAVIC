@@ -7,44 +7,50 @@ public class CustomThreadPool {
 
     private int maxWorkerThreads;
     private HashSet<Worker> workers;
-    private int maxTasksCapacity;
-    private Object lock;
+    private ReentrantLock lock;
     private int currentEngagedWorkers;
     private int workerThreadNumber;
     private NodeUtility nodeUtility;
 
     public CustomThreadPool(int maxWorkerThreads, int maxTasksCapacity) {
         this.maxWorkerThreads = maxWorkerThreads;
-        this.maxTasksCapacity = maxTasksCapacity;
-        this.lock = new Object();
+        this.lock = new ReentrantLock();
         this.workerThreadNumber = 1;
-        this.nodeUtility = new NodeUtility();
+        this.nodeUtility = new NodeUtility(maxTasksCapacity);
     }
 
+
     public void removeWorker(Worker worker) {
-            synchronized (lock) {
+        try {
+                lock.lock();
                 if (workers != null && workers.size() >= 1 && workers.contains(worker)) {
                     workers.remove(worker);
+                    this.currentEngagedWorkers--;
                 }
+            } finally {
+                lock.unlock();
             }
     }
 
-    public void submitTask(Runnable task) {
-        synchronized (lock) {
-            if (workers.isEmpty()) {
-                Worker worker = new Worker(task, "worker- " + this.workerThreadNumber, nodeUtility, this);
-                workers.add(worker);
-                Thread runningThread = worker.getRunningThread();
-                runningThread.start();
-                this.workerThreadNumber++;
-            } else {
-                 if (currentEngagedWorkers < maxWorkerThreads) {
-                    //Add another worker
+    public void submitTask(Runnable task) throws RuntimeException {
+        try {
+            lock.lock();
+                if (currentEngagedWorkers < maxWorkerThreads) {
+                    //Add worker
                     Worker worker = new Worker(task, "worker- " + this.workerThreadNumber, nodeUtility, this);
                     workers.add(worker);
                     Thread runningThread = worker.getRunningThread();
                     runningThread.start();
+                    this.currentEngagedWorkers++;
+                    this.workerThreadNumber++;
+                    lock.unlock();
+                } else if (currentEngagedWorkers == maxWorkerThreads) {
+                    lock.unlock();
+                    nodeUtility.addNode(new Node(task));
                 }
+        } finally {
+            if (lock.getHoldCount() > 0) {
+                lock.unlock();
             }
         }
     }
@@ -67,14 +73,22 @@ public class CustomThreadPool {
         private Node tail;
         private ReentrantLock lockForAccess = new ReentrantLock();
         private int queueLength;
+        private int maxTasksCapacity;
 
-        public void addNode(Node node) {
+        public NodeUtility(int maxTasksCapacity) {
+            this.maxTasksCapacity = maxTasksCapacity;
+        }
+
+        public void addNode(Node node) throws RuntimeException {
             try {
                 lockForAccess.lock();
                     if (head == null) {
                         head = node;
                         tail = head;
                     } else {
+                        if (queueLength == maxTasksCapacity) {
+                            throw new RuntimeException("Tasks can't be added beyond max length of " + maxTasksCapacity);
+                        }
                         tail.next = node;
                         tail = node;
                     }
