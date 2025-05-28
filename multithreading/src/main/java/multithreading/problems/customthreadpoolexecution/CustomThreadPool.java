@@ -113,15 +113,6 @@ public class CustomThreadPool {
                 lockForAccess.unlock();
             }
         }
-
-        public int getQueueLength() {
-            try {
-                lockForAccess.lock();
-                return queueLength;
-            } finally {
-                lockForAccess.unlock();
-            }
-        }
     }
 
 }
