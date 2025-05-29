@@ -23,7 +23,7 @@ public class DiningPhilospherDemonstration {
 
     public static void main(String ar[]) {
 
-        int maxPhilosphersCount = 3;
+        int maxPhilosphersCount = 5;
 
         Semaphore[] forks = prepareSemaphores(maxPhilosphersCount);
 
