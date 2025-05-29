@@ -9,13 +9,13 @@ public class DiningPhilosopherDemonstration {
 
         int maxPhilosophersCount = 5;
 
-        int phislosopherIdWithDifferentOrdering = new Random().nextInt(maxPhilosophersCount + 1);
+        int philosopherIdWithDifferentOrdering = new Random().nextInt(maxPhilosophersCount + 1);
 
-        phislosopherIdWithDifferentOrdering = phislosopherIdWithDifferentOrdering == 0 ? 1 : phislosopherIdWithDifferentOrdering;
+        philosopherIdWithDifferentOrdering = philosopherIdWithDifferentOrdering == 0 ? 1 : philosopherIdWithDifferentOrdering;
 
         Semaphore[] forks = prepareSemaphores(maxPhilosophersCount);
 
-        Runnable[] philosophers = preparePhilosophers(forks, forks.length, 1000l, phislosopherIdWithDifferentOrdering);
+        Runnable[] philosophers = preparePhilosophers(forks, forks.length, 1000l, philosopherIdWithDifferentOrdering);
 
         for (int i = 0; i < philosophers.length; i++) {
             Thread thread = new Thread(philosophers[i]);
@@ -34,9 +34,9 @@ public class DiningPhilosopherDemonstration {
         return  diningPhilosophers;
     }
 
-    private static Semaphore[] prepareSemaphores(int maxPhilosphersCount) {
-        Semaphore[] forks = new Semaphore[maxPhilosphersCount];
-        for (int i = 0; i < maxPhilosphersCount; i++) {
+    private static Semaphore[] prepareSemaphores(int maxPhilosophersCount) {
+        Semaphore[] forks = new Semaphore[maxPhilosophersCount];
+        for (int i = 0; i < maxPhilosophersCount; i++) {
             forks[i] = new Semaphore(1);
         }
         return forks;

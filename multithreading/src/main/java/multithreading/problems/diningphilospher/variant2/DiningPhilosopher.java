@@ -48,7 +48,7 @@ public class DiningPhilosopher implements Runnable {
             //Pick right fork second
             forks[(this.philosopherNumber - 1 + forks.length - 1) % forks.length].acquire();
 
-            System.out.println("Philosopher number " + philosopherNumber + " who follows left picking of fork first has started eating !!");
+            System.out.println("Philosopher number " + philosopherNumber + " who picks left fork first, has started eating !!");
             Thread.sleep(1000);
 
             //Release left fork
@@ -56,7 +56,7 @@ public class DiningPhilosopher implements Runnable {
             //Release right fork
             forks[(this.philosopherNumber - 1 + forks.length - 1) % forks.length].release();
 
-            System.out.println("Philosopher number " + philosopherNumber + " who follows left picking of fork first done with eating !!");
+            System.out.println("Philosopher number " + philosopherNumber + " who picks left fork first, done with eating !!");
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -72,7 +72,7 @@ public class DiningPhilosopher implements Runnable {
             forks[this.philosopherNumber - 1].acquire();
 
 
-            System.out.println("Philosopher number " + philosopherNumber + " who follows right picking of fork first has started eating !!");
+            System.out.println("Philosopher number " + philosopherNumber + " who picks right fork first, has started eating !!");
             Thread.sleep(1000);
 
             //Release right fork
@@ -81,7 +81,7 @@ public class DiningPhilosopher implements Runnable {
             //Release left fork
             forks[this.philosopherNumber - 1].release();
 
-            System.out.println("Philosopher number " + philosopherNumber + " who follows right picking of fork first done with eating !!");
+            System.out.println("Philosopher number " + philosopherNumber + " who picks right fork first, done with eating !!");
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
