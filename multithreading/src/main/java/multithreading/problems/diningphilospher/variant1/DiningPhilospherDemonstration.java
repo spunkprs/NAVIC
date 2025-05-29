@@ -1,7 +1,7 @@
 package multithreading.problems.diningphilospher.variant1;
 
 /*
-This solution aims at solving dining philospher problem, considering the solution doesn't end up in a deadlock
+This solution aims at solving dining philosopher problem, considering the solution doesn't end up in a deadlock
 Following are the points that have been taken into consideration while solving the problem :-
 
 1.) Depending on the number of the fork count, we try to pull max number of philosophers that can eat simultaneously, rest of

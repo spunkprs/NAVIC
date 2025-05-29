@@ -3,6 +3,24 @@ package multithreading.problems.diningphilospher.variant2;
 import java.util.Random;
 import java.util.concurrent.Semaphore;
 
+/*
+This solution aims at solving dining philosopher problem, considering the solution doesn't end up in a deadlock
+Following are the points that have been taken into consideration while solving the problem :-
+
+1.) All of the philosophers sitting on the table will try to start eating simultaneously unlike variant 1 of the solution where only x number of
+philosophers will start eating simultaneously
+2.) Order of picking && order of releasing forks for all the philosophers are same except one who follows different pattern to avoid
+getting into deadlock
+3.) In this set up any philosopher can eat multiple times but every time he/she eats 2 forks will be needed, hence process of contemplation && eating
+is put inside infinite loop catering the points this problem is looking for
+
+
+References -->
+a.) https://www.educative.io/courses/java-multithreading-for-senior-engineering-interviews/dining-philosophers
+
+Credits --> Educative
+*/
+
 public class DiningPhilosopherDemonstration {
 
     public static void main(String ar[]) {
