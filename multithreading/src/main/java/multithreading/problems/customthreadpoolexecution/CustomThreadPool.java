@@ -76,6 +76,10 @@ public class CustomThreadPool {
         private int queueLength;
         private int maxTasksCapacity;
 
+        private Object lock = new Object();
+        private ReentrantLock lockForRemoval = new ReentrantLock();
+        private ReentrantLock lockForAddition = new ReentrantLock();
+
         public NodeUtility(int maxTasksCapacity) {
             this.maxTasksCapacity = maxTasksCapacity;
         }
@@ -105,12 +109,60 @@ public class CustomThreadPool {
                 Node node = null;
                 if (head != null) {
                     node = head;
+                    if (head.next == null) {
+                        tail = null;
+                    }
                     head = head.next;
                     queueLength--;
                 }
                 return node;
             } finally {
                 lockForAccess.unlock();
+            }
+        }
+
+        public Node removeNodeOne() throws RuntimeException {
+            Node node = null;
+            synchronized (lock) {
+                if (head == null) {
+                    return head;
+                } else if (head != null && head.next == null) {
+                    node = head;
+                    head = null;
+                    tail = null;
+                    return node;
+                }
+            }
+
+            try {
+                lockForRemoval.lock();
+                node = head;
+                head = head.next;
+                return node;
+            } finally {
+                lockForRemoval.unlock();
+            }
+        }
+
+        public void addNodeOne(Node node) {
+            synchronized (lock) {
+                if (head == null) {
+                    head = node;
+                    tail = node;
+                    return;
+                } else if (head != null && head.next == null) {
+                    tail.next = node;
+                    tail = node;
+                    return;
+                }
+            }
+
+            try {
+                lockForAddition.lock();
+                tail.next = node;
+                tail = node;
+            } finally {
+                lockForAddition.unlock();
             }
         }
     }
