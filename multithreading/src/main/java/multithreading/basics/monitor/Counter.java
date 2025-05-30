@@ -1,6 +1,6 @@
 package multithreading.basics.monitor;
 
-/*
+/**
 Concept behind coming up with this class is to showcase Java monitor pattern i.e how implicit locks/monitor
 are being used to guard the state of an object using it's own monitor in the multithreaded environment
 *

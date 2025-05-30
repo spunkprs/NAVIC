@@ -1,6 +1,6 @@
 package multithreading.basics.interupptedexception;
 
-/*
+/**
 This class aims at showcasing the demonstration of main thread interrupting other running threads
 * */
 

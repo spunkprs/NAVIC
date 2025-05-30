@@ -3,7 +3,7 @@ package multithreading.basics.executorservice.schedulingtasksusingtimer;
 import java.util.Timer;
 import java.util.TimerTask;
 
-/*
+/**
 This class aims at demonstrating that multiple tasks submitted to Timer has following potential issues :-
 
 a.) If a task misbehaves and never terminates, all other tasks would not be executed

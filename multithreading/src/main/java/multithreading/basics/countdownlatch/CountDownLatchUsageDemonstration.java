@@ -2,7 +2,7 @@ package multithreading.basics.countdownlatch;
 
 import java.util.concurrent.CountDownLatch;
 
-/*
+/**
 This class aims at demonstrating the usage of CountDownLatch -->
 
 Scenarios where it can be used -->

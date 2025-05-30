@@ -5,7 +5,7 @@ import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.CyclicBarrier;
 
-/*
+/**
 This class aims at solving a problem where a 2D array is provided && we need to parse each row individually, need to perform an action when
 all the running individual threads reach a common barrier point
 Post that merger process will be keep on waiting for the results of the individual threads to arrive then only it can proceed towards the merge process

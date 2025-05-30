@@ -1,6 +1,6 @@
 package multithreading.basics.interupptedexception;
 
-/*
+/**
 This class presents the simulation of catching InterruptedException in the multithreaded environment.
 Basically once the interrupted status of a thread is set, either by calling interrupt on itself or some other threads call the same on it,
 interrupt status will be cleared only when this thread sleeps OR waiting on the lock/monitor of some object OR any of the overloaded join()

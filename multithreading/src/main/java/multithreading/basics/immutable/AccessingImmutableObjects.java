@@ -1,6 +1,6 @@
 package multithreading.basics.immutable;
 
-/*
+/**
 In this example we are making use of immutable object{state of the object can't be altered once created} &&
 we are printing the state of the object in the multithreaded environment
 

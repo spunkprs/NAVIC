@@ -1,6 +1,6 @@
 package multithreading.basics.exceptionpropagation;
 
-/*
+/**
 This class aims at showcasing demonstration of exception propagation which doesn't happen in the world of multithreading
 */
 

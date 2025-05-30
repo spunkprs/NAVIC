@@ -1,6 +1,6 @@
 package multithreading.basics.daemonthread;
 
-/*
+/**
 This class aims to demonstrate usage of daemon thread
 
 Brief detailing about daemon threads -->

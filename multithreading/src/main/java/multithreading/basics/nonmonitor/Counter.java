@@ -1,7 +1,7 @@
 package multithreading.basics.nonmonitor;
 
 
-/*
+/**
 Concept behind coming up with this class is to showcase the achievement of both atomicity && visibility by not making use of
 traditional Java monitor pattern in the multithreaded environment
 As state of the object needs to be altered considering no interim stale data, here we making use of lock that acts as

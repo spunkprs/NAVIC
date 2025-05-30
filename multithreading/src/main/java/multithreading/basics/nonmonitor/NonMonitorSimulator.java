@@ -1,7 +1,7 @@
 package multithreading.basics.nonmonitor;
 
 
-/*
+/**
 This class is responsible for the simulation of the usage of Java monitor pattern in the multithreaded environment
 O/p of the statements from threads t1, t2 && t3 is unpredictable but it's pretty sure that the max value reached against
 counter will be 3, where as minimum being zero

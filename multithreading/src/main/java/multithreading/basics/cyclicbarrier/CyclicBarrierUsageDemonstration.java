@@ -3,7 +3,7 @@ package multithreading.basics.cyclicbarrier;
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
 
-/*
+/**
 This class aims at demonstrating the usage of CyclicBarrier -->
 
 Scenarios where it can be used -->
