@@ -20,10 +20,10 @@ public class Seat {
     private SeatStatus seatStatus;
     private ReentrantReadWriteLock reentrantReadWriteLock;
 
-    public Seat(int seatNumber, SeatStatus seatStatus, ReentrantReadWriteLock reentrantReadWriteLock) {
+    public Seat(int seatNumber) {
         this.seatNumber = seatNumber;
-        this.seatStatus = seatStatus;
-        this.reentrantReadWriteLock = reentrantReadWriteLock;
+        this.seatStatus = SeatStatus.FREE;
+        this.reentrantReadWriteLock = new ReentrantReadWriteLock();
     }
 
     public SeatStatus getSeatStatus() {

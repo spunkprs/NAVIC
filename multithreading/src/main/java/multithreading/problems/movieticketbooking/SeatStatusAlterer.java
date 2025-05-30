@@ -22,23 +22,23 @@ public class SeatStatusAlterer implements Runnable {
 
     @Override
     public void run() {
-        System.out.println("Customer with name " + threadName + " want to update status of seat to " + seatStatus.name()
+        System.out.println("Customer with name " + threadName + " want to update status of seat to " + seatStatus.getSeatStatus()
                 + " having seat number " + seatNumber);
         ReentrantReadWriteLock lockAssociatedWithSeat = null;
         try {
             Seat seat = allSeats[seatNumber];
             lockAssociatedWithSeat = seat.getReentrantReadWriteLock();
             lockAssociatedWithSeat.writeLock().lock();
-            if (seat.getSeatStatus().name().equals(seatStatus.name())) {
-                if (seatStatus.name().equals(SeatStatus.RESERVE)) {
-                    System.out.println("Reserved seat with number " + seatNumber + " cannot be reserved again !!");
-                } else if (seatStatus.name().equals(SeatStatus.FREE)) {
-                    System.out.println("Free seat with number " + seatNumber + " cannot be made free again !!");
+            if (seat.getSeatStatus().getSeatStatus().equals(seatStatus.getSeatStatus())) {
+                if (seatStatus.getSeatStatus().equals(SeatStatus.RESERVE.getSeatStatus())) {
+                    System.out.println("To - " + threadName + " Reserved seat with number " + seatNumber + " cannot be reserved again !!");
+                } else if (seatStatus.getSeatStatus().equals(SeatStatus.FREE.getSeatStatus())) {
+                    System.out.println("To - " + threadName + " Free seat with number " + seatNumber + " cannot be made free again !!");
                 }
             } else {
                 seat.setSeatStatus(seatStatus);
                 System.out.println("Customer with name " + threadName + " finished with altering status of seat with number " + seatNumber
-                        + ", updated status of seat is " + seatStatus.name());
+                        + ", updated status of seat is " + seatStatus.getSeatStatus());
             }
         } finally {
             lockAssociatedWithSeat.writeLock().unlock();

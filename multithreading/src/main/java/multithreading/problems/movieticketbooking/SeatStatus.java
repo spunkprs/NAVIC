@@ -14,4 +14,8 @@ public enum SeatStatus {
     SeatStatus(String seatStatus) {
         this.seatStatus = seatStatus;
     }
+
+    public String getSeatStatus() {
+        return seatStatus;
+    }
 }

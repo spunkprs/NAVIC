@@ -29,7 +29,7 @@ public class SeatStatusChecker implements Runnable {
             lockAssociatedWithSeat = seat.getReentrantReadWriteLock();
             lockAssociatedWithSeat.readLock().lock();
             System.out.println("Customer with name " + threadName + " finished with checking status of seat with number " +
-                    seatNumber + " whose status is " + seat.getSeatStatus().name());
+                    seatNumber + " whose status is " + seat.getSeatStatus().getSeatStatus());
         } finally {
             lockAssociatedWithSeat.readLock().unlock();
         }
