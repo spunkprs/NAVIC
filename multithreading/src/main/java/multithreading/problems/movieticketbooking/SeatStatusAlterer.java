@@ -2,6 +2,10 @@ package multithreading.problems.movieticketbooking;
 
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
+/*
+This class mimics the behaviour of any thread which attempts to alter the status of a given seat at a time
+*/
+
 public class SeatStatusAlterer implements Runnable {
 
     private Seat allSeats[];
@@ -28,7 +32,7 @@ public class SeatStatusAlterer implements Runnable {
             if (seat.getSeatStatus().name().equals(seatStatus.name())) {
                 if (seatStatus.name().equals(SeatStatus.RESERVE)) {
                     System.out.println("Reserved seat with number " + seatNumber + " cannot be reserved again !!");
-                } else {
+                } else if (seatStatus.name().equals(SeatStatus.FREE)) {
                     System.out.println("Free seat with number " + seatNumber + " cannot be made free again !!");
                 }
             } else {

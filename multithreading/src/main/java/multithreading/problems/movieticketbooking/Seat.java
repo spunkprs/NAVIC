@@ -11,6 +11,7 @@ All the seats are independent from each other hence independent bookings can be 
 and it's fellow ReadWriteLock hence following things are guaranteed :-
 1.) Multiple threads can check the status of the seat at the same time
 2.) No writes can happen during the time read/group of reads are happening && vice-versa
+3.) No two separate writes can happen against the same seat simultaneously
 */
 
 public class Seat {
@@ -23,10 +24,6 @@ public class Seat {
         this.seatNumber = seatNumber;
         this.seatStatus = seatStatus;
         this.reentrantReadWriteLock = reentrantReadWriteLock;
-    }
-
-    public int getSeatNumber() {
-        return seatNumber;
     }
 
     public SeatStatus getSeatStatus() {
