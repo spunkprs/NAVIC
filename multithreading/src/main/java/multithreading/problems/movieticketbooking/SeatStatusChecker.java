@@ -2,7 +2,7 @@ package multithreading.problems.movieticketbooking;
 
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
-/*
+/**
 This class mimics the behaviour of any thread which attempts to check the status of a given seat at a time
 */
 

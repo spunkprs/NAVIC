@@ -1,8 +1,8 @@
 package multithreading.problems.movieticketbooking;
 
-/*
+/**
 ENUM for handling status of the seat
- */
+*/
 
 public enum SeatStatus {
 

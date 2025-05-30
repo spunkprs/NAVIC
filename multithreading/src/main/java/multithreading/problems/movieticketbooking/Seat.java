@@ -2,7 +2,7 @@ package multithreading.problems.movieticketbooking;
 
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
-/*
+/**
 Seat is the resource here upon which following actions can be performed :-
 1.) Reserve
 2.) Free i.e cancel the booking against that seat
