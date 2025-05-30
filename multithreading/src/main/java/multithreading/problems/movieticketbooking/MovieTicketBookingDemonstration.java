@@ -16,7 +16,7 @@ This class demonstrates the ability to simulate the behaviour of a movie ticket 
  a.) Single user can reserve single seat not multiple seats at the same time
 
  Future Enhancements -->
- a.) Single user can reserve should be able to reserve multiple seats at the same time
+ a.) Single user should be able to reserve multiple seats at the same time
  b.) In case multiple users wishes to reserve same group of seats only one should be able to reserve it effectively
  c.) In the case of contention during writes among multiple users i.e multiple users wising to reserve same set OR subset of seats
  only one of the user shall be able to make the transaction, partial allotment of seats shouldn't happen
