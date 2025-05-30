@@ -2,7 +2,7 @@ package multithreading.basics.atomics.atomicreference;
 
 import java.util.concurrent.atomic.AtomicStampedReference;
 
-/*
+/**
 This class aims at demonstrating the usage of AtomicStampedReference class && how both typed reference && integer stamp is used to handle
 A-B-A problem that is bound to happen in non blocking algorithms
 

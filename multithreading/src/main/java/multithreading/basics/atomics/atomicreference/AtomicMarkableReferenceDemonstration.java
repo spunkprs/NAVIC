@@ -3,7 +3,7 @@ package multithreading.basics.atomics.atomicreference;
 import java.util.concurrent.atomic.AtomicMarkableReference;
 
 
-/*
+/**
 This class aims at the demonstration of AtomicMarkableReference
 
 Pair class is used that has typed reference && a boolean variable {on the similar lines of AtomicStampedReference}

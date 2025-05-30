@@ -4,7 +4,7 @@ package multithreading.basics.atomics;
 import java.util.concurrent.atomic.AtomicInteger;
 
 
-/*
+/**
 There are a total of sixteen atomic classes divided into four groups:
 
 a.) Scalars

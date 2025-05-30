@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicReference;
 
-/*
+/**
 This class aims at implementation of Singleton Design Pattern using AtomicReference
 * */
 

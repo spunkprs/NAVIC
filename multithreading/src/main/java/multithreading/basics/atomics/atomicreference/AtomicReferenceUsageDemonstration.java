@@ -5,7 +5,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
 
-/*
+/**
 This class aims at validating the atomic behaviour of class AtomicReference, it validates both the essential things as part of multithreading when
 multiple threads enter into critical section which are following :-
 a.) Changes to the shared variable is atomic

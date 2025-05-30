@@ -2,7 +2,7 @@ package multithreading.basics.atomics.arrayofscalars;
 
 import java.util.concurrent.atomic.*;
 
-/*
+/**
 This class aims at presenting various methods/operations supported by AtomicIntegerArray
 
 Important thing to notice here is internal backed array is not volatile unlikely to it's relevant atomic scalars where

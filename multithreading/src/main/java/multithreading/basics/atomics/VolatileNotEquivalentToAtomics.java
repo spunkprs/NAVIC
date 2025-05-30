@@ -5,7 +5,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-/*
+/**
 Here we instantiate several threads and have them race to change a shared boolean variable’s won value to true.
 The first one to do so is considered to have won the race
 

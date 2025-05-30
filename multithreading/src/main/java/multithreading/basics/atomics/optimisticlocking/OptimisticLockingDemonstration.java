@@ -2,7 +2,7 @@ package multithreading.basics.atomics.optimisticlocking;
 
 import java.util.concurrent.atomic.AtomicLong;
 
-/*
+/**
 This class aims at demonstration of usage of atomic scalar here made use of AtomicLong, initialised a counter witn starting value of 10
 && it's value gets altered by 4 concurrent threads final value of the counter shall be 14 && transition from value 10 to 14 is being taken care
 of by individual threads

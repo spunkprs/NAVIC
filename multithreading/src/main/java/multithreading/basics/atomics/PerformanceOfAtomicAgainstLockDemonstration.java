@@ -3,7 +3,7 @@ package multithreading.basics.atomics;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.*;
 
-/*
+/**
 In the case of a single thread, i.e. zero contention environment, an operation that relies on CAS (e.g. updating an AtomicInteger)
 will be faster than an operation that involves locking first. On single CPU machines, CAS operations almost always succeed other
 than in the very rare case of a thread being interrupted in the middle of a read-modify-write operation. Even with moderate contention,
