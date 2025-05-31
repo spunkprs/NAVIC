@@ -21,12 +21,21 @@ public class NonBlockingStack<T> {
     public void push(T item) {
         StackNode<T> existingHead = null;
         StackNode<T> newHead = null;
+
+        /**
+        Making use of compare && set method of AtomicReference so that only one thread will be successful in it's operation while accessing the
+         critical section rest others will be running in the loop until the condition becomes successful for them
+        * */
         do {
             existingHead = atomicReference.get();
             newHead = new StackNode<>(item);
             newHead.setNext(existingHead);
         } while (!atomicReference.compareAndSet(existingHead, newHead));
 
+        /**
+         Making use of compare && set method of AtomicInteger is used to update the size of the stack, so that only one thread will be successful in it's
+         operation while accessing the critical section rest others will be running in the loop until the condition becomes successful for them
+         * */
         int sizeOfStack = 0;
         do {
             sizeOfStack = size.get();
@@ -36,6 +45,11 @@ public class NonBlockingStack<T> {
     public void pop() {
         StackNode<T> existingHead = null;
         StackNode<T> newHead = null;
+
+        /**
+         Making use of compare && set method of AtomicReference so that only one thread will be successful in it's operation while accessing the
+         critical section rest others will be running in the loop until the condition becomes successful for them
+         * */
         do {
             existingHead = atomicReference.get();
             if (existingHead == null) {
@@ -44,6 +58,10 @@ public class NonBlockingStack<T> {
             newHead = existingHead.getNext();
         } while (!atomicReference.compareAndSet(existingHead, newHead));
 
+        /**
+         Making use of compare && set method of AtomicInteger is used to update the size of the stack, so that only one thread will be successful in it's
+         operation while accessing the critical section rest others will be running in the loop until the condition becomes successful for them
+         * */
         int sizeOfStack = 0;
         do {
             sizeOfStack = size.get();

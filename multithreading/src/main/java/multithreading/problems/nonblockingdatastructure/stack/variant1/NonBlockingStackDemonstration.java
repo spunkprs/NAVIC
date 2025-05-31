@@ -69,6 +69,9 @@ public class NonBlockingStackDemonstration {
             }
         }
 
+        /**
+        Added this sleep just to make sure pop operation on the stack via 2 different threads gets completed in this time
+        * */
 
         try {
             Thread.sleep(3000);
