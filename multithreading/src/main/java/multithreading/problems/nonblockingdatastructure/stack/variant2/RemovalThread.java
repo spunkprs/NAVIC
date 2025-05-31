@@ -2,6 +2,10 @@ package multithreading.problems.nonblockingdatastructure.stack.variant2;
 
 import multithreading.problems.nonblockingdatastructure.stack.variant1.NonBlockingStack;
 
+/**
+ Skeleton for thread that handles removals from the stack
+ * */
+
 public class RemovalThread<T> implements Runnable {
 
     private String threadName;

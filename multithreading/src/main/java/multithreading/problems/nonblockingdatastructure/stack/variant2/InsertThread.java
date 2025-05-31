@@ -2,6 +2,10 @@ package multithreading.problems.nonblockingdatastructure.stack.variant2;
 
 import multithreading.problems.nonblockingdatastructure.stack.variant1.NonBlockingStack;
 
+/**
+ Skeleton for thread that handles insertions in the stack
+ * */
+
 public class InsertThread<T> implements Runnable {
 
     private String threadName;
