@@ -2,6 +2,25 @@ package multithreading.problems.nonblockingdatastructure.stack.variant1;
 
 import java.util.concurrent.*;
 
+/**
+This class aims at demonstrating the simulation of a non blocking stack i.e where during multiple push && multiple pop operations can happen
+ simultaneously{another thread will be keep on trying to perform it's action in the loop instead of getting blocked}, have made use of
+ AtomicReference instead of any intrinsic or explicit locking methodologies, here are the following features of the stack :-
+
+ a.) Supports push operation in the multithreaded environment and guarantees no inconsistency
+ b.) Supports pop operation in the multithreaded environment and guarantees no inconsistency
+ c.) Non blocking class i.e AtomicReference is being used for both push && pop operations
+ d.) Makes use of Atomic Scalar i.e AtomicInteger to maintain count of records in the stack
+ e.) Have made use of CyclicBarrier too with the initial barrier count of 2, just to make sure both the threads will only proceed towards pop once push by
+ both are done successfully
+
+ Drawbacks :-
+ a.) This stack supports both pop && push operation in the multithreaded environment && makes sure no two pop OR push operations will be happening
+ simultaneously that later lead to inconsistencies && this behaviour is tested too but push && pop simultaneous operations via two threads are not tested
+ which will be done in the future versions of this stack
+
+* */
+
 public class NonBlockingStackDemonstration {
 
     public static void main(String ar[]) {

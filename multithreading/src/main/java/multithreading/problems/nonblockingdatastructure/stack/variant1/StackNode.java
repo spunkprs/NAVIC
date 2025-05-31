@@ -1,5 +1,9 @@
 package multithreading.problems.nonblockingdatastructure.stack.variant1;
 
+/**
+ Skeleton for handling item{of any type} && next node of it's own type
+ * */
+
 public class StackNode <T> {
 
     private T item;

@@ -3,10 +3,14 @@ package multithreading.problems.nonblockingdatastructure.stack.variant1;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
+/**
+a.) Makes use of AtomicReference that is non blocking for both push && pop operation
+b.) Makes use of Atomic Scalar i.e AtomicInteger to maintain count of records in the stack
+* */
+
 public class NonBlockingStack<T> {
 
     private AtomicReference<StackNode<T>> atomicReference;
-
     private AtomicInteger size;
 
     public NonBlockingStack() {
