@@ -19,6 +19,9 @@ This class aims at demonstrating the simulation of a non blocking stack i.e wher
  simultaneously that later lead to inconsistencies && this behaviour is tested too but push && pop simultaneous operations via two threads are not tested
  which will be done in the future versions of this stack
 
+ References --> https://www.educative.io/courses/java-multithreading-for-senior-engineering-interviews/nonblocking-stack
+ Credits --> Educative
+
 * */
 
 public class NonBlockingStackDemonstration {
