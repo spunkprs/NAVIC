@@ -7,52 +7,42 @@ import java.util.Random;
 /**
  This class aims at demonstrating the simulation of a non blocking queue i.e where during multiple push && multiple pop operations can happen
  simultaneously{another thread will be keep on trying to perform it's action in the loop instead of getting blocked}, have made use of
- AtomicReference instead of any intrinsic or explicit locking methodologies, here are the following features of the queue :-
+ AtomicReference along with some explicit locking{without explicit locking up to this extent is required here because in queue we are inserting at tail but
+ removing from head unlike stack where both push && pop are happening at head}, here are the following features of the queue :-
 
  a.) Supports push operation in the multithreaded environment and guarantees no inconsistency
  b.) Supports pop operation in the multithreaded environment and guarantees no inconsistency
  c.) Non blocking class i.e AtomicReference is being used for both push && pop operations
- d.) This queue supports both pop && push operation in the multithreaded environment && makes sure no two pop OR push operations will be happening
- simultaneously that can later lead to inconsistencies && this behaviour is tested using multiple threads doing push operation simultaneously &&
- then when all the push is being done multiple threads doing pop operation simultaneously && at the end both head && tail shall be null
+ d.) This queue supports both pop && push operation in the multithreaded environment && makes sure no two pop OR push operations happen simultaneously,
+ along with this, it also makes sure that independent push && pop operations will seem to be getting exercised simultaneously but extra caution is being
+ taken care of when the size of queue is 0 OR 1, to handle that effectively had to introduce a bit of explicit locking too
  e.) Did not want to make use of any size/counter to track size of the queue as it would unnecessarily complicate the logic
+ f.) No efficient way of testing it unlike what we have done in NonBlockingQueueDemonstrationVariantOne as here both push && pop are getting exercised
+ simultaneously && the order of pop && push can be different hence chances of having non null head and tail are there which ahs been validated too
 
  * */
 
-public class NonBlockingQueueDemonstrationVariantOne {
+public class NonBlockingQueueDemonstrationVariantTwo {
 
     public static void main(String ar[]) {
+
         NonBlockingQueue<Integer> queue = new NonBlockingQueue<>();
 
         int threadCount = 5;
         List<Runnable> insertionThreads = prepareInsertionThreads(threadCount, queue);
         List<Runnable> removalThreads = prepareRemovalThreads(threadCount, queue);
 
-        //Start insertion threads
+        //Start insertion && removal threads
         for (int i = 1; i <= threadCount; i++) {
             Thread insertionThread = new Thread(insertionThreads.get(i - 1));
-            insertionThread.start();
-        }
-
-        /**
-        Did not want to clutter code using CyclicBarrier so put a sleep of 5 sec just to make sure all the push operations are done
-        before pop operations begins, could have done it using join as well
-        * */
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        //Start removal threads
-        for (int i = 1; i <= threadCount; i++) {
             Thread removalThread = new Thread(removalThreads.get(i - 1));
+
+            insertionThread.start();
             removalThread.start();
         }
 
-
         /**
-         Did not want to clutter code using CyclicBarrier so put a sleep of 5 sec just to make sure all the pop operations are done
+         Did not want to clutter code using CyclicBarrier so put a sleep of 5 sec just to make sure all the push && pop operations are done
          before head && tail evaluations are done, could have done it using join as well
          * */
         try {
@@ -80,5 +70,4 @@ public class NonBlockingQueueDemonstrationVariantOne {
         }
         return insertionThreads;
     }
-
 }
