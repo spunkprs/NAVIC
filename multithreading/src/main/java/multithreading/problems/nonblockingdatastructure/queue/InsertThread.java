@@ -1,5 +1,9 @@
 package multithreading.problems.nonblockingdatastructure.queue;
 
+/**
+ Skeleton for thread that handles insertions in the queue
+ * */
+
 public class InsertThread<T> implements Runnable {
 
     private String threadName;

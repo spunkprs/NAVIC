@@ -1,5 +1,9 @@
 package multithreading.problems.nonblockingdatastructure.queue;
 
+/**
+ Skeleton for thread that handles removals from the queue
+ * */
+
 public class RemovalThread<T> implements Runnable {
 
     private String threadName;

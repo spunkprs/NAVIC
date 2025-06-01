@@ -19,7 +19,7 @@ import java.util.Random;
 
  * */
 
-public class NonBlockingQueueDemonstration {
+public class NonBlockingQueueDemonstrationVariantOne {
 
     public static void main(String ar[]) {
         NonBlockingQueue<Integer> queue = new NonBlockingQueue<>();
