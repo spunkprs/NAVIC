@@ -14,6 +14,13 @@ public class RemovalThread<T> implements Runnable {
 
     @Override
     public void run() {
-
+        System.out.println(threadName + " proceeding with removal of head element from the non blocking queue !!");
+        try {
+            Thread.sleep(sleepTime);
+            nonBlockingQueue.pop();
+            System.out.println(threadName + " removed head element from the non blocking queue successfully !!");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

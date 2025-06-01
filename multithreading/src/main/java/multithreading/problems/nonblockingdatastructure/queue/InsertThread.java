@@ -16,6 +16,13 @@ public class InsertThread<T> implements Runnable {
 
     @Override
     public void run() {
-
+        System.out.println(threadName + " proceeding with insertion of of element " + itemToBeInserted + " to the tail of non blocking queue !!");
+        try {
+            Thread.sleep(sleepTime);
+            nonBlockingQueue.push(itemToBeInserted);
+            System.out.println(threadName + " inserted element " +  itemToBeInserted + " to the tail of non blocking queue successfully !!");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

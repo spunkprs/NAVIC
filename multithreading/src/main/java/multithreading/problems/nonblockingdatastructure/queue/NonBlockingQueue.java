@@ -52,4 +52,12 @@ public class NonBlockingQueue<T> {
             newHead = head.getNext();
         } while(!referenceForHead.compareAndSet(head, newHead));
     }
+
+    public AtomicReference<QueueNode<T>> getReferenceForHead() {
+        return referenceForHead;
+    }
+
+    public AtomicReference<QueueNode<T>> getReferenceForTail() {
+        return referenceForTail;
+    }
 }
