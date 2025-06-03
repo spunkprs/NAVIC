@@ -1,6 +1,6 @@
 package arrays.slidingwindow;
 
-/*
+/**
 *
 *
 You are given a 0-indexed string s consisting of only lowercase English letters, and an integer count.

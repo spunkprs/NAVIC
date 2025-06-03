@@ -1,6 +1,6 @@
 package arrays.slidingwindow;
 
-/*
+/**
 *
 You are given a 0-indexed integer array candies, where candies[i] represents the flavor of the ith candy. Your mom wants you to share these candies with your little sister by giving her k consecutive candies, but you want to keep as many flavors of candies as possible.
 
@@ -59,7 +59,7 @@ public class NumberOfUniqueFlavoursAfterSharingKCandies {
         System.out.print("Maximum number of unique candy flavous that can be enjoyed by me is :: " + unit.shareCandies(candyAarr, k));
     }
 
-    /*
+    /**
     *
     * Following use cases needs to be handled :-
     * a.) When k == candies.length
