@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 
-/*
+/**
 Given an array of strings wordsDict and two different strings that already exist in the array word1 and word2, return the shortest distance between these two words in the list.
 
 Example 1:
@@ -31,7 +31,7 @@ public class ShortestWordDistance {
         System.out.println("Shortest distance between words makes && coding is : " + unit.shortestDistance(words, "coding", "makes"));
     }
 
-    /*
+    /**
     *
     * Following are the detailing around time && space complexity
     * a.) Brute force approach would give O(pow(n, 2)) time complexity && O(1) space complexity

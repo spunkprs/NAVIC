@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 
-/*
+/**
 *
 Design a data structure that will be initialized with a string array, and then it should answer queries of the shortest distance between two different strings from the array.
 
