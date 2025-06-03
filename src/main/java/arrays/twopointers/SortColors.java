@@ -1,6 +1,6 @@
 package arrays.twopointers;
 
-/*
+/**
 *
 * Given an array, colors, which contains a combination of the following three elements:
 *

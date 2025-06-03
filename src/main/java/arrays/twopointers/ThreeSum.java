@@ -2,7 +2,7 @@ package arrays.twopointers;
 
 import java.util.*;
 
-/*
+/**
 Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]] such that i != j, i != k, and j != k,
 and nums[i] + nums[j] + nums[k] == 0.
 Notice that the solution set must not contain duplicate triplets.
@@ -10,7 +10,7 @@ Notice that the solution set must not contain duplicate triplets.
 
 public class ThreeSum {
 
-    /*
+    /**
      * Solved the question using two pointer approach
      * Time complexity against Brute force approach as expected is O(pow(n, 3)) but the efficient solution would be to reduce it to O(pow(n, 2))
      * && tc for the same is O(pow(n, 2)) only
