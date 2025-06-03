@@ -1,6 +1,6 @@
 package arrays.slidingwindow;
 
-/*
+/**
 *
 * Given a string s and an integer k, find the length of the longest substring in s,
 where all characters are identical, after replacing, at most, k characters with any other lowercase English character.
@@ -21,7 +21,7 @@ import java.util.Map;
 
 public class LongestRepeatingCharacterReplacement {
 
-    /*
+    /**
     * Space Complexity = O(26) --> As only lower english characters are allowed in the i/p string
     * Time Complexity = O(n * 26) --> Linear time is self explanatory in itself but * 26 is there because we are checking the highest value against each alphabet which can go upto
     * 26 in the worst case

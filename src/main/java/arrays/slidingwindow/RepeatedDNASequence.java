@@ -1,6 +1,6 @@
 package arrays.slidingwindow;
 
-/*
+/**
 * A DNA sequence consists of nucleotides represented by the letters ‘A’, ‘C’, ‘G’, and ‘T’ only.
 * For example, “ACGAATTCCG” is a valid DNA sequence.
 *
