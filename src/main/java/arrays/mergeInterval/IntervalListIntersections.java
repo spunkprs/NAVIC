@@ -37,12 +37,45 @@ public class IntervalListIntersections {
 
     public static void main(String ar[]) {
         IntervalListIntersections unit = new IntervalListIntersections();
+
+        int inputIntervalsOne [][] = {{1, 4}, {5, 6}, {7, 8}};
+        int inputIntervalsTwo [][] = {{3, 5}, {6, 7}, {8, 9}};
+
+        unit.intervalsIntersection(inputIntervalsOne, inputIntervalsTwo);
     }
 
-    public static int[][] intervalsIntersection(int[][] intervalLista, int[][] intervalListb) {
-        // Replace this placeholder return statement with your code
+    public int[][] intervalsIntersection(int[][] intervalLista, int[][] intervalListb) {
+
+        if (intervalLista.length != 0 && intervalListb.length != 0) {
+            logicToFindIntersections(intervalLista, intervalListb);
+        }
         return new int[][]{};
     }
 
+    private void logicToFindIntersections(int[][] inputIntervalsOne, int[][] inputIntervalsTwo) {
+        Pair pairsOne[] = computePairs(inputIntervalsOne);
+        Pair pairsTwo[] = computePairs(inputIntervalsTwo);
+
+
+    }
+
+    private Pair[] computePairs(int [][] inputInterval) {
+        Pair pairs[] = new Pair[inputInterval.length];
+        for (int i = 0; i < inputInterval.length; i++) {
+             Pair pair = new Pair(inputInterval[i][0], inputInterval[i][1]);
+             pairs[i] = pair;
+        }
+        return pairs;
+    }
+
+    static class Pair {
+        private int x;
+        private int y;
+
+        public Pair(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+    }
 
 }
