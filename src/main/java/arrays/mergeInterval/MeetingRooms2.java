@@ -44,12 +44,16 @@ public class MeetingRooms2 {
         return processToFindMinimumNumberOfRoomsNeededToEntertainMeetings(startIntervals, endIntervals);
     }
 
+    /**
+    Function responsible for finding minimum number of rooms to schedule provided meetings
+    * */
     private int processToFindMinimumNumberOfRoomsNeededToEntertainMeetings(int[] startIntervals, int[] endIntervals) {
         int numberOfRooms = 0;
         int roomsCount = 0;
         int i = 0, j = 0;
 
         while (i < startIntervals.length || j < endIntervals.length) {
+
             if (i < startIntervals.length && j < endIntervals.length) {
                 if (startIntervals[i] < endIntervals[j]) {
                     roomsCount++;
@@ -60,6 +64,12 @@ public class MeetingRooms2 {
                     numberOfRooms = updateMinimumNumberOfRoomesNeeded(numberOfRooms, roomsCount);
                     j++;
                 }
+
+                /**
+                 No need to update roomsCount && numberOfRooms here because by here numberOfRooms would have already been calculated,
+                 condition i < startIntervals.length && j >= endIntervals.length is not considered because it's not going to happen aka
+                 meeting has already ended but not yet started
+                * */
             } else if (i >= startIntervals.length && j < endIntervals.length) {
                 j++;
             }
