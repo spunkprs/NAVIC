@@ -30,6 +30,7 @@ public class MeetingRooms2 {
         int startIntervals[] = new int[intervals.length];
         int endIntervals[] = new int[intervals.length];
 
+        //To handle the case when only one schedule is provided
         if (intervals.length == 1) {
             return 1;
         }
