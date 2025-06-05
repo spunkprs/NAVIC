@@ -1,5 +1,8 @@
 package arrays.mergeInterval;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
 Given two lists of closed intervals, intervalLista and intervalListb, return the intersection of the two interval lists.
 Each interval in the lists has its own start and end time and is represented as [start, end].
@@ -38,25 +41,93 @@ public class IntervalListIntersections {
     public static void main(String ar[]) {
         IntervalListIntersections unit = new IntervalListIntersections();
 
-        int inputIntervalsOne [][] = {{1, 4}, {5, 6}, {7, 8}};
+        int inputIntervalsOne [][] = {{1, 4}, {5, 6}, {7, 9}};
         int inputIntervalsTwo [][] = {{3, 5}, {6, 7}, {8, 9}};
 
-        unit.intervalsIntersection(inputIntervalsOne, inputIntervalsTwo);
+        /*int inputIntervalsOne [][] = {{0, 4}, {5, 7}, {8, 12}, {13, 15}, {16, 18}};
+        int inputIntervalsTwo [][] = {{0, 18}};*/
+
+        int result[][] = unit.intervalsIntersection(inputIntervalsOne, inputIntervalsTwo);
+
+        printResult(result);
+    }
+
+    private static void printResult(int[][] result) {
+        for (int i = 0; i < result.length; i++) {
+            System.out.print(result[i][0]);
+            System.out.print(" ");
+            System.out.print(result[i][1]);
+            System.out.println();
+        }
     }
 
     public int[][] intervalsIntersection(int[][] intervalLista, int[][] intervalListb) {
 
         if (intervalLista.length != 0 && intervalListb.length != 0) {
-            logicToFindIntersections(intervalLista, intervalListb);
+            List<Pair> resultList = logicToFindIntersections(intervalLista, intervalListb);
+            return finalResultConversionProcess(resultList);
         }
         return new int[][]{};
     }
 
-    private void logicToFindIntersections(int[][] inputIntervalsOne, int[][] inputIntervalsTwo) {
+    private int[][] finalResultConversionProcess(List<Pair> resultList) {
+        int result[][] = new int[resultList.size()][2];
+        for (int i = 0; i < resultList.size(); i++) {
+            result[i][0] = resultList.get(i).startTime;
+            result[i][1] = resultList.get(i).endTime;
+        }
+        return result;
+    }
+
+    private List<Pair> logicToFindIntersections(int[][] inputIntervalsOne, int[][] inputIntervalsTwo) {
         Pair pairsOne[] = computePairs(inputIntervalsOne);
         Pair pairsTwo[] = computePairs(inputIntervalsTwo);
 
+        List<Pair> result = new ArrayList<>();
 
+        int i = 0, j = 0;
+
+        while (i < pairsOne.length && j < pairsTwo.length) {
+            if (pairsTwo[j].startTime <= pairsOne[i].endTime && pairsTwo[j].startTime >= pairsOne[i].startTime) {
+                if (pairsTwo[j].endTime > pairsOne[i].endTime) {
+                    updateResult(pairsTwo[j], pairsOne[i], result);
+                    i++;
+                } else if (pairsTwo[j].endTime == pairsOne[i].endTime) {
+                    updateResult(pairsTwo[j], pairsOne[i], result);
+                    i++;
+                    j++;
+                } else if (pairsTwo[j].endTime < pairsOne[i].endTime) {
+                    updateResult(pairsTwo[j], pairsOne[i], result);
+                    j++;
+                }
+            } else if (pairsTwo[j].startTime == pairsOne[i].startTime && pairsTwo[j].endTime == pairsOne[i].endTime) {
+                updateResult(pairsTwo[j], pairsOne[i], result);
+                i++;
+                j++;
+            } else if (pairsTwo[j].startTime > pairsOne[i].endTime) {
+                i++;
+            } else if (pairsTwo[j].startTime <= pairsOne[i].endTime && pairsTwo[j].startTime < pairsOne[i].startTime) {
+                if (pairsTwo[j].endTime < pairsOne[i].endTime) {
+                    updateResult(pairsTwo[j], pairsOne[i], result);
+                    j++;
+                } else if (pairsTwo[j].endTime == pairsOne[i].endTime) {
+                    updateResult(pairsTwo[j], pairsOne[i], result);
+                    i++;
+                    j++;
+                } else if (pairsTwo[j].endTime > pairsOne[i].endTime) {
+                    updateResult(pairsTwo[j], pairsOne[i], result);
+                    i++;
+                }
+            } else if (pairsOne[i].startTime > pairsTwo[j].endTime) {
+                j++;
+            }
+        }
+        return result;
+    }
+
+    private void updateResult(Pair pTwo, Pair pOne, List<Pair> result) {
+        result.add(new Pair(Math.max(pTwo.startTime, pOne.startTime),
+                Math.min(pTwo.endTime, pOne.endTime)));
     }
 
     private Pair[] computePairs(int [][] inputInterval) {
@@ -69,12 +140,12 @@ public class IntervalListIntersections {
     }
 
     static class Pair {
-        private int x;
-        private int y;
+        private int startTime;
+        private int endTime;
 
-        public Pair(int x, int y) {
-            this.x = x;
-            this.y = y;
+        public Pair(int startTime, int endTime) {
+            this.startTime = startTime;
+            this.endTime = endTime;
         }
     }
 
