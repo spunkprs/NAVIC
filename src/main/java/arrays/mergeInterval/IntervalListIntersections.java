@@ -89,6 +89,7 @@ public class IntervalListIntersections {
 
         while (i < pairsOne.length && j < pairsTwo.length) {
             if (pairsTwo[j].startTime > pairsOne[i].endTime) {
+                //In this case intervals won't be merged because there is no overlap
                 i++;
             } else if (pairsTwo[j].startTime <= pairsOne[i].endTime && pairsTwo[j].startTime >= pairsOne[i].startTime) {
                 if (pairsTwo[j].endTime > pairsOne[i].endTime) {
@@ -107,6 +108,7 @@ public class IntervalListIntersections {
                 i++;
                 j++;
             }  else if (pairsOne[i].startTime > pairsTwo[j].endTime) {
+                //In this case intervals won't be merged because there is no overlap
                 j++;
             } else if (pairsTwo[j].startTime <= pairsOne[i].endTime && pairsTwo[j].startTime < pairsOne[i].startTime) {
                 if (pairsTwo[j].endTime < pairsOne[i].endTime) {
@@ -125,6 +127,7 @@ public class IntervalListIntersections {
         return result;
     }
 
+    //This method is used to perform overlap operation as expected in the problem
     private void updateResult(Pair pTwo, Pair pOne, List<Pair> result) {
         result.add(new Pair(Math.max(pTwo.startTime, pOne.startTime),
                 Math.min(pTwo.endTime, pOne.endTime)));
