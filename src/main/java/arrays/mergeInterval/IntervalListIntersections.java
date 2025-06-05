@@ -88,7 +88,9 @@ public class IntervalListIntersections {
         int i = 0, j = 0;
 
         while (i < pairsOne.length && j < pairsTwo.length) {
-            if (pairsTwo[j].startTime <= pairsOne[i].endTime && pairsTwo[j].startTime >= pairsOne[i].startTime) {
+            if (pairsTwo[j].startTime > pairsOne[i].endTime) {
+                i++;
+            } else if (pairsTwo[j].startTime <= pairsOne[i].endTime && pairsTwo[j].startTime >= pairsOne[i].startTime) {
                 if (pairsTwo[j].endTime > pairsOne[i].endTime) {
                     updateResult(pairsTwo[j], pairsOne[i], result);
                     i++;
@@ -104,8 +106,8 @@ public class IntervalListIntersections {
                 updateResult(pairsTwo[j], pairsOne[i], result);
                 i++;
                 j++;
-            } else if (pairsTwo[j].startTime > pairsOne[i].endTime) {
-                i++;
+            }  else if (pairsOne[i].startTime > pairsTwo[j].endTime) {
+                j++;
             } else if (pairsTwo[j].startTime <= pairsOne[i].endTime && pairsTwo[j].startTime < pairsOne[i].startTime) {
                 if (pairsTwo[j].endTime < pairsOne[i].endTime) {
                     updateResult(pairsTwo[j], pairsOne[i], result);
@@ -118,8 +120,6 @@ public class IntervalListIntersections {
                     updateResult(pairsTwo[j], pairsOne[i], result);
                     i++;
                 }
-            } else if (pairsOne[i].startTime > pairsTwo[j].endTime) {
-                j++;
             }
         }
         return result;
