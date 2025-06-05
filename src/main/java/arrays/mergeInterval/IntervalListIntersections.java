@@ -79,6 +79,10 @@ public class IntervalListIntersections {
         return result;
     }
 
+    /**
+    This method is the heart of the problem where entire logic of overlap checking is being done using 2 pointer approach
+    * */
+
     private List<Pair> logicToFindIntersections(int[][] inputIntervalsOne, int[][] inputIntervalsTwo) {
         Pair pairsOne[] = computePairs(inputIntervalsOne);
         Pair pairsTwo[] = computePairs(inputIntervalsTwo);
@@ -95,18 +99,22 @@ public class IntervalListIntersections {
                 if (pairsTwo[j].endTime > pairsOne[i].endTime) {
                     updateResult(pairsTwo[j], pairsOne[i], result);
                     i++;
+                    //i pointer got progressed because pairsTwo[j].endTime > pairsOne[i].endTime
                 } else if (pairsTwo[j].endTime == pairsOne[i].endTime) {
                     updateResult(pairsTwo[j], pairsOne[i], result);
                     i++;
                     j++;
+                    //Because of the same end times both the pointers got progressed
                 } else if (pairsTwo[j].endTime < pairsOne[i].endTime) {
                     updateResult(pairsTwo[j], pairsOne[i], result);
                     j++;
+                    //j pointer got progressed because pairsTwo[j].endTime < pairsOne[i].endTime
                 }
             } else if (pairsTwo[j].startTime == pairsOne[i].startTime && pairsTwo[j].endTime == pairsOne[i].endTime) {
                 updateResult(pairsTwo[j], pairsOne[i], result);
                 i++;
                 j++;
+                //Because of the same start && end times both the pointers got progressed
             }  else if (pairsOne[i].startTime > pairsTwo[j].endTime) {
                 //In this case intervals won't be merged because there is no overlap
                 j++;
@@ -114,13 +122,16 @@ public class IntervalListIntersections {
                 if (pairsTwo[j].endTime < pairsOne[i].endTime) {
                     updateResult(pairsTwo[j], pairsOne[i], result);
                     j++;
+                    //j pointer got progressed because pairsTwo[j].endTime < pairsOne[i].endTime
                 } else if (pairsTwo[j].endTime == pairsOne[i].endTime) {
                     updateResult(pairsTwo[j], pairsOne[i], result);
                     i++;
                     j++;
+                    //Because of the same end times both the pointers got progressed
                 } else if (pairsTwo[j].endTime > pairsOne[i].endTime) {
                     updateResult(pairsTwo[j], pairsOne[i], result);
                     i++;
+                    //i pointer got progressed because pairsTwo[j].endTime > pairsOne[i].endTime
                 }
             }
         }
