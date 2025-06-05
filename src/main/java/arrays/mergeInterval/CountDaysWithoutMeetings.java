@@ -22,4 +22,14 @@ public class CountDaysWithoutMeetings {
         // Replace this placeholder return statement with your code
         return -1;
     }
+
+    static class Pair {
+        private int startTime;
+        private int endTime;
+
+        public Pair(int startTime, int endTime) {
+            this.startTime = startTime;
+            this.endTime = endTime;
+        }
+    }
 }
