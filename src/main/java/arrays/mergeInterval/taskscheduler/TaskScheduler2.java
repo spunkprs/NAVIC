@@ -69,6 +69,9 @@ public class TaskScheduler2 {
         return processToComputeAllTask(tasks, space);
     }
 
+    /**
+    Logic to compute minimum number of days required to complete all tasks
+    * */
     private long processToComputeAllTask(int[] tasks, int space) {
         long minimumDays = 0;
         Map<Integer, Long> cache = new HashMap<>();
@@ -95,6 +98,4 @@ public class TaskScheduler2 {
     private long updateMinimumDays(long minimumDays, long days) {
         return days > minimumDays ? days : minimumDays;
     }
-
-
 }
