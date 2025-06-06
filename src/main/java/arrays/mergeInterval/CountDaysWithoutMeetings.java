@@ -17,13 +17,12 @@ public class CountDaysWithoutMeetings {
 
     public static void main(String ar[]) {
         CountDaysWithoutMeetings unit = new CountDaysWithoutMeetings();
-        /*int meetings [][] = {{10, 12}, {1, 5}, {4, 8}};
-        int days = 12;*/
 
+        int meetings [][] = {{10, 12}, {1, 5}, {4, 8}};
+        int days = 12;
 
-        int meetings [][] = {{7, 9}, {3, 6}};
-        int days = 10;
-
+        /*int meetings [][] = {{7, 9}, {3, 6}};
+        int days = 10;*/
 
         System.out.println("Days when the employee is available for work but has no scheduled meetings is " + unit.countDays(days, meetings));
     }
@@ -70,9 +69,12 @@ public class CountDaysWithoutMeetings {
             countDays+= node.pair.endTime - node.pair.startTime + 1;
             node = node.next;
         }
-
         return countDays;
     }
+
+    /**
+     * This the logic that's responsible for merging overlapping intervals
+     * */
 
     private Node conversionToNodePair(Pair[] pairMeetings) {
         Node head = null;
