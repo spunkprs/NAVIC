@@ -1,5 +1,8 @@
 package arrays.mergeInterval.taskscheduler;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  You are given a 0-indexed array of positive integers tasks, representing tasks that need to be completed in order,
  where tasks[i] represents the type of the ith task.
@@ -54,6 +57,44 @@ Credits --> LeetCode
 public class TaskScheduler2 {
 
     public static void main(String ar[]) {
+        TaskScheduler2 unit = new TaskScheduler2();
+        /*int tasks[] = {5, 8, 8, 5};
+        System.out.println("Minimum number of days needed to complete all tasks is " + unit.taskSchedulerII(tasks, 2));*/
 
+        int tasks[] = {1, 2, 1, 2, 3, 1};
+        System.out.println("Minimum number of days needed to complete all tasks is " + unit.taskSchedulerII(tasks, 3));
     }
+
+    public long taskSchedulerII(int[] tasks, int space) {
+        return processToComputeAllTask(tasks, space);
+    }
+
+    private long processToComputeAllTask(int[] tasks, int space) {
+        long minimumDays = 0;
+        Map<Integer, Long> cache = new HashMap<>();
+
+        for (int i = 0; i < tasks.length; i++) {
+            if (!cache.containsKey(tasks[i])) {
+                cache.put(tasks[i], minimumDays + 1);
+                minimumDays = updateMinimumDays(minimumDays, minimumDays + 1);
+            } else {
+                long day = cache.get(tasks[i]);
+                long nextOccurenceDay = day + space + 1;
+                if (minimumDays + 1 >= nextOccurenceDay) {
+                    cache.put(tasks[i], minimumDays + 1);
+                    minimumDays = updateMinimumDays(minimumDays, minimumDays + 1);
+                } else {
+                    cache.put(tasks[i], nextOccurenceDay);
+                    minimumDays = updateMinimumDays(minimumDays, nextOccurenceDay);
+                }
+            }
+        }
+        return minimumDays;
+    }
+
+    private long updateMinimumDays(long minimumDays, long days) {
+        return days > minimumDays ? days : minimumDays;
+    }
+
+
 }
