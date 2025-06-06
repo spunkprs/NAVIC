@@ -40,6 +40,9 @@ public class CountDaysWithoutMeetings {
         return days - computeCountDays(headNode);
     }
 
+    /**
+     * This the logic that's responsible for merging overlapping intervals
+     * */
     private void processToMergeIntervals(Node headNode) {
         Node node = headNode;
         Node nextNode = null;
@@ -61,6 +64,9 @@ public class CountDaysWithoutMeetings {
         }
     }
 
+    /**
+     * Simple iteration over generated singly list to compute count days
+     * */
     private int computeCountDays(Node head) {
         int countDays = 0;
         Node node = head;
@@ -72,10 +78,10 @@ public class CountDaysWithoutMeetings {
         return countDays;
     }
 
-    /**
-     * This the logic that's responsible for merging overlapping intervals
-     * */
 
+    /**
+     * Logic for converting Pair to Node having pair inside
+     * */
     private Node conversionToNodePair(Pair[] pairMeetings) {
         Node head = null;
         Node tail = null;
@@ -101,6 +107,10 @@ public class CountDaysWithoutMeetings {
         return pairs;
     }
 
+    /**
+     * Have made Pair class implements Comparable because we want to sort the Pair first on the basis of startTime
+     * before proceeding ahead with merge interval procedure
+    * */
     static class Pair implements Comparable<Pair> {
         private int startTime;
         private int endTime;
