@@ -1,5 +1,10 @@
 package arrays.mergeInterval.taskscheduler;
 
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.PriorityQueue;
+
 /**
  You are given an array of CPU tasks represented by uppercase letters (A to Z) and an integer n, which denotes the cooling period
  required between any two identical tasks. Each task takes exactly one CPU interval to execute. Therefore, each CPU interval can
@@ -28,10 +33,58 @@ public class TaskScheduler {
         int result = taskScheduler.leastInterval(command.toCharArray(), coolingPeriod);
         System.out.println("Minimum number of CPU intervals to run commands " + command +
                 " having cooling off period for each task of " + coolingPeriod + " is " + result);
-
     }
 
     public int leastInterval(char[] tasks, int n) {
+        Map<Character, Node> cache = findFrequencyOfEachTask(tasks);
+        PriorityQueue<Node> maxHeap = new PriorityQueue<>(new NodeComparator());
+        pushElementsInsideMaxHeap(cache, maxHeap);
+
+        logicToFindLeastInterval(maxHeap);
         return 0;
+    }
+
+    /**
+     Core logic to find least interval
+    */
+    private void logicToFindLeastInterval(PriorityQueue<Node> maxHeap) {
+
+    }
+
+    private void pushElementsInsideMaxHeap(Map<Character, Node> cache, PriorityQueue<Node> maxHeap) {
+        for (Character key : cache.keySet()) {
+            maxHeap.add(cache.get(key));
+        }
+    }
+
+    private Map<Character, Node> findFrequencyOfEachTask(char[] tasks) {
+        Map<Character, Node> cache = new HashMap<>();
+        for (int i = 0; i < tasks.length; i++) {
+            if (!cache.containsKey(tasks[i])) {
+                cache.put(tasks[i], new Node(tasks[i], 1));
+            } else {
+                Node existingTask = cache.get(tasks[i]);
+                existingTask.taskFrequency = existingTask.taskFrequency + 1;
+            }
+        }
+        return cache;
+    }
+
+    static class Node {
+        private Character task;
+        private int taskFrequency;
+
+        public Node(Character task, int taskFrequency) {
+            this.task = task;
+            this.taskFrequency = taskFrequency;
+        }
+    }
+
+    static class NodeComparator implements Comparator<Node> {
+
+        @Override
+        public int compare(Node o1, Node o2) {
+            return o2.taskFrequency - o1.taskFrequency;
+        }
     }
 }
