@@ -39,15 +39,21 @@ public class TaskScheduler {
      Logic to find least interval
      */
     public int leastInterval(char[] tasks, int n) {
-        Map<Character, Node> cache = findFrequencyOfEachTask(tasks);
-        PriorityQueue<Node> maxHeap = new PriorityQueue<>(new NodeComparator());
-        pushElementsInsideMaxHeap(cache, maxHeap);
+        if (n > 0) {
+            Map<Character, Node> cache = findFrequencyOfEachTask(tasks);
+            PriorityQueue<Node> maxHeap = new PriorityQueue<>(new NodeComparator());
+            pushElementsInsideMaxHeap(cache, maxHeap);
 
-        return logicToFindLeastInterval(maxHeap, n);
+            return logicToFindLeastInterval(maxHeap, n);
+        } else {
+            return tasks.length;
+        }
     }
 
     /**
      Core logic to find least interval
+     Salient features around this logic :-
+
     */
     private int logicToFindLeastInterval(PriorityQueue<Node> maxHeap, int space) {
         int days = 0;
