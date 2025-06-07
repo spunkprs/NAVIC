@@ -23,7 +23,10 @@ import java.util.*;
 public class TaskScheduler {
 
     public static void main(String ar[]) {
-        String command = "ABAABC";
+        /*String command = "AAABBB";
+        int coolingPeriod = 2;*/
+
+        String command = "ACABDB";
         int coolingPeriod = 1;
 
         TaskScheduler taskScheduler = new TaskScheduler();
@@ -68,6 +71,9 @@ public class TaskScheduler {
                         days--;
                     } else if (days < nodePulled.upcomingDay) {
                         days = nodePulled.upcomingDay;
+                    } else {
+                        days += days - nodePulled.upcomingDay;
+                        nodePulled.upcomingDay = days;
                     }
                 }
             }
