@@ -1,9 +1,6 @@
 package arrays.mergeInterval.taskscheduler;
 
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.PriorityQueue;
+import java.util.*;
 
 /**
  You are given an array of CPU tasks represented by uppercase letters (A to Z) and an integer n, which denotes the cooling period
@@ -26,7 +23,7 @@ import java.util.PriorityQueue;
 public class TaskScheduler {
 
     public static void main(String ar[]) {
-        String command = "AAABBCC";
+        String command = "ABAABC";
         int coolingPeriod = 1;
 
         TaskScheduler taskScheduler = new TaskScheduler();
@@ -35,20 +32,47 @@ public class TaskScheduler {
                 " having cooling off period for each task of " + coolingPeriod + " is " + result);
     }
 
+    /**
+     Logic to find least interval
+     */
     public int leastInterval(char[] tasks, int n) {
         Map<Character, Node> cache = findFrequencyOfEachTask(tasks);
         PriorityQueue<Node> maxHeap = new PriorityQueue<>(new NodeComparator());
         pushElementsInsideMaxHeap(cache, maxHeap);
 
-        logicToFindLeastInterval(maxHeap);
-        return 0;
+        return logicToFindLeastInterval(maxHeap, n);
     }
 
     /**
      Core logic to find least interval
     */
-    private void logicToFindLeastInterval(PriorityQueue<Node> maxHeap) {
-
+    private int logicToFindLeastInterval(PriorityQueue<Node> maxHeap, int space) {
+        int days = 0;
+        Queue<Node> queue = new LinkedList<>();
+        while (!maxHeap.isEmpty() || !queue.isEmpty()) {
+            Node nodePulled;
+            if (!maxHeap.isEmpty()) {
+                nodePulled = maxHeap.poll();
+                days++;
+                nodePulled.upcomingDay = days + space + 1;
+                nodePulled.taskFrequency--;
+                if (nodePulled.taskFrequency >= 1) {
+                    queue.add(nodePulled);
+                }
+            } else {
+                if (!queue.isEmpty()) {
+                    nodePulled = queue.peek();
+                    if (days == nodePulled.upcomingDay) {
+                        nodePulled = queue.poll();
+                        maxHeap.add(nodePulled);
+                        days--;
+                    } else if (days < nodePulled.upcomingDay) {
+                        days = nodePulled.upcomingDay;
+                    }
+                }
+            }
+        }
+        return days;
     }
 
     private void pushElementsInsideMaxHeap(Map<Character, Node> cache, PriorityQueue<Node> maxHeap) {
@@ -73,15 +97,16 @@ public class TaskScheduler {
     static class Node {
         private Character task;
         private int taskFrequency;
+        private int upcomingDay;
 
         public Node(Character task, int taskFrequency) {
             this.task = task;
             this.taskFrequency = taskFrequency;
         }
+
     }
 
     static class NodeComparator implements Comparator<Node> {
-
         @Override
         public int compare(Node o1, Node o2) {
             return o2.taskFrequency - o1.taskFrequency;
