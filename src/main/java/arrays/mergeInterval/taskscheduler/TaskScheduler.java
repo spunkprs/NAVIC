@@ -18,6 +18,26 @@ import java.util.*;
 
  References --> https://www.educative.io/interview-prep/coding/task-scheduler
  Credits --> Educative
+
+
+ Making use of greedy approach to solve this interesting problem, 2 data structures that needs to be handy to tackle this problem are :-
+ a.) Max heap
+ b.) Queue
+
+ Why greedy, well we try to put the tasks against their frequency && then then put this encapsulated information inside a max heap which is sorted
+ by the frequency in the descending order
+ Tasks with higher occurrence shall blanket tasks with relatively lesser frequency i.e task with higher frequency shall be given preference only when it's
+ scheduled time has come
+
+ Following cases are possible when a task from queue head shall be picked :-
+ 1.) When day + 1 == upcomingDay for a task
+ 2.) When day + 1 > upcomingDay for a task i.e day has passed for this task but now it can be picked
+ 1.) When day + 1 < upcomingDay for a task [ideally in this case task already present in the heap shall be given preference
+ but when heap is empty we shall fast forward the process && make day = upcomingDay - 1 such that usual process can follow]
+
+
+ Time Complexity --> O(nlogZ) [Here Z would be max distinct tasks && n are all tasks ]
+ Space Complexity --> O(Z)
 * */
 
 public class TaskScheduler {
@@ -25,21 +45,21 @@ public class TaskScheduler {
     public static void main(String ar[]) {
 
         /**
-         Case fulfilling condition --> days + 1 == nodePulled.upcomingDay
+         Case 1
          * */
         /*String command = "AAABBCC";
         int coolingPeriod = 1;*/
 
 
         /**
-         Case fulfilling condition --> days + 1 < nodePulled.upcomingDay
+         Case 2
          * */
         /*String command = "ACABDB";
         int coolingPeriod = 1;*/
 
 
         /**
-         Case fulfilling condition --> days + 1 > nodePulled.upcomingDay
+         Case 3
         * */
         /*String command = "ABAABC";
         int coolingPeriod = 3;*/
@@ -70,6 +90,7 @@ public class TaskScheduler {
 
     /**
      Core logic to find least interval
+
     */
     private int logicToFindLeastInterval(PriorityQueue<Node> maxHeap, int space) {
         int days = 0;
