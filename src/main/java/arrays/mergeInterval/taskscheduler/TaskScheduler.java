@@ -62,7 +62,7 @@ public class TaskScheduler {
             PriorityQueue<Node> maxHeap = new PriorityQueue<>(new NodeComparator());
             pushElementsInsideMaxHeap(cache, maxHeap);
 
-            return logicToFindLeastIntervalOne(maxHeap, n);
+            return logicToFindLeastInterval(maxHeap, n);
         } else {
             return tasks.length;
         }
@@ -71,7 +71,7 @@ public class TaskScheduler {
     /**
      Core logic to find least interval
     */
-    private int logicToFindLeastIntervalOne(PriorityQueue<Node> maxHeap, int space) {
+    private int logicToFindLeastInterval(PriorityQueue<Node> maxHeap, int space) {
         int days = 0;
         Queue<Node> queue = new LinkedList<>();
         while (!maxHeap.isEmpty() || !queue.isEmpty()) {
