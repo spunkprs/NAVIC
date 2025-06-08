@@ -23,10 +23,28 @@ import java.util.*;
 public class TaskScheduler {
 
     public static void main(String ar[]) {
-        /*String command = "AAABBB";
-        int coolingPeriod = 2;*/
 
-        String command = "ACABDB";
+        /**
+         Case fulfilling condition --> days + 1 == nodePulled.upcomingDay
+         * */
+        /*String command = "AAABBCC";
+        int coolingPeriod = 1;*/
+
+
+        /**
+         Case fulfilling condition --> days + 1 < nodePulled.upcomingDay
+         * */
+        /*String command = "ACABDB";
+        int coolingPeriod = 1;*/
+
+
+        /**
+         Case fulfilling condition --> days + 1 > nodePulled.upcomingDay
+        * */
+        /*String command = "ABAABC";
+        int coolingPeriod = 3;*/
+
+        String command = "BCDAAAAG";
         int coolingPeriod = 1;
 
         TaskScheduler taskScheduler = new TaskScheduler();
@@ -44,7 +62,7 @@ public class TaskScheduler {
             PriorityQueue<Node> maxHeap = new PriorityQueue<>(new NodeComparator());
             pushElementsInsideMaxHeap(cache, maxHeap);
 
-            return logicToFindLeastInterval(maxHeap, n);
+            return logicToFindLeastIntervalOne(maxHeap, n);
         } else {
             return tasks.length;
         }
@@ -52,35 +70,43 @@ public class TaskScheduler {
 
     /**
      Core logic to find least interval
-     Salient features around this logic :-
-
     */
-    private int logicToFindLeastInterval(PriorityQueue<Node> maxHeap, int space) {
+    private int logicToFindLeastIntervalOne(PriorityQueue<Node> maxHeap, int space) {
         int days = 0;
         Queue<Node> queue = new LinkedList<>();
         while (!maxHeap.isEmpty() || !queue.isEmpty()) {
-            Node nodePulled;
+            Node nodePulled = null;
             if (!maxHeap.isEmpty()) {
-                nodePulled = maxHeap.poll();
-                days++;
-                nodePulled.upcomingDay = days + space + 1;
-                nodePulled.taskFrequency--;
-                if (nodePulled.taskFrequency >= 1) {
-                    queue.add(nodePulled);
+                if (queue.isEmpty()) {
+                    nodePulled = maxHeap.poll();
+                    days++;
+                    nodePulled.upcomingDay = days + space + 1;
+                    nodePulled.taskFrequency--;
+                    if (nodePulled.taskFrequency >= 1) {
+                        queue.add(nodePulled);
+                    }
+                } else {
+                    nodePulled = maxHeap.peek();
+                    Node nodeFromQueue = queue.peek();
+                    if (days + 1 >= nodeFromQueue.upcomingDay && nodeFromQueue.taskFrequency > nodePulled.taskFrequency) {
+                        nodeFromQueue = queue.poll();
+                        maxHeap.add(nodeFromQueue);
+                    }
+                    nodePulled = maxHeap.poll();
+                    days++;
+                    nodePulled.upcomingDay = days + space + 1;
+                    nodePulled.taskFrequency--;
+                    if (nodePulled.taskFrequency >= 1) {
+                        queue.add(nodePulled);
+                    }
                 }
             } else {
-                if (!queue.isEmpty()) {
-                    nodePulled = queue.peek();
-                    if (days == nodePulled.upcomingDay) {
-                        nodePulled = queue.poll();
-                        maxHeap.add(nodePulled);
-                        days--;
-                    } else if (days < nodePulled.upcomingDay) {
-                        days = nodePulled.upcomingDay;
-                    } else {
-                        days += days - nodePulled.upcomingDay;
-                        nodePulled.upcomingDay = days;
-                    }
+                nodePulled = queue.peek();
+                if (days + 1 >= nodePulled.upcomingDay) {
+                    nodePulled = queue.poll();
+                    maxHeap.add(nodePulled);
+                } else if (days + 1 < nodePulled.upcomingDay) {
+                    days = nodePulled.upcomingDay - 1;
                 }
             }
         }
