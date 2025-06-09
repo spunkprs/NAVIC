@@ -64,6 +64,11 @@ public class ReorganizeString {
          * */
         if (tasks.length % 2 == 0 && taskWithHighestFrequency.taskFrequency > (tasks.length / 2)) {
             return "";
+
+        /**
+        Case when length of the string is odd && the max frequent element's frequency is greater than half of the string + 1, in that case
+        there is no chance we can build the required string
+        * */
         } else if (tasks.length % 2 != 0 && taskWithHighestFrequency.taskFrequency > ((tasks.length / 2) + 1)) {
             return "";
         } else {
@@ -124,6 +129,12 @@ public class ReorganizeString {
                 } else if (maxHeap2.peek().task.compareTo(currentNode) == 0 && maxHeap2.size() == 1) {
                     resultantString = new StringBuilder();
                     break;
+                   /**
+                    This is one of the special edge case where using two maxHeaps that can be used interchangeably becomes handy, had
+                    to handle this case in this manner where I am swapping two heaps because of the architecture of the core logic
+                    that's been built like this
+                    Initially instead of maxHeap2 I was making use of singly linked list && was running into issue
+                    * */
                 } else if (maxHeap2.peek().task.compareTo(currentNode) == 0 && maxHeap2.size() > 1) {
                     nodePulled = maxHeap2.poll();
                     maxHeap = maxHeap2;
