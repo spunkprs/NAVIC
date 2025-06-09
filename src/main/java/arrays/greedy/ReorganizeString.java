@@ -38,7 +38,6 @@ public class ReorganizeString {
 
         String inputString = "kkkkzrkatkwpkkkktrq";
 
-
         System.out.println("Reorganized string such that no two adjacent characters are same for input string " + inputString
                 + " is " + unit.reorganizeString(inputString));
     }
@@ -58,6 +57,11 @@ public class ReorganizeString {
 
         Node taskWithHighestFrequency = maxHeap.peek();
 
+
+        /**
+         Case when length of the string is even && the max frequent element's frequency is greater than half of the string in that case
+         there is no chance we can build the required string
+         * */
         if (tasks.length % 2 == 0 && taskWithHighestFrequency.taskFrequency > (tasks.length / 2)) {
             return "";
         } else if (tasks.length % 2 != 0 && taskWithHighestFrequency.taskFrequency > ((tasks.length / 2) + 1)) {
@@ -66,6 +70,12 @@ public class ReorganizeString {
             return processToFindReorganizedString(maxHeap);
         }
     }
+
+    /**
+     Heart of the logic resides here where we are typically making use of greedy algorithm though both the heaps will be storing nodes of same types
+     and both of them are used interchangeably
+     Making use of two max heaps -->
+     * */
 
     private String processToFindReorganizedString(PriorityQueue<Node> maxHeap) {
         StringBuilder resultantString = new StringBuilder();
