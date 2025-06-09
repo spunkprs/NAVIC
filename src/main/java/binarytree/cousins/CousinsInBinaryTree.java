@@ -2,17 +2,37 @@ package binarytree.cousins;
 
 public class CousinsInBinaryTree {
 
+    private boolean isNodeFound = false;
+
     public static void main(String ar[]) {
         CousinsInBinaryTree unit = new CousinsInBinaryTree();
+
+        TreeNode leafOne = new TreeNode(4);
+        TreeNode leafTwo = new TreeNode(5);
+
+        TreeNode internalNodeOne = new TreeNode(2);
+        internalNodeOne.right = leafOne;
+
+        TreeNode internalNodeTwo = new TreeNode(3);
+        internalNodeTwo.right = leafTwo;
+
+        TreeNode root = new TreeNode(1);
+
+        root.left = internalNodeOne;
+        root.right = internalNodeTwo;
+
+        System.out.println(unit.isCousins(root, 4 , 5));
+
     }
 
-    private boolean isNodeFound = false;
+
 
     public boolean isCousins(TreeNode root, int x, int y) {
 
         int depthOfFirstNode = findDepthOfNode(root, x);
         isNodeFound = false;
         int depthOfSecondNode = findDepthOfNode(root, y);
+        isNodeFound = false;
 
         if (depthOfFirstNode == depthOfSecondNode) {
             TreeNode parentOne = findParentOfNode(root, x);
@@ -32,22 +52,28 @@ public class CousinsInBinaryTree {
     private TreeNode processToFindParentOfNode(TreeNode node, int x) {
         TreeNode left = node.left;
         TreeNode right = node.right;
+        boolean parentFound = false;
 
         TreeNode result = null;
 
         if (left != null) {
             if (left.val == x) {
                 result = node;
+                parentFound = true;
             } else {
-                processToFindParentOfNode(left, x);
+                result = processToFindParentOfNode(left, x);
             }
+        }
+
+        if (parentFound) {
+            return result;
         }
 
         if (right != null) {
             if (right.val == x) {
                 result = node;
             } else {
-                processToFindParentOfNode(right, x);
+                result = processToFindParentOfNode(right, x);
             }
         }
         return result;
@@ -64,15 +90,19 @@ public class CousinsInBinaryTree {
             return depth;
         } else {
             if (leftNode != null) {
+                depth = findDepthOfNode(leftNode, x);
                 int increment = isNodeFound ? 1: 0;
-                depth = findDepthOfNode(leftNode, x) + increment;
+                depth += increment;
+            }
+
+            if (isNodeFound) {
                 return depth;
             }
 
             if (rightNode != null) {
+                depth = findDepthOfNode(rightNode, x);
                 int increment = isNodeFound ? 1: 0;
-                depth = findDepthOfNode(rightNode, x) + increment;
-                return depth;
+                depth += increment;
             }
         }
         return depth;
