@@ -1,8 +1,5 @@
 package arrays.greedy;
 
-
-import arrays.mergeInterval.taskscheduler.TaskScheduler;
-
 import java.util.*;
 
 /**
