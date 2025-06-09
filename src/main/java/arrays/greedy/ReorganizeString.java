@@ -3,10 +3,7 @@ package arrays.greedy;
 
 import arrays.mergeInterval.taskscheduler.TaskScheduler;
 
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.PriorityQueue;
+import java.util.*;
 
 /**
  Given a string s, rearrange the characters of s so that any two adjacent characters are not the same.
@@ -36,7 +33,12 @@ public class ReorganizeString {
 
     public static void main(String ar[]) {
         ReorganizeString unit = new ReorganizeString();
-        String inputString = "aaaba";
+
+        //String inputString = "aaaba";
+
+        String inputString = "kkkkzrkatkwpkkkktrq";
+
+
         System.out.println("Reorganized string such that no two adjacent characters are same for input string " + inputString
                 + " is " + unit.reorganizeString(inputString));
     }
@@ -61,10 +63,66 @@ public class ReorganizeString {
         } else if (tasks.length % 2 != 0 && taskWithHighestFrequency.taskFrequency > ((tasks.length / 2) + 1)) {
             return "";
         } else {
-
+            return processToFindReorganizedString(maxHeap);
         }
+    }
 
-        return null;
+    private String processToFindReorganizedString(PriorityQueue<Node> maxHeap) {
+        StringBuilder resultantString = new StringBuilder();
+        Character currentNode = null;
+
+        PriorityQueue<Node> maxHeap2 = new PriorityQueue<>(new NodeComparator());
+
+        while (!maxHeap.isEmpty() || !maxHeap2.isEmpty()) {
+            Node nodePulled = null;
+            if (maxHeap2.isEmpty()) {
+                nodePulled = maxHeap.poll();
+                currentNode = nodePulled.task;
+                resultantString.append(nodePulled.task);
+                nodePulled.taskFrequency--;
+                if (nodePulled.taskFrequency >= 1) {
+                    maxHeap2.add(nodePulled);
+                }
+            } else if (!maxHeap.isEmpty() && !maxHeap2.isEmpty()) {
+                nodePulled = maxHeap.peek();
+                if (maxHeap2.peek().task.compareTo(currentNode) != 0) {
+                    if (maxHeap2.peek().taskFrequency > nodePulled.taskFrequency) {
+                        nodePulled = maxHeap2.poll();
+                        maxHeap.add(nodePulled);
+                    } else {
+                        nodePulled = maxHeap.poll();
+                        currentNode = nodePulled.task;
+                        resultantString.append(nodePulled.task);
+                        nodePulled.taskFrequency--;
+                        if (nodePulled.taskFrequency >= 1) {
+                            maxHeap2.add(nodePulled);
+                        }
+                    }
+                } else if (maxHeap2.peek().task.compareTo(currentNode) == 0) {
+                    nodePulled = maxHeap.poll();
+                    currentNode = nodePulled.task;
+                    resultantString.append(nodePulled.task);
+                    nodePulled.taskFrequency--;
+                    if (nodePulled.taskFrequency >= 1) {
+                        maxHeap2.add(nodePulled);
+                    }
+                }
+            } else if (maxHeap.isEmpty() && !maxHeap2.isEmpty()) {
+                if (maxHeap2.peek().task.compareTo(currentNode) != 0) {
+                    nodePulled = maxHeap2.poll();
+                    maxHeap.add(nodePulled);
+                } else if (maxHeap2.peek().task.compareTo(currentNode) == 0 && maxHeap2.size() == 1) {
+                    resultantString = new StringBuilder();
+                    break;
+                } else if (maxHeap2.peek().task.compareTo(currentNode) == 0 && maxHeap2.size() > 1) {
+                    nodePulled = maxHeap2.poll();
+                    maxHeap = maxHeap2;
+                    maxHeap2 = new PriorityQueue<>(new NodeComparator());
+                    maxHeap2.add(nodePulled);
+                }
+            }
+        }
+        return resultantString.toString();
     }
 
     private void pushElementsInsideMaxHeap(Map<Character, Node> cache, PriorityQueue<Node> maxHeap) {
@@ -89,7 +147,6 @@ public class ReorganizeString {
     static class Node {
         private Character task;
         private int taskFrequency;
-        private int upcomingDay;
 
         public Node(Character task, int taskFrequency) {
             this.task = task;
