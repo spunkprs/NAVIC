@@ -16,6 +16,8 @@ import java.util.Queue;
 
  Credits --> LeetCode
 
+ Time Complexity --> O(n)
+ Space Complexity --> Maximum Number of nodes present across a level {Because we are making use of queue based approach to perform level order traversal}
  * */
 
 public class CousinsInBinaryTree2 {
