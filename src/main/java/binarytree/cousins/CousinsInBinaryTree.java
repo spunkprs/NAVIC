@@ -12,6 +12,7 @@ package binarytree.cousins;
 public class CousinsInBinaryTree {
 
     private boolean isNodeFound = false;
+    private boolean parentFound = false;
 
     public static void main(String ar[]) {
         CousinsInBinaryTree unit = new CousinsInBinaryTree();
@@ -45,6 +46,7 @@ public class CousinsInBinaryTree {
 
         if (depthOfFirstNode == depthOfSecondNode) {
             TreeNode parentOne = findParentOfNode(root, x);
+            parentFound = false;
             TreeNode parentTwo = findParentOfNode(root, y);
 
             if (parentOne != parentTwo) {
@@ -61,7 +63,6 @@ public class CousinsInBinaryTree {
     private TreeNode processToFindParentOfNode(TreeNode node, int x) {
         TreeNode left = node.left;
         TreeNode right = node.right;
-        boolean parentFound = false;
 
         TreeNode result = null;
 
