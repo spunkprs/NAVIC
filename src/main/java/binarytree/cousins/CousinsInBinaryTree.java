@@ -17,22 +17,34 @@ public class CousinsInBinaryTree {
     public static void main(String ar[]) {
         CousinsInBinaryTree unit = new CousinsInBinaryTree();
 
-        TreeNode leafOne = new TreeNode(4);
+        TreeNode leafOne = new TreeNode(7);
         TreeNode leafTwo = new TreeNode(5);
 
-        TreeNode internalNodeOne = new TreeNode(2);
+        TreeNode leafThree = new TreeNode(9);
+        TreeNode leafFour = new TreeNode(8);
+
+        TreeNode internalNodeOne = new TreeNode(6);
         internalNodeOne.right = leafOne;
 
         TreeNode internalNodeTwo = new TreeNode(3);
         internalNodeTwo.right = leafTwo;
 
+        TreeNode internalNodeThree = new TreeNode(2);
+
+        internalNodeThree.left = internalNodeOne;
+        internalNodeThree.right = internalNodeTwo;
+
+        TreeNode internalNodeFour = new TreeNode(4);
+
+        internalNodeFour.left = leafThree;
+        internalNodeFour.right = leafFour;
+
         TreeNode root = new TreeNode(1);
 
-        root.left = internalNodeOne;
-        root.right = internalNodeTwo;
+        root.left = internalNodeThree;
+        root.right = internalNodeFour;
 
-        System.out.println(unit.isCousins(root, 4 , 5));
-
+        System.out.println(unit.isCousins(root, 7 , 5));
     }
 
 
@@ -82,6 +94,7 @@ public class CousinsInBinaryTree {
         if (right != null) {
             if (right.val == x) {
                 result = node;
+                parentFound = true;
             } else {
                 result = processToFindParentOfNode(right, x);
             }
