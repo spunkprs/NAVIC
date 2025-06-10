@@ -15,6 +15,7 @@ import java.util.Queue;
  Note that the depth of a node is the number of edges in the path from the root node to it.
 
  Credits --> LeetCode
+
  * */
 
 public class CousinsInBinaryTree2 {
@@ -22,28 +23,82 @@ public class CousinsInBinaryTree2 {
     public static void main(String ar[]) {
         CousinsInBinaryTree2 unit = new CousinsInBinaryTree2();
 
-        TreeNode root = new TreeNode(5);
+        TreeNode leafOne = new TreeNode(1);
+        TreeNode leafTwo = new TreeNode(10);
+        TreeNode leafThree = new TreeNode(7);
 
-        System.out.println("Tree post modification according to cousins rules is " + unit.replaceValueInTree(root));
+        TreeNode internalNodeOne = new TreeNode(4);
+        internalNodeOne.left = leafOne;
+        internalNodeOne.right = leafTwo;
+
+        TreeNode internalNodeTwo = new TreeNode(9);
+        internalNodeTwo.right = leafThree;
+
+        TreeNode root = new TreeNode(5);
+        root.left = internalNodeOne;
+        root.right = internalNodeTwo;
+
+        TreeNode updatedRoot = unit.replaceValueInTree(root);
+
+        System.out.println("Tree post modification according to cousins rules is " + updatedRoot);
     }
 
     public TreeNode replaceValueInTree(TreeNode root) {
-        Map<Integer, Long> levelSumMap = new HashMap<>();
+        Map<Integer, Integer> levelSumMap = new HashMap<>();
 
         processToUpdateLevelSumMap(root, levelSumMap, 0);
 
         updateStructureOfTree(root, levelSumMap);
+        root.val = 0;
         return root;
     }
 
-    private void updateStructureOfTree(TreeNode root, Map<Integer, Long> levelSumMap) {
+    private void updateStructureOfTree(TreeNode node, Map<Integer, Integer> levelSumMap) {
         Queue<Node> queue = new LinkedList<>();
+        Node queueNode = new Node(node.val, 0, node);
+        queue.add(queueNode);
 
+        while (!queue.isEmpty()) {
+
+            Node qNode = queue.peek();
+            TreeNode treeNode = qNode.treeNode;
+
+            TreeNode leftNode = treeNode.left;
+            TreeNode rightNode = treeNode.right;
+
+            Node queueNodeLeft = null;
+            Node queueNodeRight = null;
+
+            if (leftNode != null) {
+                queueNodeLeft = new Node(leftNode.val,  qNode.level + 1, leftNode);
+                if (qNode.level + 1 > 1) {
+                    int updatedValue = levelSumMap.get(qNode.level + 1) - queueNodeLeft.initialValue;
+                    updatedValue -= rightNode != null ? rightNode.val : 0;
+                    leftNode.val = updatedValue;
+                } else {
+                    leftNode.val = 0;
+                }
+                queue.add(queueNodeLeft);
+            }
+
+            if (rightNode != null) {
+                queueNodeRight = new Node(rightNode.val,  qNode.level + 1, rightNode);
+                if (qNode.level + 1 > 1) {
+                    int updatedValue = levelSumMap.get(qNode.level + 1) - queueNodeRight.initialValue;
+                    updatedValue -= queueNodeLeft != null ? queueNodeLeft.initialValue : 0;
+                    rightNode.val = updatedValue;
+                } else {
+                    rightNode.val = 0;
+                }
+                queue.add(queueNodeRight);
+            }
+            queue.poll();
+        }
     }
 
-    private void processToUpdateLevelSumMap(TreeNode node, Map<Integer, Long> levelSumMap, int level) {
+    private void processToUpdateLevelSumMap(TreeNode node, Map<Integer, Integer> levelSumMap, int level) {
         if (!levelSumMap.containsKey(level)) {
-            levelSumMap.put(level, new Long(node.val));
+            levelSumMap.put(level, node.val);
         } else {
             levelSumMap.put(level, levelSumMap.get(level) + node.val);
         }
@@ -73,13 +128,11 @@ public class CousinsInBinaryTree2 {
 
     static class Node {
         private int initialValue;
-        private boolean isLeftChild;
         private int level;
         private TreeNode treeNode;
 
-        public Node(int initialValue, boolean isLeftChild, int level, TreeNode treeNode) {
+        public Node(int initialValue, int level, TreeNode treeNode) {
             this.initialValue = initialValue;
-            this.isLeftChild = isLeftChild;
             this.level = level;
             this.treeNode = treeNode;
         }
