@@ -19,6 +19,8 @@ import java.util.*;
 
 
  Have made used of following data structures to solve the problem :-
+ a.) Queue to perform the level order traversal
+ b.) PriorityQueue to make it behave like minHeap that's being used to fetch kth largest level sum
 */
 
 public class KthLargestSumInBinaryTree {
