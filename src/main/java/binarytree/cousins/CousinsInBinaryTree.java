@@ -7,6 +7,12 @@ package binarytree.cousins;
  Two nodes of a binary tree are cousins if they have the same depth with different parents.
 
  Note that in a binary tree, the root node is at the depth 0, and children of each depth k node are at the depth k + 1
+
+ Credits --> LeetCode
+
+ Time Complexity = O(n)
+ Space Complexity = O(n)
+ Where n being number of nodes in the binary tree
  * */
 
 public class CousinsInBinaryTree {
