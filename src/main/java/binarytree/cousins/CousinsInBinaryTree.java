@@ -54,7 +54,6 @@ public class CousinsInBinaryTree {
     }
 
 
-
     public boolean isCousins(TreeNode root, int x, int y) {
 
         int depthOfFirstNode = findDepthOfNode(root, x);
