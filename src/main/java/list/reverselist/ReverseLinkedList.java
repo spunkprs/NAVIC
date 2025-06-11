@@ -28,7 +28,7 @@ public class ReverseLinkedList {
         nodeTwo.next = nodeThree;
         nodeThree.next = nodeFour;
 
-        int left = 1;
+        int left = 2;
         int right = 3;
 
         ListNode head = unit.reverseBetween(nodeOne, left, right);
@@ -57,7 +57,6 @@ public class ReverseLinkedList {
         } else {
             ListNode leftNode = node;
             ListNode fetchedNode = processToReverseList(leftNode, rightNode);
-            leftNode.next = null;
             return fetchedNode;
         }
     }
