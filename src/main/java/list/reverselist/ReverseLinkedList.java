@@ -10,6 +10,13 @@ package list.reverselist;
  b.) −5000 ≤ node.val ≤ 5000
  c.) 1 ≤ left ≤ right ≤ n
 
+ Credits --> Educative
+ References --> https://www.educative.io/interview-prep/coding/reverse-linked-list-ii
+
+ Time Complexity --> O(n)
+ Space Complexity --> O(1)
+
+ Hence it's an in place solution for the problem guaranteeing no extra space used for coming up with the solution
  * */
 
 public class ReverseLinkedList {
