@@ -7,12 +7,60 @@ package list.swapnodeinpairs;
  1.) The number of nodes in the list is in the range --> [0,100]
  2.) 0 ≤ Node.value ≤ 100
 
+ Credits --> Educative
+
  * */
 
 public class SwapNodeInPairs {
 
     public static void main(String ar[]) {
 
+    SwapNodeInPairs unit = new SwapNodeInPairs();
+
+    ListNode nodeOne = new ListNode(9);
+    ListNode nodeTwo = new ListNode(0);
+    ListNode nodeThree = new ListNode(8);
+    ListNode nodeFour = new ListNode(2);
+
+    nodeOne.next = nodeTwo;
+    nodeTwo.next = nodeThree;
+    nodeThree.next = nodeFour;
+
+    ListNode head = unit.swapPairs(nodeOne);
+
+    System.out.println("Restructured linked list post swapping adjacent nodes is " + head);
+    }
+
+    public ListNode swapPairs(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        } else {
+            return processToSwapPairs(head);
+        }
+    }
+
+    private ListNode processToSwapPairs(ListNode node) {
+        ListNode prev = node;
+        ListNode head = null;
+        ListNode tmp = null;
+
+        while (prev != null && prev.next != null) {
+            ListNode curr = prev.next;
+            ListNode currNext = curr.next;
+            prev.next = currNext;
+            curr.next = prev;
+            if (tmp != null) {
+                tmp.next = curr;
+                tmp = prev;
+            } else {
+                tmp = prev;
+            }
+            if (prev == node) {
+                head = curr;
+            }
+            prev = currNext;
+        }
+        return head;
     }
 
     static class ListNode {
