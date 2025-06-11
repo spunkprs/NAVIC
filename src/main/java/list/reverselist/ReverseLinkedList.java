@@ -28,8 +28,8 @@ public class ReverseLinkedList {
         nodeTwo.next = nodeThree;
         nodeThree.next = nodeFour;
 
-        int left = 2;
-        int right = 4;
+        int left = 1;
+        int right = 3;
 
         ListNode head = unit.reverseBetween(nodeOne, left, right);
         System.out.println("Restructured linked list post swapping adjacent nodes is " + head);
@@ -37,8 +37,67 @@ public class ReverseLinkedList {
 
     public ListNode reverseBetween(ListNode head, int left, int right)
     {
-        // Replace this placeholder return statement with your code
-        return head;
+        if (left == right) {
+            return head;
+        } else if (head.next == null) {
+            return head;
+        }
+        return processToReverseListInRange(head, left, right);
+    }
+
+    private ListNode processToReverseListInRange(ListNode node, int left, int right) {
+        ListNode previousNode = fetchNodeAsPerPosition(node, left - 1, true);
+        ListNode rightNode = fetchNodeAsPerPosition(node, right, false);
+
+        if (previousNode != null) {
+            ListNode leftNode = previousNode.next;
+            ListNode fetchedNode = processToReverseList(leftNode, rightNode);
+            previousNode.next = fetchedNode;
+            return node;
+        } else {
+            ListNode leftNode = node;
+            ListNode fetchedNode = processToReverseList(leftNode, rightNode);
+            leftNode.next = null;
+            return fetchedNode;
+        }
+    }
+
+    private ListNode processToReverseList(ListNode leftNode, ListNode rightNode) {
+        ListNode rightNodeNext = rightNode.next;
+        ListNode prevNode = leftNode;
+        ListNode temp = prevNode;
+        ListNode currNode = leftNode.next;
+        ListNode currNextNode = null;
+
+        while (currNode != rightNodeNext) {
+            currNextNode = currNode.next;
+            currNode.next = prevNode;
+            prevNode = currNode;
+            currNode = currNextNode;
+        }
+        temp.next = rightNodeNext;
+        return prevNode;
+    }
+
+    private ListNode fetchNodeAsPerPosition(ListNode node, int position, boolean isLeft) {
+        int count = 1;
+        if (isLeft) {
+            if (position < count) {
+                return null;
+            } else {
+                while (count < position) {
+                    node = node.next;
+                    count++;
+                }
+                return node;
+            }
+        } else {
+            while (count < position) {
+                node = node.next;
+                count++;
+            }
+            return node;
+        }
     }
 
     static class ListNode {
