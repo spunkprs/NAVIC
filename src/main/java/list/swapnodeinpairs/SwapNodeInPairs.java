@@ -9,6 +9,10 @@ package list.swapnodeinpairs;
 
  Credits --> Educative
 
+ Time Complexity --> O(n)
+ Space Complexity --> O(1)
+
+ Hence it's an in place solution for the problem guaranteeing no extra space used for coming up with the solution
  * */
 
 public class SwapNodeInPairs {
@@ -32,6 +36,9 @@ public class SwapNodeInPairs {
     }
 
     public ListNode swapPairs(ListNode head) {
+        /**
+         To handle the scenario when either list is empty or has single node
+         * */
         if (head == null || head.next == null) {
             return head;
         } else {
@@ -39,6 +46,15 @@ public class SwapNodeInPairs {
         }
     }
 
+    /**
+     Manipulation of pointers guaranteed no extra space used, following are the major pointers used for the manipulation -->
+     a.) prev
+     b.) curr
+     c.) currNext
+     d.) tmp
+
+     Rest the code is self explanatory for getting it's being used internally to build the logic
+     * */
     private ListNode processToSwapPairs(ListNode node) {
         ListNode prev = node;
         ListNode head = null;
