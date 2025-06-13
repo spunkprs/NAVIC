@@ -24,9 +24,42 @@ public class ReorderList {
         ReorderList unit = new ReorderList();
     }
 
-    public static ListNode reorderList(ListNode head) {
+    public ListNode reorderList(ListNode head) {
+
+        int lengthOfList = lengthOfTheList(head);
+
+        if (lengthOfList >= 1 && lengthOfList <= 2) {
+            return head;
+        } else if (lengthOfList == 3) {
+            ListNode headNode = head;
+            ListNode headNodeNext = headNode.next;
+            ListNode tailNode = headNodeNext.next;
+
+            tailNode.next = headNodeNext;
+            headNodeNext.next = null;
+            headNode.next = tailNode;
+            return headNode;
+        } else {
+            processToReorderList(head, lengthOfList);
+        }
 
         return head;
+    }
+
+    private void processToReorderList(ListNode head, int listLength) {
+
+    }
+
+
+    private int lengthOfTheList(ListNode head) {
+        int length = 0;
+        ListNode node = head;
+
+        while (node != null) {
+            length++;
+            node = node.next;
+        }
+        return length;
     }
 
     static class ListNode {
