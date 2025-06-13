@@ -40,14 +40,77 @@ public class ReorderList {
             headNode.next = tailNode;
             return headNode;
         } else {
-            processToReorderList(head, lengthOfList);
+            return processToReorderList(head, lengthOfList);
+        }
+    }
+
+    private ListNode processToReorderList(ListNode head, int listLength) {
+        boolean isSizeOdd = listLength % 2 != 0 ? true : false;
+
+        ListNode midNode = findMidNode(head, listLength, isSizeOdd);
+
+        ListNode reversedListNode = reverseList(midNode.next);
+
+        if (!isSizeOdd) {
+            midNode.next = null;
         }
 
+        ListNode headNodeOne = head;
+        ListNode headNodeTwo = reversedListNode;
+
+        int lengthToBeTravelled = listLength / 2;
+
+        int counter = 1;
+
+        while (counter <= lengthToBeTravelled) {
+            ListNode headNodeOneNext = headNodeOne.next;
+            ListNode headNodeTwoNext = headNodeTwo.next;
+
+            headNodeOne.next = headNodeTwo;
+
+            headNodeOne = headNodeOneNext;
+
+            headNodeTwo.next = headNodeOne;
+
+            headNodeTwo = headNodeTwoNext;
+            counter++;
+        }
         return head;
     }
 
-    private void processToReorderList(ListNode head, int listLength) {
+    private ListNode findMidNode(ListNode head, int listLength, boolean isSizeOdd) {
+        ListNode node = head;
+        int mid = 0;
+        int lengthTravelled = 1;
+        if (isSizeOdd) {
+           mid = listLength / 2 + 1;
+        } else {
+            mid = listLength / 2;
+        }
 
+        while (lengthTravelled < mid) {
+            node = node.next;
+            lengthTravelled++;
+        }
+        return node;
+    }
+
+
+    private ListNode reverseList(ListNode headNode) {
+        ListNode node = headNode;
+
+        ListNode prev = node;
+        ListNode curr = prev.next;
+        ListNode currNext = null;
+
+        while (curr != null) {
+            currNext = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = currNext;
+        }
+        node.next = null;
+        return prev;
     }
 
 
