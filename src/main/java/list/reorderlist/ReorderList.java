@@ -22,6 +22,21 @@ public class ReorderList {
 
     public static void main(String ar[]) {
         ReorderList unit = new ReorderList();
+
+        ListNode nodeOne = new ListNode(1);
+        ListNode nodeTwo = new ListNode(2);
+        ListNode nodeThree = new ListNode(3);
+        ListNode nodeFour = new ListNode(4);
+        ListNode nodeFive = new ListNode(5);
+
+        nodeOne.next = nodeTwo;
+        nodeTwo.next = nodeThree;
+        nodeThree.next = nodeFour;
+        nodeFour.next = nodeFive;
+
+        ListNode result = unit.reorderList(nodeOne);
+
+        System.out.println("List post reordering is :: " + result);
     }
 
     public ListNode reorderList(ListNode head) {
@@ -51,9 +66,7 @@ public class ReorderList {
 
         ListNode reversedListNode = reverseList(midNode.next);
 
-        if (!isSizeOdd) {
-            midNode.next = null;
-        }
+        midNode.next = null;
 
         ListNode headNodeOne = head;
         ListNode headNodeTwo = reversedListNode;
