@@ -16,6 +16,20 @@ package list.reorderlist;
 
  Credits --> Educative
 
+ Time Complexity --> O(n)
+ Space Complexity --> O(1)
+ Hence it's an in place solution for the problem guaranteeing no extra space used for coming up with the solution
+
+
+ Have broken down problem into following parts for coming up with the effective solution :-
+ a.) Find the length of the list
+ b.) Find the middle node of the list {if list is odd sized then it would be mid + 1 node}
+ c.) Reverse list from mid till end of the list
+ d.) Treat this now as two independent lists and everytime will have to pick node from second list post taking node from first list && some minor
+ but important tweaks in between
+
+ For rest of the part deep dive into code
+
  * */
 
 public class ReorderList {
