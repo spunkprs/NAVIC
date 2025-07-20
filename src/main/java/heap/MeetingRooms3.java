@@ -28,6 +28,8 @@ import java.util.*;
  3.) meetings[i].length == 2
  4.) 0<= startIndex < endIndex <=10000
 
+ Source --> Leetcode && Educative
+
  * */
 
 public class MeetingRooms3 {
