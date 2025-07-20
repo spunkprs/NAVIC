@@ -19,6 +19,9 @@ import java.util.Objects;
  Return the minimum number of minutes that must elapse until no cell has a fresh orange. If this is impossible, return -1.
 
  Source --> Leetcode
+
+ Note : Important thing to note here is multiple rotten oranges can be present in the matrix which can lead to faster rate at which
+ all the fresh oranges will become rotten {Reason enough to make use of BFS instead of DFS}
  * */
 
 public class RottingOranges {
