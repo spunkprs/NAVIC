@@ -30,11 +30,8 @@ public class MaximumNumberOfJumpsToReachLastIndex {
 
     public static void main(String ar[]) {
         MaximumNumberOfJumpsToReachLastIndex unit = new MaximumNumberOfJumpsToReachLastIndex();
-        //int nums[] = {1,3,6,4,1,1};
-        //int target = 0;
-
-        int nums[] = {0, 1};
-        int target = 1;
+        int nums[] = {1,3,6,4,1,1};
+        int target = 0;
 
         System.out.println("Maximum number of steps to reach destination from start index 0 with constraints is " + unit.maximumJumps(nums, target));
     }
@@ -49,7 +46,7 @@ public class MaximumNumberOfJumpsToReachLastIndex {
 
         int maxDistanceFromParent = -1;
 
-        for (int startIndex = 1; startIndex < nums.length - 1; startIndex++) {
+        for (int startIndex = 1; startIndex < nums.length; startIndex++) {
             if (Math.abs(nums[startIndex] - nums[0]) <= target && map.containsKey(startIndex)) {
                 int maxDistanceFromChild = map.get(startIndex);
                 if (maxDistanceFromChild != -1 && startIndex != nums.length - 1) {
