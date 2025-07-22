@@ -39,10 +39,12 @@ public class MinimumJumpsToReachHome {
     public static void main(String ar[]) {
         MinimumJumpsToReachHome unit = new MinimumJumpsToReachHome();
 
-        int forbidden[] = {1,6,2,14,5,17,4};
-        int fwdDistance = 16;
-        int bwdDistance = 9;
-        int destination = 7;
+        //int forbidden[] = {1,6,2,14,5,17,4};
+        int forbidden[] = {162,118,178,152,167,100,40,74,199,186,26,73,200,127,30,124,193,84,184,36,103,149,153,9,54,154,133,95,
+                45,198,79,157,64,122,59,71,48,177,82,35,14,176,16,108,111,6,168,31,134,164,136,72,98};
+        int fwdDistance = 29;
+        int bwdDistance = 98;
+        int destination = 80;
 
         System.out.println("Minimum number of jumps to reach destination is " + unit.minimumJumps(forbidden, fwdDistance, bwdDistance, destination));
     }
@@ -105,6 +107,8 @@ public class MinimumJumpsToReachHome {
         if (!visitedNodes.contains(fwdNode) && !forbiddenNodes.contains(fwdNode)) {
             visitedNodes.add(fwdNode);
             resultantNodes.add(fwdNode);
+        } else if (visitedNodes.contains(fwdNode) || forbiddenNodes.contains(fwdNode)) {
+            fwdNode = null;
         }
 
         //Bwd Node
