@@ -1,6 +1,8 @@
 package graph;
 
 import java.util.*;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 
 /**
@@ -33,26 +35,41 @@ public class ReachableNodesWithRestrictions {
 
     public static void main(String ar[]) {
         ReachableNodesWithRestrictions unit = new ReachableNodesWithRestrictions();
+        int nodesCount = 7;
+        int edges [][] = {{0, 1}, {0, 2}, {0, 5}, {0, 4}, {3, 2}, {6, 5}};
+        int restricted[] = {4, 2, 1};
 
+        System.out.println("Maximum number of nodes reachable from node 0 is " + unit.reachableNodes(nodesCount, edges, restricted));
     }
 
     public int reachableNodes(int n, int[][] edges, int[] restricted) {
         Map<Integer, List<Integer>> edgesMap = new HashMap<>();
         buildTree(edges, edgesMap);
-        processToFindMaxReachableNodes(edgesMap, 0, restricted);
-        return 0;
+        return processToFindMaxReachableNodes(edgesMap, 0, restricted);
     }
 
-    private void processToFindMaxReachableNodes(Map<Integer, List<Integer>> edgesMap, int startIndex, int[] restrictedNodes) {
+    private int processToFindMaxReachableNodes(Map<Integer, List<Integer>> edgesMap, int startIndex, int[] restrictedNodesArr) {
+        Set<Integer> restrictedNodes = new HashSet<>();
+                Arrays.stream(restrictedNodesArr).forEach( num -> {
+                restrictedNodes.add(num);
+        });
+
         Set<Integer> visitedNodes = new HashSet<>();
         visitedNodes.add(startIndex);
 
         process(startIndex, edgesMap, restrictedNodes, visitedNodes);
+        return visitedNodes.size();
     }
 
-    private void process(int startIndex, Map<Integer, List<Integer>> edgesMap,
-                         int[] restrictedNodes, Set<Integer> visitedNodes) {
+    private void process(int parentIndex, Map<Integer, List<Integer>> edgesMap,
+                         Set<Integer> restrictedNodes, Set<Integer> visitedNodes) {
 
+        for (Integer childIndex : edgesMap.get(parentIndex)) {
+            if (!visitedNodes.contains(childIndex) && !restrictedNodes.contains(childIndex)) {
+                visitedNodes.add(childIndex);
+                process(childIndex, edgesMap, restrictedNodes, visitedNodes);
+            }
+        }
 
     }
 
