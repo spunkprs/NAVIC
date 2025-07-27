@@ -46,6 +46,7 @@ public class EbayTechnicalAssessmentPractice {
         int count = 0;
         boolean flag = true;
 
+        //Fetching keys in reverse order
         for (Integer amount : result.descendingKeySet()) {
             if (flag) {
                 List<String> customers = result.get(amount);
