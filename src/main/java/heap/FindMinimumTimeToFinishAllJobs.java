@@ -3,6 +3,25 @@ package heap;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
+/**
+ You are given two 0-indexed integer arrays jobs and workers of equal length,
+ where jobs[i] is the amount of time needed to complete the ith job,
+ and workers[j] is the amount of time the jth worker can work each day.
+
+ Each job should be assigned to exactly one worker, such that each worker completes exactly one job.
+
+ Return the minimum number of days needed to complete all the jobs after assignment.
+
+ Constraints:
+
+ 1.) n == jobs.length == workers.length
+ 2.) 1 <= n <= pow(10,5)
+ 3.) 1 <= jobs[i], workers[i] <= pow(10,5)
+
+ Source : Leetcode
+
+ * */
+
 public class FindMinimumTimeToFinishAllJobs {
 
     public static void main(String ar[]) {
