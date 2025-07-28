@@ -2,6 +2,35 @@ package heap;
 
 import java.util.*;
 
+/**
+ At a party, n friends, numbered from 0 to n−1, arrive and leave at different times. There are infinitely many chairs, numbered 0
+ onwards. Each arriving friend sits on the smallest available chair at that moment.
+
+ For example, if chairs 0, 1 and 5 are occupied when a friend arrives, they will sit on chair number 2
+
+ When a friend leaves, their chair becomes immediately available. If another friend arrives simultaneously, they can take that chair.
+
+ You are given a 0-indexed 2D list times, where times[i] =[arrival(for ith index), leaving(for ith index)]
+
+ All arrival times are unique.
+
+ Given an integer target_friend, return the chair number that target_friend will sit on.
+
+ Constraints:
+
+ 1.) n == times.length
+
+ 2.) times[i].length == 2
+
+ 3.) 1 ≤ arrivali < leavingi ≤ pow(10, 5)
+
+ 4.) 0 ≤ target_friend ≤ n−1
+
+ 5.) Each arrivali time is unique.
+
+Source : Educative
+ * */
+
 public class SmallestUnoccupiedChairNumber {
 
     public static void main(String ar[]) {
