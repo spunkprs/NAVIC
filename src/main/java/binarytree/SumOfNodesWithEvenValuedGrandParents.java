@@ -13,6 +13,8 @@ package binarytree;
 
  Source : Leetcode
 
+ Time Complexity : O(N)
+ Space Complexity : O(Depth of tree)
  * */
 
 public class SumOfNodesWithEvenValuedGrandParents {
@@ -42,6 +44,10 @@ public class SumOfNodesWithEvenValuedGrandParents {
         processToFindSumOfNodesWithEvenGrandParent(root);
         return collectedSum;
     }
+
+    /**
+        Making use of DFS + DLL to monitor grandparents against a node
+     * */
 
     private void processToFindSumOfNodesWithEvenGrandParent(TreeNode node) {
 
