@@ -26,8 +26,8 @@ public class MinimumMovesToReachTargetScore {
 
     public static void main(String ar[]) {
         MinimumMovesToReachTargetScore unit = new MinimumMovesToReachTargetScore();
-        int target = 5;
-        int maxDoubles = 0;
+        int target = 10;
+        int maxDoubles = 4;
 
         System.out.print("Minimum moves required to reach target is : " + unit.minMoves(target, maxDoubles));
     }
@@ -37,77 +37,28 @@ public class MinimumMovesToReachTargetScore {
         if (maxDoubles == 0) {
             return target - 1;
         } else {
-            return processToFindMinimumMoves(target, maxDoubles);
+            return fetchMinimumMoves(target, maxDoubles);
         }
     }
 
-    private int processToFindMinimumMoves(int target, int maxDoubles) {
-        int minMoves = Integer.MAX_VALUE;
-        Queue<Node> queue = new LinkedList<>();
-        Set<Node> visitedNodes = new HashSet<>();
-        Node rootNode = new Node(1, maxDoubles, 0);
+    private int fetchMinimumMoves(int target, int maxDoubles) {
+        int startValue = target;
+        int endValue = 1;
+        int minMoves = 0;
 
-        visitedNodes.add(rootNode);
-        queue.add(rootNode);
-
-        //Start BFS to find minimum moves to reach target
-        while(!queue.isEmpty()) {
-            Node parentNode = queue.peek();
-            if (parentNode.num != target) {
-                for (Node child : fetchChildren(parentNode, target, visitedNodes)) {
-                    queue.add(child);
-                }
-                queue.poll();
-            } else {
-                minMoves = parentNode.depth < minMoves ? parentNode.depth : minMoves;
-                break;
+        while (startValue != endValue) {
+            if (startValue % 2 == 0 && maxDoubles >= 1) {
+                startValue /= 2;
+                maxDoubles--;
+                minMoves++;
+            } else if (startValue % 2 != 0) {
+                startValue -=1;
+                minMoves++;
+            } else if (startValue % 2 == 0 && maxDoubles == 0) {
+                minMoves += startValue - 1;
+                startValue = endValue;
             }
         }
         return minMoves;
-    }
-
-    private List<Node> fetchChildren(Node parentNode, int target, Set<Node> visitedNodes) {
-        List<Node> children = new ArrayList<>();
-        if (parentNode.num + 1 <= target) {
-            Node childNode = new Node(parentNode.num + 1, parentNode.remainingDoubles, parentNode.depth + 1);
-            if (!visitedNodes.contains(childNode)) {
-                children.add(childNode);
-            }
-        }
-
-        if (parentNode.num * 2 <= target && parentNode.remainingDoubles >= 1) {
-            Node childNode = new Node(parentNode.num * 2, parentNode.remainingDoubles - 1, parentNode.depth + 1);
-            if (!visitedNodes.contains(childNode)) {
-                children.add(childNode);
-            }
-        }
-        return children;
-    }
-
-
-    static class Node {
-        private int num;
-        private int remainingDoubles;
-        private int depth;
-
-
-        public Node(int num, int remainingDoubles, int depth) {
-            this.num = num;
-            this.remainingDoubles = remainingDoubles;
-            this.depth = depth;
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            Node node = (Node) o;
-            return num == node.num && remainingDoubles == node.remainingDoubles;
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(num, remainingDoubles);
-        }
     }
 }
