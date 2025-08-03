@@ -17,6 +17,9 @@ import java.util.*;
  1.) 1 <= target <= pow(10,9)
  2.) 0 <= maxDoubles <= 100
 
+ Time Complexity = O(target * maxDoubles) in the worst case
+
+ Source : LeetCode
  * */
 
 public class MinimumMovesToReachTargetScore {
