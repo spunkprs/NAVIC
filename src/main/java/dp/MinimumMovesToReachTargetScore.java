@@ -1,7 +1,5 @@
 package dp;
 
-import java.util.*;
-
 /**
  You are playing a game with integers. You start with the integer 1 and you want to reach the integer target.
 
@@ -17,7 +15,8 @@ import java.util.*;
  1.) 1 <= target <= pow(10,9)
  2.) 0 <= maxDoubles <= 100
 
- Time Complexity = O(target * maxDoubles) in the worst case
+ Time Complexity = O(log(target))
+ Space Complexity = Time Complexity
 
  Source : LeetCode
  * */
