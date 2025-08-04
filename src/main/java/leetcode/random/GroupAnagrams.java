@@ -25,6 +25,11 @@ import java.util.*;
  3.) strs[i] consists of lowercase English letters.
 
  Source : Leetcode
+
+
+ Time Complexity -->
+ Considering each word has an average length of x and total words are y then O(xlogx * y) would be time complexity
+ Space Complexity = O(y)
  * */
 
 public class GroupAnagrams {
