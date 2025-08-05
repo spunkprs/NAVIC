@@ -20,6 +20,9 @@ import java.util.*;
 
  Source : Leetcode
 
+ Time Complexity = O(m*n*8) in the worst case
+ Space Complexity = O(m*n) in the worst case
+
  * */
 
 public class ShortestPathInBinaryMatrix {
@@ -117,7 +120,6 @@ public class ShortestPathInBinaryMatrix {
             childrenNodes.add(node);
         }
     }
-
 
     static class Node {
         private int xCoordinate;
