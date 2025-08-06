@@ -26,6 +26,8 @@ package dp;
 
  Source : LeetCode
 
+ Time Complexity = O(m-1 * n * n)
+ Space Complexity = O(m*n)
  * */
 
 public class MaximumNumberOfPointsWithCost {
