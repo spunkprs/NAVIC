@@ -25,6 +25,8 @@ import java.util.*;
 
  Source : LeetCode
 
+ Time Complexity = O(m + n)
+ Space Complexity = O(1)
  * */
 
 public class MinimumCostHomecomingOfRobot {
@@ -42,6 +44,12 @@ public class MinimumCostHomecomingOfRobot {
         System.out.print("Minimum cost to reach destination from home when robot can move in all four directions is : " +
                 unit.minCost(startPos, homePos, rowCosts, colCosts));
     }
+
+    /**
+     *
+     * Time Complexity for this approach is O(m + n)
+     * Space Complexity = O(1)
+     * */
 
     public int minCostOne(int[] startPos, int[] homePos, int[] rowCosts, int[] colCosts) {
         if (startPos[0] == homePos[0] && startPos[1] == homePos[1]) {
@@ -85,7 +93,15 @@ public class MinimumCostHomecomingOfRobot {
 
     /**
      *
+     * Time Complexity for this approach is O(m * n)
+     * Space Complexity = Maximum nodes at a level in the tree {Using BFS}
      *
+     * First thought process was to make use of BFS because robot can move in all four directions but way more optimal solution that's mentioned above
+     * always takes the shortest path of just matching source row to destination row && source column to destination column that's why doesn't
+     * unnecessarily explore other nodes/indexes
+     *
+     * Issue would arise when cost against each index would have been given in that case longest path may give minimum cost and because of the same reason
+     * we would not be able to make use of BFS
      * */
 
     public int minCost(int[] startPos, int[] homePos, int[] rowCosts, int[] colCosts) {
