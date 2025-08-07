@@ -10,9 +10,58 @@ public class MinimumCostHomecomingOfRobot {
         int homePos[] = {2, 3};
         int[] rowCosts = {5, 4, 3};
         int[] colCosts = {8, 2, 6, 7};
+
+        /*System.out.print("Minimum cost to reach destination from home when robot can move in all four directions is : " +
+                unit.minCost(startPos, homePos, rowCosts, colCosts));*/
+
         System.out.print("Minimum cost to reach destination from home when robot can move in all four directions is : " +
                 unit.minCost(startPos, homePos, rowCosts, colCosts));
     }
+
+    public int minCostOne(int[] startPos, int[] homePos, int[] rowCosts, int[] colCosts) {
+        if (startPos[0] == homePos[0] && startPos[1] == homePos[1]) {
+            return 0;
+        }
+        int minCost = 0;
+        int startRowIndex = startPos[0];
+        int startColumnIndex = startPos[1];
+
+        int homeRowIndex = homePos[0];
+        int homeColumnIndex = homePos[1];
+
+        if (startRowIndex <= homeRowIndex) {
+            minCost = updateMinCostOne(minCost, startRowIndex, homeRowIndex, rowCosts);
+        } else {
+            minCost = updateMinCostTwo(minCost, startRowIndex, homeRowIndex, rowCosts);
+        }
+
+        if (startColumnIndex <= homeColumnIndex) {
+            minCost = updateMinCostOne(minCost, startColumnIndex, homeColumnIndex, colCosts);
+        } else {
+            minCost = updateMinCostTwo(minCost, startColumnIndex, homeColumnIndex, colCosts);
+        }
+
+        return minCost;
+    }
+
+    private int updateMinCostOne(int minCost, int startIndex, int endIndex, int[] costs) {
+        for (int i = startIndex + 1; i <= endIndex; i++) {
+            minCost += costs[i];
+        }
+        return minCost;
+    }
+
+    private int updateMinCostTwo(int minCost, int startIndex, int endIndex, int[] costs) {
+        for (int i = startIndex - 1; i >= endIndex; i--) {
+            minCost += costs[i];
+        }
+        return minCost;
+    }
+
+    /**
+     *
+     *
+     * */
 
     public int minCost(int[] startPos, int[] homePos, int[] rowCosts, int[] colCosts) {
         if (startPos[0] == homePos[0] && startPos[1] == homePos[1]) {
