@@ -5,6 +5,28 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
+
+/**
+ You are given an m x n grid rooms initialized with these three possible values.
+
+ 1.) -1 A wall or an obstacle.
+ 2.)  0 A gate.
+ 3.) INF Infinity means an empty room. We use the value pow(2,31) - 1 = 2147483647 to represent INF as you may assume that the
+ distance to a gate is less than 2147483647.
+ Fill each empty room with the distance to its nearest gate. If it is impossible to reach a gate, it should be filled with INF
+
+ Constraints:
+
+ 1.) m == rooms.length
+ 2.) n == rooms[i].length
+ 3.) 1 <= m, n <= 250
+ 4.) rooms[i][j] is -1, 0, or pow(2,31) - 1.
+
+ Time Complexity = O(m * n * k), where k = number of indexes with value = 0 i.e Gate
+ Space Complexity = O(m * n)
+
+ * */
+
 public class WallsAndGates {
 
     public static void main(String ar[]) {
