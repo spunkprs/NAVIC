@@ -5,6 +5,8 @@ import java.util.*;
 
 /**
 Source : Code Signal for eBay
+
+ Outcome : Working as expected i.e outcome && expected results are same
  * */
 
 public class FindingEliminatedPlayers {
