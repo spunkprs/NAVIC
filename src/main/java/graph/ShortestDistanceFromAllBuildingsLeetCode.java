@@ -2,11 +2,35 @@ package graph;
 
 import java.util.*;
 
-/*
-This problem aims at finding shortest distance from all buildings
-Link : https://leetcode.com/explore/interview/card/facebook/52/trees-and-graphs/3026/
-Somehow 76/85 test cases are only passing, not sure about it
-* */
+/**
+ Link : https://leetcode.com/explore/interview/card/facebook/52/trees-and-graphs/3026/
+
+ You are given an m x n grid grid of values 0, 1, or 2, where:
+
+ 1.) each 0 marks an empty land that you can pass by freely,
+ 2.) each 1 marks a building that you cannot pass through, and
+ 3.) each 2 marks an obstacle that you cannot pass through.
+
+ You want to build a house on an empty land that reaches all buildings in the shortest total travel distance.
+ You can only move up, down, left, and right.
+
+ Return the shortest travel distance for such a house. If it is not possible to build such a house according
+ to the above rules, return -1.
+
+ The total travel distance is the sum of the distances between the houses of the friends and the meeting point.
+
+
+ Constraints:
+
+ 1.) m == grid.length
+ 2.) n == grid[i].length
+ 3.) 1 <= m, n <= 50
+ 4.) grid[i][j] is either 0, 1, or 2.
+ 5.) There will be at least one building in the grid.
+
+ Source : LeetCode
+
+ * */
 public class ShortestDistanceFromAllBuildingsLeetCode {
 
     public static void main(String ar[]) {
