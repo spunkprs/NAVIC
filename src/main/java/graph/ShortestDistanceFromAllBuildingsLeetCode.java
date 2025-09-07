@@ -1,9 +1,6 @@
 package graph;
 
-import java.util.Set;
-import java.util.HashSet;
-import java.util.List;
-import java.util.ArrayList;
+import java.util.*;
 
 /*
 This problem aims at finding shortest distance from all buildings
@@ -11,141 +8,135 @@ Link : https://leetcode.com/explore/interview/card/facebook/52/trees-and-graphs/
 Somehow 76/85 test cases are only passing, not sure about it
 * */
 public class ShortestDistanceFromAllBuildingsLeetCode {
-    private int shortestDistanceFromAllBuildings = Integer.MAX_VALUE;
-
-    static class Index {
-        private int x;
-        private int y;
-
-        public Index(int x, int y) {
-            this.x = x;
-            this.y = y;
-        }
-
-        public int hashCode() {
-            return this.x * this.y;
-        }
-
-        public boolean equals(Object obj) {
-            Index index = (Index)obj;
-            return (this.x == index.x && this.y == index.y) ? true : false;
-        }
-    }
-
-    static class Node {
-        Index index;
-        Node next;
-
-        public Node(Index index) {
-            this.index = index;
-        }
-    }
 
     public static void main(String ar[]) {
         int matrix[][] = {{1, 0, 2, 0, 1}, {0, 0, 0, 0, 0}, {0, 0, 1, 0, 0}};
+        //int matrix [][] = {{0,2,1},{1,0,2},{0,1,0}};
         ShortestDistanceFromAllBuildingsLeetCode unit = new ShortestDistanceFromAllBuildingsLeetCode();
-        System.out.println("Shortest distance from all buildings " + unit.shortestDistance(matrix));
+        System.out.println("Shortest distance from all buildings " + unit.shortestDistanceOne(matrix));
     }
 
-    public int shortestDistance(int[][] grid) {
-        Set<Index> buildingLocations = new HashSet();
-        Set<Index> exploredIndexes = new HashSet();
-        prefillBuildingLocations(grid, buildingLocations);
+    static class NodeInfo {
+        private int x;
+        private int y;
+        private int distance;
 
-        for (int i = 0; i < grid.length; i++) {
-            for (int j = 0; j < grid[i].length; j++) {
-                Index indexNode = new Index(i, j);
-                performLevelOrderTraversal(indexNode, buildingLocations, grid, exploredIndexes);
-            }
+        public NodeInfo(int x, int y, int distance) {
+            this.x = x;
+            this.y = y;
+            this.distance = distance;
         }
-        return shortestDistanceFromAllBuildings == Integer.MAX_VALUE ? -1 : shortestDistanceFromAllBuildings;
-    }
 
-    private void performLevelOrderTraversal(Index indexNode, Set<Index> buildingLocations, int [][] grid, Set<Index> exploredIndexes) {
-        int reachableBuildingCount = 0;
-        Set<Index> exploredBuildingIndexes = new HashSet();
-        Set<Index> exploredChildIndexes = new HashSet();
-        if (grid[indexNode.x][indexNode.y] == 0 && !exploredIndexes.contains(indexNode)) {
-            Node node = new Node(indexNode);
-            Node tail = node;
-            Node head = tail;
-            exploredIndexes.add(indexNode);
-            exploredChildIndexes.add(indexNode);
-            while (head != null) {
-                List<Index> children = fetchImmediateChildren(head.index, grid, exploredIndexes);
-                for (Index child : children) {
-                    if (grid[child.x][child.y] == 0 && !exploredIndexes.contains(child) &&  !exploredChildIndexes.contains(child)) {
-                        exploredIndexes.add(child);
-                        exploredChildIndexes.add(child);
-                        Node n = new Node(child);
-                        tail.next = n;
-                        tail = tail.next;
-                    } else if (grid[child.x][child.y] == 1 && !exploredBuildingIndexes.contains(child)) {
-                        reachableBuildingCount++;
-                        exploredBuildingIndexes.add(child);
-                    }
-                }
-                head = head.next;
-            }
-            if (buildingLocations.size() == reachableBuildingCount) {
-                updateShortestDistancePath(exploredChildIndexes, exploredBuildingIndexes);
-            }
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            NodeInfo nodeInfo = (NodeInfo) o;
+            return x == nodeInfo.x && y == nodeInfo.y;
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(x, y);
         }
     }
 
-    private void updateShortestDistancePath(Set<Index> exploredChildIndexes, Set<Index> buildingLocations) {
-        int distance = 0;
-        for (Index indexNode : exploredChildIndexes) {
-            for (Index buildingLocation : buildingLocations) {
-                distance += Math.abs(indexNode.x - buildingLocation.x) + Math.abs(indexNode.y - buildingLocation.y);
-            }
-            shortestDistanceFromAllBuildings = distance < shortestDistanceFromAllBuildings ? distance : shortestDistanceFromAllBuildings;
-            distance = 0;
-        }
+    static class Pair {
+        private int totalDistance;
+        private int totalHomes;
     }
 
-    private List<Index> fetchImmediateChildren(Index indexNode, int [][] grid, Set<Index> exploredIndexes) {
-        List<Index> children = new ArrayList();
-        if (indexNode.x + 1 < grid.length) {
-            Index child = new Index(indexNode.x + 1, indexNode.y);
-            if (!exploredIndexes.contains(child)) {
-                children.add(child);
-            }
-        }
-
-        if (indexNode.x - 1 >= 0) {
-            Index child = new Index(indexNode.x - 1, indexNode.y);
-            if (!exploredIndexes.contains(child)) {
-                children.add(child);
-            }
-        }
-
-        if (indexNode.y + 1 < grid[0].length) {
-            Index child = new Index(indexNode.x, indexNode.y + 1);
-            if (!exploredIndexes.contains(child)) {
-                children.add(child);
-            }
-        }
-
-        if (indexNode.y - 1 >= 0) {
-            Index child = new Index(indexNode.x, indexNode.y - 1);
-            if (!exploredIndexes.contains(child)) {
-                children.add(child);
-            }
-        }
-        return children;
-    }
-
-    private void prefillBuildingLocations(int [][] grid, Set<Index> buildingLocations) {
+    public int shortestDistanceOne(int[][] grid) {
+        Map<NodeInfo, Pair> map = new HashMap<>();
+        int countOfHomes = fetchNumberOfHomes(grid);
         for (int i = 0; i < grid.length; i++) {
             for (int j = 0; j < grid[i].length; j++) {
                 if (grid[i][j] == 1) {
-                    Index indexNode = new Index(i, j);
-                    if (!buildingLocations.contains(indexNode)) {
-                        buildingLocations.add(indexNode);
-                    }
+                    NodeInfo nodeInfo = new NodeInfo(i, j, 0);
+                    processToComputeShortestDistance(nodeInfo, grid, map);
                 }
             }
         }
+        return map.size() == 0 ? -1 : processToFetchLeastDistance(map, countOfHomes);
+    }
+
+    private int fetchNumberOfHomes(int[][] grid) {
+        int count = 0;
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[i].length; j++) {
+                if (grid[i][j] == 1) {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+
+    private int processToFetchLeastDistance(Map<NodeInfo, Pair> map, int countOfHomes) {
+        int minDistance = Integer.MAX_VALUE;
+        for (NodeInfo key : map.keySet()) {
+            if (map.get(key).totalHomes == countOfHomes) {
+                minDistance = map.get(key).totalDistance < minDistance ? map.get(key).totalDistance : minDistance;
+            }
+        }
+      return minDistance == Integer.MAX_VALUE ? -1 : minDistance;
+    }
+
+    private void processToComputeShortestDistance(NodeInfo nodeInfo, int[][] grid, Map<NodeInfo, Pair> map) {
+        Queue<NodeInfo> queue = new LinkedList<>();
+        queue.add(nodeInfo);
+        Set<NodeInfo> exploredNodes = new HashSet<>();
+        while (!queue.isEmpty()) {
+            for (NodeInfo child : fetchChildren(queue.peek(), grid, exploredNodes)) {
+                queue.add(child);
+                if (!map.containsKey(child)) {
+                    Pair p = new Pair();
+                    p.totalDistance = child.distance;
+                    p.totalHomes = 1;
+                    map.put(child, p);
+                } else {
+                    Pair p = map.get(child);
+                    p.totalDistance += child.distance;
+                    p.totalHomes += 1;
+                }
+            }
+            queue.poll();
+        }
+    }
+
+    private List<NodeInfo> fetchChildren(NodeInfo nodeInfo, int[][] grid, Set<NodeInfo> exploredNodes) {
+        List<NodeInfo> children = new ArrayList();
+        if (nodeInfo.x + 1 < grid.length && grid[nodeInfo.x + 1][nodeInfo.y] == 0) {
+            NodeInfo childNode = new NodeInfo(nodeInfo.x + 1, nodeInfo.y, nodeInfo.distance + 1);
+            if (!exploredNodes.contains(childNode)) {
+                children.add(childNode);
+                exploredNodes.add(childNode);
+            }
+        }
+
+        if (nodeInfo.x - 1 >= 0 && grid[nodeInfo.x - 1][nodeInfo.y] == 0) {
+            NodeInfo childNode = new NodeInfo(nodeInfo.x - 1, nodeInfo.y, nodeInfo.distance + 1);
+            if (!exploredNodes.contains(childNode)) {
+                children.add(childNode);
+                exploredNodes.add(childNode);
+            }
+        }
+
+        if (nodeInfo.y - 1 >= 0 && grid[nodeInfo.x][nodeInfo.y - 1] == 0) {
+            NodeInfo childNode = new NodeInfo(nodeInfo.x, nodeInfo.y - 1, nodeInfo.distance + 1);
+            if (!exploredNodes.contains(childNode)) {
+                children.add(childNode);
+                exploredNodes.add(childNode);
+            }
+        }
+
+        if (nodeInfo.y + 1 < grid[0].length && grid[nodeInfo.x][nodeInfo.y + 1] == 0) {
+            NodeInfo childNode = new NodeInfo(nodeInfo.x, nodeInfo.y + 1, nodeInfo.distance + 1);
+            if (!exploredNodes.contains(childNode)) {
+                children.add(childNode);
+                exploredNodes.add(childNode);
+            }
+        }
+        return children;
     }
 }
