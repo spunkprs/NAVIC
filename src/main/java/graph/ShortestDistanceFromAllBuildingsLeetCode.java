@@ -30,6 +30,9 @@ import java.util.*;
 
  Source : LeetCode
 
+ Time Complexity : O(m * n * k), where k being number of 1's in the grid
+ Space Complexity : O(m * n)
+
  * */
 public class ShortestDistanceFromAllBuildingsLeetCode {
 
