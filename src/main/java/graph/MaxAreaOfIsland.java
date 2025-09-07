@@ -10,6 +10,11 @@ import java.util.*;
 
  Return the maximum area of an island in grid. If there is no island, return 0.
 
+ Time Complexity : O(m * n)
+ Space Complexity : O(m * n)
+
+ Source : LeetCode
+
  * */
 
 public class MaxAreaOfIsland {
