@@ -5,6 +5,11 @@ package binarytree;
  A leaf node may have any value, while an empty child node has a value of 0
 
  Source : InterviewBit
+
+ Time Complexity = O(n), n being number of nodes in the tree
+ Space Complexity = O(n), n being number of nodes in the tree
+
+ Approach Used : DFS
  * */
 
 public class BinaryTreeSumTree {
