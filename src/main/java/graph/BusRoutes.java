@@ -25,6 +25,9 @@ import java.util.*;
  Source : LeetCode
 
 
+ Time Complexity : Will update it tomorrow(2025-09-10)
+ Space Complexity : Will update it tomorrow(2025-09-10)
+
  * */
 
 public class BusRoutes {
@@ -134,6 +137,4 @@ public class BusRoutes {
             return Objects.hash(value, routeIndex);
         }
     }
-
-
 }
