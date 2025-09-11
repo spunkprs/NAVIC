@@ -32,7 +32,6 @@ public class CheapestFlightsWithInKStops {
         CheapestFlightsWithInKStops unit = new CheapestFlightsWithInKStops();
 
         int flights[][] = {{0,1,100},{1,2,100},{2,0,100},{1,3,600},{2,3,200}};
-        //int flights[][] = {{1,0,5}};
         int numberOfStopsAllowed = 1;
         int source = 0;
         int destination = 3;
@@ -63,12 +62,7 @@ public class CheapestFlightsWithInKStops {
             if (queue.peek().level - 1 <= k && queue.peek().index == dst) {
                 result = updateResult(result, queue.peek().value);
             }
-            /*if (!exploredIndexes.contains(queue.peek())) {
-                pushChildrenToQueue(queue.peek(), matrix, queue, exploredIndexes, k);
-            }*/
-
             pushChildrenToQueue(queue.peek(), matrix, queue, exploredIndexes, k);
-
             queue.poll();
         }
         return result == Integer.MAX_VALUE ? -1 : result;
