@@ -26,6 +26,18 @@ import java.util.*;
 
  This is the classic problem of finding minimum spanning tree , will be making use of Prim's algorithm to find the same
 
+ Have successfully implemented Prim's algorithm in this problem
+
+ Time Complexity = O(E logE), where E being number of edges because we are inserting E edges into min heap
+ aka Priority Queue and with every edge insertion && removal rebalancing may get triggered that will
+ additionally take logE time
+
+ Space Complexity = O(2E) + O(V) = O(E + V)
+ where V being number of nodes
+
+ Have maintained set of vertexes just to make sure we don't land in cycle
+
+ Classic rule against MST is number of edges = V - 1, same concept is getting validated in method computeMinDistance
  * */
 
 public class ConnectingCitiesWithMinimumCost {
