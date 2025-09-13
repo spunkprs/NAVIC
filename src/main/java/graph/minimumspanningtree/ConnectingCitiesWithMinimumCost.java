@@ -28,6 +28,11 @@ import java.util.*;
 
  Have successfully implemented Prim's algorithm in this problem
 
+ Basic Understanding of the algorithm : Minimum spanning tree would be one of the spanning trees that can be generated from a given
+ graph having undirected edges with weight
+
+ To find MST using either Kruskal's OR Prim's algorithm graph has to be undirected graph with weighted edges
+
  Time Complexity = O(E logE), where E being number of edges because we are inserting E edges into min heap
  aka Priority Queue and with every edge insertion && removal rebalancing may get triggered that will
  additionally take logE time
