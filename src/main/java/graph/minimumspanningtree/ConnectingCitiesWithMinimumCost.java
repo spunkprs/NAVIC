@@ -39,20 +39,20 @@ public class ConnectingCitiesWithMinimumCost {
         System.out.println("Minimum amount to connect all the cities is " + unit.minimumCost(numberOfCities, connections));
     }
 
-
     public int minimumCost(int n, int[][] connections) {
-        int matrix[][] = prepareAdjacencyMatrix(connections, n);
+        Map<Integer, Pair> map = prepareAdjacencyList(connections, n);
+
         PriorityQueue<Node> minHeap = new PriorityQueue<>(new NodeComparator());
         Set<Integer> visitedNodes = new HashSet<>();
         List<Node> resultList = new ArrayList<>();
 
-        Node parentNode = new Node(0, 0, -1);
+        Node parentNode = new Node(0, 1, -1);
         minHeap.add(parentNode);
 
         while (!minHeap.isEmpty()) {
             Node topNode = minHeap.poll();
             if (!visitedNodes.contains(topNode.node)) {
-                addChildren(topNode, matrix, visitedNodes, minHeap);
+                addChildren(topNode, map, visitedNodes, minHeap);
             }
             if (!visitedNodes.contains(topNode.node)) {
                 visitedNodes.add(topNode.node);
@@ -75,32 +75,50 @@ public class ConnectingCitiesWithMinimumCost {
         return -1;
     }
 
-    private void addChildren(Node topNode, int[][] matrix, Set<Integer> visitedNodes, PriorityQueue<Node> minHeap) {
-        for (int j = 0; j < matrix[topNode.node].length; j++) {
-            if (matrix[topNode.node][j] != -1 && !visitedNodes.contains(j)) {
-                minHeap.add(new Node(matrix[topNode.node][j], j, topNode.node));
+    private void addChildren(Node topNode, Map<Integer, Pair> map, Set<Integer> visitedNodes, PriorityQueue<Node> minHeap) {
+        Node node = map.get(topNode.node).head;
+        while (node != null) {
+            if (!visitedNodes.contains(node.node)) {
+                minHeap.add(node);
             }
+            node = node.next;
         }
     }
 
-    private int[][] prepareAdjacencyMatrix(int[][] connections, int n) {
-        int matrix[][] = new int[n][n];
-
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n ; j++) {
-                matrix[i][j] = -1;
-            }
-        }
-
+    private Map<Integer, Pair> prepareAdjacencyList(int[][] connections, int n) {
+        Map<Integer, Pair> map = new HashMap<>();
         for (int i = 0; i < connections.length; i++) {
             int x = connections[i][0];
             int y = connections[i][1];
             int cost = connections[i][2];
 
-            matrix[x - 1][y - 1] = cost;
-            matrix[y - 1][x - 1] = cost;
+            if (!map.containsKey(x)) {
+                Node node = new Node(cost, y, x);
+                Pair pair = new Pair();
+                pair.head = node;
+                pair.tail = node;
+                map.put(node.parentNode, pair);
+            } else {
+                Pair pair = map.get(x);
+                Node node = new Node(cost, y, x);
+                pair.tail.next = node;
+                pair.tail = node;
+            }
+
+            if (!map.containsKey(y)) {
+                Node node = new Node(cost, x, y);
+                Pair pair = new Pair();
+                pair.head = node;
+                pair.tail = node;
+                map.put(node.parentNode, pair);
+            } else {
+                Pair pair = map.get(y);
+                Node node = new Node(cost, x, y);
+                pair.tail.next = node;
+                pair.tail = node;
+            }
         }
-        return matrix;
+        return map;
     }
 
 
@@ -108,6 +126,7 @@ public class ConnectingCitiesWithMinimumCost {
         int distance;
         int node;
         int parentNode;
+        Node next;
 
 
         public Node(int distance, int node, int parentNode) {
@@ -115,6 +134,11 @@ public class ConnectingCitiesWithMinimumCost {
             this.node = node;
             this.parentNode = parentNode;
         }
+    }
+
+    static class Pair {
+        private Node head;
+        private Node tail;
     }
 
     class NodeComparator implements Comparator<Node> {
