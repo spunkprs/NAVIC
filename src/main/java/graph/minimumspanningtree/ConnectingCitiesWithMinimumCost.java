@@ -1,8 +1,7 @@
 package graph.minimumspanningtree;
 
 
-import java.util.Comparator;
-import java.util.PriorityQueue;
+import java.util.*;
 
 /**
  There are n cities labeled from 1 to n. You are given the integer n and an array connections
@@ -44,13 +43,55 @@ public class ConnectingCitiesWithMinimumCost {
     public int minimumCost(int n, int[][] connections) {
         int matrix[][] = prepareAdjacencyMatrix(connections, n);
         PriorityQueue<Node> minHeap = new PriorityQueue<>(new NodeComparator());
+        Set<Integer> visitedNodes = new HashSet<>();
+        List<Node> resultList = new ArrayList<>();
+
+        Node parentNode = new Node(0, 0, -1);
+        minHeap.add(parentNode);
+
+        while (!minHeap.isEmpty()) {
+            Node topNode = minHeap.poll();
+            if (!visitedNodes.contains(topNode.node)) {
+                addChildren(topNode, matrix, visitedNodes, minHeap);
+            }
+            if (!visitedNodes.contains(topNode.node)) {
+                visitedNodes.add(topNode.node);
+                if (topNode.parentNode != -1) {
+                    resultList.add(topNode);
+                }
+            }
+        }
+        return computeMinDistance(resultList, n);
+    }
+
+    private int computeMinDistance(List<Node> resultList, int n) {
+        int result = 0;
+        if (resultList.size() == n - 1) {
+            for (Node node : resultList) {
+                result += node.distance;
+            }
+            return result;
+        }
         return -1;
+    }
 
-
+    private void addChildren(Node topNode, int[][] matrix, Set<Integer> visitedNodes, PriorityQueue<Node> minHeap) {
+        for (int j = 0; j < matrix[topNode.node].length; j++) {
+            if (matrix[topNode.node][j] != -1 && !visitedNodes.contains(j)) {
+                minHeap.add(new Node(matrix[topNode.node][j], j, topNode.node));
+            }
+        }
     }
 
     private int[][] prepareAdjacencyMatrix(int[][] connections, int n) {
         int matrix[][] = new int[n][n];
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n ; j++) {
+                matrix[i][j] = -1;
+            }
+        }
+
         for (int i = 0; i < connections.length; i++) {
             int x = connections[i][0];
             int y = connections[i][1];
