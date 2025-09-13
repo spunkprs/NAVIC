@@ -38,6 +38,8 @@ import java.util.*;
  Have maintained set of vertexes just to make sure we don't land in cycle
 
  Classic rule against MST is number of edges = V - 1, same concept is getting validated in method computeMinDistance
+
+ Useful Link for reference : https://www.youtube.com/watch?v=f7JOBJIC-NA
  * */
 
 public class ConnectingCitiesWithMinimumCost {
