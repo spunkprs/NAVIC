@@ -5,6 +5,20 @@ import list.ListNode;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ Given a binary tree root and a linked list with head as the first node.
+
+ Return True if all the elements in the linked list starting from the head correspond to some downward
+ path connected in the binary tree otherwise return False.
+
+ In this context downward path means a path that starts at some node and goes downwards.
+
+ Source : Leetcode
+
+ Time Complexity : O(n * k), where k is the number of paths or number of leaves in the tree && n being average size of each path
+ Space Complexity : O(n * k), where k is the number of paths or number of leaves in the tree && n being average size of each path
+ * */
+
 public class LinkedListInBinaryTree {
 
 	public static void main(String ar[]) {
