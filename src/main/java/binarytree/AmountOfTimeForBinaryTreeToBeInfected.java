@@ -22,7 +22,8 @@ import java.util.*;
 
  Source : LeetCode
 
-
+Time Complexity = O(2 * n) ~ O(n), where n being number of nodes in the tree
+Space Complexity = O(2 * n) ~ O(n), where n being number of nodes in the tree
  * */
 
 public class AmountOfTimeForBinaryTreeToBeInfected {
