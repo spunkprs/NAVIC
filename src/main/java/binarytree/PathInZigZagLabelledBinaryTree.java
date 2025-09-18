@@ -97,6 +97,4 @@ public class PathInZigZagLabelledBinaryTree {
             this.level = level;
         }
     }
-
-
 }
