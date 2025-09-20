@@ -32,6 +32,10 @@ import java.util.*;
  7.) -pow(10,6) <= weighti <= pow(10,6) for all i >= 1.
  8.) edges represents a valid tree.
 
+ Considering K total nodes in the tree && on average each node has M children
+ Time Complexity = O(K * pow(M, 2))
+ Space Complexity = O(K)
+
  * */
 
 public class ChooseEdgesToMaximiseScore {
