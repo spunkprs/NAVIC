@@ -10,9 +10,16 @@ package dp;
 
  The testcases are generated so that the answer will be less than or equal to 2 * pow(10,9)
 
+ Constraints:
+
+1.) m == obstacleGrid.length
+2.) n == obstacleGrid[i].length
+3.) 1 <= m, n <= 100
+4.) obstacleGrid[i][j] is 0 or 1.
+
  Source : LeetCode
 
- Followed Bottom Up approach of DP to solve the problem
+ ----->Followed Bottom Up approach of DP to solve the problem<-------
 
  Time Complexity : O(M * N), where M && N are respective number of rows && columns in the table
  Space Complexity : O(M * N), where M && N are respective number of rows && columns in the table
