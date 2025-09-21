@@ -9,6 +9,13 @@ package dp;
  Return the number of possible unique paths that the robot can take to reach the bottom-right corner.
 
  The testcases are generated so that the answer will be less than or equal to 2 * pow(10,9)
+
+ Source : LeetCode
+
+ Followed Bottom Up approach of DP to solve the problem
+
+ Time Complexity : O(M * N), where M && N are respective number of rows && columns in the table
+ Space Complexity : O(M * N), where M && N are respective number of rows && columns in the table
  * */
 
 public class UniquePaths2 {
