@@ -34,6 +34,10 @@ public class ShortestPathToGetFood {
 
     public static void main(String ar[]) {
         ShortestPathToGetFood unit = new ShortestPathToGetFood();
+        char grid[][] = {{'X','X','X','X','X','X'},{'X','*','O','O','O','X'},
+                {'X','O','O','#','O','X'},{'X','X','X','X','X','X'}};
+
+        System.out.print("Shortest path to reach food from starting point is " + unit.getFood(grid));
     }
 
     public int getFood(char[][] grid) {
