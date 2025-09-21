@@ -24,6 +24,10 @@ import java.util.*;
 5.) The grid contains exactly one '*'
 
 Source : LeetCode
+
+ Time Complexity = O(M * N), where M && N being rows && columns in the grid
+ Space Complexity = O(M * N), where M && N being rows && columns in the grid
+
  * */
 
 public class ShortestPathToGetFood {
