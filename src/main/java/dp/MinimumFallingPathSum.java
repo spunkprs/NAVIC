@@ -19,6 +19,8 @@ Source : Leetcode
 
 Time Complexity = O(N * N), where N being number of rows && columns in the matrix
 Time Complexity = O(N * N), where N being number of rows && columns in the matrix
+
+ ------> Used Bottom Up approach against DP to solve this problem <---------
  * */
 
 public class MinimumFallingPathSum {
