@@ -28,6 +28,8 @@ Source : LeetCode
  Time Complexity = O(M * N), where M && N being rows && columns in the grid
  Space Complexity = O(M * N), where M && N being rows && columns in the grid
 
+ ----------> Used BFS method to explore the graph <--------
+
  * */
 
 public class ShortestPathToGetFood {
