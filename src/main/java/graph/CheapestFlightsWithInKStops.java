@@ -33,14 +33,19 @@ public class CheapestFlightsWithInKStops {
     public static void main(String ar[]) {
         CheapestFlightsWithInKStops unit = new CheapestFlightsWithInKStops();
 
-        int flights[][] = {{0,1,100},{1,2,100},{2,0,100},{1,3,600},{2,3,200}};
-        int numberOfStopsAllowed = 1;
+        //int flights[][] = {{0,1,100},{1,2,100},{2,0,100},{1,3,600},{2,3,200}};
+
+        int flights[][] = {{0,1,5},{1,2,5},{0,3,2},{3,1,2},{1,4,1},{4,2,1}};
+        int numberOfStopsAllowed = 2;
         int source = 0;
-        int destination = 3;
-        int numOfNodes = 4;
+        int destination = 2;
+        int numOfNodes = 5;
+
+        /*System.out.println("Minimum cost to move from source " + source + " to destination "
+                + destination + " with stops count " + numberOfStopsAllowed + " is " + unit.findCheapestPrice(numOfNodes, flights, source, destination, numberOfStopsAllowed));*/
 
         System.out.println("Minimum cost to move from source " + source + " to destination "
-                + destination + " with stops count " + numberOfStopsAllowed + " is " + unit.findCheapestPrice(numOfNodes, flights, source, destination, numberOfStopsAllowed));
+                + destination + " with stops count " + numberOfStopsAllowed + " is " + unit.findCheapestPriceOne(numOfNodes, flights, source, destination, numberOfStopsAllowed));
     }
 
     public int findCheapestPrice(int n, int[][] flights, int src, int dst, int k) {
@@ -49,6 +54,70 @@ public class CheapestFlightsWithInKStops {
         }
         int matrix[][] = prepareAdjacencyMatrix(n, flights);
         return processMatrix(matrix, src, dst, k);
+    }
+
+    public int findCheapestPriceOne(int n, int[][] flights, int src, int dst, int k) {
+        if (k < 0) {
+            return -1;
+        }
+        Map<Integer, List<Information>> adjacencyList = prepareAdjacencyList(n, flights);
+        return processToFindCheapestPrice(adjacencyList, src, dst, k, n);
+    }
+
+    private int processToFindCheapestPrice(Map<Integer, List<Information>> adjacencyList,
+                                            int src, int dst, int k, int numOfCities) {
+
+        int distances[] = new int[numOfCities];
+        for (int i = 0; i < numOfCities; i++) {
+            distances[i] = -1;
+        }
+
+        PriorityQueue<NodeOne> minHeap = new PriorityQueue<>(new NodeOneComparator());
+        NodeOne sourceNode = new NodeOne(0, 0, src);
+
+        minHeap.add(sourceNode);
+        distances[sourceNode.nodeValue] = 0;
+
+        while (!minHeap.isEmpty()) {
+            NodeOne topNode = minHeap.poll();
+            for (NodeOne childNode : fetchChildren(topNode, distances, adjacencyList, k)) {
+                minHeap.add(childNode);
+            }
+        }
+        return distances[dst];
+    }
+
+    private List<NodeOne> fetchChildren(NodeOne topNode, int distances[],
+                                        Map<Integer, List<Information>> adjacencyList, int maxStopsAllowed) {
+        List<NodeOne> childNodes = new ArrayList<>();
+
+        if (adjacencyList.containsKey(topNode.nodeValue)) {
+            for (Information child : adjacencyList.get(topNode.nodeValue)) {
+                int distanceFromSource = distances[child.nodeValue];
+                NodeOne childNode = new NodeOne(topNode.distanceFromSource + child.distanceFromSource,
+                        topNode.level + 1, child.nodeValue);
+                if (topNode.level + 1 <= maxStopsAllowed + 1) {
+                    if (distanceFromSource == -1) {
+                        distances[child.nodeValue] = childNode.distanceFromSource;
+                        childNodes.add(childNode);
+                    } else {
+                        if (childNode.distanceFromSource < distanceFromSource) {
+                            childNodes.add(childNode);
+                            distances[childNode.nodeValue] = childNode.distanceFromSource;
+                        }
+                    }
+                }
+            }
+        }
+        return childNodes;
+    }
+
+    static class NodeOneComparator implements Comparator<NodeOne> {
+
+        @Override
+        public int compare(NodeOne o1, NodeOne o2) {
+            return o1.distanceFromSource < o2.distanceFromSource ? -1 : o1.distanceFromSource > o2.distanceFromSource ? 1 : 0;
+        }
     }
 
     private int processMatrix(int[][] matrix, int src, int dst, int k) {
@@ -98,6 +167,35 @@ public class CheapestFlightsWithInKStops {
         return matrix;
     }
 
+    private Map<Integer, List<Information>> prepareAdjacencyList(int numOfNodes, int[][] flights) {
+        Map<Integer, List<Information>> mapping = new HashMap<>();
+
+        for (int i = 0; i < flights.length; i++) {
+            int source = flights[i][0];
+            int destination = flights[i][1];
+            int price = flights[i][2];
+
+            if (!mapping.containsKey(source)) {
+                List<Information> list = new ArrayList<>();
+                list.add(new Information(destination, price));
+                mapping.put(source, list);
+            } else {
+                mapping.get(source).add(new Information(destination, price));
+            }
+        }
+        return mapping;
+    }
+
+    static class Information {
+        private int nodeValue;
+        private int distanceFromSource;
+
+        public Information(int nodeValue, int distanceFromSource) {
+            this.nodeValue = nodeValue;
+            this.distanceFromSource = distanceFromSource;
+        }
+    }
+
 
     static class Node {
         private int parentIndex;
@@ -123,6 +221,18 @@ public class CheapestFlightsWithInKStops {
         @Override
         public int hashCode() {
             return Objects.hash(index, level, parentIndex);
+        }
+    }
+
+    static class NodeOne {
+        private int distanceFromSource;
+        private int nodeValue;
+        private int level;
+
+        public NodeOne(int distanceFromSource, int level, int nodeValue) {
+            this.distanceFromSource = distanceFromSource;
+            this.nodeValue = nodeValue;
+            this.level = level;
         }
     }
 }
