@@ -23,6 +23,14 @@ Constraints:
 Source : LeetCode
 Level : HARD
 
+ Time Complexity = O(M * N * K)
+ Space Complexity = O(M * N * K)
+
+ Approach used is BFS definitely but with a tweak of adding another state of obstacles consideration, did not make use of DFS
+ as it's time complexity is heading towards polynomial
+
+ -----> Interesting problem, will be coming back on it for all the test cases submission  <--------
+
  * */
 
 public class ShortestPathInGridWithObstaclesElimination {
