@@ -55,5 +55,10 @@ public class TreeMapUsageOne {
             System.out.println("key " + key + " and associated value is " + treeMap.get(key));
         }
 
+        System.out.println("Printing keys in the reverse order alongside it's values !!");
+        for (Integer key : treeMap.descendingKeySet()) {
+            System.out.println("key " + key + " and associated value is " + treeMap.get(key));
+        }
+
     }
 }
