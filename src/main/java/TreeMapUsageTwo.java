@@ -46,19 +46,19 @@ public class TreeMapUsageTwo {
         System.out.println("Last key && associated value in the map is " + treeMap.lastKey() + " " +
                 treeMap.get(treeMap.lastKey()));
 
-        System.out.println("Key greater than " + 41 + " and its associated value in the map is " + treeMap.higherKey(41) + " " +
+        System.out.println("Key lesser than " + 41 + " and its associated value in the map is " + treeMap.higherKey(41) + " " +
                 treeMap.get(treeMap.higherKey(41)));
 
-        System.out.println("Key lesser than " + 41 + " and its associated value in the map is " + treeMap.lowerKey(41) + " " +
+        System.out.println("Key higher than " + 41 + " and its associated value in the map is " + treeMap.lowerKey(41) + " " +
                 treeMap.get(treeMap.lowerKey(41)));
 
-        System.out.println("All keys smaller than 41 and it's associated values are ::");
+        System.out.println("All keys greater than 41 and it's associated values are ::");
 
         for (Integer key : treeMap.headMap(41, false).keySet()) {
             System.out.println("key " + key + " and associated value is " + treeMap.get(key));
         }
 
-        System.out.println("All keys greater than 41 and it's associated values are ::");
+        System.out.println("All keys lesser than 41 and it's associated values are ::");
 
         for (Integer key : treeMap.tailMap(41, false).keySet()) {
             System.out.println("key " + key + " and associated value is " + treeMap.get(key));
