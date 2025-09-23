@@ -12,6 +12,12 @@ import java.util.TreeMap;
 
  Official document:  https://docs.oracle.com/javase/8/docs/api/java/util/TreeMap.html
 
+ Important thing to note here is when reverse comparator is provided meaning of following methods will also be reversed :-
+ 1.) headMap() --> ordering of original map is preserved
+ 2.) tailMap() --> ordering of original map is preserved
+ 3.) higherKey()
+ 4.) lowerKey()
+
  ------> In this example specifically keys will be sorted in the descending order <------------
  * */
 
