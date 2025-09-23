@@ -33,13 +33,13 @@ public class CheapestFlightsWithInKStops {
     public static void main(String ar[]) {
         CheapestFlightsWithInKStops unit = new CheapestFlightsWithInKStops();
 
-        //int flights[][] = {{0,1,100},{1,2,100},{2,0,100},{1,3,600},{2,3,200}};
+        int flights[][] = {{1,2,10},{2,0,7},{1,3,8},{4,0,10},{3,4,2},{4,2,10},{0,3,3},{3,1,6},{2,4,5}};
 
-        int flights[][] = {{0,1,100},{1,2,100},{0,2,500}};
+        //int flights[][] = {{0,1,100},{1,2,100},{0,2,500}};
         int numberOfStopsAllowed = 1;
         int source = 0;
-        int destination = 2;
-        int numOfNodes = 3;
+        int destination = 4;
+        int numOfNodes = 5;
 
         System.out.println("Minimum cost to move from source " + source + " to destination "
                 + destination + " with stops count " + numberOfStopsAllowed + " is " + unit.findCheapestPriceOne(numOfNodes, flights, source, destination, numberOfStopsAllowed));
@@ -56,40 +56,60 @@ public class CheapestFlightsWithInKStops {
     private int processToFindCheapestPrice(Map<Integer, List<Information>> adjacencyList,
                                             int src, int dst, int k, int numOfCities) {
 
-        int distances[] = new int[numOfCities];
-        for (int i = 0; i < numOfCities; i++) {
-            distances[i] = Integer.MAX_VALUE;
-        }
+        Map<Integer, List<Integer>> map = new HashMap<>();
+        prePopulateMap(map, k, src, numOfCities);
 
         PriorityQueue<NodeOne> minHeap = new PriorityQueue<>(new NodeOneComparator());
         NodeOne sourceNode = new NodeOne(0, -1, src);
 
         minHeap.add(sourceNode);
-        //distances[sourceNode.nodeValue] = 0;
 
         while (!minHeap.isEmpty()) {
             NodeOne topNode = minHeap.poll();
-            distances[topNode.nodeValue] = topNode.distanceFromSource < distances[topNode.nodeValue] ? topNode.distanceFromSource : distances[topNode.nodeValue];
-            for (NodeOne childNode : fetchChildren(topNode, distances, adjacencyList, k)) {
+            for (NodeOne childNode : fetchChildren(topNode, adjacencyList, k, map)) {
                 minHeap.add(childNode);
             }
         }
-        return distances[dst] == Integer.MAX_VALUE ? -1 : distances[dst];
+        return fetchResult(map, dst);
     }
 
-    private List<NodeOne> fetchChildren(NodeOne topNode, int distances[],
-                                        Map<Integer, List<Information>> adjacencyList, int maxStopsAllowed) {
+    private int fetchResult(Map<Integer, List<Integer>> map, int dst) {
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+        for (Integer k : map.keySet()) {
+            minHeap.add(map.get(k).get(dst));
+        }
+        return minHeap.peek() == Integer.MAX_VALUE ? -1 : minHeap.peek();
+    }
+
+    private void prePopulateMap(Map<Integer, List<Integer>> map, int numberOfStops, int src, int numOfCities) {
+        for (int i = 0; i <= numberOfStops; i++) {
+            List<Integer> distances = new ArrayList<>();
+            for (int j = 0; j < numOfCities; j++) {
+                if (j == src) {
+                    distances.add(0);
+                } else {
+                    distances.add(Integer.MAX_VALUE);
+                }
+            }
+            map.put(i, distances);
+        }
+    }
+
+    private List<NodeOne> fetchChildren(NodeOne topNode, Map<Integer, List<Information>> adjacencyList, int maxStopsAllowed,
+                                        Map<Integer, List<Integer>> map) {
         List<NodeOne> childNodes = new ArrayList<>();
 
         if (adjacencyList.containsKey(topNode.nodeValue)) {
             for (Information child : adjacencyList.get(topNode.nodeValue)) {
-                int distanceFromSource = distances[child.nodeValue];
-                if (topNode.level + 1 <= maxStopsAllowed &&
-                        topNode.distanceFromSource + child.distanceFromSource < distanceFromSource) {
-                    NodeOne childNode = new NodeOne(topNode.distanceFromSource + child.distanceFromSource,
-                            topNode.level + 1, child.nodeValue);
-                    distances[child.nodeValue] = topNode.distanceFromSource + child.distanceFromSource;
-                    childNodes.add(childNode);
+                if (topNode.level + 1 <= maxStopsAllowed) {
+                    List<Integer> distanceList = map.get(topNode.level + 1);
+                    int distanceFromSourceUpdated = distanceList.get(child.nodeValue);
+                    if (topNode.distanceFromSource + child.distanceFromSource < distanceFromSourceUpdated) {
+                        NodeOne childNode = new NodeOne(topNode.distanceFromSource + child.distanceFromSource,
+                                topNode.level + 1, child.nodeValue);
+                        distanceList.set(child.nodeValue, topNode.distanceFromSource + child.distanceFromSource);
+                        childNodes.add(childNode);
+                    }
                 }
             }
         }
