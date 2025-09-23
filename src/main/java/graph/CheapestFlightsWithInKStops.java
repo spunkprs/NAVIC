@@ -24,7 +24,14 @@ import java.util.*;
 
  Source : LeetCode
 
- Have applied Djisktra's algorithm to solve this problem, but need to tweak the algorithm a bit !!
+ ------> Used Djisktra's algorithm to solve this problem with a tweak of considering numberOfStopsAllowed as another state variable <---------
+
+ Time Complexity = O(E * V) {For building adjacency list} + O(E * K log(E * K)) {For building min heap} where E are number of edges,
+ V is number of vertices or nodes && K is allowed number of stops
+
+ Space Complexity = O(E * V) + O(E * K)
+
+ Enjoyed solving this problem !!
 
  * */
 
