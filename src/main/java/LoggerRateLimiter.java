@@ -14,8 +14,6 @@ import java.util.Map;
  bool shouldPrintMessage(int timestamp, string message) Returns true if the message should be printed in the
  given timestamp, otherwise returns false.
 
-
-
 Constraints:
 
 1.) 0 <= timestamp <= pow(10,9)
@@ -23,7 +21,8 @@ Constraints:
 3.) 1 <= message.length <= 30
 4.) At most pow(10,4) calls will be made to shouldPrintMessage.
 
-
+Level : Easy
+ This question was asked in Uber !!
 
  ---> Design Kind Of Question <-----
  * */
