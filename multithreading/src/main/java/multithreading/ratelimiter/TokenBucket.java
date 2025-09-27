@@ -1,7 +1,16 @@
 package multithreading.ratelimiter;
 
 /**
-Implementation of token bucket algorithm
+Implementation of token bucket algorithm algorithm that can be used against RateLimiting
+
+ It shall have following things as parameters :-
+ 1.) refreshRate
+ 2.) maxTokenSize
+ 3.) tokenCountAddition
+ 4.) Time Unit
+
+
+ This approach will work just fine but downside with it is the heavy usage of pessimistic locking which needs to be improved !!
  * */
 
 import java.util.concurrent.Semaphore;
@@ -14,13 +23,15 @@ public class TokenBucket implements RateLimiter {
     private int maxTokenSize;
     private long refreshRate;
     private int tokenCountAddition;
+    private TimeUnit timeUnit;
     private Object lock;
 
-    public TokenBucket(int maxTokenSize, long refreshRate, int tokenCountAddition) {
+    public TokenBucket(int maxTokenSize, long refreshRate, int tokenCountAddition, TimeUnit timeUnit) {
         this.maxTokenSize = maxTokenSize;
         this.refreshRate = refreshRate;
         this.tokenCountAddition = tokenCountAddition;
         tokenSempahore = new Semaphore(maxTokenSize);
+        this.timeUnit = timeUnit;
         lock = new Object();
     }
 
@@ -31,7 +42,7 @@ public class TokenBucket implements RateLimiter {
             synchronized (lock) {
                 availablePermits  = tokenSempahore.availablePermits();
                 if (availablePermits > 0) {
-                    return tokenSempahore.tryAcquire(1, 100, TimeUnit.MILLISECONDS);
+                    return tokenSempahore.tryAcquire(1, this.refreshRate, timeUnit);
                 }
             }
         } catch (InterruptedException e) {
