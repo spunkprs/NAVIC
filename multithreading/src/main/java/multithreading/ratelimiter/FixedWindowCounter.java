@@ -11,6 +11,8 @@ It shall have following things as parameters :-
  2.) timeWindowLength
 
 
+ This approach will work perfectly
+
  * */
 
 public class FixedWindowCounter implements RateLimiter {
@@ -19,18 +21,17 @@ public class FixedWindowCounter implements RateLimiter {
     private long timeWindowLength;
     private volatile long rateLimiterInitialisationTime;
 
-
     private Object lock;
     private AtomicLong counter;
 
-    private PriorityQueue<Long> timeStamp = new PriorityQueue<>();
+    private long maxTimeStamp;
 
     public FixedWindowCounter(long numberOfRequests, long timeWindowLength) {
         this.numberOfRequests = numberOfRequests;
         this.timeWindowLength = timeWindowLength;
         this.counter = new AtomicLong(0);
         this.rateLimiterInitialisationTime = System.currentTimeMillis();
-        timeStamp.add(this.rateLimiterInitialisationTime);
+        maxTimeStamp = rateLimiterInitialisationTime;
         this.lock = new Object();
     }
 
@@ -45,11 +46,10 @@ public class FixedWindowCounter implements RateLimiter {
                     if (counter.get() != 0) {
                         counter.set(0);
                     }
-                    if (currentSystemTime >= this.timeStamp.peek()) {
-                        this.timeStamp.poll();
-                        this.timeStamp.add(currentSystemTime);
+                    if (currentSystemTime >= maxTimeStamp) {
+                        maxTimeStamp = currentSystemTime;
                     }
-                rateLimiterInitialisationTime = this.timeStamp.peek();
+                rateLimiterInitialisationTime = maxTimeStamp;
                 return counter.incrementAndGet() <= this.numberOfRequests;
             }
         }
