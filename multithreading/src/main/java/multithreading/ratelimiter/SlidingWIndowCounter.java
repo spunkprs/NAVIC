@@ -7,7 +7,7 @@ import java.util.concurrent.atomic.AtomicLong;
  This is the implementation for SlidingWindowCounter algorithm that can be used against RateLimiting
 
  It shall have following things as parameters :-
- 1.) allowedRequests
+ 1.) allowedRequests within timeWindowLength
  2.) timeWindowLength
 
 
@@ -27,7 +27,6 @@ public class SlidingWIndowCounter implements RateLimiter {
     private Object lockForRemoval = new Object();
 
     private AtomicLong queueSize = new AtomicLong();
-
 
     public SlidingWIndowCounter(long allowedRequests, long timeWindowLength) {
         this.allowedRequests = allowedRequests;
@@ -69,6 +68,7 @@ public class SlidingWIndowCounter implements RateLimiter {
             synchronized (lockForRemoval) {
                 while (currentTimeStamp - head.timeStamp > timeWindowLength && head != null) {
                     head = head.nextNode;
+                    queueSize.decrementAndGet();
                 }
             }
             if (currentTimeStamp - head.timeStamp < timeWindowLength) {
