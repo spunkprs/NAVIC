@@ -1,6 +1,5 @@
 package multithreading.ratelimiter;
 
-import java.util.PriorityQueue;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
@@ -11,8 +10,8 @@ It shall have following things as parameters :-
  2.) timeWindowLength
 
 
- This approach will work perfectly
-
+ This approach will work perfectly but downside with it is the heavy usage of pessimistic locking whenever new request arrives
+ it needs to take lock till then all other requests will be waiting hence it needs to be improved !!
  * */
 
 public class FixedWindowCounter implements RateLimiter {
