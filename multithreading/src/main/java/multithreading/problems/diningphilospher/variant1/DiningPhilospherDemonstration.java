@@ -31,9 +31,9 @@ public class DiningPhilospherDemonstration {
         This will ensure only these number of philosophers are allowed to eat at the same time,
         division by 2 is done because each philosopher requires 2 fork to start eating
         */
-        Semaphore maxAllowedPhislosphers = new Semaphore(maxPhilosphersCount/2);
+        Semaphore maxAllowedPhilosphers = new Semaphore(maxPhilosphersCount/2);
 
-        Runnable[] philosphers = preparePhilosphers(forks, forks.length, 1000l, maxAllowedPhislosphers);
+        Runnable[] philosphers = preparePhilosphers(forks, forks.length, 1000l, maxAllowedPhilosphers);
 
         for (int i = 0; i < philosphers.length; i++) {
             Thread thread = new Thread(philosphers[i]);
