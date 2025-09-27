@@ -12,6 +12,8 @@ It shall have following things as parameters :-
 
  This approach will work perfectly but downside with it is the heavy usage of pessimistic locking whenever new request arrives
  it needs to take lock till then all other requests will be waiting hence it needs to be improved !!
+
+ Reference material : https://medium.com/@devenchan/implementing-rate-limiting-in-java-from-scratch-fixed-window-and-sliding-window-implementation-a6e8d6407d17
  * */
 
 public class FixedWindowCounter implements RateLimiter {

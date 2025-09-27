@@ -12,6 +12,8 @@ import java.util.concurrent.atomic.AtomicLong;
 
 
  This approach will work just fine but downside with it is the heavy usage of pessimistic locking which needs to be improved !!
+
+ Reference material : https://medium.com/@devenchan/implementing-rate-limiting-in-java-from-scratch-fixed-window-and-sliding-window-implementation-a6e8d6407d17
  * */
 
 public class SlidingWIndowCounter implements RateLimiter {
