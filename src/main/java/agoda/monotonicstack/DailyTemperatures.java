@@ -23,6 +23,8 @@ import java.util.Stack;
 
  Source : LeetCode
 
+Time Complexity : O(2 * N) [Because every element is getting pushed once && pop once hence two times in total] ~ O(N)
+Space Complexity : O(2 * N) [in the worst case] ~ O(N)
 
  * */
 
