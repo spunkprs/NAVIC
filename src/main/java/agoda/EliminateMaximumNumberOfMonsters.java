@@ -21,6 +21,8 @@ import java.util.PriorityQueue;
 
  Source : LeetCode
 
+Time Complexity = O(N * logN) where N being number of monsters
+Space Complexity = O(N) where N being number of monsters
 
  * */
 
