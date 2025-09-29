@@ -29,11 +29,17 @@ Constraints:--
 1.) 0 <= s.length <= 5 * pow(10,4)
 2.) s consists of English letters, digits, symbols and spaces.
 
+Time Complexity = O(N) where N being number of characters in the string
+Space Complexity = O(N) where N being number of characters in the string
 
  * */
 
 
 public class LongestSubstringWithoutRepeatingCharacters {
+
+    public static void main(String ar[]) {
+
+    }
 
     public int lengthOfLongestSubstringOne(String s) {
         if (s.length() == 0) {
