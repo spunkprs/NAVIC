@@ -1,62 +1,74 @@
-import java.util.HashMap;
-import java.util.Map;
+import java.util.HashSet;
+import java.util.Set;
+
+
+/**
+
+Given a string s, find the length of the longest substring without duplicate characters.
+
+
+ Example 1:
+
+ Input: s = "abcabcbb"
+ Output: 3
+ Explanation: The answer is "abc", with the length of 3.
+ Example 2:
+
+ Input: s = "bbbbb"
+ Output: 1
+ Explanation: The answer is "b", with the length of 1.
+ Example 3:
+
+ Input: s = "pwwkew"
+ Output: 3
+ Explanation: The answer is "wke", with the length of 3.
+ Notice that the answer must be a substring, "pwke" is a subsequence and not a substring.
+
+
+Constraints:--
+1.) 0 <= s.length <= 5 * pow(10,4)
+2.) s consists of English letters, digits, symbols and spaces.
+
+
+ * */
+
 
 public class LongestSubstringWithoutRepeatingCharacters {
 
-    class Node {
-        Character character;
-        Node next;
-        Node previous;
-        int index;
-
-        Node(char character, int index) {
-            this.character = character;
-            this.index = index;
+    public int lengthOfLongestSubstringOne(String s) {
+        if (s.length() == 0) {
+            return 0;
+        } else if (s.length() == 1) {
+            return 1;
+        } else {
+            return processToFindSubstringWithoutRepeatingCharacters(s);
         }
     }
 
-    public int lengthOfLongestSubstring(String s) {
-
-        Node head = null;
-        Node tail = null;
-
+    private int processToFindSubstringWithoutRepeatingCharacters(String s) {
+        int maxLength = 0;
         char arr[] = s.toCharArray();
-        Map<Character, Node> map = new HashMap<Character, Node>();
-        int max_length = 0;
+        Set<Character> hashSet = new HashSet<>();
 
-        for (int i = 0; i < arr.length; i++) {
-            if (!map.containsKey(arr[i])) {
-                Node node = new Node(arr[i], i);
-                map.put(new Character(arr[i]), node);
-                if (head == null) {
-                    head = node;
-                    tail = node;
-                } else {
-                    tail.next = node;
-                    node.previous = tail;
-                    tail = node;
-                }
+        int leftIndex = 0;
+        int rightIndex = 1;
+
+        hashSet.add(arr[0]);
+
+        while (rightIndex < arr.length) {
+            if (!hashSet.contains(arr[rightIndex])) {
+                hashSet.add(arr[rightIndex]);
+                maxLength = hashSet.size() > maxLength ? hashSet.size() : maxLength;
             } else {
-                if (!tail.character.equals(arr[i])) {
-                    Node node = map.get(arr[i]);
-                    if (node.index >= head.index) {
-                        head = node.next;
-                    }
-                    node.index = i;
-                    tail.next = node;
-                    node.previous = tail;
-                    tail = node;
-                } else {
-                    tail.index = i;
-                    head = tail;
+                while (leftIndex != rightIndex && (rightIndex - leftIndex + 1) != hashSet.size()) {
+                    hashSet.remove(arr[leftIndex]);
+                    leftIndex++;
+                    hashSet.add(arr[rightIndex]);
                 }
+                maxLength = hashSet.size() > maxLength ? hashSet.size() : maxLength;
             }
-            max_length = updateMaxLength(tail.index - head.index + 1, max_length);
+            rightIndex++;
         }
-        return max_length;
-    }
-
-    private int updateMaxLength(int length, int max_lenth) {
-        return length > max_lenth ? length : max_lenth;
+        return maxLength;
     }
 }
