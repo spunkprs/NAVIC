@@ -38,7 +38,10 @@ Space Complexity = O(N) where N being number of characters in the string
 public class LongestSubstringWithoutRepeatingCharacters {
 
     public static void main(String ar[]) {
-
+        LongestSubstringWithoutRepeatingCharacters unit = new LongestSubstringWithoutRepeatingCharacters();
+        String word = "pwwkews";
+        System.out.println("Length of longest substring without any repeating characters for string " + word  + " is " +
+                unit.lengthOfLongestSubstringOne(word));
     }
 
     public int lengthOfLongestSubstringOne(String s) {
