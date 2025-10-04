@@ -21,4 +21,8 @@ public class Node {
     public List<Task> getAssociatedTasks() {
         return associatedTasks;
     }
+
+    public void setAssociatedTasks(List<Task> associatedTasks) {
+        this.associatedTasks = associatedTasks;
+    }
 }

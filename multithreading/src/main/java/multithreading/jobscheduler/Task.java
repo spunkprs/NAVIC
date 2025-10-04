@@ -7,6 +7,7 @@ public abstract class Task implements Runnable {
     private int attemptsOnFailure;
     private int currentAttemptNumber;
     private boolean hasFailedAtLeastOnce;
+    private boolean isMarkedForRemoval;
 
     public Task(int taskId, long runTimestamp, int attemptsOnFailure) {
         this.taskId = taskId;
@@ -48,5 +49,13 @@ public abstract class Task implements Runnable {
 
     public int getAttemptsOnFailure() {
         return attemptsOnFailure;
+    }
+
+    public boolean isMarkedForRemoval() {
+        return isMarkedForRemoval;
+    }
+
+    public void setMarkedForRemoval(boolean markedForRemoval) {
+        isMarkedForRemoval = markedForRemoval;
     }
 }

@@ -14,5 +14,6 @@ public class Tester {
         TaskOrchestrator taskOrchestrator = new TaskOrchestrator(priorityBlockingQueue, executorService, 1000);
 
         JobsRunner runner = new JobsRunner(taskOrchestrator);
+        runner.startProcess();
     }
 }

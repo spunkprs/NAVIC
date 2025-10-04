@@ -1,5 +1,7 @@
 package multithreading.jobscheduler;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.PriorityBlockingQueue;
 
@@ -33,7 +35,19 @@ public class TaskOrchestrator {
                 if (currentTimeStamp > peekedNode.getTimestamp() &&
                         currentTimeStamp - peekedNode.getTimestamp() <= this.deltaInMillis) {
                     for (Task task : peekedNode.getAssociatedTasks()) {
-                        executorService.submit(task);
+                        if (!task.isMarkedForRemoval()) {
+                            executorService.submit(task);
+                            if (task.getNextTask() != null) {
+                                Task recurringTask = task.getNextTask();
+                                Node node = new Node(task.getNextTask().getRunTimestamp());
+
+                                //Adding recurring task to the blocking queue
+                                List<Task> associatedTasks = new ArrayList<>();
+                                associatedTasks.add(task);
+                                node.setAssociatedTasks(associatedTasks);
+                                priorityBlockingQueue.add(node);
+                            }
+                        }
                     }
                 }
             }

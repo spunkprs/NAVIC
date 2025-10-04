@@ -1,5 +1,7 @@
 package multithreading.jobscheduler;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.PriorityBlockingQueue;
 
 /**
@@ -15,10 +17,14 @@ public class JobScheduler {
     }
 
     public void addTask(Task task) {
-
+        List<Task> associatedTasks = new ArrayList<>();
+        associatedTasks.add(task);
+        Node node = new Node(task.getRunTimestamp());
+        node.setAssociatedTasks(associatedTasks);
+        priorityBlockingQueue.add(node);
     }
 
     public void removeTask(Task task) {
-
+        task.setMarkedForRemoval(true);
     }
 }
