@@ -6,6 +6,12 @@ import java.util.concurrent.PriorityBlockingQueue;
 
 /**
 tester code for simulating the behaviour of job scheduler
+
+Made use of cached thread pool explicitly instead of fixed thread pool as it performs better while handling smaller tasks that got triggered
+in small interval of times along with it no initial threads needs tobe provided as part of thread pool size && thread pool size can
+increase/decrease dynamically && if a thread that lies dormant for >60 sec becomes eligible for eviction automatically hence providing
+better CPU usage
+
 Reference material : https://akhiilgupta.medium.com/design-a-multi-threaded-task-scheduler-lld-multi-threaded-construct-eb090c5a8727
  * */
 
