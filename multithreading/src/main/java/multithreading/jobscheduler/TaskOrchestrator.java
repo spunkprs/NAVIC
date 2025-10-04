@@ -39,11 +39,11 @@ public class TaskOrchestrator {
                             executorService.submit(task);
                             if (task.getNextTask() != null) {
                                 Task recurringTask = task.getNextTask();
-                                Node node = new Node(task.getNextTask().getRunTimestamp());
+                                Node node = new Node(recurringTask.getRunTimestamp());
 
                                 //Adding recurring task to the blocking queue
                                 List<Task> associatedTasks = new ArrayList<>();
-                                associatedTasks.add(task);
+                                associatedTasks.add(recurringTask);
                                 node.setAssociatedTasks(associatedTasks);
                                 priorityBlockingQueue.add(node);
                             }
