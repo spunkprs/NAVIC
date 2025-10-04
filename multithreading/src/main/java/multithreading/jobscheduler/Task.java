@@ -8,11 +8,20 @@ public abstract class Task implements Runnable {
     private int currentAttemptNumber;
     private boolean hasFailedAtLeastOnce;
     private boolean isMarkedForRemoval;
+    private TaskType taskType;
 
     public Task(int taskId, long runTimestamp, int attemptsOnFailure) {
         this.taskId = taskId;
         this.runTimestamp = runTimestamp;
         this.attemptsOnFailure = attemptsOnFailure;
+    }
+
+    public TaskType getTaskType() {
+        return taskType;
+    }
+
+    public void setTaskType(TaskType taskType) {
+        this.taskType = taskType;
     }
 
     /**
@@ -22,10 +31,12 @@ public abstract class Task implements Runnable {
     public void runTask() {
         try {
             if (!hasFailedAtLeastOnce) {
-                System.out.println("Task id " + this.taskId + " going to run on the timestamp " + this.runTimestamp + " against attempt number " + currentAttemptNumber);
+                System.out.println("Task id " + this.taskId + " of type " + getTaskType().name() +
+                        " going to run on the timestamp " + this.runTimestamp + " against attempt number " + currentAttemptNumber);
             } else {
                     currentAttemptNumber++;
-                    System.out.println("Task id " + this.taskId + " going to run on the timestamp " + System.currentTimeMillis() + " against attempt number " + currentAttemptNumber);
+                    System.out.println("Task id " + this.taskId + " of type " + getTaskType().name() +
+                            " going to run on the timestamp " + System.currentTimeMillis() + " against attempt number " + currentAttemptNumber);
             }
         } catch (Exception e) {
             e.printStackTrace();

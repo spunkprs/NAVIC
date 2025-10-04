@@ -15,8 +15,9 @@ public class Tester {
 
         long currentTime = System.currentTimeMillis();
         Task taskTwo = new RecurringTask(2, currentTime + 500, 2, 4000);
+        taskTwo.setTaskType(TaskType.RECURRING);
         Task taskOne = new NonRecurringTask(1, currentTime + 1000, 2);
-
+        taskOne.setTaskType(TaskType.NON_RECURRING);
 
         jobScheduler.addTask(taskOne);
         jobScheduler.addTask(taskTwo);

@@ -39,6 +39,7 @@ public class TaskOrchestrator {
                             executorService.submit(task);
                             if (task.getNextTask() != null) {
                                 Task recurringTask = task.getNextTask();
+                                recurringTask.setTaskType(TaskType.RECURRING);
                                 Node node = new Node(recurringTask.getRunTimestamp());
 
                                 //Adding recurring task to the blocking queue
