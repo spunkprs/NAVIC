@@ -11,7 +11,15 @@ public class Tester {
         JobScheduler jobScheduler = new JobScheduler(priorityBlockingQueue);
         ExecutorService executorService = Executors.newCachedThreadPool();
 
-        TaskOrchestrator taskOrchestrator = new TaskOrchestrator(priorityBlockingQueue, executorService, 1000);
+        TaskOrchestrator taskOrchestrator = new TaskOrchestrator(priorityBlockingQueue, executorService, 5000);
+
+        long currentTime = System.currentTimeMillis();
+        Task taskTwo = new RecurringTask(2, currentTime + 500, 2, 4000);
+        Task taskOne = new NonRecurringTask(1, currentTime + 1000, 2);
+
+
+        jobScheduler.addTask(taskOne);
+        jobScheduler.addTask(taskTwo);
 
         JobsRunner runner = new JobsRunner(taskOrchestrator);
         runner.startProcess();

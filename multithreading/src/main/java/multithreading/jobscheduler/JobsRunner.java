@@ -13,14 +13,11 @@ public class JobsRunner {
 
     public void startProcess() {
         try {
-            boolean flag = true;
-            while (flag) {
-                while (taskOrchestrator.getPriorityBlockingQueue().size() > 0 ) {
-                    taskOrchestrator.orchestrateTasks();
-                }
+            while (taskOrchestrator.getPriorityBlockingQueue().size() > 0) {
+                taskOrchestrator.orchestrateTasks();
             }
         } catch (Exception e) {
-
+            e.printStackTrace();
         } finally {
             taskOrchestrator.getExecutorService().shutdown();
         }

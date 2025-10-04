@@ -29,8 +29,8 @@ public class TaskOrchestrator {
     This method is responsible for tasks orchestration
      * */
     public void orchestrateTasks() {
-            Node peekedNode = priorityBlockingQueue.poll();
-            if (peekedNode != null) {
+            Node peekedNode = null;
+            while ((peekedNode = priorityBlockingQueue.peek()) != null) {
                 long currentTimeStamp = System.currentTimeMillis();
                 if (currentTimeStamp > peekedNode.getTimestamp() &&
                         currentTimeStamp - peekedNode.getTimestamp() <= this.deltaInMillis) {
@@ -49,6 +49,12 @@ public class TaskOrchestrator {
                             }
                         }
                     }
+                    priorityBlockingQueue.poll();
+                } else if (currentTimeStamp > peekedNode.getTimestamp() &&
+                        currentTimeStamp - peekedNode.getTimestamp() > this.deltaInMillis) {
+                    //Handle this case by registering an event that this task got delayed
+                } else {
+                    continue;
                 }
             }
     }

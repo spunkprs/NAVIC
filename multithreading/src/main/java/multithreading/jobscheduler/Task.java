@@ -22,16 +22,19 @@ public abstract class Task implements Runnable {
     public void runTask() {
         try {
             if (!hasFailedAtLeastOnce) {
-                System.out.println("Task id " + this.taskId + " going to run on the timestamp " + this.runTimestamp);
+                System.out.println("Task id " + this.taskId + " going to run on the timestamp " + this.runTimestamp + " against attempt number " + currentAttemptNumber);
             } else {
                     currentAttemptNumber++;
-                    System.out.println("Task id " + this.taskId + " going to run on the timestamp " + (System.currentTimeMillis()));
+                    System.out.println("Task id " + this.taskId + " going to run on the timestamp " + System.currentTimeMillis() + " against attempt number " + currentAttemptNumber);
             }
         } catch (Exception e) {
+            e.printStackTrace();
+
             if (!hasFailedAtLeastOnce) {
                 hasFailedAtLeastOnce = true;
             }
             if (currentAttemptNumber < attemptsOnFailure) {
+                System.out.println("Task Id " + this.taskId + " going for retry !!");
                 runTask();
             }
         }
