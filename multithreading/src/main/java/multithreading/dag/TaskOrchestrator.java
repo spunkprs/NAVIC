@@ -21,9 +21,10 @@ public class TaskOrchestrator {
         List<Node> parentList = fetchInitialDependentTasks();
 
         head = transform(parentList);
+        boolean shallContinue = true;
 
         //Loop shall be run on unexploredTask && check for it's size > 0
-        while (unExploredTasks.size() > 0) {
+        while (unExploredTasks.size() > 0 && shallContinue) {
             /**
              To avoid any ConcurrentModificationException have tweaked the logic to
              make use of ListNode instead && checking size of unExploredTasks > 0
@@ -40,6 +41,10 @@ public class TaskOrchestrator {
                     exploredTasks.add(traversalNode.getNode());
                     //add children generated from parent
                     addChildren(traversalNode.getNode());
+                } else if (traversalNode.getNode().getTask().getState().equals(TaskState.FAILURE)) {
+                    System.out.println("Task with id " + traversalNode.getNode().getTask().getTaskId()
+                            + " has failed for job id" + job.getJobId() + " hence marking overall job as failed !!");
+                    shallContinue = false;
                 }
             }
         }
