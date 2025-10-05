@@ -21,7 +21,8 @@ public class Task implements Runnable {
 
     @Override
     public void run() {
-
+        //Post completion it's status shall be changed to SUCCESS
+        //In the event of failures retries shall be made till allowed retryAttempts
     }
 
     public void setChildren(List<Task> children) {
@@ -30,5 +31,25 @@ public class Task implements Runnable {
 
     public void setParent(List<Task> parent) {
         this.parent = parent;
+    }
+
+    public List<Task> getParent() {
+        return parent;
+    }
+
+    public int getJobId() {
+        return jobId;
+    }
+
+    public int getTaskId() {
+        return taskId;
+    }
+
+    public TaskState getState() {
+        return state;
+    }
+
+    public List<Task> getChildren() {
+        return children;
     }
 }

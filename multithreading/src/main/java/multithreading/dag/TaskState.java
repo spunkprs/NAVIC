@@ -4,6 +4,7 @@ public enum TaskState {
     RUNNING("Running"),
     WAITING("Waiting"),
     SUCCESS("Success"),
+    RETRY("Retry"),
     FAILURE("Failure");
 
     TaskState(String state) {

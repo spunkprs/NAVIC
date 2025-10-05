@@ -8,4 +8,12 @@ public abstract class Job {
     private boolean isMarkedForRemoval;
 
     private List<Task> dependentTasks;
+
+    public List<Task> getDependentTasks() {
+        return dependentTasks;
+    }
+
+    public int getJobId() {
+        return jobId;
+    }
 }
