@@ -9,6 +9,10 @@ Implementation of token bucket algorithm algorithm that can be used against Rate
  3.) tokenCountAddition
  4.) Time Unit
 
+ Apart from parameters defined above limiterInitialisationTime can also be added &&
+ (System.currentTimeMillis() - limiterInitialisationTime)/ refreshRate * tokenCountAddition shall be added as part of token addition to the token bucket
+
+ Above logic shall be part of class TokenGeneration
 
  This approach will work just fine but downside with it is the heavy usage of pessimistic locking which needs to be improved !!
  * */
@@ -51,6 +55,8 @@ public class TokenBucket implements RateLimiter {
         return false;
     }
 
+    //Below thread needs to be instantiated && start running as soon as the class is loaded in the memory
+
      class TokenGeneration implements Runnable {
 
         @Override
@@ -64,6 +70,9 @@ public class TokenBucket implements RateLimiter {
                         availablePermits = tokenSempahore.availablePermits();
                         if (availablePermits + tokenCountAddition <= maxTokenSize) {
                             tokenSempahore.release(tokenCountAddition);
+                        } else {
+                            //to prevent overflow of tokens in the bucket
+                            tokenSempahore = new Semaphore(maxTokenSize);
                         }
                     }
                 } catch (Exception e) {
