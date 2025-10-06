@@ -16,7 +16,7 @@ import java.util.concurrent.atomic.AtomicLong;
  Reference material : https://medium.com/@devenchan/implementing-rate-limiting-in-java-from-scratch-fixed-window-and-sliding-window-implementation-a6e8d6407d17
  * */
 
-public class SlidingWIndowCounter implements RateLimiter {
+public class SlidingWindowCounter implements RateLimiter {
 
     private long allowedRequests;
     private long timeWindowLength;
@@ -30,7 +30,7 @@ public class SlidingWIndowCounter implements RateLimiter {
 
     private AtomicLong queueSize = new AtomicLong();
 
-    public SlidingWIndowCounter(long allowedRequests, long timeWindowLength) {
+    public SlidingWindowCounter(long allowedRequests, long timeWindowLength) {
         this.allowedRequests = allowedRequests;
         this.timeWindowLength = timeWindowLength;
     }
