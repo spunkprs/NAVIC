@@ -39,7 +39,7 @@ public class SlidingWindowCounter implements RateLimiter {
     public boolean tryAcquire() {
         long currentTimeStamp = System.currentTimeMillis();
         if (head != null) {
-           return  addNodeToTheQueue(currentTimeStamp);
+           return addNodeToTheQueue(currentTimeStamp);
         } else {
             synchronized (lockForInitialisation) {
                 if (head == null) {
