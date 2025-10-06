@@ -11,6 +11,7 @@ Implementation of token bucket algorithm algorithm that can be used against Rate
 
  Apart from parameters defined above limiterInitialisationTime can also be added &&
  (System.currentTimeMillis() - limiterInitialisationTime)/ refreshRate * tokenCountAddition shall be added as part of token addition to the token bucket
+ and limiterInitialisationTime shall also be reinitialised by limiterInitialisationTime = System.currentTimeMillis()
 
  Above logic shall be part of class TokenGeneration
 
