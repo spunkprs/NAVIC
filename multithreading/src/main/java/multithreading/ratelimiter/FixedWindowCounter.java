@@ -42,7 +42,7 @@ public class FixedWindowCounter implements RateLimiter {
 
         synchronized (lock) {
             if (currentSystemTime - this.rateLimiterInitialisationTime < this.timeWindowLength) {
-                return counter.incrementAndGet() <= this.numberOfRequests;
+                return counter.incrementAndGet() < this.numberOfRequests;
             } else {
                     if (counter.get() != 0) {
                         counter.set(0);
@@ -51,7 +51,7 @@ public class FixedWindowCounter implements RateLimiter {
                         maxTimeStamp = currentSystemTime;
                     }
                 rateLimiterInitialisationTime = maxTimeStamp;
-                return counter.incrementAndGet() <= this.numberOfRequests;
+                return counter.incrementAndGet() < this.numberOfRequests;
             }
         }
     }
