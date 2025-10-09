@@ -12,6 +12,10 @@ package leetcode75;
  are not equal to val. The remaining elements of nums are not important as well as the size of nums.
 
  Return k.
+
+Source : LeetCode
+Level : Easy
+Status : Accepted
  * */
 
 public class RemoveElement {
