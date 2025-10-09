@@ -8,6 +8,7 @@ and they can appear in both lower and upper cases, more than once
 
 Source : LeetCode
 Level : Easy
+Status : Accepted
  * */
 
 public class ReverseVowelsOfString {

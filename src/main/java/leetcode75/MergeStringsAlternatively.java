@@ -14,6 +14,7 @@ word1 and word2 consist of lowercase English letters.
 
 Level : Easy
 Source : LeetCode
+Status : Accepted
  * */
 
 public class MergeStringsAlternatively {

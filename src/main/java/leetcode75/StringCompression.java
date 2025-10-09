@@ -20,6 +20,7 @@ package leetcode75;
 
  Source : LeetCode
  Level : Medium
+ Status : Partially Accepted
  * */
 
 public class StringCompression {

@@ -10,6 +10,7 @@ package leetcode75;
 
  Level : Easy
  Source : LeetCode
+ Status : Accepted
  * */
 
 public class CanPlaceFlowers {
