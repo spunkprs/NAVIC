@@ -7,6 +7,9 @@ package leetcode75;
 Source : LeetCode
 Level : Medium
 
+Time Complexity = O(pow(n , 2))
+Space Complexity = O(n)
+
  * */
 
 public class IncreasingTripletSubSequence {
