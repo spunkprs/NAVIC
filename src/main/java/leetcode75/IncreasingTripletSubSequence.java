@@ -21,10 +21,10 @@ public class IncreasingTripletSubSequence {
         int nums[] = {2,1,5,0,4,6};
 
         System.out.print("Does the increasing triplet subsequence exist for the provided input " +
-                unit.increasingTripletApproachOne(nums));
+                unit.increasingTripletApproach(nums));
     }
 
-    public boolean increasingTripletApproachOne(int[] nums) {
+    public boolean increasingTripletApproach(int[] nums) {
 
         if (nums.length <= 2) {
             return false;
