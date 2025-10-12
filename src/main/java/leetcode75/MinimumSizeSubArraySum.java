@@ -21,11 +21,11 @@ Level : Medium
 
  * */
 
-public class MInimumSizeSubArraySum {
+public class MinimumSizeSubArraySum {
 
     public static void main(String ar[]) {
 
-        MInimumSizeSubArraySum unit = new MInimumSizeSubArraySum();
+        MinimumSizeSubArraySum unit = new MinimumSizeSubArraySum();
         int nums[] = {2,3,1,2,4,3};
         int target = 7;
 
