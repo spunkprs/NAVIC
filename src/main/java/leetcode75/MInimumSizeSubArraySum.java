@@ -1,9 +1,25 @@
 package leetcode75;
 
-
-
 import java.util.LinkedList;
 import java.util.Queue;
+
+/**
+Given an array of positive integers nums and a positive integer target,
+return the minimal length of a subarray whose sum is greater than or equal to target.
+If there is no such subarray, return 0 instead
+
+Constraints:-
+a.) 1 <= target <= pow(10,9)
+b.) 1 <= nums.length <= pow(10,5)
+c.) 1 <= nums[i] <= pow(10,4)
+
+Time Complexity = O(n)
+Space Complexity = O(n)
+
+Source : LeetCode
+Level : Medium
+
+ * */
 
 public class MInimumSizeSubArraySum {
 
