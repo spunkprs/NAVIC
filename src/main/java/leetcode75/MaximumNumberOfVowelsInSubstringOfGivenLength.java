@@ -15,7 +15,11 @@ a.) 1 <= s.length <= 105
 b.) s consists of lowercase English letters.
 c.) 1 <= k <= s.length
 
+Time Complexity = O(n)
+Space Complexity = O(n)
 
+Source : LeetCode
+Level : Medium
  * */
 
 public class MaximumNumberOfVowelsInSubstringOfGivenLength {
