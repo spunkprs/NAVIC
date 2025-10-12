@@ -17,6 +17,12 @@ a.) 1 <= nums.length <= pow(10,5)
 b.) 1 <= nums[i] <= pow(10,9)
 c.) 1 <= k <= pow(10,9)
 
+Time Complexity = O(n)
+Space Complexity = O(n)
+
+Source : LeetCode
+Level : Medium
+
  * */
 
 public class MaxNumberOfKSumPairs {
