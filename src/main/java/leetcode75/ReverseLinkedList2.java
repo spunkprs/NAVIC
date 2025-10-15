@@ -31,7 +31,6 @@ public class ReverseLinkedList2 {
         ListNode nodeOne = new ListNode(1);
         ListNode nodeTwo = new ListNode(2);
 
-
         nodeOne.next = nodeTwo;
 
         ListNode headNode = unit.reverseBetween(nodeOne, 1, 2);
@@ -113,7 +112,6 @@ public class ReverseLinkedList2 {
     }
 
     static class ListNode {
-
         private int val;
         private ListNode next;
         public ListNode(int x) {
