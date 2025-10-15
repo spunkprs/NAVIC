@@ -19,8 +19,9 @@ Constraints:-
 2.) 0 <= Node.val <= 9
 3.) The depth of the tree will not exceed 10.
 
-Time Complexity = O(n)
-Space Complexity = O(1)
+Time Complexity = O(n) --> Iterating every node in the tree
+Space Complexity = O(n) --> Method stack will take space in proportion to the depth of the tree which
+could be n in the worst case
 
 Source : LeetCode
 Level : Medium
