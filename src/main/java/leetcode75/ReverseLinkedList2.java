@@ -1,5 +1,24 @@
 package leetcode75;
 
+
+/**
+Given the head of a singly linked list and two integers left and right
+where left <= right, reverse the nodes of the list from position left to
+position right, and return the reversed list.
+
+Constraints:-
+1.) The number of nodes in the list is n.
+2.) 1 <= n <= 500
+3.) -500 <= Node.val <= 500
+4.) 1 <= left <= right <= n
+
+Time Complexity = O(n) --> Iterating every node in the list
+Space Complexity = O(1) --> Chose iterative approach for reversing nodes instead of recursive
+
+Source : LeetCode
+Level : Medium
+ * */
+
 public class ReverseLinkedList2 {
 
     private ListNode leftNode = null;
