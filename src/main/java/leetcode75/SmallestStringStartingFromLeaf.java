@@ -16,6 +16,13 @@ import java.util.Map;
 
  For example, "ab" is lexicographically smaller than "aba".
  A leaf of a node is a node that has no children.
+
+Time Complexity = O(n) --> Iterating every node in the tree
+Space Complexity = O(n) --> Method stack will take space in proportion to the depth of the tree which
+could be n in the worst case
+
+Source : LeetCode
+Level : Medium
  * */
 
 
