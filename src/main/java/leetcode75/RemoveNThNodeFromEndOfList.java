@@ -1,5 +1,23 @@
 package leetcode75;
 
+/**
+ Given the head of a linked list, remove the nth node from the end of the list and return its head
+
+Constraints:-
+
+a.) The number of nodes in the list is sz.
+b.) 1 <= sz <= 30
+c.) 0 <= Node.val <= 100
+d.) 1 <= n <= sz
+
+
+Time Complexity = O(n) --> Iterating every node in the list
+Space Complexity = O(1) --> Chose iterative approach for reversing nodes instead of recursive
+
+Source : LeetCode
+Level : Medium
+ * */
+
 public class RemoveNThNodeFromEndOfList {
 
     public static void main(String ar[]) {
