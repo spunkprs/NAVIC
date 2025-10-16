@@ -1,5 +1,21 @@
 package leetcode75;
 
+/**
+Given the head of a linked list, rotate the list to the right by k places
+
+Constraints:-
+
+a.) The number of nodes in the list is in the range [0, 500].
+b.) -100 <= Node.val <= 100
+c.) 0 <= k <= 2 * pow(10,9)
+
+Time Complexity = O(n) --> Iterating every node in the list
+Space Complexity = O(1) --> Chose iterative approach for reversing nodes instead of recursive
+
+Source : LeetCode
+Level : Medium
+ * */
+
 public class RotateList {
 
     public ListNode rotateRight(ListNode head, int k) {
