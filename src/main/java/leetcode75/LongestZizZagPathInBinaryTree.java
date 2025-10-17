@@ -21,7 +21,8 @@ Constraints:-
 a.) The number of nodes in the tree is in the range [1, 5 * pow(10,4)].
 b.) 1 <= Node.val <= 100
 
-
+Time Complexity = O(n) --> Iterating every node in the tree and n could be max depth of the tree
+Space Complexity = O(n) --> Maintaining method stack of n elements as could be max depth of the tree
  * */
 
 public class LongestZizZagPathInBinaryTree {
