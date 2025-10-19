@@ -15,6 +15,21 @@ package leetcode75;
  Initially, all next pointers are set to NULL.
 
 
+ Constraints:-
+
+a.) The number of nodes in the tree is in the range [0, 6000].
+b.) -100 <= Node.val <= 100
+c.) You may only use constant extra space.
+d.) The recursive approach is fine. You may assume implicit stack space
+does not count as extra space for this problem
+
+Time Complexity = O(n) --> Iterating every node in the tree
+Space Complexity = O(1) --> With the constraint put in place didn't make use of explicit
+Queue for doing BFS traversal, did solve the problem using iterative approach and
+it was possible because post population of next pointer we can go to next sub tree
+
+Solution is applicable for binary tree of any type {be it perfect or non perfect}
+
  * */
 
 public class PopulatingNextRightPointersInEachNode {
