@@ -63,13 +63,17 @@ public class PopulatingNextRightPointersInEachNode {
         return root;
     }
 
+    /**
+    Structuring the problem and breaking down it in parts made it easy to implement
+     * */
+
     private void processToConnectNodes(Node node) {
         Node leftNode = node;
 
         while (leftNode != null) {
-            processToSetPointersForEachParent(leftNode);
-            processToSetPointersOfNodesInDifferentSubTrees(leftNode);
-            leftNode = fetchNextLeftNode(leftNode);
+            processToSetPointersForEachParent(leftNode); // 1
+            processToSetPointersOfNodesInDifferentSubTrees(leftNode); // 2
+            leftNode = fetchNextLeftNode(leftNode); // 3
         }
     }
 
