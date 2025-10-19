@@ -5,6 +5,17 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
+/**
+ Given the root of a binary tree, return the bottom-up level order traversal of its nodes' values.
+ (i.e., from left to right, level by level from leaf to root).
+
+Level : Medium
+
+
+Time Complexity = O(n) --> Iterating every node in the tree
+Space Complexity = O(n) --> Making use of queue hence it's of O(n)
+ * */
+
 public class BinaryLevelOrderTraversal2 {
 
     private Node head;

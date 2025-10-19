@@ -14,6 +14,8 @@ package leetcode75;
 
  Initially, all next pointers are set to NULL.
 
+Level : Medium
+
 
  Constraints:-
 

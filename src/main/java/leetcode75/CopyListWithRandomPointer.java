@@ -32,6 +32,8 @@ a.) 0 <= n <= 1000
 b.) -pow(10,4) <= Node.val <= pow(10,4)
 c.) Node.random is null or is pointing to some node in the linked list.
 
+Level : Medium
+
 
 Time Complexity = O(n) --> Iterating every node in the list
 Space Complexity = O(n) --> Maintaining mapping from oldNode address to newNode address
