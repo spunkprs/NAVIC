@@ -82,7 +82,6 @@ public class FlattenBinaryTreeToLinkedList {
         } else if (leftResult == null && rightResult != null) {
             node.right = rightResult;
         }
-
         return node;
     }
 
