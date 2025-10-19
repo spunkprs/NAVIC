@@ -1,5 +1,27 @@
 package leetcode75;
 
+/**
+Given the root of a binary tree, flatten the tree into a "linked list":
+
+The "linked list" should use the same TreeNode class where the right child pointer
+points to the next node in the list and the left child pointer is always null.
+The "linked list" should be in the same order as a pre-order traversal of the binary tree.
+
+Constraints:-
+
+a.) The number of nodes in the tree is in the range [0, 2000].
+b.) -100 <= Node.val <= 100
+c.) flatten the tree in-place (with O(1) extra space)
+
+
+Level : Medium
+
+
+Time Complexity = O(n) --> Iterating every node in the tree
+Space Complexity = O(1) --> Not making use of any other external data structure
+
+ * */
+
 public class FlattenBinaryTreeToLinkedList {
 
     public static void main(String ar[]) {
