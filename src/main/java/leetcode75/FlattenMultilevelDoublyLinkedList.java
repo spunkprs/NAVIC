@@ -16,6 +16,16 @@ The nodes in the child list should appear after curr and before curr.next in the
 Return the head of the flattened list. The nodes in the list must have all of their
 child pointers set to null
 
+Constraints:-
+
+a.) The number of Nodes will not exceed 1000.
+b.) 1 <= Node.val <= pow(10,5)
+
+Level : Medium
+
+Time Complexity = O(n) --> Iterating every node in the linked list
+Space Complexity = O(n) --> Not adjusting the existing pointers in the existing list rather coming up
+with new node for every existing node
 
  * */
 
