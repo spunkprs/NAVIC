@@ -1,5 +1,30 @@
 package leetcode75;
 
+/**
+ A peak element is an element that is strictly greater than its neighbors.
+
+ Given a 0-indexed integer array nums, find a peak element, and return its index.
+ If the array contains multiple peaks, return the index to any of the peaks.
+
+ You may imagine that nums[-1] = nums[n] = -∞. In other words,
+ an element is always considered to be strictly greater than a neighbor that is outside the array.
+
+You must write an algorithm that runs in O(log n) time
+
+Constraints:-
+
+a.) 1 <= nums.length <= 1000
+b.) -pow(2,31) <= nums[i] <= pow(2,31) - 1
+c.) nums[i] != nums[i + 1] for all valid i
+
+Level : Medium
+
+Time Complexity = O(n) --> Though I am making use of recursion to mitigate the affect of binary search
+but still time complexity is not log(n) but rather it's O(n) hence I'll revisit it && make optimization
+Space Complexity = O(log(n)) --> Method stack space
+
+ * */
+
 public class FindPeakElement {
 
     private int peakElementIndex = -1;
