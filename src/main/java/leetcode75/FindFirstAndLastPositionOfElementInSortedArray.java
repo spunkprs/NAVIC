@@ -1,5 +1,29 @@
 package leetcode75;
 
+/**
+Problem : 34
+
+Given an array of integers nums sorted in non-decreasing order,
+find the starting and ending position of a given target value.
+
+If target is not found in the array, return [-1, -1].
+
+You must write an algorithm with O(log n) runtime complexity
+
+Constraints:-
+
+a.) 0 <= nums.length <= 105
+b.) -pow(10,9) <= nums[i] <= pow(10,9)
+c.) nums is a non-decreasing array.
+d.) -pow(10,9) <= target <= pow(10,9)
+
+Level : Medium
+
+Time Complexity = O(log(n))
+Space Complexity = O(log(n)) --> Method stack space
+
+ * */
+
 public class FindFirstAndLastPositionOfElementInSortedArray {
 
     private int minPosition = Integer.MAX_VALUE;
