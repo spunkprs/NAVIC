@@ -3,6 +3,24 @@ package leetcode75;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+Problem : 3
+
+Given a string s, find the length of the longest substring without duplicate characters
+
+Constraints:-
+
+a.) 0 <= s.length <= 5 * pow(10,4)
+b.) s consists of English letters, digits, symbols and spaces
+
+Time Complexity = O(n)
+Space Complexity = O(n)
+
+Source : LeetCode
+Level : Medium
+
+ * */
+
 public class LengthOfLongestSubStringWithoutRepeatingCharacters {
 
     public int lengthOfLongestSubstring(String s) {
