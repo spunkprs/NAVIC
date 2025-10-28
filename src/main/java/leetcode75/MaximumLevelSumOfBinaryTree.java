@@ -5,6 +5,21 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
 
+/**
+Problem : 1161
+
+Given the root of a binary tree, the level of its root is 1,
+the level of its children is 2, and so on.
+
+Return the smallest level x such that the sum of all the values of nodes at level x is maximal.
+
+Time Complexity = O(n) --> Iterating every node in the tree
+Space Complexity = O(n)
+
+Source : LeetCode
+Level : Medium
+ * */
+
 public class MaximumLevelSumOfBinaryTree {
 
     public int maxLevelSum(TreeNode root) {
