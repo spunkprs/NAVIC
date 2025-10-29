@@ -3,6 +3,20 @@ package leetcode75;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+Problem : 340
+Given a string s and an integer k, return the length of the longest substring of s that contains at most k distinct characters
+
+Constraints:-
+
+a.) 1 <= s.length <= 5 * pow(10,4)
+b.) 0 <= k <= 50
+
+Level : Medium
+Time Complexity = O(n)
+Space Complexity = O(n)
+ * */
+
 public class LongestSubStringWithAtMostKDifferentCharacters {
 
     public int lengthOfLongestSubstringKDistinct(String s, int k) {
