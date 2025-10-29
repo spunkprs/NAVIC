@@ -34,7 +34,6 @@ public class LongestSubStringWithAtMostKDifferentCharacters {
                 rightIndex++;
             } else if (map.size() == k) {
                 if (!map.containsKey(arr[rightIndex])) {
-                    //length = updateLength(length, leftIndex, rightIndex - 1);
                     while (map.size() == k) {
                         int count = map.get(arr[leftIndex]);
                         if (count == 1) {
