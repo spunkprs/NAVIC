@@ -1,5 +1,22 @@
 package leetcode75;
 
+/**
+Problem : 1004
+Given a binary array nums and an integer k, return the maximum number of consecutive 1's in the array if you can flip at most k 0's
+
+Constraints:-
+
+a.) 1 <= nums.length <= pow(10,5)
+b.) nums[i] is either 0 or 1.
+c.) 0 <= k <= nums.length
+
+Time Complexity = O(n)
+Space Complexity = O(1)
+
+Source : LeetCode
+Level : Medium
+ * */
+
 public class MaxConsecutiveOnes {
 
     public static void main(String ar[]) {
