@@ -2,6 +2,27 @@ package leetcode75;
 
 import java.util.*;
 
+/**
+Problem : 45
+
+You are given a 0-indexed array of integers nums of length n. You are initially positioned at index 0.
+
+Each element nums[i] represents the maximum length of a forward jump from index i. In other words, if you are at index i, you can jump to any index (i + j) where:
+
+a.) 0 <= j <= nums[i] and
+b.) i + j < n
+
+Return the minimum number of jumps to reach index n - 1. The test cases are generated such that you can reach index n - 1
+
+Constraints:-
+
+a.) 1 <= nums.length <= 104
+b.) 0 <= nums[i] <= 1000
+c.) It's guaranteed that you can reach nums[n - 1]
+
+Note : Need to improve time complexity of the solution, improvised time is O(n * n)
+ * */
+
 public class JumpGame2 {
 
     public int jump(int[] nums) {
