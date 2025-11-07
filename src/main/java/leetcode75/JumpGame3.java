@@ -16,6 +16,9 @@ Constraints:-
 a.) 1 <= arr.length <= 5 * pow(10,4)
 b.) 0 <= arr[i] < arr.length
 c.) 0 <= start < arr.length
+
+Time Complexity = O(N)
+Space Complexity = O(N)
  * */
 
 public class JumpGame3 {
