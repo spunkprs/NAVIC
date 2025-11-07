@@ -20,7 +20,7 @@ a.) 1 <= nums.length <= 104
 b.) 0 <= nums[i] <= 1000
 c.) It's guaranteed that you can reach nums[n - 1]
 
-Note : Need to improve time complexity of the solution, improvised time is O(n * n)
+Note : Need to improve time complexity of the solution, improvised time is O(n)
  * */
 
 public class JumpGame2 {
