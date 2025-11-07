@@ -1,6 +1,7 @@
 package leetcode75;
 
 /**
+Problem : 55
 You are given an integer array nums. You are initially positioned at the array's first index,
 and each element in the array represents your maximum jump length at that position.
 
@@ -10,6 +11,9 @@ Constraints:-
 
 a.) 1 <= nums.length <= pow(10,4)
 b.) 0 <= nums[i] <= pow(10,5)
+
+Time Complexity = O(N * N)
+Space Complexity = O(N)
 
 */
 
