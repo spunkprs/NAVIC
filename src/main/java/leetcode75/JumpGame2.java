@@ -60,6 +60,7 @@ public class JumpGame2 {
         return memory[nums.length - 1];
     }*/
 
+    //Driven by Greedy Approach
     private int processToComputeMinimumJumpsToReachEnd(int nums[]) {
         int rightIndex = 0;
         int leftIndex = 0;
