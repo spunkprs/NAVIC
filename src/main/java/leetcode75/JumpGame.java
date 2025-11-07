@@ -15,6 +15,8 @@ b.) 0 <= nums[i] <= pow(10,5)
 Time Complexity = O(N * N)
 Space Complexity = O(N)
 
+Note : Time complexity can be improved to O(N) by making use of greedy approach instead, have made use of similar logic in JumpGame2 problem !!
+
 */
 
 public class JumpGame {
