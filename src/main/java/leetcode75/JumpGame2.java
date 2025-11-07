@@ -20,7 +20,10 @@ a.) 1 <= nums.length <= 104
 b.) 0 <= nums[i] <= 1000
 c.) It's guaranteed that you can reach nums[n - 1]
 
-Note : Need to improve time complexity of the solution, improvised time is O(n)
+Time Complexity = O(N)
+Space Complexity = O(N) --> Can be reduced to O(1)
+
+Supporting link to land to most optimised solution --> https://www.youtube.com/watch?v=7SBVnw7GSTk&t=669s
  * */
 
 public class JumpGame2 {
@@ -40,6 +43,7 @@ public class JumpGame2 {
         return processToComputeMinimumJumpsToReachEnd(nums);
     }
 
+     // This approach was driven by DP leading to time of (N * N)
     /*private int processToComputeMinimumJumpsToReachEndOne(int nums[]) {
         int memory[] = new int[nums.length];
         memory[0] = 0;
