@@ -25,80 +25,80 @@ Note : Need to improve time complexity of the solution, improvised time is O(n)
 
 public class JumpGame2 {
 
-    public int jump(int[] nums) {
+    public static void main(String ar[]) {
 
-        int distance = 0;
+        JumpGame2 unit = new JumpGame2();
+        int nums[] = {4,1,1,3,1,1,1};
 
+        System.out.println("Minimum number of jumps required to reach end is " + unit.jump(nums));
+    }
+
+    public int jump(int nums[]) {
         if (nums.length == 1) {
             return 0;
         }
-
-        Node startNode = new Node(nums[0], 0, 0);
-
-        Queue<Node> queue = new LinkedList();
-
-        queue.add(startNode);
-
-        Set<Node> exploredNodes = new HashSet();
-
-        while (!queue.isEmpty()) {
-            Node peekedNode = queue.peek();
-
-            for (Node childNode : fetchChildren(peekedNode, nums, exploredNodes)) {
-                queue.add(childNode);
-            }
-
-            if (peekedNode.index == nums.length - 1) {
-                distance = peekedNode.distance;
-                break;
-            }
-            queue.poll();
-        }
-
-        return distance;
+        return processToComputeMinimumJumpsToReachEnd(nums);
     }
 
-    private List<Node> fetchChildren(Node peekedNode, int nums[], Set<Node> exploredNodes) {
-        int index = peekedNode.index;
-        int num = peekedNode.num;
-
-        List<Node> childNodes = new ArrayList();
-
-        int startIndex = 1;
-
-        while (index + startIndex < nums.length && startIndex <= num) {
-            Node preparedNode = new Node(nums[index + startIndex], index + startIndex, peekedNode.distance + 1);
-            if (!exploredNodes.contains(preparedNode))  {
-                childNodes.add(preparedNode);
+    /*private int processToComputeMinimumJumpsToReachEndOne(int nums[]) {
+        int memory[] = new int[nums.length];
+        memory[0] = 0;
+        int minJumpsForIndex;
+        for (int i = 1; i < nums.length; i++) {
+            minJumpsForIndex = Integer.MAX_VALUE;
+            for (int j = i - 1; j >= 0; j--) {
+                if ( i - j <= nums[j]) {
+                    minJumpsForIndex = memory[j] + 1 < minJumpsForIndex ? memory[j] + 1 : minJumpsForIndex;
+                }
             }
-            startIndex++;
+            memory[i] = minJumpsForIndex;
         }
+        return memory[nums.length - 1];
+    }*/
 
-        return childNodes;
+    private int processToComputeMinimumJumpsToReachEnd(int nums[]) {
+        int rightIndex = 0;
+        int leftIndex = 0;
+        int minJump = 0;
+
+        PriorityQueue<Integer> maxHeapOne = new PriorityQueue(new ReverseComparator());
+        PriorityQueue<Integer> maxHeapTwo = new PriorityQueue(new ReverseComparator());
+
+        maxHeapOne.add(leftIndex);
+        maxHeapTwo.add(rightIndex);
+
+        do {
+            rightIndex = maxHeapTwo.peek();
+            leftIndex = maxHeapOne.peek();
+
+            maxHeapTwo = new PriorityQueue(new ReverseComparator());
+            maxHeapOne = new PriorityQueue(new ReverseComparator());
+
+            int index = leftIndex;
+
+            while (index <= rightIndex) {
+                if (nums[index] != 0) {
+                    maxHeapTwo.add(index + nums[index]);
+                    maxHeapOne.add(index + 1);
+                }
+                index++;
+            }
+
+            minJump++;
+
+            rightIndex = maxHeapTwo.peek();
+            leftIndex = maxHeapOne.peek();
+
+        } while (rightIndex < nums.length - 1);
+
+        return minJump;
     }
 
-    class Node {
-        private int num;
-        private int index;
-        private int distance;
+    static class ReverseComparator implements Comparator<Integer> {
 
-        public Node (int num, int index, int distance) {
-            this.num = num;
-            this.index = index;
-            this.distance = distance;
-        }
-
-        public int hashCode() {
-            return Objects.hash(index);
-        }
-
-        public boolean equals(Object obj) {
-            if (obj == null || !(obj instanceof Node)) {
-                return false;
-            }
-
-            Node other = (Node)obj;
-            return this.index == other.index ? true : false;
+        @Override
+        public int compare(Integer a, Integer b) {
+            return a < b ? 1 : a == b ? 0 : -1;
         }
     }
 }
