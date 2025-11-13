@@ -25,7 +25,13 @@ public class AccountOperations {
     }
 
     public void transferFunds(Account holderFrom, Account holderTo, double amount) {
-
+        if (amount > 0) {
+            double existingBalance = holderFrom.getBalance();
+            if (existingBalance >= amount) {
+                holderFrom.setBalance(existingBalance - amount);
+                holderTo.setBalance(holderTo.getBalance() + amount);
+            }
+        }
     }
 
     //Fetch statement for some configurable number of days can be another method here
