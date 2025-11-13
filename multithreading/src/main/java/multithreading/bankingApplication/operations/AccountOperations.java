@@ -51,9 +51,9 @@ public class AccountOperations {
             withdraw(holderFrom, amount);
             deposit(holderTo, amount);
         } catch (WithdrawException e) {
-            System.out.print("Transfer failed and no reverse computation is needed !!");
+            System.out.print("Transfer failed and reverse computation is not needed to maintain data atomicity && consistency !!");
         } catch (DepositException e) {
-            System.out.print("Transfer failed and reverse computation is needed !!");
+            System.out.print("Transfer failed and reverse computation is needed to maintain data atomicity && consistency !!");
             depositMoneyBack(holderFrom, amount);
         }
     }
