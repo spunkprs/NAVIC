@@ -11,10 +11,9 @@ public class AccountOperations {
         return account.getAtomicBalance().get();
     }
 
-    public void deposit(Account accountHolder, double amount) {
+    public void deposit(Account accountHolder, int amount) {
         if (amount > 0) {
-            double existingBalance = accountHolder.getAtomicBalance().get();
-            accountHolder.setBalance(existingBalance + amount);
+            int existingBalance = accountHolder.getAtomicBalance().get();
             int attemptCount = 0;
             do {
                 existingBalance = accountHolder.getAtomicBalance().get();
@@ -22,14 +21,15 @@ public class AccountOperations {
             } while (attemptCount <= 5 && !accountHolder.getAtomicBalance().compareAndSet(existingBalance, existingBalance + amount));
             //Raise exception in case attemptCount >= 6
             if (attemptCount >= 6) {
+                System.out.print("Exception encountered while depositing amount " + amount + " to account Id" + accountHolder.getAccId());
                 throw new DepositException(ExceptionMessages.DEPOSIT_EXCEPTION.getExceptionMessage());
             }
         }
     }
 
-    public void withdraw(Account accountHolder, double amount) {
+    public void withdraw(Account accountHolder, int amount) {
         if (amount > 0) {
-            double existingBalance = accountHolder.getAtomicBalance().get();
+            int existingBalance = accountHolder.getAtomicBalance().get();
             int attemptCount = 0;
             if (existingBalance >= amount) {
                 do {
@@ -40,13 +40,14 @@ public class AccountOperations {
                         && !accountHolder.getAtomicBalance().compareAndSet(existingBalance, existingBalance - amount));
                 //Raise exception in case attemptCount >= 6
                 if (attemptCount >= 6) {
+                    System.out.print("Exception encountered while withdrawing amount " + amount + " from account Id" + accountHolder.getAccId());
                     throw new WithdrawException(ExceptionMessages.WITHDRAW_EXCEPTION.getExceptionMessage());
                 }
             }
         }
     }
 
-    public void transferFunds(Account holderFrom, Account holderTo, double amount) {
+    public void transferFunds(Account holderFrom, Account holderTo, int amount) {
         try {
             withdraw(holderFrom, amount);
             deposit(holderTo, amount);
@@ -58,10 +59,9 @@ public class AccountOperations {
         }
     }
 
-    private void depositMoneyBack(Account accountHolder, double amount) {
+    private void depositMoneyBack(Account accountHolder, int amount) {
         if (amount > 0) {
-            double existingBalance = accountHolder.getAtomicBalance().get();
-            accountHolder.setBalance(existingBalance + amount);
+            int existingBalance = accountHolder.getAtomicBalance().get();
             do {
                 existingBalance = accountHolder.getAtomicBalance().get();
             } while (!accountHolder.getAtomicBalance().compareAndSet(existingBalance, existingBalance + amount));
