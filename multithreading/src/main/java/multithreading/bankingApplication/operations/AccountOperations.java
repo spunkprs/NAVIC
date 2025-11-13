@@ -5,21 +5,32 @@ import multithreading.bankingApplication.entity.Account;
 public class AccountOperations {
 
     public double fetchBalance(Account account) {
-        return account.getBalance();
+        return account.getAtomicBalance().get();
     }
 
     public void deposit(Account accountHolder, double amount) {
         if (amount > 0) {
-            double existingBalance = accountHolder.getBalance();
+            double existingBalance = accountHolder.getAtomicBalance().get();
             accountHolder.setBalance(existingBalance + amount);
+            int attemptCount = 0;
+            do {
+                existingBalance = accountHolder.getAtomicBalance().get();
+                attemptCount++;
+            } while (!accountHolder.getAtomicBalance().compareAndSet(existingBalance, existingBalance + amount) && attemptCount <= 5);
+            //Raise exception in case attemptCount >= 6
         }
     }
 
     public void withdraw(Account accountHolder, double amount) {
         if (amount > 0) {
-            double existingBalance = accountHolder.getBalance();
+            double existingBalance = accountHolder.getAtomicBalance().get();
+            int attemptCount = 0;
             if (existingBalance >= amount) {
-                accountHolder.setBalance(existingBalance - amount);
+                do {
+                    existingBalance = accountHolder.getAtomicBalance().get();
+                    attemptCount++;
+                } while (!accountHolder.getAtomicBalance().compareAndSet(existingBalance, existingBalance - amount) && attemptCount <= 5);
+                //Raise exception in case attemptCount >= 6
             }
         }
     }
