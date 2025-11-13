@@ -1,6 +1,9 @@
 package multithreading.bankingApplication.operations;
 
 import multithreading.bankingApplication.entity.Account;
+import multithreading.bankingApplication.entity.ExceptionMessages;
+import multithreading.bankingApplication.exception.DepositException;
+import multithreading.bankingApplication.exception.WithdrawException;
 
 public class AccountOperations {
 
@@ -16,8 +19,11 @@ public class AccountOperations {
             do {
                 existingBalance = accountHolder.getAtomicBalance().get();
                 attemptCount++;
-            } while (!accountHolder.getAtomicBalance().compareAndSet(existingBalance, existingBalance + amount) && attemptCount <= 5);
+            } while (attemptCount <= 5 && !accountHolder.getAtomicBalance().compareAndSet(existingBalance, existingBalance + amount));
             //Raise exception in case attemptCount >= 6
+            if (attemptCount >= 6) {
+                throw new DepositException(ExceptionMessages.DEPOSIT_EXCEPTION.getExceptionMessage());
+            }
         }
     }
 
@@ -29,19 +35,36 @@ public class AccountOperations {
                 do {
                     existingBalance = accountHolder.getAtomicBalance().get();
                     attemptCount++;
-                } while (!accountHolder.getAtomicBalance().compareAndSet(existingBalance, existingBalance - amount) && attemptCount <= 5);
+                } while (existingBalance >= amount
+                        && attemptCount <= 5
+                        && !accountHolder.getAtomicBalance().compareAndSet(existingBalance, existingBalance - amount));
                 //Raise exception in case attemptCount >= 6
+                if (attemptCount >= 6) {
+                    throw new WithdrawException(ExceptionMessages.WITHDRAW_EXCEPTION.getExceptionMessage());
+                }
             }
         }
     }
 
     public void transferFunds(Account holderFrom, Account holderTo, double amount) {
+        try {
+            withdraw(holderFrom, amount);
+            deposit(holderTo, amount);
+        } catch (WithdrawException e) {
+            System.out.print("Transfer failed and no reverse computation is needed !!");
+        } catch (DepositException e) {
+            System.out.print("Transfer failed and reverse computation is needed !!");
+            depositMoneyBack(holderFrom, amount);
+        }
+    }
+
+    private void depositMoneyBack(Account accountHolder, double amount) {
         if (amount > 0) {
-            double existingBalance = holderFrom.getBalance();
-            if (existingBalance >= amount) {
-                holderFrom.setBalance(existingBalance - amount);
-                holderTo.setBalance(holderTo.getBalance() + amount);
-            }
+            double existingBalance = accountHolder.getAtomicBalance().get();
+            accountHolder.setBalance(existingBalance + amount);
+            do {
+                existingBalance = accountHolder.getAtomicBalance().get();
+            } while (!accountHolder.getAtomicBalance().compareAndSet(existingBalance, existingBalance + amount));
         }
     }
 

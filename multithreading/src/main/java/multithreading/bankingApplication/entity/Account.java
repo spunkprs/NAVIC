@@ -1,9 +1,11 @@
 package multithreading.bankingApplication.entity;
 
 import java.util.Date;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class Account {
     private int accId;
+    private AtomicReference<Double> atomicBalance;
     private double balance;
     private Date openedDate;
     private AccountType accountType;
@@ -11,7 +13,7 @@ public class Account {
     private Person accountHolder;
 
     public double getBalance() {
-        return balance;
+        return atomicBalance.get();
     }
 
     public Date getOpenedDate() {
@@ -20,5 +22,9 @@ public class Account {
 
     public void setBalance(double balance) {
         this.balance = balance;
+    }
+
+    public AtomicReference<Double> getAtomicBalance() {
+        return atomicBalance;
     }
 }
