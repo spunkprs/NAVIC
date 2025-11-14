@@ -1,7 +1,7 @@
 package multithreading.bankingApplication.validate;
 
 import multithreading.bankingApplication.entity.Account;
-import multithreading.bankingApplication.operations.AccountOperations;
+import multithreading.bankingApplication.operations.AccountOperationsUsingOptimisticLocking;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -38,28 +38,28 @@ public class BankingApplicationValidation {
         accFour.setAtomicBalance(balanceFour);
         accFour.setAccId(4);
 
-        AccountOperations accountOperations = new AccountOperations();
+        AccountOperationsUsingOptimisticLocking accountOperationsUsingOptimisticLocking = new AccountOperationsUsingOptimisticLocking();
 
         ExecutorService executorService = Executors.newFixedThreadPool(5);
 
         executorService.submit(() -> {
-            accountOperations.deposit(accOne, 100);
+            accountOperationsUsingOptimisticLocking.deposit(accOne, 100);
         });
 
         executorService.submit(() -> {
-            accountOperations.withdraw(accTwo, 50);
+            accountOperationsUsingOptimisticLocking.withdraw(accTwo, 50);
         });
 
         executorService.submit(() -> {
-            accountOperations.transferFunds(accThree, accTwo, 150);
+            accountOperationsUsingOptimisticLocking.transferFunds(accThree, accTwo, 150);
         });
 
         executorService.submit(() -> {
-            accountOperations.transferFunds(accFour, accTwo, 200);
+            accountOperationsUsingOptimisticLocking.transferFunds(accFour, accTwo, 200);
         });
 
         executorService.submit(() -> {
-            accountOperations.transferFunds(accOne, accFour, 100);
+            accountOperationsUsingOptimisticLocking.transferFunds(accOne, accFour, 100);
         });
 
         executorService.shutdown();

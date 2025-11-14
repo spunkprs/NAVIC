@@ -5,7 +5,7 @@ import multithreading.bankingApplication.entity.ExceptionMessages;
 import multithreading.bankingApplication.exception.DepositException;
 import multithreading.bankingApplication.exception.WithdrawException;
 
-public class AccountOperations {
+public class AccountOperationsUsingOptimisticLocking {
 
     public double fetchBalance(Account account) {
         return account.getAtomicBalance().get();
