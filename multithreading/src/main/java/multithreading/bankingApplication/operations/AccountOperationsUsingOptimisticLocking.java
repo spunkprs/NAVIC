@@ -7,7 +7,7 @@ import multithreading.bankingApplication.exception.WithdrawException;
 
 public class AccountOperationsUsingOptimisticLocking {
 
-    public double fetchBalance(Account account) {
+    public int fetchBalance(Account account) {
         return account.getAtomicBalance().get();
     }
 
