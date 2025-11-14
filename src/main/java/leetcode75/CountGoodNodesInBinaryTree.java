@@ -2,6 +2,21 @@ package leetcode75;
 
 import java.util.TreeMap;
 
+/**
+Problem : 1448
+
+Given a binary tree root, a node X in the tree is named good if in the path from root to X there are no nodes with a value greater than X.
+Return the number of good nodes in the binary tree
+
+Constraints:-
+a.) The number of nodes in the binary tree is in the range [1, 10^5].
+b.) Each node's value is between [-10^4, 10^4]
+
+Time Complexity = O(n * log(n))
+Space Complexity = O(n)
+
+ * */
+
 public class CountGoodNodesInBinaryTree {
 
     private int goodNodesCount = 0;
