@@ -16,6 +16,11 @@ Constraints:-
 a.) The number of nodes in the tree is in the range [0, 1000].
 b.) -10^9 <= Node.val <= 10^9
 c.) -1000 <= targetSum <= 1000
+
+Time Complexity : O(N), where N being number of nodes in the tree
+Space Complexity : O(N) because of usage of HashMap
+Reference used : https://www.youtube.com/watch?v=fFVZt-6sgyo
+
  * */
 
 public class PathSum3 {
