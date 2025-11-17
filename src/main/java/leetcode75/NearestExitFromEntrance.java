@@ -23,6 +23,9 @@ f.) 0 <= entrancerow < m
 g.) 0 <= entrancecol < n
 h.) entrance will always be an empty cell.
 
+Time Complexity = O(M * N), where M being number of rows && N being number of columns in the grid
+Space Complexity = O(M * N), where M being number of rows && N being number of columns in the grid, because of usage of visitedNodes i.e HashSet
+
  * */
 
 public class NearestExitFromEntrance {
