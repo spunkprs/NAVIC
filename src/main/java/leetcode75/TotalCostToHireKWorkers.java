@@ -3,6 +3,8 @@ package leetcode75;
 import java.util.PriorityQueue;
 
 /**
+Problem : 2462
+
 You are given a 0-indexed integer array costs where costs[i] is the cost of hiring the ith worker.
 
 You are also given two integers k and candidates. We want to hire exactly k workers according to the following rules:
