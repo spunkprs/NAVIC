@@ -1,5 +1,19 @@
 package leetcode75;
 
+/**
+Problem : 53
+Given an integer array nums, find the subarray with the largest sum, and return its sum
+
+Constraints:-
+
+a.) 1 <= nums.length <= 10^5
+b.) -10^4 <= nums[i] <= 10^4
+
+Time Complexity = O(N)
+Space Complexity = O(1) --> No additional space required
+
+ * */
+
 public class MaximumSumSubArray {
 
     public int maxSubArray(int[] nums) {
