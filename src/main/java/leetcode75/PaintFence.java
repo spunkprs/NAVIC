@@ -4,6 +4,25 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+/**
+Problem : 276
+You are painting a fence of n posts with k different colors. You must paint the posts following these rules:
+
+Every post must be painted exactly one color.
+There cannot be three or more consecutive posts with the same color.
+Given the two integers n and k, return the number of ways you can paint the fence
+
+Constraints:-
+
+a.) 1 <= n <= 50
+b.) 1 <= k <= 10^5
+
+The testcases are generated such that the answer is in the range [0, 2^31 - 1] for the given n and k.
+
+Time Complexity = O(K ^ N) [Exponential time, can be improved]
+Space Complexity = O(N)
+ * */
+
 public class PaintFence {
 
     public static void main(String ar[]) {
