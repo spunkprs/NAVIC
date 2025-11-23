@@ -14,6 +14,9 @@ Constraints:-
 
 a.) 1 <= text1.length, text2.length <= 1000
 b.) text1 and text2 consist of only lowercase English characters
+
+Time Complexity = O(M * N) --> Optimised Approach [Made use of DP]
+Space Complexity = O(M * N)
  * */
 
 public class LongestCommonSubsequence {
