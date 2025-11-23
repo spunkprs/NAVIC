@@ -28,7 +28,7 @@ public class PaintFence {
     public static void main(String ar[]) {
         PaintFence unit = new PaintFence();
 
-        int n = 7;
+        int n = 3;
         int k = 2;
 
         System.out.print("Number of ways to paint fences " + n + " with " + k + " different colors is :: " + unit.numWays(n, k));
@@ -49,9 +49,15 @@ public class PaintFence {
         int count = 1;
         int sum = 0;
 
-        for (int i = 1; i <= k; i++) {
-            sum += process(parentIndex + 1, i, count, map, n, k);
-        }
+        /*for (int i = 1; i <= k; i++) {
+            //sum += process(parentIndex + 1, i, count, map, n, k);
+            //sum += processOne(parentIndex + 1, i, count, map, n, k);
+            int value = processOne(parentIndex + 1, i, count, map, n, k);
+            sum = value * k;
+        }*/
+
+        int value = processOne(parentIndex + 1, 1, count, map, n, k);
+        sum = value * k;
         return sum;
     }
 
@@ -77,6 +83,57 @@ public class PaintFence {
             return map.get(parentNode);
         }
         return 0;
+    }
+
+    /**
+    Need to fix this method to get optimised time complexity
+     * */
+    private int processOne(int childFenceIndex, int chosenColor, int count, Map<Pair, Integer> map, int totalFence, int maxColors) {
+        if (childFenceIndex <= totalFence) {
+            Pair parentNode = new Pair(childFenceIndex, count);
+
+            if (!map.containsKey(parentNode)) {
+                if (childFenceIndex == totalFence) {
+                    parentNode.count = 1;
+                    map.put(parentNode, 1);
+                } else {
+                    int sum = 0;
+                    int index = 1;
+                    while (index <= maxColors) {
+                        if (count < 2) {
+                            if (chosenColor == index) {
+                                int value = processOne(childFenceIndex + 1, index, count + 1, map, totalFence, maxColors);
+                                sum += value;
+                                index++;
+                            } else {
+                                int value = processOne(childFenceIndex + 1, index, 1, map, totalFence, maxColors);
+                                sum += value * (maxColors - 1);
+                                index = maxColors + 1;
+                            }
+                        } else if (chosenColor == index && count == 2) {
+                            index++;
+                        } else if (chosenColor != index && count == 2) {
+                            int value = processOne(childFenceIndex + 1, index, 1, map, totalFence, maxColors);
+                            sum += value * (maxColors - 1);
+                            index = maxColors + 1;
+                        }
+                    }
+                    map.put(parentNode, sum);
+                }
+            }
+            return map.get(parentNode);
+        }
+        return 0;
+    }
+
+    private int fetchNextColor(int chosenColor, int maxColors) {
+        if (chosenColor == maxColors && chosenColor - 1 >= 1) {
+            return chosenColor - 1;
+        } else if (chosenColor == 1 && chosenColor + 1 <= maxColors) {
+            return chosenColor + 1;
+        } else {
+            return chosenColor + 1;
+        }
     }
 
     class Pair {
