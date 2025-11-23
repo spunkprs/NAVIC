@@ -1,9 +1,9 @@
 package leetcode75;
 
-public class LongestCOmmonSubsequence {
+public class LongestCommonSubsequence {
 
     public static void main(String ar[]) {
-        LongestCOmmonSubsequence unit = new LongestCOmmonSubsequence();
+        LongestCommonSubsequence unit = new LongestCommonSubsequence();
         String textOne = "abc";
         String textTwo = "abc";
 
