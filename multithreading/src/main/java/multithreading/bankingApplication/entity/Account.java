@@ -12,7 +12,7 @@ public class Account {
     private AccountType accountType;
     private AccountStatus accountStatus;
     private Person accountHolder;
-    private ReentrantReadWriteLock reentrantReadWriteLock; //used for optimistic locking
+    private ReentrantReadWriteLock reentrantReadWriteLock; //used for pessimistic locking
     private double accountBalance;
 
     public double getBalance() {
