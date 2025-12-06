@@ -17,6 +17,10 @@ d.) preorder and inorder consist of unique values.
 e.) Each value of inorder also appears in preorder.
 f.) preorder is guaranteed to be the preorder traversal of the tree.
 g.) inorder is guaranteed to be the inorder traversal of the tree
+
+Time Complexity : O(N) --> Where N being number of nodes in the tree
+Space Complexity : O(N)
+
  * */
 
 public class ConstructTreeFromPreOrderAndInorderTraversal {
