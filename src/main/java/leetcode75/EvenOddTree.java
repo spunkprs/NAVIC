@@ -5,6 +5,24 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
 
+
+/**
+Problem : 1609
+A binary tree is named Even-Odd if it meets the following conditions:
+
+The root of the binary tree is at level index 0, its children are at level index 1, their children are at level index 2, etc.
+For every even-indexed level, all nodes at the level have odd integer values in strictly increasing order (from left to right).
+For every odd-indexed level, all nodes at the level have even integer values in strictly decreasing order (from left to right).
+
+Given the root of a binary tree, return true if the binary tree is Even-Odd, otherwise return false.
+
+Constraints:
+
+a.) The number of nodes in the tree is in the range [1, 10^5].
+b.) 1 <= Node.val <= 10^6
+
+ * */
+
 public class EvenOddTree {
 
     static class TreeNode {
