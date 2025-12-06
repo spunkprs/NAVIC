@@ -21,6 +21,11 @@ Constraints:
 a.) The number of nodes in the tree is in the range [1, 10^5].
 b.) 1 <= Node.val <= 10^6
 
+Time Complexity : O(N)
+Space Complexity : Max number of nodes at any level
+
+Where N being number of nodes in the tree
+
  * */
 
 public class EvenOddTree {
