@@ -3,6 +3,22 @@ package leetcode75;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+Problem : 105
+
+Given two integer arrays preorder and inorder where preorder is the preorder traversal of a binary tree and inorder is the inorder traversal of the same tree, construct and return the binary tree
+
+Constraints:-
+
+a.) 1 <= preorder.length <= 3000
+b.) inorder.length == preorder.length
+c.) -3000 <= preorder[i], inorder[i] <= 3000
+d.) preorder and inorder consist of unique values.
+e.) Each value of inorder also appears in preorder.
+f.) preorder is guaranteed to be the preorder traversal of the tree.
+g.) inorder is guaranteed to be the inorder traversal of the tree
+ * */
+
 public class ConstructTreeFromPreOrderAndInorderTraversal {
 
 
