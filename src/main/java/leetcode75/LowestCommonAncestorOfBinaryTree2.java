@@ -16,6 +16,10 @@ a.) The number of nodes in the tree is in the range [1, 10^4].
 b.) -10^9 <= Node.val <= 10^9
 c.) All Node.val are unique.
 d.) p != q
+
+
+Time Complexity : O(N)
+Space Complexity : O(N), where N being number of nodes in the tree
  * */
 
 public class LowestCommonAncestorOfBinaryTree2 {
