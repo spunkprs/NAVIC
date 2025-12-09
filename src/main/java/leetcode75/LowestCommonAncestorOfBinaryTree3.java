@@ -3,6 +3,7 @@ package leetcode75;
 import java.util.Stack;
 
 /**
+Problem : 1650
 Given two nodes of a binary tree p and q, return their lowest common ancestor (LCA).
 
 Each node will have a reference to its parent node. The definition for Node is below:
@@ -24,6 +25,10 @@ b.) -10^9 <= Node.val <= 10^9
 c.) All Node.val are unique.
 d.) p != q
 e.) p and q exist in the tree
+
+Time Complexity = O(H)
+Space Complexity = O(H)
+Where H being height of tree and this could also lead to N as well{where N being number of nodes in the tree}
  * */
 
 public class LowestCommonAncestorOfBinaryTree3 {
