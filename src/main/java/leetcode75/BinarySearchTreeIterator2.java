@@ -18,6 +18,9 @@ Problem : 1586
  You may assume that next() and prev() calls will always be valid. That is,
  there will be at least a next/previous number in the in-order traversal when next()/prev() is called
 
+ Time Complexity : O(N)
+ Space Complexity : O(N), where N being number of nodes in the tree
+
  * */
 
 public class BinarySearchTreeIterator2 {
