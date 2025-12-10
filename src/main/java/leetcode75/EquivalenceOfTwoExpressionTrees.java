@@ -21,6 +21,9 @@ Problem : 1612
 a.) The number of nodes in both trees are equal, odd and, in the range [1, 4999].
 b.) Node.val is '+' or a lower-case English letter.
 c.) It's guaranteed that the tree given is a valid binary expression tree
+
+ Time Complexity : O(N)
+ Space Complexity : O(N), where N being number of operators + number of operands
  * */
 
 public class EquivalenceOfTwoExpressionTrees {
