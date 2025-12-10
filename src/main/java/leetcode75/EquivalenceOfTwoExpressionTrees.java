@@ -3,6 +3,26 @@ package leetcode75;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+Problem : 1612
+ A binary expression tree is a kind of binary tree used to represent arithmetic expressions.
+ Each node of a binary expression tree has either zero or two children. Leaf nodes (nodes with 0 children)
+ correspond to operands (variables), and internal nodes (nodes with two children) correspond to the operators.
+ In this problem, we only consider the '+' operator (i.e. addition).
+
+ You are given the roots of two binary expression trees, root1 and root2.
+ Return true if the two binary expression trees are equivalent. Otherwise, return false.
+
+ Two binary expression trees are equivalent if they evaluate to the same value regardless of
+ what the variables are set to
+
+ Constraints:-
+
+a.) The number of nodes in both trees are equal, odd and, in the range [1, 4999].
+b.) Node.val is '+' or a lower-case English letter.
+c.) It's guaranteed that the tree given is a valid binary expression tree
+ * */
+
 public class EquivalenceOfTwoExpressionTrees {
 
 
