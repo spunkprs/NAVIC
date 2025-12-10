@@ -3,6 +3,7 @@ package leetcode75;
 import java.util.Stack;
 
 /**
+Problem : 1628
  Given the postfix tokens of an arithmetic expression, build and return the binary expression tree that represents this expression.
 
  Postfix notation is a notation for writing arithmetic expressions in which the operands (numbers) appear before their operators. For example,
@@ -37,6 +38,11 @@ d.) If s[i] is a number, its integer representation is no more than 10^5.
 e.) It is guaranteed that s is a valid expression.
 f.) The absolute value of the result and intermediate values will not exceed 10^9.
 g.) It is guaranteed that no expression will include division by zero.
+
+ Reference : https://en.wikipedia.org/wiki/Binary_expression_tree
+
+ Time Complexity : O(N)
+ Space Complexity : O(N), where N being number of operators + number of operands
 
  * */
 
