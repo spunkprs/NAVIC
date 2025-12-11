@@ -19,7 +19,12 @@ a.) 1 <= prices.length <= 5 * 10^4
 b.) 1 <= prices[i] < 5 * 10^4
 c.) 0 <= fee < 5 * 10^4
 
+Time Complexity : O(N)
+Space Complexity : O(2 * N) ~ O(N)
 
+---Nice problem of DP----
+
+References : https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/editorial/
  * */
 
 public class BestTimeToBuyAndSellStockWithTxnFees {
