@@ -19,6 +19,10 @@ Constraints:-
 
 a.) 1 <= nums.length, k <= 10^5
 b.) -10^4 <= nums[i] <= 10^4
+
+
+Time Complexity : O(Nlog(K)), where N being size of array provided and K is the window size
+Space Complexity : O(N)
  * */
 
 public class JumpGame6 {
