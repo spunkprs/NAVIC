@@ -21,6 +21,10 @@ a.) n == nums.length == costs.length
 b.) 1 <= n <= 10^5
 c.) 0 <= nums[i], costs[i] <= 10^5
 
+The solution makes use of top down DP approach hence making it's a recursive solution but for some of the test cases
+it is getting timed out
+
+Will try iterative DP approach OR Bottom Up approach instead
 
  * */
 
