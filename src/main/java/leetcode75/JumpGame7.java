@@ -3,6 +3,7 @@ package leetcode75;
 import java.util.*;
 
 /**
+Problem : 1871
  You are given a 0-indexed binary string s and two integers minJump and maxJump. In the beginning,
  you are standing at index 0, which is equal to '0'. You can move from index i to index j if the
  following conditions are fulfilled:
@@ -17,6 +18,11 @@ import java.util.*;
  b.) s[i] is either '0' or '1'.
  c.) s[0] == '0'
  d.) 1 <= minJump <= maxJump < s.length
+
+The solution makes use of top down DP approach hence making it's a recursive solution but for some of the test cases
+it is getting timed out
+
+Trying iterative DP approach OR Bottom Up approach instead
 
  * */
 
