@@ -25,6 +25,9 @@ it is getting timed out
 Tried iterative DP approach OR Bottom Up approach as well but still getting 108/143 test cases passed,
 for remaining getting timed out concerns
 
+Time Complexity : O(N * maxJump - minJump) --> For both Top-Down && Bottom_up Approach
+Space Complexity : O(N) --> For both Top-Down && Bottom-Up Approach
+
  * */
 
 public class JumpGame7 {
@@ -36,10 +39,10 @@ public class JumpGame7 {
         int minJump = 2;
         int maxJump = 3;
         //System.out.println(unit.canReach(s, minJump, maxJump));
-        System.out.println(unit.canReachOne(s, minJump, maxJump));
+        System.out.println(unit.canReach(s, minJump, maxJump));
     }
 
-    public boolean canReach(String s, int minJump, int maxJump) {
+    public boolean canReachOne(String s, int minJump, int maxJump) {
         char arr[] = s.toCharArray();
         Map<Integer, Boolean> map = new HashMap<>();
         if (arr[arr.length - 1] == '1') {
@@ -49,7 +52,7 @@ public class JumpGame7 {
         return map.get(0);
     }
 
-    public boolean canReachOne(String s, int minJump, int maxJump) {
+    public boolean canReach(String s, int minJump, int maxJump) {
         return iterativeApproachToFindCanReachFromSrcToDestination(s, minJump, maxJump);
     }
 
