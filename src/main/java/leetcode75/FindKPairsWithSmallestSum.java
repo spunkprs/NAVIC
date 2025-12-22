@@ -21,6 +21,8 @@ e.) k <= nums1.length * nums2.length
 
 Time Complexity : O(klog(k))
 Space Complexity : O(k)
+
+Reference Link : https://www.youtube.com/watch?v=GbYUDowP3wg
  * */
 
 public class FindKPairsWithSmallestSum {
