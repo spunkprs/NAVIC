@@ -17,6 +17,10 @@ Constraints:
 a.) The number of nodes in the tree is in the range [0, 5000].
 b.) -1000 <= Node.val <= 1000
 c.) -1000 <= targetSum <= 1000
+
+Time Complexity : O(N)
+Space Complexity : O(H)
+Where N being number of nodes in the tree && H being height of tree
  * */
 
 public class PathSum2 {
