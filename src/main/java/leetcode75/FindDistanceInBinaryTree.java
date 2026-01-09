@@ -1,5 +1,19 @@
 package leetcode75;
 
+/**
+Problem : 1740
+Given the root of a binary tree and two integers p and q, return the distance between the nodes of value p and value q in the tree.
+
+The distance between two nodes is the number of edges on the path from one to the other
+
+Constraints:-
+
+a.) The number of nodes in the tree is in the range [1, 10^4].
+b.) 0 <= Node.val <= 10^9
+c.) All Node.val are unique
+d.) p and q are values in the tree
+ * */
+
 public class FindDistanceInBinaryTree {
 
     public static void main(String ar[]) {
