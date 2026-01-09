@@ -24,6 +24,10 @@ d.) All the values in the tree are unique.
 e.) 1 <= startValue, destValue <= n
 f.) startValue != destValue
 
+
+Time Complexity : O(N), where N being number of nodes in the tree
+Space Complexity : O(H), where H being depth of the tree
+
  * */
 
 public class StepByStepDirectionsToBinaryNodeToAnother {
