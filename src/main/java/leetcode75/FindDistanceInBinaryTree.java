@@ -2,6 +2,36 @@ package leetcode75;
 
 public class FindDistanceInBinaryTree {
 
+    public static void main(String ar[]) {
+        FindDistanceInBinaryTree unit = new FindDistanceInBinaryTree();
+        TreeNode root = new TreeNode(3);
+        TreeNode nodeOne = new TreeNode(5);
+        TreeNode nodeTwo = new TreeNode(1);
+        TreeNode nodeThree = new TreeNode(6);
+        TreeNode nodeFour = new TreeNode(2);
+        TreeNode nodeFive = new TreeNode(0);
+        TreeNode nodeSix = new TreeNode(8);
+        TreeNode nodeSeven = new TreeNode(7);
+        TreeNode nodeEight = new TreeNode(4);
+
+        root.left = nodeOne;
+        root.right = nodeTwo;
+
+        nodeOne.left = nodeThree;
+        nodeOne.right = nodeFour;
+
+        nodeTwo.left = nodeFive;
+        nodeTwo.right = nodeSix;
+
+        nodeFour.left = nodeSeven;
+        nodeFour.right = nodeEight;
+
+        int firstNode = 5;
+        int secondNode = 0;
+
+        System.out.print("Distance between node " + firstNode + " and second node " + secondNode + " is " + unit.findDistance(root, firstNode, secondNode));
+    }
+
     private Node headOne;
     private Node tailOne;
     private Node headTwo;
@@ -12,13 +42,7 @@ public class FindDistanceInBinaryTree {
         private int val;
         private TreeNode left;
         private TreeNode right;
-        TreeNode() {}
         TreeNode(int val) { this.val = val; }
-        TreeNode(int val, TreeNode left, TreeNode right) {
-            this.val = val;
-            this.left = left;
-            this.right = right;
-        }
     }
 
     public int findDistance(TreeNode root, int p, int q) {
@@ -32,27 +56,34 @@ public class FindDistanceInBinaryTree {
         Node tempNodeOne = headOne;
         Node tempNodeTwo = headTwo;
 
-        while (tempNodeOne.nextNode != null && tempNodeTwo.nextNode != null && tempNodeOne.num == tempNodeTwo.num) {
+        while (tempNodeOne != null && tempNodeTwo != null && tempNodeOne.num == tempNodeTwo.num) {
             tempNodeOne = tempNodeOne.nextNode;
             tempNodeTwo = tempNodeTwo.nextNode;
         }
 
-        int distanceOne = 1;
-        int distanceTwo = 1;
+        Node lcaOne = null;
+        Node lcaTwo = null;
 
-        while (tempNodeOne.num != tailOne.num) {
+        if (tempNodeOne != null) {
+            lcaOne = tempNodeOne.prevNode;
+        }
+
+        if (tempNodeTwo != null) {
+            lcaTwo = tempNodeTwo.prevNode;
+        }
+
+        int distanceOne = 0;
+        int distanceTwo = 0;
+
+        while (lcaOne != null && lcaOne.num != tailOne.num) {
             distanceOne++;
-            tempNodeOne = tempNodeOne.nextNode;
+            lcaOne = lcaOne.nextNode;
         }
 
-        distanceOne--;
-
-        while (tempNodeTwo.num != tailTwo.num) {
+        while (lcaTwo != null && lcaTwo.num != tailTwo.num) {
             distanceTwo++;
-            tempNodeTwo = tempNodeTwo.nextNode;
+            lcaTwo = lcaTwo.nextNode;
         }
-
-        distanceTwo--;
 
         return distanceOne + distanceTwo;
     }
