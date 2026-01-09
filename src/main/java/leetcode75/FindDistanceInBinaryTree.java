@@ -12,6 +12,9 @@ a.) The number of nodes in the tree is in the range [1, 10^4].
 b.) 0 <= Node.val <= 10^9
 c.) All Node.val are unique
 d.) p and q are values in the tree
+
+Time Complexity : O(N), where N being number of nodes in the tree
+Space Complexity : O(H), where H being depth of the tree
  * */
 
 public class FindDistanceInBinaryTree {
