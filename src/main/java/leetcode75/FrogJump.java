@@ -19,6 +19,10 @@ b.) 0 <= stones[i] <= 2^31 - 1
 c.) stones[0] == 0
 d.) stones is sorted in a strictly increasing order
 
+Time Complexity : O(N * N)
+Space Complexity : O(N * N)
+
+Beautiful question centered around multidimensional DP
  * */
 
 public class FrogJump {
