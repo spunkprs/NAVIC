@@ -5,6 +5,28 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+
+/**
+Problem : 1136
+You are given an integer n, which indicates that there are n courses labeled from 1 to n.
+You are also given an array relations where relations[i] = [prevCoursei, nextCoursei],
+representing a prerequisite relationship between course prevCoursei and course nextCoursei: course prevCoursei has to be taken before course nextCoursei.
+
+In one semester, you can take any number of courses as long as you have taken all the prerequisites in the previous semester for the courses you are taking.
+
+Return the minimum number of semesters needed to take all courses. If there is no way to take all the courses, return -1
+
+
+Constraints:-
+
+a.) 1 <= n <= 5000
+b.) 1 <= relations.length <= 5000
+c.) relations[i].length == 2
+d.) 1 <= prevCoursei, nextCoursei <= n
+e.) prevCoursei != nextCoursei
+f.) All the pairs [prevCoursei, nextCoursei] are unique.
+ * */
+
 public class ParallelCourses {
 
     public static void main(String ar[]) {
