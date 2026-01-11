@@ -25,8 +25,8 @@ public class CoinChange {
         //int coins[] = {1, 2, 5};
         //int amount = 11;
 
-        int coins[] = {1};
-        int amount = 0;
+        int coins[] = {2};
+        int amount = 3;
         System.out.println("Fewest number of coins required to cater amount of " + amount + " is " + unit.coinChange(coins, amount));
     }
 
@@ -46,18 +46,18 @@ public class CoinChange {
             if (set.contains(i)) {
                 map.put(i, 1);
             } else {
-                for (int j = i - 1; j >= 1; j--) {
-                    int changeValue = map.get(j);
-                    Pair result = provideMinimumChangeAmount(set, i - j);
-                    if (changeValue != Integer.MAX_VALUE && result.flag) {
+                for (Integer coinValue : set) {
+                    if (i > coinValue) {
                         if (!map.containsKey(i)) {
-                            int value = changeValue + result.minimumCoins;
-                            map.put(i, value);
+                            Integer existingValueForPreviousAmount = map.get(i - coinValue);
+                            if (existingValueForPreviousAmount != null && existingValueForPreviousAmount.intValue() != Integer.MAX_VALUE) {
+                                map.put(i, existingValueForPreviousAmount + 1);
+                            }
                         } else {
-                            int existingValue = map.get(i);
-                            int value = changeValue + result.minimumCoins;
-                            if (value < existingValue) {
-                                map.put(i, value);
+                            Integer existingValueForPreviousAmount = map.get(i - coinValue);
+                            if (existingValueForPreviousAmount != null && existingValueForPreviousAmount.intValue() != Integer.MAX_VALUE) {
+                                int existingValue = map.get(i);
+                                map.put(i, existingValueForPreviousAmount + 1 < existingValue ? existingValueForPreviousAmount + 1 : existingValue);
                             }
                         }
                     }
