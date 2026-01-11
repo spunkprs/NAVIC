@@ -16,6 +16,11 @@ Constraints:-
 a.) 1 <= coins.length <= 12
 b.) 1 <= coins[i] <= 2^31 - 1
 c.) 0 <= amount <= 10^4
+
+Time Complexity : O(S * coins.length), where S is the amount to be reached
+Space Complexity : O(S)
+
+Nice question around 1 dimension DP solved using iterative approach
  * */
 
 public class CoinChange {
