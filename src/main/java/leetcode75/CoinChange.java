@@ -69,27 +69,6 @@ public class CoinChange {
         }
     }
 
-    private Pair provideMinimumChangeAmount(Set<Integer> set, int amount) {
-        Pair result = new Pair(false, Integer.MAX_VALUE);
-        for (int coin : set) {
-            if (amount % coin == 0) {
-                result.flag = true;
-                result.minimumCoins = result.minimumCoins < amount / coin ? result.minimumCoins : amount / coin;
-            }
-        }
-        return result;
-    }
-
-    static class Pair {
-        private boolean flag;
-        private int minimumCoins;
-
-        public Pair(boolean flag, int minimumCoins) {
-            this.flag = flag;
-            this.minimumCoins = minimumCoins;
-        }
-    }
-
     private Set<Integer> populateCoinChange(int[] coins) {
         Set<Integer> set = new HashSet<>();
         for (int i = 0; i < coins.length; i++) {
