@@ -11,6 +11,7 @@ b.) data[i] is either 0 or 1
 
 Time Complexity : O(N), where N being number of elements in the array
 Space Complexity : O(1)
+Level : Medium
  * */
 
 public class MinimumMovesToSwapAllOnesTogetherOne {

@@ -6,10 +6,12 @@ You are given a binary string s. In one second, all occurrences of "01" are simu
 
 Return the number of seconds needed to complete this process
 
- Constraints:-
+Constraints:-
 
 a.) 1 <= s.length <= 1000
 b.) s[i] is either '0' or '1'
+
+Level : Medium
  * */
 
 public class TimeNeededToRearrangeBinaryString {
