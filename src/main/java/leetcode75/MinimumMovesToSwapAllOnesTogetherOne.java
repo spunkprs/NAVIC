@@ -1,5 +1,15 @@
 package leetcode75;
 
+/**
+Problem : 1151
+Given a binary array data, return the minimum number of swaps required to group all 1’s present in the array together in any place in the array
+
+Constraints:-
+
+a.) 1 <= data.length <= 105
+b.) data[i] is either 0 or 1
+ * */
+
 public class MinimumMovesToSwapAllOnesTogetherOne {
 
     public static void main(String ar[]) {
