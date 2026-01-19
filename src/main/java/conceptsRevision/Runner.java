@@ -3,6 +3,11 @@ package conceptsRevision;
 public class Runner {
 
     public static void main(String ar[]) {
+        /**
+        Overriding default methods present in both the parent interfaces and providing overridden default method inside the sub class[Toad] to
+        handle diamond problem in Java !!
+         * */
+
         Animal animal = new Toad();
         animal.behaviour();
 
