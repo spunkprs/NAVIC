@@ -23,5 +23,7 @@ public class Runner {
         aquaticAnimal.swim();
         aquaticAnimal.behaviour();
 
+        Animal.genericMethod();
+
     }
 }
