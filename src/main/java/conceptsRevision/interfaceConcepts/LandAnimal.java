@@ -1,4 +1,4 @@
-package conceptsRevision;
+package conceptsRevision.interfaceConcepts;
 
 public interface LandAnimal extends Animal {
 
