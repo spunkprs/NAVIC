@@ -2,6 +2,10 @@ package conceptsRevision.genericsConcepts.boundedType;
 
 import java.util.List;
 
+/**
+Awesome article used for reference : https://medium.com/@pratik.941/understanding-generics-in-java-a-comprehensive-guide-afd437f413cf
+ * */
+
 public class BoundedTypeParameterExample {
 
     //Example of upper bound
