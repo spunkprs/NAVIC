@@ -2,6 +2,13 @@ package designPatterns.singletonPattern;
 
 import java.io.*;
 
+/**
+Important links for reference :-
+a.) https://www.baeldung.com/java-serialization-readobject-vs-readresolve
+b.) https://www.baeldung.com/java-serial-version-uid
+c.) https://www.baeldung.com/java-serialization
+ * */
+
 public class Runner {
 
     public static void main(String ar[]) throws IOException, ClassNotFoundException {
@@ -14,6 +21,11 @@ public class Runner {
         objectOutputStream.writeObject(serializedInstance);
         objectOutputStream.flush();
         objectOutputStream.close();
+
+        /**
+         One thing to notice in the readObject() example is that the object hashCode is different.
+         That’s because, during deserialization, the new object gets created from the streamed object
+         * */
 
         FileInputStream fileInputStream
                 = new FileInputStream("serialize.txt");

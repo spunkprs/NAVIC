@@ -1,5 +1,6 @@
 package designPatterns.singletonPattern;
 
+import java.io.ObjectStreamException;
 import java.io.Serializable;
 
 public class Singleton implements Serializable {
@@ -29,5 +30,14 @@ public class Singleton implements Serializable {
 
     public String getName() {
         return name;
+    }
+
+    /**
+     Before mentioning this method two different instances of Singleton class would have been there, during deserialization process
+     but not with this method in picture
+     * */
+
+    private Object readResolve() throws ObjectStreamException {
+        return instance;
     }
 }
