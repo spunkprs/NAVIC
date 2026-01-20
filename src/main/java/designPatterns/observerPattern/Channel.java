@@ -17,6 +17,9 @@ public class Channel {
         this.subscriberSet = new HashSet<>();
     }
 
+    /**
+    Method used to push information to all the subscribers !!
+     * */
     public void pushNotificationToSubscribers(String information) {
         for (Subscriber subscriber : subscriberSet) {
             subscriber.receiveInformation(information, this);
