@@ -4,6 +4,10 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+/**
+ Channel has set of subscribers, once a subscriber subscribe to a channel he/she becomes part of channel and opposite happens post exit from the channel
+ * */
+
 public class Channel {
     private String channelId;
     private Set<Subscriber> subscriberSet;
@@ -19,13 +23,13 @@ public class Channel {
         }
     }
 
-    public void addSubscriber(Subscriber subscriber) {
+    protected void addSubscriber(Subscriber subscriber) {
         if (!subscriberSet.contains(subscriber)) {
             subscriberSet.add(subscriber);
         }
     }
 
-    public void removeSubscriber(Subscriber subscriber) {
+    protected void removeSubscriber(Subscriber subscriber) {
         if (subscriberSet.contains(subscriber)) {
             subscriberSet.remove(subscriber);
         }

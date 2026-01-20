@@ -4,6 +4,10 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+/**
+Subscriber has set of subscribed channels, can subscribe OR unsubscribe a Channel
+ * */
+
 public class Subscriber {
     private String subscriberId;
     private Set<Channel> subscribedChannels;
