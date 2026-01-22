@@ -7,8 +7,16 @@ public class Runner {
         String inputTwo = "Hello !!!";
         String inputThree = "Hello !!!";
 
-        System.out.println("Output post trimming for input " + inputOne + " is " + BasicOperation.TRIM.apply(inputOne));
-        System.out.println("Lower case output for input " + inputTwo + " is " + BasicOperation.LOWER_CASE.apply(inputOne));
-        System.out.println("Upper case output for input " + inputThree + " is " + BasicOperation.UPPER_CASE.apply(inputOne));
+        /**
+        Exploring polymorphism
+         * */
+
+        Operation instanceOne = BasicOperation.TRIM;
+        Operation instanceTwo = BasicOperation.LOWER_CASE;
+        Operation instanceThree = BasicOperation.UPPER_CASE;
+
+        System.out.println("Output post trimming for input " + inputOne + " is " + instanceOne.apply(inputOne));
+        System.out.println("Lower case output for input " + inputTwo + " is " + instanceTwo.apply(inputOne));
+        System.out.println("Upper case output for input " + inputThree + " is " + instanceThree.apply(inputOne));
     }
 }
