@@ -1,5 +1,16 @@
 package multithreading.problems.multithreadedMergeSort;
 
+/**
+As we all know merge sort is a typical divide && conquer problem, but in a conventional merge sort algorithm division of array && finally merge part both of
+them done in the single thread.
+With this solution part post array is divided into halves, process post that is being taken by individual threads instead, definitely this approach is a time saver
+but that also depends on the number of available cores assigned to JVM of the machine on which this algorithm is running[as we all know caveats around concurrency]
+
+Another important learning here is the usage of join() method which is used to dictate order in which we want to perform execution of threads
+
+Reference --> https://www.educative.io/courses/java-multithreading-for-senior-engineering-interviews/multithreaded-merge-sort
+ * */
+
 public class MultiThreadedMergeSort {
 
     private int tempArr[];
