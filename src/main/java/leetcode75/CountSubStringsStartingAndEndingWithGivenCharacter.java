@@ -3,6 +3,19 @@ package leetcode75;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+Problem : 3084
+You are given a string s and a character c. Return the total number of substrings of s that start and end with c.
+
+Constraints:-
+
+a.) 1 <= s.length <= 105
+b.) s and c consist only of lowercase English letters
+
+Time Complexity = O(N), where N being number of elements in the array
+Space Complexity = O(N)
+ * */
+
 public class CountSubStringsStartingAndEndingWithGivenCharacter {
 
     public static void main(String ar[]) {
