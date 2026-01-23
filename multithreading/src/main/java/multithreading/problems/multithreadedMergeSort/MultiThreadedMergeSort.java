@@ -1,6 +1,6 @@
 package multithreading.problems.multithreadedMergeSort;
 
-public class MergeSort  {
+public class MultiThreadedMergeSort {
 
     private int tempArr[];
 
