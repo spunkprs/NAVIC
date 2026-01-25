@@ -12,6 +12,9 @@ Constraints:-
 a.) 1 <= nums.length <= 10^5
 b.) nums[i] is either 0 or 1
 
+Time Complexity = O(N), where N being number of elements in the array
+Space Complexity = O(N)
+
  * */
 
 public class ContiguousArray {
