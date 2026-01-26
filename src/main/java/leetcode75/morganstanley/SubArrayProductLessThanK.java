@@ -1,5 +1,16 @@
 package leetcode75.morganstanley;
 
+/**
+Problem : 713
+Given an array of integers nums and an integer k, return the number of contiguous subarrays where the product of all the elements in the subarray is strictly less than k
+
+Constraints:-
+
+a.) 1 <= nums.length <= 3 * 104
+b.) 1 <= nums[i] <= 1000
+c.) 0 <= k <= 106
+ * */
+
 public class SubArrayProductLessThanK {
 
     public static void main(String ar[]) {
