@@ -9,6 +9,9 @@ Constraints:-
 a.) 1 <= nums.length <= 3 * 104
 b.) 1 <= nums[i] <= 1000
 c.) 0 <= k <= 106
+
+Time Complexity = O(N), where N being number of elements in the array
+Space Complexity = O(1)
  * */
 
 public class SubArrayProductLessThanK {
