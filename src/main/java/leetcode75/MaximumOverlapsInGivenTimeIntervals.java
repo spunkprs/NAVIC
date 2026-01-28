@@ -8,7 +8,8 @@ import java.util.List;
 /**
 This problem revolves around finding maximum overlap provided among the intervals
 
-
+Time Complexity = O(N Log(N)), where N being number of intervals
+Space Complexity = O(N)
  * */
 
 public class MaximumOverlapsInGivenTimeIntervals {
@@ -20,6 +21,10 @@ public class MaximumOverlapsInGivenTimeIntervals {
         System.out.println("Maximum overlapping intervals count is " + unit.fetchMaximumOverlaps(intervals));
     }
 
+
+    /**
+    This method consider no overlap when ending time of one interval is same as starting time of another interval
+     * */
     public int fetchMaximumOverlaps(int intervals[][]) {
         int maxOverlaps = 0;
         List<Interval> intervalList = new ArrayList<>();
