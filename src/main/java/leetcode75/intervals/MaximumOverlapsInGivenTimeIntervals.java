@@ -1,4 +1,4 @@
-package leetcode75;
+package leetcode75.intervals;
 
 import java.util.ArrayList;
 import java.util.Collections;
