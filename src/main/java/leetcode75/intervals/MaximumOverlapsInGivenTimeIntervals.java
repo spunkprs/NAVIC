@@ -8,7 +8,9 @@ import java.util.List;
 /**
 This problem revolves around finding maximum overlap provided among the intervals
 
-Reference --> https://www.youtube.com/watch?v=Fdgxkvivn1s
+Reference -->
+a.) https://www.youtube.com/watch?v=Fdgxkvivn1s
+b.) https://dilipkumar.medium.com/interval-coding-pattern-068c36197cf5
 
 Time Complexity = O(N Log(N)), where N being number of intervals
 Space Complexity = O(N)

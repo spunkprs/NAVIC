@@ -19,6 +19,10 @@ c.) -5 * 10^4 <= starti < endi <= 5 * 10^4
 
 Time Complexity = O(NLog(N))
 Space Complexity = O(N)
+
+Reference -->
+a.) https://www.youtube.com/watch?v=Fdgxkvivn1s
+b.) https://dilipkumar.medium.com/interval-coding-pattern-068c36197cf5
  * */
 
 public class NonOverlappingIntervals {
