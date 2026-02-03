@@ -1,4 +1,4 @@
-package leetcode75;
+package leetcode75.dp;
 
 /**
 Problem : 152
