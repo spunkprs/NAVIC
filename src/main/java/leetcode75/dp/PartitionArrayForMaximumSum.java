@@ -37,13 +37,12 @@ public class PartitionArrayForMaximumSum {
         } else {
             Map<Pair, Integer> mapOne = new HashMap<>();
             Map<Pair, Integer> mapTwo = new HashMap<>();
-            return processToComputeMaxSumTwo(arr, k, mapOne, mapTwo, new Pair(-1, -1));
+            return processToComputeMaxSum(arr, k, mapOne, mapTwo, new Pair(-1, -1));
         }
     }
 
-    private int processToComputeMaxSumTwo(int[] arr, int k, Map<Pair, Integer> mapOne, Map<Pair, Integer> mapTwo, Pair parent) {
+    private int processToComputeMaxSum(int[] arr, int k, Map<Pair, Integer> mapOne, Map<Pair, Integer> mapTwo, Pair parent) {
             int startIndex = parent.rightIndex + 1;
-            int endIndex = startIndex;
             int j = startIndex;
             int limit = Math.min(startIndex + k - 1, arr.length - 1);
             int result = 0;
@@ -55,7 +54,7 @@ public class PartitionArrayForMaximumSum {
                     }
 
                     if (!mapTwo.containsKey(childPair)) {
-                        int intermittentResult = processToComputeMaxSumTwo(arr, k, mapOne, mapTwo, childPair);
+                        int intermittentResult = processToComputeMaxSum(arr, k, mapOne, mapTwo, childPair);
                         if (intermittentResult > 0) {
                             mapTwo.put(childPair, intermittentResult);
                         }
@@ -85,12 +84,6 @@ public class PartitionArrayForMaximumSum {
             if (mapOne.containsKey(existingPair)) {
                 int value = mapOne.get(existingPair);
                 mapOne.put(p, value < arr[endIndex] ? arr[endIndex] : value);
-            } else {
-                int maxResult = 0;
-                for (int i = startIndex; i <= endIndex; i++) {
-                    maxResult = arr[i] > maxResult ? arr[i] : maxResult;
-                }
-                mapOne.put(p, maxResult);
             }
         }
     }
