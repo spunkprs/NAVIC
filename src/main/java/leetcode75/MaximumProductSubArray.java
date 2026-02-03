@@ -13,6 +13,9 @@ Constraints:-
 a.) 1 <= nums.length <= 2 * 10^4
 b.) -10 <= nums[i] <= 10
 c.) The product of any subarray of nums is guaranteed to fit in a 32-bit integer.
+
+Time Complexity --> O(N), where N is the number of elements in the array
+Space Complexity --> O(N)
  * */
 
 public class MaximumProductSubArray {
