@@ -1,5 +1,6 @@
 package inbuiltfunctionalinterfaces.function;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
@@ -11,7 +12,9 @@ import java.util.stream.Collectors;
 
 Implemented basic function chaining too as part of this exercise !!
 
-Reference --> https://www.youtube.com/watch?v=N9oO1O0mlkM
+Reference -->
+a.) https://www.youtube.com/watch?v=N9oO1O0mlkM
+b.) https://www.baeldung.com/java-method-references
  * */
 
 public class SimpleFunctionImplementation {
@@ -30,11 +33,21 @@ public class SimpleFunctionImplementation {
 
 
         //Implementing basic chaining
-
         Function<Integer, Integer> functionSquare = (a) -> a * a;
         Function<Integer, Integer> functionAdd = (a) -> a + a;
 
         System.out.println("Forward chaining result " + functionSquare.andThen(functionAdd).apply(3));
         System.out.println("Reverse chaining result " + functionSquare.compose(functionAdd).apply(3));
+
+        //Making use of method reference
+        List<Double> numList = new ArrayList<>();
+        numList.add(1.0);
+        numList.add(2.0);
+        numList.add(3.0);
+
+        List<String> resultUsingMethodReference = numList.stream().map(String :: valueOf).collect(Collectors.toList());
+        for (String num : resultUsingMethodReference) {
+            System.out.println(num);
+        }
     }
 }
