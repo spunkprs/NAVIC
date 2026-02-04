@@ -6,7 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
-Reference --> https://www.baeldung.com/java-8-streams-introduction
+ Reference -->
+ a.) https://www.baeldung.com/java-8-streams-introduction
+ b.) https://www.baeldung.com/java-8-streams
  * */
 
 public class StreamOperationsTwo {

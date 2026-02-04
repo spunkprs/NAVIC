@@ -9,9 +9,11 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 /**
-Reference --> https://www.baeldung.com/java-8-streams
+ Reference -->
+ a.) https://www.baeldung.com/java-8-streams-introduction
+ b.) https://www.baeldung.com/java-8-streams
 
-Awesome learning can be tracked at reduce() method usage in the above article
+Awesome learning can be tracked at reduce() method usage in the above article(b)
  * */
 
 public class StreamOperationsThree {

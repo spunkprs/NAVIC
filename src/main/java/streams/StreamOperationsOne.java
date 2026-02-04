@@ -5,6 +5,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ Reference -->
+ a.) https://www.baeldung.com/java-8-streams-introduction
+ b.) https://www.baeldung.com/java-8-streams
+ * */
+
 public class StreamOperationsOne {
 
     public static void main(String ar[]) {
