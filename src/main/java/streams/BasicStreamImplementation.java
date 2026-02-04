@@ -29,6 +29,26 @@ b.) Intermediate Operations: These operations transform the stream into another 
 c.) Terminal Operation: This operation ends the pipeline and initiates the processing of the source data. It produces a final result (e.g., a List, an Integer, or void).
 Examples include forEach(), collect(), reduce(), count(), anyMatch(), allMatch(), and findFirst()
 
+
+ Streams operations in Java do not modify the original source data structure because the Java Streams API is designed around the principle of immutability of the source and a functional programming approach to data processing [1].
+Here is a detailed explanation of why this design choice was made:-
+ 1. Functional Programming Principles
+ The Streams API was heavily influenced by functional programming paradigms, which emphasize the use of pure functions [1].
+ Pure Functions: A pure function is one that, given the same input, always produces the same output and has no side effects (it does not modify any external state or data) [1, 2].
+ Benefits of No Side Effects: By not modifying the source data structure, streams operations become more predictable, easier to reason about, and less prone to introducing bugs related to state changes.
+
+ 2. Ensuring Immutability and Predictability
+ Maintaining the immutability of the source data provides several significant advantages:
+ Thread Safety: Since the source data is not modified, it can be safely shared across multiple threads without the need for complex synchronization mechanisms.
+ This is essential for the parallel() stream operations [1].
+ Predictability: The original data structure remains a reliable source of truth, regardless of how many different stream operations are performed on it.
+ Reusability: The same source data can be used to perform multiple, different processing pipelines sequentially without the results of one pipeline affecting the input of the next [1].
+
+ 3. Separation of Concerns
+ The API design separates the concerns of data storage (the source collection/array) and data processing (the stream pipeline) [1].
+ Source: The original collection is responsible for holding the data.
+ Stream: The stream is responsible for the computation logic. Intermediate operations (like filter(), map(), sorted()) produce new streams, and terminal operations (like collect(), reduce(), forEach()) consume the stream and produce a final result or side effect [1].
+
 Basic implementation of Stream being serial && parallel
 
 Reference -->
