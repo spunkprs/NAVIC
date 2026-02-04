@@ -34,6 +34,16 @@ public class StreamOperationsTwo {
                 .reduce(0, (obj1, obj2) -> obj1 + obj2);
 
         System.out.println("summationOfSize result after performing multiple intermediate operations && single terminal operation is " + summationOfSize);
+
+        long finalElementsCount = names
+                .stream()
+                .map(word -> new Size(word, word.length()))
+                .filter(obj -> obj.size >= 4)
+                .filter(obj -> obj.word.startsWith("A"))
+                .map(obj -> obj.size)
+                .count();
+
+        System.out.println("finalElementsCount result after performing multiple intermediate operations && single terminal operation is " + finalElementsCount);
     }
 
     static class Size {
