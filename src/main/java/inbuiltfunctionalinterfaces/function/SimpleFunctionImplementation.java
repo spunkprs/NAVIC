@@ -10,6 +10,8 @@ import java.util.stream.Collectors;
  but to promote functional programming we can directly pass it's implementation as done already in line 20
 
 Implemented basic function chaining too as part of this exercise !!
+
+Reference --> https://www.youtube.com/watch?v=N9oO1O0mlkM
  * */
 
 public class SimpleFunctionImplementation {
