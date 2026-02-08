@@ -19,6 +19,10 @@ a.) 1 <= s.length <= 1000
 b.) s consists only of English lowercase letters
 
 Typical DP programming problem but with few enhancements
+
+Status : Partially Accepted
+Time Complexity --> O(n^2), where n is the number of elements in the string input
+Space Complexity --> O(n^2)
  * */
 
 public class MinimumSubStringPartitionOfEqualCharacterFrequency {
