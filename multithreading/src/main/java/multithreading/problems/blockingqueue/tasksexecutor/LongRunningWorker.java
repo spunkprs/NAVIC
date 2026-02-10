@@ -6,12 +6,12 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class LongRunningWorker extends Worker {
 
     private boolean isHalted;
-    private AtomicInteger longRunningWorkerThreadCount;
+    private AtomicInteger workerThreadCount;
 
-    public LongRunningWorker(BlockingQueue<Task> blockingQueue, AtomicInteger longRunningWorkerThreadCount) {
+    public LongRunningWorker(BlockingQueue<Task> blockingQueue, AtomicInteger workerThreadCount) {
         super(blockingQueue);
         this.isHalted = false;
-        this.longRunningWorkerThreadCount = longRunningWorkerThreadCount;
+        this.workerThreadCount = workerThreadCount;
     }
 
     @Override
@@ -25,7 +25,7 @@ public class LongRunningWorker extends Worker {
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
-                this.longRunningWorkerThreadCount.decrementAndGet();
+                this.workerThreadCount.decrementAndGet();
             }
         }
     }

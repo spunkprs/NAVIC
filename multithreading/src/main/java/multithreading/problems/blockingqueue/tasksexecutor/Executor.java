@@ -19,18 +19,16 @@ public class Executor {
     private List<Worker> longRunningWorkerThreads;
     private int initialCapacity;
     private int maxCapacity;
-    private AtomicInteger shortRunningWorkerThreadCount;
-    private AtomicInteger longRunningWorkerThreadCount;
+    private AtomicInteger workerThreadCount;
 
     public Executor(int initialCapacity, int maxCapacity) {
         this.blockingQueue = new LinkedBlockingQueue<>(maxCapacity);
         for (int i = 1; i <= this.initialCapacity; i++) {
-            longRunningWorkerThreads.add(new LongRunningWorker(this.blockingQueue, longRunningWorkerThreadCount));
+            longRunningWorkerThreads.add(new LongRunningWorker(this.blockingQueue, workerThreadCount));
         }
 
         startLongRunningWorkerThreads(this.longRunningWorkerThreads);
-        longRunningWorkerThreadCount = new AtomicInteger(initialCapacity);
-        shortRunningWorkerThreadCount = new AtomicInteger(0);
+        workerThreadCount = new AtomicInteger(initialCapacity);
     }
 
     private void startLongRunningWorkerThreads(List<Worker> longRunningWorkerThreads) {
@@ -44,8 +42,8 @@ public class Executor {
         if (this.blockingQueue.offer(task)) { // Correct way of enqueuing the task in thread safe manner if BlockingQueue is not full as it will return false
             System.out.print("Task submitted successfully");
         } else {
-            if (longRunningWorkerThreadCount.get() + shortRunningWorkerThreadCount.get() < maxCapacity) { //This line has issues as I am comparing using get() method [Need to revisit]
-                    Worker worker = new ShortRunningWorker(this.blockingQueue, this.shortRunningWorkerThreadCount); //Ideally group of threads shall start in one go instead of 1
+            if (workerThreadCount.get() < maxCapacity) { //This line has issues as I am comparing using get() method [Need to revisit]
+                    Worker worker = new ShortRunningWorker(this.blockingQueue, this.workerThreadCount); //Ideally group of threads shall start in one go instead of 1
                     Thread t = new Thread(worker);
                     t.start();
             } else {
