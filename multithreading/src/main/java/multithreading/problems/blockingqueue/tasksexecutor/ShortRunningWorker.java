@@ -16,7 +16,7 @@ public class ShortRunningWorker extends Worker {
     public void executeTask() {
             try {
                 shortRunningWorkerThreadCount.incrementAndGet();
-                Task task = this.getBlockingQueue().take();
+                Task task = this.getBlockingQueue().take(); //Correct of pulling task from queue in thread safe manner and it's a blocking call so in case queue is empty, thread will be disabled for thread scheduling
                 task.execute();
             } catch (InterruptedException e) {
                 e.printStackTrace();

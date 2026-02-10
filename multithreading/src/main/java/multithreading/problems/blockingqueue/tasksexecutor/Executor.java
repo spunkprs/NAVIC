@@ -5,6 +5,14 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+Custom thread pool executor which supports following kind of internal Workers :-
+a.) LongRunningWorker --> These tasks will always be there until got terminated because of some exception
+b.) ShortRunningWorker --> To handle burst of tasks pushed inside BlockingQueue but count(LongRunningWorker) + count(ShortRunningWorker) < maxCapacity
+
+Interesting point is both the workers will be pulling tasks from underlying BlockingQueue
+ * */
+
 public class Executor {
 
     private BlockingQueue<Task> blockingQueue;
@@ -33,10 +41,10 @@ public class Executor {
     }
 
     public void submitTask(Task task) {
-        if (this.blockingQueue.offer(task)) {
+        if (this.blockingQueue.offer(task)) { // Correct way of enqueuing the task in thread safe manner if BlockingQueue is not full as it will return false
             System.out.print("Task submitted successfully");
         } else {
-            if (longRunningWorkerThreadCount.get() + shortRunningWorkerThreadCount.get() < maxCapacity) { //This line has issues as I am comparing using get() method
+            if (longRunningWorkerThreadCount.get() + shortRunningWorkerThreadCount.get() < maxCapacity) { //This line has issues as I am comparing using get() method [Need to revisit]
                     Worker worker = new ShortRunningWorker(this.blockingQueue, this.shortRunningWorkerThreadCount); //Ideally group of threads shall start in one go instead of 1
                     Thread t = new Thread(worker);
                     t.start();
