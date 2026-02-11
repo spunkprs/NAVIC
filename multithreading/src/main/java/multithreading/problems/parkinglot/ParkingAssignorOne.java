@@ -4,12 +4,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class ParkingAssignor {
+public class ParkingAssignorOne {
 
     private Map<ParkingSlotType, AtomicInteger> availableParkingSlots;
     private Map<ParkingSlotType, List<ParkingSlot>> parkingSlots;
 
-    public ParkingAssignor(Map<ParkingSlotType, AtomicInteger> availableParkingSlots, Map<ParkingSlotType, List<ParkingSlot>> parkingSlots) {
+    public ParkingAssignorOne(Map<ParkingSlotType, AtomicInteger> availableParkingSlots, Map<ParkingSlotType, List<ParkingSlot>> parkingSlots) {
         this.availableParkingSlots = availableParkingSlots;
         this.parkingSlots = parkingSlots;
     }
@@ -41,6 +41,15 @@ public class ParkingAssignor {
         }
         return assignedTicket;
     }
+
+
+    /***
+     Above method can be written using ConcurrentLinkedQueue where multiple threads can try to poll parking slots and get the parking slot assigned
+     During freeing the parking slot it can be pushed back to CLQ
+     During both the processes counter against the type needs to be altered as I have done above
+     Rather making use of CLQ is better as we don't need to iterate the entire structure in case free slots aren't there or pretty less because in case of CLQ it's size will
+     be shrinking with allocation
+     */
 
     public double calculateParkingAmount(Ticket ticket) {
         double parkingAmount = 0.0;
