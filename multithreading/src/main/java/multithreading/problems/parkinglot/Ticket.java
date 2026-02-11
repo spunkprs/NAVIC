@@ -4,15 +4,15 @@ public class Ticket {
     private String ticketId;
     private long entryTime;
     private long exitTime;
-    private ParkingType parkingType;
+    private ParkingSlotType parkingSlotType;
     private double amountToBePaid;
     private ParkingSlot assignedParking;
     private Vehicle vehicle;
 
-    public Ticket(String ticketId, long entryTime, ParkingType parkingType, ParkingSlot assignedParking, Vehicle vehicle) {
+    public Ticket(String ticketId, long entryTime, ParkingSlotType parkingSlotType, ParkingSlot assignedParking, Vehicle vehicle) {
         this.ticketId = ticketId;
         this.entryTime = entryTime;
-        this.parkingType = parkingType;
+        this.parkingSlotType = parkingSlotType;
         this.assignedParking = assignedParking;
         this.vehicle = vehicle;
     }
@@ -29,8 +29,8 @@ public class Ticket {
         return exitTime;
     }
 
-    public ParkingType getParkingType() {
-        return parkingType;
+    public ParkingSlotType getParkingType() {
+        return parkingSlotType;
     }
 
     public double getAmountToBePaid() {

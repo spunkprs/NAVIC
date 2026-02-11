@@ -10,7 +10,7 @@ public class CarParkingSlot extends ParkingSlot {
 
 
     @Override
-    public ParkingType fetchParkingType() {
-        return ParkingType.CAR;
+    public ParkingSlotType fetchParkingType() {
+        return ParkingSlotType.CAR;
     }
 }

@@ -1,14 +1,15 @@
 package multithreading.problems.parkinglot;
 
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class ParkingAssignor {
 
-    private AtomicInteger availableParkingSlots;
-    private List<ParkingSlot> parkingSlots;
+    private Map<ParkingSlotType, AtomicInteger> availableParkingSlots;
+    private Map<ParkingSlotType, List<ParkingSlot>> parkingSlots;
 
-    public ParkingAssignor(AtomicInteger availableParkingSlots, List<ParkingSlot> parkingSlots) {
+    public ParkingAssignor(Map<ParkingSlotType, AtomicInteger> availableParkingSlots, Map<ParkingSlotType, List<ParkingSlot>> parkingSlots) {
         this.availableParkingSlots = availableParkingSlots;
         this.parkingSlots = parkingSlots;
     }
@@ -20,21 +21,20 @@ public class ParkingAssignor {
         return false;
     }*/
 
-
     // This method is pretty quick in response but the results are eventually consistent
-    public int availableParkingCount(ParkingType parkingType) {
-        return availableParkingSlots.get();
+    public int availableParkingCount(ParkingSlotType parkingSlotType) {
+        return availableParkingSlots.get(parkingSlotType).get();
     }
 
     //This method follows optimistic locking instead of pessimistic and guarantee higher throughput of the system
-    public Ticket assignParkingSlot(Vehicle vehicle, ParkingType parkingType) {
+    public Ticket assignParkingSlot(Vehicle vehicle, ParkingSlotType parkingSlotType) {
         Ticket assignedTicket = null;
-        for (ParkingSlot parkingSlot : parkingSlots) {
-            if (parkingSlot.fetchParkingType().name().equals(parkingType.name())) {
+        for (ParkingSlot parkingSlot : parkingSlots.get(parkingSlotType)) {
+            if (parkingSlot.fetchParkingType() == parkingSlotType) {
                 if (parkingSlot.getIsOccupied().compareAndSet(false, true)) {
-                    availableParkingSlots.decrementAndGet();
+                    availableParkingSlots.get(parkingSlotType).decrementAndGet();
                     long currentTimeInMillis = System.currentTimeMillis();
-                    assignedTicket = new Ticket(vehicle.getUniqueNum() + parkingSlot.getParkingNum(), currentTimeInMillis, parkingType, parkingSlot, vehicle);
+                    assignedTicket = new Ticket(vehicle.getUniqueNum() + parkingSlot.getParkingNum(), currentTimeInMillis, parkingSlotType, parkingSlot, vehicle);
                     break;
                 }
             }
@@ -46,7 +46,7 @@ public class ParkingAssignor {
         double parkingAmount = 0.0;
         if (ticket != null) {
             ParkingSlot assignedSlot = ticket.getAssignedParking();
-            availableParkingSlots.incrementAndGet();
+            availableParkingSlots.get(ticket.getParkingType()).incrementAndGet();
             assignedSlot.getIsOccupied().set(true);
             ticket.setExitTime(System.currentTimeMillis());
             parkingAmount = processToComputeParkingAmount(ticket.getEntryTime(), ticket.getExitTime());

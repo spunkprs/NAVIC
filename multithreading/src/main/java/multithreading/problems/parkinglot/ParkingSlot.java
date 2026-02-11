@@ -7,7 +7,7 @@ public abstract class ParkingSlot {
     private int parkingNum;
     private AtomicBoolean isOccupied;
 
-    public abstract ParkingType fetchParkingType();
+    public abstract ParkingSlotType fetchParkingType();
 
     public ParkingSlot(int parkingNum, AtomicBoolean isOccupied) {
         this.parkingNum = parkingNum;
