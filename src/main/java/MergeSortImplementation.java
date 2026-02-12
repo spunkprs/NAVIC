@@ -1,3 +1,11 @@
+/**
+Merge Sort algorithm to sort array of words in lexicographically manner !!
+Time Complexity = O(N * log(N)), where N being number of elements in the array
+Space Complexity = O(N)
+ * */
+
+
+
 public class MergeSortImplementation {
 
     private static String[] tempArray;
