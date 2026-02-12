@@ -7,9 +7,9 @@ import java.util.stream.Collectors;
 
 /**
 Multiple predicates can be combined together the way I have done it here :-
-a.) Line 19 --> predicateOne
-b.) Line 20 --> predicateTwo
-c.) Line 21 --> predicateThree
+a.) Line 21 --> predicateOne
+b.) Line 22 --> predicateTwo
+c.) Line 23 --> predicateThree
 
 Reference Link ---> https://www.baeldung.com/java-predicate-chain
  * */
