@@ -9,6 +9,33 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
+/**
+Ideally this shall be class instead but I want single instance of BookingDetailsFetcher that's why made it ENUM
+
+Making use of ENUM here, violates Separation of Concerns
+
+Enums are meant to represent:
+a.) Fixed constants
+b.) Finite sets
+c.) Immutable configurations
+
+Not:
+a.) Data stores
+b.) Runtime state containers
+c.) Business logic repositories
+
+When you store a mutable collection inside an enum, it starts acting like:
+a.) A service
+b.) A repository
+c.) A cache
+d.) A global registry
+
+That’s a different responsibility.
+
+Source --> ChatGPT
+
+ * */
+
 public enum BookingDetailsFetcher {
 
     INSTANCE();
