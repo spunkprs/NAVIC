@@ -9,6 +9,4 @@ public class NormalSeat extends Seat {
     public NormalSeat(String seatNum, boolean isOccupied) {
         super(seatNum, isOccupied);
     }
-
-
 }

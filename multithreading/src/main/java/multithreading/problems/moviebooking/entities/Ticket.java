@@ -8,4 +8,5 @@ public class Ticket {
     private List<Seat> seatsAssigned;
     private User user;
     private double amountPaid;
+    private String ticketStatus;
 }
