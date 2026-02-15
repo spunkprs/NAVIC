@@ -7,6 +7,6 @@ public class ReclinerSeat extends Seat {
     private double cost;
 
     public ReclinerSeat(String seatNum, boolean isOccupied) {
-        super(seatNum, isOccupied);
+        super(seatNum);
     }
 }

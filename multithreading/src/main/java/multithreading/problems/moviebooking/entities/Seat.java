@@ -4,8 +4,7 @@ public abstract class Seat {
     private String seatNum;
     private boolean isOccupied;
 
-    public Seat(String seatNum, boolean isOccupied) {
+    public Seat(String seatNum) {
         this.seatNum = seatNum;
-        this.isOccupied = isOccupied;
     }
 }

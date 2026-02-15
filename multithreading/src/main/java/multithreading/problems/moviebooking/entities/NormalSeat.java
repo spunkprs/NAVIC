@@ -7,6 +7,6 @@ public class NormalSeat extends Seat {
     private double cost;
 
     public NormalSeat(String seatNum, boolean isOccupied) {
-        super(seatNum, isOccupied);
+        super(seatNum);
     }
 }
