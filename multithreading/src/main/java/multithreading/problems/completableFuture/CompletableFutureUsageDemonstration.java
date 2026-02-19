@@ -31,7 +31,10 @@ public class CompletableFutureUsageDemonstration {
 
         System.out.println("Execution getting done by main thread !! ");
 
-        cfOne.join(); //Required for the main thread to wait for the completion of the task assigned to cfOne
-        cfTwo.join(); //Required for the main thread to wait for the completion of the task assigned to cfTwo
+        //cfOne.join(); //Required for the main thread to wait for the completion of the task assigned to cfOne
+        //cfTwo.join(); //Required for the main thread to wait for the completion of the task assigned to cfTwo
+
+        //CompletableFuture.allOf(cfOne, cfTwo).join(); //Same concept that was done above, here it's being stated that main thread, needs to wait for all the involved completable future result
+        CompletableFuture.anyOf(cfOne, cfTwo).join(); //Same concept that was done above, here it's being stated that main thread, needs to wait for any of involved completable future result
     }
 }
