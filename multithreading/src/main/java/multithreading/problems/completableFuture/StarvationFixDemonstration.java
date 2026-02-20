@@ -14,7 +14,57 @@ then only internal task will be picked by the concerned thread from the pool
 
 Another important thing to consider here is thenComposeAsync could have been used instead of thenCompose && here are difference between them :-
 
+Internal Behavior Difference :--
 
+1.) thenCompose() :-
+
+a.) Adds a completion callback
+b.) When Stage 1 completes:
+    b.1) The same worker executes Stage 2 immediately
+
+c.) No additional scheduling overhead
+
+2.) thenComposeAsync() :-
+
+    When Stage 1 completes:
+        a.) Submits Stage 2 to executor
+        b.) Executor queue receives new task
+        c.) A worker later executes it
+
+
+ What That Means in Practice :-
+
+ Assume:-
+
+ CompletableFuture.supplyAsync(() -> {
+ System.out.println("Stage 1: " + Thread.currentThread().getName());
+ return 10;
+ })
+ .thenCompose(result -> {
+ System.out.println("Stage 2: " + Thread.currentThread().getName());
+ return CompletableFuture.completedFuture(result * 2);
+ });
+
+ Possible output:
+ Stage 1: ForkJoinPool.commonPool-worker-1
+ Stage 2: ForkJoinPool.commonPool-worker-1
+
+ No thread switch.
+
+
+ Now with thenComposeAsync:-
+
+ .thenComposeAsync(result -> {
+ System.out.println("Stage 2: " + Thread.currentThread().getName());
+ return CompletableFuture.completedFuture(result * 2);
+ });
+
+
+ Output:
+ Stage 1: ForkJoinPool.commonPool-worker-1
+ Stage 2: ForkJoinPool.commonPool-worker-3
+
+ New task submitted. Possibly different thread.
  * */
 
 public class StarvationFixDemonstration {
