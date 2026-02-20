@@ -27,6 +27,8 @@ c.) thenApplyAsync()
 d.) thenAcceptAsync()
 e.) thenComposeAsync()
 
+ForkJoinPool is used internally only when either of the above methods are used && considering custom executor instance is not provided to CompletableFuture
+
 Non-async versions (thenApply) do NOT use a pool.
  * */
 
