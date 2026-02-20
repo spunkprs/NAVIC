@@ -28,9 +28,9 @@ c.) Work-stealing parallelism
 Important Insight:-
 Only these methods use ForkJoinPool by default:-
 
-a.) supplyAsync()
+a.) supplyAsync() --> Takes Supplier functional interface as method parameter
 b.) runAsync()
-c.) thenApplyAsync()
+c.) thenApplyAsync() --> Takes Consumer functional interface as method parameter
 d.) thenAcceptAsync()
 e.) thenComposeAsync()
 
