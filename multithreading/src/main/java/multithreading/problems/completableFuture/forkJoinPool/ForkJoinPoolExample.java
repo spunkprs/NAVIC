@@ -18,6 +18,13 @@ a.) Has worker threads equal to ~ CPU cores
 b.) Each thread has its own deque
 c.) Uses work-stealing to balance load
 
+CompletableFuture defaults to ForkJoinPool.commonPool()
+
+It’s optimized for:-
+a.) Small async tasks
+b.) Chained computations
+c.) Work-stealing parallelism
+
 Important Insight:-
 Only these methods use ForkJoinPool by default:-
 
