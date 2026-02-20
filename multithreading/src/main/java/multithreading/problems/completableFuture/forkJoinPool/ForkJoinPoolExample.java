@@ -4,6 +4,32 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ForkJoinPool;
 
+/**
+What Is Happening Internally
+When you call:
+CompletableFuture.supplyAsync(...)
+
+Internally it does:-
+a.) ForkJoinPool.commonPool().submit(task);
+b.) Each task becomes a ForkJoinTask.
+
+ForkJoinPool:-
+a.) Has worker threads equal to ~ CPU cores
+b.) Each thread has its own deque
+c.) Uses work-stealing to balance load
+
+Important Insight:-
+Only these methods use ForkJoinPool by default:-
+
+a.) supplyAsync()
+b.) runAsync()
+c.) thenApplyAsync()
+d.) thenAcceptAsync()
+e.) thenComposeAsync()
+
+Non-async versions (thenApply) do NOT use a pool.
+ * */
+
 public class ForkJoinPoolExample {
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
