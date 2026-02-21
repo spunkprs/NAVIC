@@ -85,9 +85,12 @@ public class Closed extends State {
                     resetStates();
                     finalResult = new Result(resultingPair, transitionedState);
                 } else {
-                    AtomicInteger failedRequestCount = map.get(map.firstKey()).failedRequestCount;
-                    this.failedRequestCountAcrossSlingWindow.addAndGet(-failedRequestCount.get());
-                    map.remove(map.firstKey());
+                    //Fixing Bug, will have to keep on removing elements from the map till map.lastKey() - map.firstKey() < timeBasedSlidingWindow
+                    while (!map.isEmpty() && map.lastKey() - map.firstKey() >= this.timeBasedSlidingWindow) {
+                        AtomicInteger failedRequestCount = map.get(map.firstKey()).failedRequestCount;
+                        this.failedRequestCountAcrossSlingWindow.addAndGet(-failedRequestCount.get());
+                        map.remove(map.firstKey());
+                    }
                     finalResult = new Result(resultingPair, this);
                 }
             }

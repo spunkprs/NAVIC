@@ -61,7 +61,7 @@ public class HalfOpen extends State {
                 this.timeForLastConsideredRequest = currentTime;
 
                 if (requestsAllowed.get() == 0) {
-                    finalResult = new Result(resultingPair, makeTransition());
+                    finalResult = new Result(resultingPair, makeTransition()); //To handle situation where we have run out of allowed requests and will return HALF_OPEN as state of breaker
                 } else {
                     requestsAllowed.decrementAndGet();
                     if (map.isEmpty()) {
@@ -87,14 +87,14 @@ public class HalfOpen extends State {
                                     this.failedRequestCountAcrossSlingWindow.addAndGet(node.failedRequestCount.get());
                                 }
                             }
-                            finalResult = new Result(resultingPair, makeTransition());
+                            finalResult = new Result(resultingPair, makeTransition()); //To handle situation where we have allowed requests but sliding window has not reached it's limit hence will return HALF_OPEN as state of breaker
                         } else {
                             double computedFailureRate = (this.failedRequestCountAcrossSlingWindow.get() / this.timeBasedSlidingWindow);
                             if (computedFailureRate >= failureRateThreshold) {
                                 stateTransition = 1;
                                 State transitionedState = makeTransition();
                                 resetStates();
-                                finalResult = new Result(resultingPair, transitionedState);
+                                finalResult = new Result(resultingPair, transitionedState); //To handle situation where we have allowed requests but as sliding window has reached along with failureRateThreshold breached it's limit hence will return OPEN as state of breaker
                             } else {
                                 stateTransition = 2;
                                 AtomicInteger failedRequestCount = map.get(map.firstKey()).failedRequestCount;
@@ -102,7 +102,7 @@ public class HalfOpen extends State {
                                 map.remove(map.firstKey());
                                 State transitionedState = makeTransition();
                                 resetStates();
-                                finalResult = new Result(resultingPair, transitionedState);
+                                finalResult = new Result(resultingPair, transitionedState); //To handle situation where we have allowed requests but as sliding window has reached along with failureRateThreshold not breached it's limit hence will return CLOSED as state of breaker
                             }
                         }
                     }
