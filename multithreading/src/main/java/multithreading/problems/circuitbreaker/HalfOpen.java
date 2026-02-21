@@ -4,6 +4,12 @@ import java.util.TreeMap;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.ReentrantLock;
 
+/**
+In HALF_OPEN implementation have made use of following algorithms internally :-
+a.) Token Bucket Algorithm
+b.) Sliding Window log algorithm
+ * */
+
 public class HalfOpen extends State {
 
     private long timeBasedSlidingWindow;
@@ -56,8 +62,10 @@ public class HalfOpen extends State {
                 long currentTime = System.currentTimeMillis();
                 long difference = currentTime - timeForLastConsideredRequest;
 
+                int tokensMaxCapacity = AllowedStatesConfigurations.HALF_OPEN_REQUESTS_ALLOWED;
+
                 int addedTokens = Integer.valueOf(String.valueOf(Math.floor(difference/1000) * tokenRefillRate));
-                requestsAllowed.addAndGet(addedTokens);
+                requestsAllowed.addAndGet(Math.min(addedTokens, tokensMaxCapacity - requestsAllowed.get())); //Make sure here that tokens doesn't overflow
                 this.timeForLastConsideredRequest = currentTime;
 
                 if (requestsAllowed.get() == 0) {
@@ -90,6 +98,8 @@ public class HalfOpen extends State {
                             finalResult = new Result(resultingPair, makeTransition()); //To handle situation where we have allowed requests but sliding window has not reached it's limit hence will return HALF_OPEN as state of breaker
                         } else {
                             double computedFailureRate = (this.failedRequestCountAcrossSlingWindow.get() / this.timeBasedSlidingWindow);
+
+                            //No need for removal of elements from the map like we have done in Closed state implementation because in both the below mentioned condition we are making transition
                             if (computedFailureRate >= failureRateThreshold) {
                                 stateTransition = 1;
                                 State transitionedState = makeTransition();

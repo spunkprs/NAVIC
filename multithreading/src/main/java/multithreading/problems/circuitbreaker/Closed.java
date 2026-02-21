@@ -4,6 +4,11 @@ import java.util.TreeMap;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.ReentrantLock;
 
+/**
+In HALF_OPEN implementation have made use of following algorithms internally :-
+a.) Sliding Window log algorithm
+ * */
+
 public class Closed extends State {
 
     private long timeBasedSlidingWindow;

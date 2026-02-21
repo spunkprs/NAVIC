@@ -49,7 +49,7 @@ public class Open extends State {
         Result finalResult = null;
         try {
             lock.lock();
-            long requestReceivedTimeStamp = System.currentTimeMillis(); // No call to external API shall be made at this point
+            long requestReceivedTimeStamp = System.currentTimeMillis(); // No call to external API shall be made at this point because it's a total shutdown of pushing the requests to external system
             if (lastRequestReceivedTime == -1) {
                 lastRequestReceivedTime = requestReceivedTimeStamp;
             } else {
