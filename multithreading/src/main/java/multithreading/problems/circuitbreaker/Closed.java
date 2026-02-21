@@ -33,7 +33,8 @@ public class Closed extends State {
             try {
                 instanceLock.lock();
                 if (instance == null) {
-                    instance = new Closed(AllowedStates.CLOSED_STATE_TIME_BASED_SLIDING_WINDOW, AllowedStates.CLOSED_STATE_FAILURE_RATE_THRESHOLD);
+                    instance = new Closed(AllowedStatesConfigurations.CLOSED_STATE_TIME_BASED_SLIDING_WINDOW,
+                            AllowedStatesConfigurations.CLOSED_STATE_FAILURE_RATE_THRESHOLD);
                 }
             } catch (Exception e) {
                 e.printStackTrace();

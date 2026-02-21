@@ -18,7 +18,7 @@ public class Open extends State {
             try {
                 instanceLock.lock();
                 if (instance == null) {
-                    instance = new Open(AllowedStates.OPEN_STATE_TRANSITION_TIMEOUT);
+                    instance = new Open(AllowedStatesConfigurations.OPEN_STATE_TRANSITION_TIMEOUT);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
