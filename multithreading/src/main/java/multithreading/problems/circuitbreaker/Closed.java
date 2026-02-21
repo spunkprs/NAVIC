@@ -77,6 +77,7 @@ public class Closed extends State {
                         this.failedRequestCountAcrossSlingWindow.addAndGet(node.failedRequestCount.get());
                     }
                 }
+                finalResult = new Result(resultingPair, this);
             } else {
                 double computedFailureRate = (this.failedRequestCountAcrossSlingWindow.get() / this.timeBasedSlidingWindow);
                 if (computedFailureRate >= failureRateThreshold) {

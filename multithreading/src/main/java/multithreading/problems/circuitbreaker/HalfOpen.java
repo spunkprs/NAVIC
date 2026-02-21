@@ -12,6 +12,7 @@ public class HalfOpen extends State {
     private AtomicInteger requestsAllowed;
     private double tokenRefillRate;
     private AtomicInteger failedRequestCountAcrossSlingWindow;
+    private long timeForLastConsideredRequest;
 
     private TreeMap<Long, Node> map = new TreeMap<>();
     private ReentrantLock lock;
@@ -19,14 +20,100 @@ public class HalfOpen extends State {
     private static HalfOpen instance;
     private static ReentrantLock instanceLock = new ReentrantLock();
 
+    private int stateTransition = 0;
+
     @Override
     public State makeTransition() {
-        return null;
+        return stateTransition == 1 ? Open.fetchInstance() : stateTransition == 2 ? Closed.fetchInstance() : this;
+    }
+
+    private void resetStates() {
+        this.failedRequestCountAcrossSlingWindow = new AtomicInteger(0);
+        this.map = new TreeMap<>();
+        this.timeForLastConsideredRequest = -1;
+        this.stateTransition = 0;
     }
 
     @Override
     public Result makeCallToApi(String url) {
-        return null;
+        Result finalResult = null;
+        Pair resultingPair = provideGenericApiBehaviour(url);
+        try {
+            lock.lock();
+            if (this.timeForLastConsideredRequest == -1) {
+                this.timeForLastConsideredRequest = System.currentTimeMillis();
+                requestsAllowed.decrementAndGet();
+                if (map.isEmpty()) {
+                    if (!resultingPair.isResponse()) {
+                        Node node = new Node(resultingPair.getResponseTimeStamp(), new AtomicInteger(1));
+                        if (!map.containsKey(resultingPair.getResponseTimeStamp())) {
+                            map.put(resultingPair.getResponseTimeStamp(), node);
+                            failedRequestCountAcrossSlingWindow.incrementAndGet();
+                        }
+                    }
+                }
+            } else {
+                long currentTime = System.currentTimeMillis();
+                long difference = currentTime - timeForLastConsideredRequest;
+
+                int addedTokens = Integer.valueOf(String.valueOf(Math.floor(difference/1000) * tokenRefillRate));
+                requestsAllowed.addAndGet(addedTokens);
+                this.timeForLastConsideredRequest = currentTime;
+
+                if (requestsAllowed.get() == 0) {
+                    finalResult = new Result(resultingPair, makeTransition());
+                } else {
+                    requestsAllowed.decrementAndGet();
+                    if (map.isEmpty()) {
+                        if (!resultingPair.isResponse()) {
+                            Node node = new Node(resultingPair.getResponseTimeStamp(), new AtomicInteger(1));
+                            if (!map.containsKey(resultingPair.getResponseTimeStamp())) {
+                                map.put(resultingPair.getResponseTimeStamp(), node);
+                                failedRequestCountAcrossSlingWindow.incrementAndGet();
+                            }
+                        }
+                    } else {
+                        if (map.lastKey() - map.firstKey() < timeBasedSlidingWindow) {
+                            if (!map.containsKey(resultingPair.getResponseTimeStamp())) {
+                                if (!resultingPair.isResponse()) {
+                                    Node node = new Node(resultingPair.getResponseTimeStamp(), new AtomicInteger(1));
+                                    map.put(resultingPair.getResponseTimeStamp(), node);
+                                    this.failedRequestCountAcrossSlingWindow.incrementAndGet();
+                                }
+                            } else {
+                                Node node = map.get(resultingPair.getResponseTimeStamp());
+                                if (!resultingPair.isResponse()) {
+                                    node.failedRequestCount.incrementAndGet();
+                                    this.failedRequestCountAcrossSlingWindow.addAndGet(node.failedRequestCount.get());
+                                }
+                            }
+                            finalResult = new Result(resultingPair, makeTransition());
+                        } else {
+                            double computedFailureRate = (this.failedRequestCountAcrossSlingWindow.get() / this.timeBasedSlidingWindow);
+                            if (computedFailureRate >= failureRateThreshold) {
+                                stateTransition = 1;
+                                State transitionedState = makeTransition();
+                                resetStates();
+                                finalResult = new Result(resultingPair, transitionedState);
+                            } else {
+                                stateTransition = 2;
+                                AtomicInteger failedRequestCount = map.get(map.firstKey()).failedRequestCount;
+                                this.failedRequestCountAcrossSlingWindow.addAndGet(-failedRequestCount.get());
+                                map.remove(map.firstKey());
+                                State transitionedState = makeTransition();
+                                resetStates();
+                                finalResult = new Result(resultingPair, transitionedState);
+                            }
+                        }
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            lock.unlock();
+        }
+        return finalResult;
     }
 
     private HalfOpen(long timeBasedSlidingWindow, double failureRateThreshold, int requestsAllowed, double tokenRefillRate) {
@@ -34,6 +121,7 @@ public class HalfOpen extends State {
         this.failureRateThreshold = failureRateThreshold;
         this.requestsAllowed = new AtomicInteger(requestsAllowed);
         this.tokenRefillRate = tokenRefillRate;
+        this.timeForLastConsideredRequest = -1;
     }
 
     public static HalfOpen fetchInstance() {
