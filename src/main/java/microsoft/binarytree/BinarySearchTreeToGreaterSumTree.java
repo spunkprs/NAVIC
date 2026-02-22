@@ -15,6 +15,9 @@ Constraints:-
 a.) The number of nodes in the tree is in the range [1, 100].
 b.) 0 <= Node.val <= 100
 c.) All the values in the tree are unique.
+
+Time Complexity : O(N), where N being number of nodes in the tree
+Space Complexity : O(N) [No additional space but making use of recursion hence call stack space shall be there]
  * */
 
 public class BinarySearchTreeToGreaterSumTree {
