@@ -10,7 +10,7 @@ Given the root of a binary tree, return the leftmost value in the last row of th
 Constraints:-
 
 a.) The number of nodes in the tree is in the range [1, 104].
-b.) -231 <= Node.val <= 231 - 1
+b.) -2^31 <= Node.val <= 2^31 - 1
 
 Time Complexity : O(N), where N being number of nodes in the tree
 Space Complexity : O(W), where W is the number of nodes in the level having maximum nodes
