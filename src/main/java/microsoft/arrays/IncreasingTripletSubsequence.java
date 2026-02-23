@@ -10,6 +10,8 @@ such that i < j < k and nums[i] < nums[j] < nums[k]. If no such indices exists, 
 
 Time Complexity : O(N^2), where N being number of elements in the array
 Space Complexity : O(N), where N being number of elements in the array
+
+---> Revisit it && reduce T.C from O(N^2) to O(NlogN) <-----
  * */
 
 public class IncreasingTripletSubsequence {
