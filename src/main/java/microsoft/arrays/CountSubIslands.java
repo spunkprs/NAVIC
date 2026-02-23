@@ -2,6 +2,26 @@ package microsoft.arrays;
 
 import java.util.*;
 
+/**
+Problem : 1905
+You are given two m x n binary matrices grid1 and grid2 containing only 0's (representing water) and 1's (representing land).
+An island is a group of 1's connected 4-directionally (horizontal or vertical). Any cells outside of the grid are considered water cells.
+
+An island in grid2 is considered a sub-island if there is an island in grid1 that contains all the cells that make up this island in grid2.
+
+Return the number of islands in grid2 that are considered sub-islands
+
+Constraints:-
+
+a.) m == grid1.length == grid2.length
+b.) n == grid1[i].length == grid2[i].length
+c.) 1 <= m, n <= 500
+d.) grid1[i][j] and grid2[i][j] are either 0 or 1.
+
+Time Complexity = O(M * N), where M, N being number of rows && columns in the matrix
+Space Complexity = O(M * N), where M, N being number of rows && columns in the matrix [Used by Set<Pair> visitedNodes]
+ * */
+
 public class CountSubIslands {
 
     private int subIslandCount = 0;
