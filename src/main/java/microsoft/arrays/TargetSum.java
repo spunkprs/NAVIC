@@ -17,6 +17,11 @@ a.) 1 <= nums.length <= 20
 b.) 0 <= nums[i] <= 1000
 c.) 0 <= sum(nums[i]) <= 1000
 d.) -1000 <= target <= 1000
+
+Without memoization time consumed would be O(K^N), where K being number of choices at each step && N being the depth of the tree
+but with memoization in place T.C = (N * T), where T being target sum, space complexity would also be the same
+
+Infact in these kind of cases time complexity can be derived by having a look at space complexity (Building Mental model to find T.C using S.C is very important here)
  * */
 
 public class TargetSum {
