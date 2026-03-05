@@ -15,6 +15,8 @@ Constraints:-
 a.) 1 <= candidates.length <= 100
 b.) 1 <= candidates[i] <= 50
 c.) 1 <= target <= 30
+
+--> Important thing to notice here is how I sort the array first just so that duplicate combinations can be avoided later <------
  * */
 
 public class CombinationSum2 {
