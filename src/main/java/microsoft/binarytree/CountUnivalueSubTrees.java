@@ -1,5 +1,21 @@
 package microsoft.binarytree;
 
+/**
+Problem : 250
+
+Given the root of a binary tree, return the number of uni-value subtrees.
+
+A uni-value subtree means all nodes of the subtree have the same value.
+
+Constraints:-
+
+a.) The number of the node in the tree will be in the range [0, 1000].
+b.) -1000 <= Node.val <= 1000
+
+Time Complexity = O(N), where N being number of nodes in the tree
+Space Complexity = O(N), no external space used but space occupied will be because of recursive in memory stack
+ * */
+
 public class CountUnivalueSubTrees {
 
     private int result = 0;
