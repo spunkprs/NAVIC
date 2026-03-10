@@ -13,6 +13,8 @@ Constraints:-
 a.) -300 <= x, y <= 300
 b.) 0 <= |x| + |y| <= 300
 
+----> 36 / 45 tests getting passed, for remaining witnessing TLE, have a look into it && update T.C && S.C accordingly <----------
+
  * */
 
 public class MinimumKnightMoves {
