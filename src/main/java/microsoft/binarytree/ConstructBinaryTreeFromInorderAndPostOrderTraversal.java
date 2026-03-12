@@ -18,6 +18,9 @@ g.) postorder is guaranteed to be the postorder traversal of the tree.
 
 Time Complexity = O(N^2), where N being number of nodes in the tree
 Space Complexity = O(N), where N being number of nodes in the tree [internal usage because of recursive stack]
+
+Improvisation on the front of Time Complexity as all the elements are unique in the Tree hence we make make use of map to store value && it's corresponding index, because of it
+time complexity will fall from O(N^2) to O(N), will make changes to accommodate same
  * */
 
 public class ConstructBinaryTreeFromInorderAndPostOrderTraversal {
