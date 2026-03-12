@@ -1,5 +1,23 @@
 package microsoft.binarytree;
 
+/**
+Problem : 450
+Given a root node reference of a BST and a key, delete the node with the given key in the BST. Return the root node reference (possibly updated) of the BST.
+
+Basically, the deletion can be divided into two stages:
+
+a.) Search for a node to remove.
+b.) If the node is found, delete the node.
+
+Constraints:-
+
+a.) The number of nodes in the tree is in the range [0, 10^4].
+b.) -10^5 <= Node.val <= 10^5
+c.) Each node has a unique value.
+d.) root is a valid binary search tree.
+e.) -10^5 <= key <= 10^5
+ * */
+
 public class DeleteNodeInBST {
 
     public static void main(String ar[]) {
