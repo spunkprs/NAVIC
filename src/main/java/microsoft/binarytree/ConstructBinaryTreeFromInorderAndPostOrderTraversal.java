@@ -1,5 +1,25 @@
 package microsoft.binarytree;
 
+/**
+Problem : 106
+
+Given two integer arrays inorder and postorder where inorder is the inorder traversal of a binary tree and
+postorder is the postorder traversal of the same tree, construct and return the binary tree.
+
+Constraints:-
+
+a.) 1 <= inorder.length <= 3000
+b.) postorder.length == inorder.length
+c.) -3000 <= inorder[i], postorder[i] <= 3000
+d.) inorder and postorder consist of unique values.
+e.) Each value of postorder also appears in inorder.
+f.) inorder is guaranteed to be the inorder traversal of the tree.
+g.) postorder is guaranteed to be the postorder traversal of the tree.
+
+Time Complexity = O(N^2), where N being number of nodes in the tree
+Space Complexity = O(N), where N being number of nodes in the tree [internal usage because of recursive stack]
+ * */
+
 public class ConstructBinaryTreeFromInorderAndPostOrderTraversal {
 
     private TreeNode root = null;
