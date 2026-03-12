@@ -16,6 +16,9 @@ b.) -10^5 <= Node.val <= 10^5
 c.) Each node has a unique value.
 d.) root is a valid binary search tree.
 e.) -10^5 <= key <= 10^5
+
+Time Complexity = O(N), where N being number of nodes in the tree [when tree is heavily non balanced towards either left side or right side]
+Space Complexity = O(N), no external space used but space occupied will be because of recursive in memory stack
  * */
 
 public class DeleteNodeInBST {
