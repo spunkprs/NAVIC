@@ -16,50 +16,47 @@ public class CouponRedemptionService {
     private ConcurrentHashMap<String, String> couponToUserMap = new ConcurrentHashMap<>();
 
     public String redeemCoupon(Coupon coupon, User user) {
-        String userId = null;
         AtomicInteger state = new AtomicInteger(0);
-
-        try {
-            if ((userId = couponToUserMap.putIfAbsent(coupon.getCouponId(), user.getUserId())) == null) {
-                state.incrementAndGet();
+        String userId = couponToUserMap.putIfAbsent(coupon.getCouponId(), user.getUserId());
+        state.incrementAndGet();
+        if (userId != null) {
+            return "ALREADY_REDEEMED";
+        } else {
+            try {
                 couponCountPerUser.compute(user.getUserId(), (k, v) -> {
                     if (v == null) {
-                        userDiscountCredits.compute(user.getUserId(), (k1, v1) -> {
-                            if (v1 == null) {
-                                return coupon.getCredit();
-                            } else {
-                                return v1 + coupon.getCredit();
-                            }
-                        });
                         return 1;
+                    } else if (v >= maxCouponsRedemptionsPerUser) {
+                        throw new RuntimeException("Max Coupons Availed Already !!");
                     } else {
-                        if (v < maxCouponsRedemptionsPerUser) {
-                            userDiscountCredits.compute(user.getUserId(), (k1, v1) -> {
-                                if (v1 == null) {
-                                    return coupon.getCredit();
-                                } else {
-                                    return v1 + coupon.getCredit();
-                                }
-                            });
-                            return v + 1;
-                        } else {
-                            throw new RuntimeException("Max Coupons Availed Already !!");
-                        }
+                        return v + 1;
                     }
                 });
-            } else {
-                return "ALREADY_REDEEMED";
-            }
-            return "REDEEMED_SUCCESSFULLY";
-        } catch(Exception e) {
-            e.printStackTrace();
-            if (state.get() == 1) {
-                couponToUserMap.remove(coupon.getCouponId());
-            } else if (state.get() == 2) {
-                couponCountPerUser.computeIfPresent(user.getUserId(), (k, v) -> {
-                    couponToUserMap.remove(coupon.getCouponId());
-                    return v - 1;
+
+                state.incrementAndGet();
+
+                userDiscountCredits.compute(user.getUserId(), (k, v) -> {
+                   if (v == null) {
+                       return coupon.getCredit();
+                   } else {
+                       return v + coupon.getCredit();
+                   }
                 });
+
+                state.incrementAndGet();
+                return "REDEEMED_SUCCESSFULLY";
+
+            } catch (RuntimeException e) {
+                if (state.get() == 1) {
+                    couponToUserMap.remove(coupon.getCouponId(), user.getUserId());
+                } else if (state.get() == 2) {
+                    couponCountPerUser.computeIfPresent(user.getUserId(), (k, v) -> v - 1);
+                    couponToUserMap.remove(coupon.getCouponId(), user.getUserId());
+                } else if (state.get() == 3) {
+                    userDiscountCredits.computeIfPresent(user.getUserId(), (k, v) -> v - coupon.getCredit());
+                    couponCountPerUser.computeIfPresent(user.getUserId(), (k, v) -> v - 1);
+                    couponToUserMap.remove(coupon.getCouponId(), user.getUserId());
+                }
             }
             return "REDEMPTION_FAILURE";
         }
