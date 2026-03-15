@@ -2,6 +2,7 @@ package multithreading.problems.concurrentCache;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.DelayQueue;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
@@ -17,11 +18,13 @@ public class Cache<K, V> {
     private Map<K, ListNode<K, V>> internalMap = new HashMap<>();
     private int cacheSize;
     private int maxSize;
+    private DelayQueue<ListNode<K, V>> delayQueue;
 
     private ReentrantLock reentrantLock = new ReentrantLock();
 
     public Cache(int maxSize) {
         this.maxSize = maxSize;
+        this.delayQueue = new DelayQueue<>();
     }
 
     public void put(K key, V value, Long ttl) {
@@ -33,6 +36,7 @@ public class Cache<K, V> {
                 evictNode();
             }
             pushNodeToCache(newListNode);
+            delayQueue.offer(newListNode);
         } catch (Exception e) {
             System.out.print("Exception while pushing key to the cache !!");
             e.printStackTrace();
@@ -122,7 +126,7 @@ public class Cache<K, V> {
         }
     }
 
-    private void removeNode(ListNode<K, V> node) {
+    protected void removeNode(ListNode<K, V> node) {
         internalMap.remove(node.getKey(), node);
         if (node == listNodeHead) {
             listNodeHead = listNodeHead.getNext();
@@ -138,5 +142,13 @@ public class Cache<K, V> {
             prevNode.setNext(nextNode);
             nextNode.setPrevious(prevNode);
         }
+    }
+
+    public DelayQueue<ListNode<K, V>> getDelayQueue() {
+        return delayQueue;
+    }
+
+    public ReentrantLock getReentrantLock() {
+        return reentrantLock;
     }
 }

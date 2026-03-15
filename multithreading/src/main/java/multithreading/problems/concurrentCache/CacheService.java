@@ -17,4 +17,8 @@ public class CacheService<K, V> {
         this.segmentLength = segmentLength;
         this.segments = new Cache[segmentLength];
     }
+
+    public Cache<K, V>[] getSegments() {
+        return segments;
+    }
 }
