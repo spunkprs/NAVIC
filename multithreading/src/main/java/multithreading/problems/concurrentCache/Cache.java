@@ -4,6 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.locks.ReentrantLock;
 
+/**
+Making sure each Cache node guarantees consistency, though I understand concern of throughput is definitely there
+To tackle concern of throughput I have wrapped it around CacheService and make every Cache node behave like a segment instead, this will up to a great extent will handle
+concern of throughput, key can be used to compute hash which will be used to distribute traffic across different cache nodes
+ * */
+
 public class Cache<K, V> {
 
     private ListNode<K, V> listNodeHead;
