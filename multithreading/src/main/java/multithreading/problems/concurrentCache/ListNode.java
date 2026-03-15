@@ -9,7 +9,7 @@ public class ListNode<K, V> implements Delayed {
     private V value;
     private ListNode next;
     private ListNode previous;
-    private Long ttl;
+    private final Long ttl;
     private Long creationTime;
     private long expirationTime;
 
@@ -24,6 +24,7 @@ public class ListNode<K, V> implements Delayed {
     public ListNode(K key, V value) {
         this.key = key;
         this.value = value;
+        this.ttl = null;
     }
 
     public K getKey() {
