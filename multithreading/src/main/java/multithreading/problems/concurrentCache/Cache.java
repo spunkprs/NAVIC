@@ -62,6 +62,14 @@ public class Cache<K, V> {
         cacheSize--;
     }
 
+    /**
+    Why locking is being used inside get() method call because of reason below :-
+     a.) Two operations are getting performed inside this get() method, first fetching value against the provided key
+     and second ordering of concerned ListNode needs to be altered too
+     b.) Because of the two reasons above mentioned, these shall be considered atomic operation instead otherwise if gaps are there we will see better throughput but
+     inconsistent results
+     * */
+
     public V get(K key) {
         try {
             reentrantLock.lock();
