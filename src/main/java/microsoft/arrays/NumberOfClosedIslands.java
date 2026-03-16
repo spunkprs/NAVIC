@@ -2,6 +2,22 @@ package microsoft.arrays;
 
 import java.util.*;
 
+/**
+Problem : 1254
+
+Given a 2D grid consists of 0s (land) and 1s (water).  An island is a maximal 4-directionally connected group of 0s and a closed island is an island
+totally (all left, top, right, bottom) surrounded by 1s.
+
+Return the number of closed islands.
+
+Constraints:-
+a.) 1 <= grid.length, grid[0].length <= 100
+b.) 0 <= grid[i][j] <=1
+
+Time Complexity = O(M * N), where M being number of rows && N being number of columns
+Space Complexity = O(M * N), where M being number of rows && N being number of columns
+ * */
+
 public class NumberOfClosedIslands {
 
     private boolean isClosedIsland;
