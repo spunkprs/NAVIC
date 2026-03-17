@@ -5,6 +5,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 /**
 Proper implementation of Sliding Window Log algorithm internally used by Rate Limiters
+Questions can be raised around throughput of the system but in this system correctness is given priority over throughput
  * */
 
 public class RateLimitingSystem {
