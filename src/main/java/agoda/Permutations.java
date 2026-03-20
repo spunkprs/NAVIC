@@ -11,6 +11,9 @@ Constraints:-
 a.) 1 <= nums.length <= 6
 b.) -10 <= nums[i] <= 10
 c.) All the integers of nums are unique.
+
+Time Complexity = O(n * n!), where n being number of nodes in the array
+Space Complexity = O(n), where n being number of nodes in the array
  * */
 
 public class Permutations {
