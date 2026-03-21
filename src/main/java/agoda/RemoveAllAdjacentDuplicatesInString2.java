@@ -13,6 +13,9 @@ Constraints:-
 a.) 1 <= s.length <= 10^5
 b.) 2 <= k <= 10^4
 c.) s only contains lowercase English letters.
+
+Time Complexity = O(N ^ 2), where N being number of characters in the String [Because of delete operation on StringBuilder it's leading to O(N ^ 2)]
+Space Complexity = O(N), where N being number of characters in the String
  * */
 
 public class RemoveAllAdjacentDuplicatesInString2 {
@@ -35,7 +38,7 @@ public class RemoveAllAdjacentDuplicatesInString2 {
             } else if (sb.charAt(i) == sb.charAt(i - 1)) {
                 counter[i] = counter[i - 1] + 1;
                 if (counter[i] == k) {
-                    sb.delete(i - k + 1, i + 1);
+                    sb.delete(i - k + 1, i + 1); //This operation is also O(N) internally in the worst case
                     i = i - k;
                 }
             }
