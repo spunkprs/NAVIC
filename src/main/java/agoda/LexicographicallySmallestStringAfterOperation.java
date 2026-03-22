@@ -3,6 +3,22 @@ package agoda;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+Problem : 2734
+Given a string s consisting of lowercase English letters. Perform the following operation:
+
+Select any non-empty substring then replace every letter of the substring with the preceding letter of the English alphabet.
+For example, 'b' is converted to 'a', and 'a' is converted to 'z'.
+Return the lexicographically smallest string after performing the operation.
+
+
+Typical String manipulation problem, have made use of greedy approach to solve the problem
+
+Time Complexity = O(N), where N being number of elements in the input String
+Space Complexity = O(N) , where N being number of elements in the input String
+ * */
+
 public class LexicographicallySmallestStringAfterOperation {
 
     public static void main(String ar[]) {
