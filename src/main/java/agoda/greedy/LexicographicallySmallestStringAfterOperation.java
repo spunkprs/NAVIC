@@ -1,4 +1,4 @@
-package agoda;
+package agoda.greedy;
 
 import java.util.ArrayList;
 import java.util.List;
