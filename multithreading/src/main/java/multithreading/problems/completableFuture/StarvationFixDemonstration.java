@@ -79,6 +79,82 @@ c.) No additional scheduling overhead
  🎯 Final Answer
  thenComposeAsync() should be used when you want the next stage of computation to execute asynchronously on a separate thread (typically from a thread pool),
  especially for blocking or heavy operations, whereas thenCompose() continues execution in the same thread that completed the previous stage.
+
+
+
+
+ Difference between thenApply, thenCompose, thenCombine ?
+
+ Big Picture
+ Method	Purpose
+ thenApply	Transform result (like map)
+ thenCompose	Chain async calls (like flatMap)
+ thenCombine	Combine two independent futures
+
+
+ 1️⃣ thenApply → Transform (Map)
+ 🔧 Use Case
+
+ You already have a result → just transform it
+
+ 🧪 Example
+ CompletableFuture<String> future =
+ CompletableFuture.supplyAsync(() -> "Hello")
+ .thenApply(s -> s + " World");
+ 🔍 Flow
+ "Hello" → thenApply → "Hello World"
+
+
+ 2️⃣ thenCompose → Flatten (FlatMap)
+ 🔧 Use Case
+
+ Next step itself returns a CompletableFuture
+
+ 🧪 Example
+ CompletableFuture<String> future =
+ CompletableFuture.supplyAsync(() -> "Hello")
+ .thenCompose(s ->
+ CompletableFuture.supplyAsync(() -> s + " World")
+ );
+ 🔍 Flow
+ "Hello"
+ ↓
+ returns Future<String>
+ ↓
+ thenCompose flattens it
+ ↓
+ CompletableFuture<String> ✅
+ 🎯 Key Idea
+
+ Avoid nested futures
+
+
+ 3️⃣ thenCombine → Merge Two Futures
+ 🔧 Use Case
+
+ You have two independent futures → combine results
+
+ 🧪 Example
+ CompletableFuture<String> f1 =
+ CompletableFuture.supplyAsync(() -> "Hello");
+
+ CompletableFuture<String> f2 =
+ CompletableFuture.supplyAsync(() -> "World");
+
+ CompletableFuture<String> result =
+ f1.thenCombine(f2, (a, b) -> a + " " + b);
+ 🔍 Flow
+ f1: "Hello" ─┐
+ ├── thenCombine → "Hello World"
+ f2: "World" ─┘
+
+
+ Rule of Thumb
+ Scenario	Use
+ Simple transformation	thenApply
+ Chaining async calls	thenCompose
+ Combining independent tasks	thenCombine
+
  * */
 
 public class StarvationFixDemonstration {
