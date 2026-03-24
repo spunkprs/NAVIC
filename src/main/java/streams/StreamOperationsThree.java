@@ -71,6 +71,12 @@ public class StreamOperationsThree {
 
         //Combiner works only with parallel streams and below example output proves that !!
 
+        /**
+        Parallel Streams internally makes use of ForkJoinPool internally, it assigns the tasks to the available pool of threads
+        Below in the reduce section every individual element is being pulled by the independent thread in the pool and club the result finally, clubbing
+        can be done using same or different available thread in the pool
+         * */
+
         int reducedParamsTwo = Arrays.asList(1, 2, 3)
                 .parallelStream()
                 .reduce(10, (a, b) -> a + b, (a, b) -> {
