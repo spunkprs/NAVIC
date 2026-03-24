@@ -65,6 +65,20 @@ c.) No additional scheduling overhead
  Stage 2: ForkJoinPool.commonPool-worker-3
 
  New task submitted. Possibly different thread.
+
+ When thenComposeAsync shall be used instead of thenCompose ?
+
+ Use thenComposeAsync() when you want the next stage to run asynchronously on a different thread (usually from a thread pool)
+ instead of continuing on the same thread.
+
+ 🧠 Core Difference
+ Method	Execution Behavior
+ thenCompose()	Runs in same thread (or caller thread)
+ thenComposeAsync()	Runs in different thread (ForkJoinPool or custom executor)
+
+ 🎯 Final Answer
+ thenComposeAsync() should be used when you want the next stage of computation to execute asynchronously on a separate thread (typically from a thread pool),
+ especially for blocking or heavy operations, whereas thenCompose() continues execution in the same thread that completed the previous stage.
  * */
 
 public class StarvationFixDemonstration {
