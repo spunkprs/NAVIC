@@ -54,6 +54,57 @@ Basic implementation of Stream being serial && parallel
 Reference -->
 a.) https://www.baeldung.com/java-8-streams-introduction
 b.) https://www.baeldung.com/java-8-streams
+
+
+Does parallel stream makes use of ForkJoinPool internally ?
+
+Yes — parallel streams use ForkJoinPool internally.
+
+🎯 Short Answer
+
+ ✅ parallelStream() runs tasks on ForkJoinPool.commonPool() by default
+
+ 🧠 How it works
+
+ When you do:
+
+ list.parallelStream()
+ .map(x -> process(x))
+ .forEach(System.out::println);
+
+ 👉 Internally:
+
+ Parallel Stream
+ ↓
+ Splits data into chunks
+ ↓
+ Submits tasks to ForkJoinPool
+ ↓
+ Worker threads execute tasks in parallel
+
+
+ 🧱 Why ForkJoinPool ?
+
+ Because parallel streams follow:
+
+ Divide and Conquer (Fork/Join model)
+
+ Internally uses:
+ Spliterator → splits data
+ ForkJoinTask → executes chunks
+ Work-stealing → balances load
+ 🔥 Key Characteristics
+ ✅ 1. Work-stealing
+
+ Idle threads steal work from busy threads
+
+ ✅ 2. Recursive splitting
+ [1..1000]
+ → split → [1..500], [501..1000]
+ → further split...
+ ✅ 3. CPU-bound optimization
+
+ Pool size ≈ number of CPU cores
  * */
 
 public class BasicStreamImplementation {
