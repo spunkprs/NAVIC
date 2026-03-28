@@ -30,6 +30,8 @@ Brute Force :-
  Optimal Approach :-
  a.) Time Complexity = O(queries.length) [In the below solution could have made used of simple integer array instead of HashMap]
  b.) Space Complexity = O(n)
+
+ Important Reference Link : https://www.youtube.com/watch?v=hl9zPuY11PI
  * */
 
 public class NumberOfAdjacentElementsWithSameColor {
