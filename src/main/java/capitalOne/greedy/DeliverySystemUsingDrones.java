@@ -10,8 +10,11 @@ public class DeliverySystemUsingDrones {
     public static void main(String ar[]) {
         DeliverySystemUsingDrones unit = new DeliverySystemUsingDrones();
 
-        int target = 35;
-        int stations[] = {7, 4, 12, 20, 21, 32};
+        //int target = 35;
+        //int stations[] = {7, 4, 12, 20, 21, 32};
+
+        int target = 23;
+        int stations[] = {7, 4, 14};
 
         System.out.println("Min distance to cover on foot is " + unit.minDistanceToCoverOverFoot(target, stations));
     }
