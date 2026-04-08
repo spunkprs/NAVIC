@@ -19,6 +19,9 @@ import java.util.Arrays;
 
  Link : https://www.geeksforgeeks.org/dsa/maximum-length-substring-having-all-same-characters-after-k-changes/
 
+Space Complexity = O(N), where N being number of elements in the array
+Time Complexity = O(26 * N) ~ O(N)
+
  * */
 
 public class LongestSubStringHavingAllSameCharactersAfterKChanges {
