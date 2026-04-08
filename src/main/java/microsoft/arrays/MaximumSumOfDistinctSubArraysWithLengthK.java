@@ -11,6 +11,14 @@ All the elements of the subarray are distinct.
 Return the maximum subarray sum of all the subarrays that meet the conditions. If no subarray meets the conditions, return 0.
 
 A subarray is a contiguous non-empty sequence of elements within an array.
+
+
+ Constraints:-
+a.) 1 <= k <= nums.length <= 10^5
+b.) 1 <= nums[i] <= 10^5
+
+Time Complexity = O(N), where N being number of elements in the array
+Space Complexity = O(N), where N being number of elements in the array
  * */
 
 public class MaximumSumOfDistinctSubArraysWithLengthK {
