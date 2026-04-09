@@ -3,6 +3,7 @@ package microsoft.arrays;
 import java.util.PriorityQueue;
 
 /**
+Problem : 2279
 You have n bags numbered from 0 to n - 1. You are given two 0-indexed integer arrays capacity and rocks.
 The ith bag can hold a maximum of capacity[i] rocks and currently contains rocks[i] rocks. You are also
 given an integer additionalRocks, the number of additional rocks you can place in any of the bags.
@@ -17,6 +18,10 @@ b.) 1 <= n <= 5 * 10^4
 c.) 1 <= capacity[i] <= 10^9
 d.) 0 <= rocks[i] <= capacity[i]
 e.) 1 <= additionalRocks <= 10^9
+
+
+Time Complexity = O(N * Log(N)), where N being number of elements in the array because of the involvement of PriorityQueue DS
+Space Complexity = O(N)
  * */
 
 public class MaximumBagsWithFullCapacityOfRocks {
