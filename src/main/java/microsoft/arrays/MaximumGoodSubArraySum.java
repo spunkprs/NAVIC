@@ -14,7 +14,7 @@ Return the maximum sum of a good subarray of nums. If there are no good subarray
 
 Referred Link : https://www.youtube.com/watch?v=So4VkfDiF2M
 
-Information : 754 / 783 testcases passed
+Information : 754 / 783 testcases passed [One of the nicest question]
 
 Time Complexity = O(N), where N being number of elements in the array
 Space Complexity = O(N)
