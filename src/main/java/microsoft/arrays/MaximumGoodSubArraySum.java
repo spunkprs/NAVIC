@@ -13,6 +13,11 @@ in other words, the subarray nums[i..j] is good if |nums[i] - nums[j]| == k.
 Return the maximum sum of a good subarray of nums. If there are no good subarrays, return 0.
 
 Referred Link : https://www.youtube.com/watch?v=So4VkfDiF2M
+
+Information : 754 / 783 testcases passed
+
+Time Complexity = O(N), where N being number of elements in the array
+Space Complexity = O(N)
  * */
 
 public class MaximumGoodSubArraySum {
