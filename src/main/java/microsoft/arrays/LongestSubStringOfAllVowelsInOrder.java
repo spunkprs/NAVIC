@@ -20,6 +20,9 @@ Constraints:-
 
 a.) 1 <= word.length <= 5 * 10^5
 b.) word consists of characters 'a', 'e', 'i', 'o', and 'u'.
+
+Time Complexity = O(N), where N being number of elements in the array
+Space Complexity = O(1)
  * */
 
 public class LongestSubStringOfAllVowelsInOrder {
