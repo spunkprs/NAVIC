@@ -22,6 +22,10 @@ d.) wordList[i].length == beginWord.length
 e.) beginWord, endWord, and wordList[i] consist of lowercase English letters.
 f.) beginWord != endWord
 g.) All the words in wordList are unique.
+
+
+Time Complexity : O((26 ^ word.length) * wordList.length)
+Space Complexity : O(wordList.length * characters/word)
  * */
 
 public class WordLadder {
