@@ -2,6 +2,28 @@ package microsoft.arrays;
 
 import java.util.*;
 
+/**
+Problem : 127
+A transformation sequence from word beginWord to word endWord using a dictionary wordList is a sequence of words beginWord -> s1 -> s2 -> ... -> sk such that:
+
+Every adjacent pair of words differs by a single letter.
+Every si for 1 <= i <= k is in wordList. Note that beginWord does not need to be in wordList.
+sk == endWord
+Given two words, beginWord and endWord, and a dictionary wordList, return the number of words in the shortest transformation
+sequence from beginWord to endWord, or 0 if no such sequence exists.
+
+
+Constraints:-
+
+a.) 1 <= beginWord.length <= 10
+b.) endWord.length == beginWord.length
+c.) 1 <= wordList.length <= 5000
+d.) wordList[i].length == beginWord.length
+e.) beginWord, endWord, and wordList[i] consist of lowercase English letters.
+f.) beginWord != endWord
+g.) All the words in wordList are unique.
+ * */
+
 public class WordLadder {
 
     private int minDistance = Integer.MAX_VALUE;
@@ -93,47 +115,6 @@ public class WordLadder {
             }
         }
         return children;
-    }
-
-    private void processWithDfsApproach(String startWord, int distance, String endWord, Set<String> dictionary) {
-        char arr[] = startWord.toCharArray();
-        StringBuilder sb = new StringBuilder(startWord);
-
-        if (startWord.equals(endWord)) {
-            minDistance = distance < minDistance ? distance : minDistance;
-        } else {
-            for (int i = 0; i < arr.length; i++) {
-                if (i == 0) {
-                    String intermittentString = sb.substring(1, arr.length);
-                    for (Character ch : possibleCharacters) {
-                        String finalString = ch + intermittentString;
-                        if (!visitedNodes.contains(finalString) && dictionary.contains(finalString)) {
-                            visitedNodes.add(finalString);
-                            processWithDfsApproach(finalString, distance + 1, endWord, dictionary);
-                        }
-                    }
-                } else if (i == arr.length - 1) {
-                    String intermittentString = sb.substring(0, arr.length - 1);
-                    for (Character ch : possibleCharacters) {
-                        String finalString = new StringBuilder(intermittentString).append(ch).toString();
-                        if (!visitedNodes.contains(finalString) && dictionary.contains(finalString)) {
-                            visitedNodes.add(finalString);
-                            processWithDfsApproach(finalString, distance + 1, endWord, dictionary);
-                        }
-                    }
-                } else {
-                    String intermittentStringOne = sb.substring(0, i);
-                    String intermittentStringTwo = sb.substring(i + 1, arr.length);
-                    for (Character ch : possibleCharacters) {
-                        String finalString = new StringBuilder(intermittentStringOne).append(ch).append(intermittentStringTwo).toString();
-                        if (!visitedNodes.contains(finalString) && dictionary.contains(finalString)) {
-                            visitedNodes.add(finalString);
-                            processWithDfsApproach(finalString, distance + 1, endWord, dictionary);
-                        }
-                    }
-                }
-            }
-        }
     }
 
     private Set<String> prepareSet(List<String> wordList) {
