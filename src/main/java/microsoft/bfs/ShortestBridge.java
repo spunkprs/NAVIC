@@ -12,6 +12,12 @@ You may change 0's to 1's to connect the two islands to form one island.
 
 Return the smallest number of 0's you must flip to connect the two islands.
 
+Constraints:-
+
+a.) n == grid.length == grid[i].length
+b.) 2 <= n <= 100
+c.) grid[i][j] is either 0 or 1.
+d.) There are exactly two islands in grid.
 
  * */
 
