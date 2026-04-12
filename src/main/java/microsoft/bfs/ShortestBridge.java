@@ -19,6 +19,10 @@ b.) 2 <= n <= 100
 c.) grid[i][j] is either 0 or 1.
 d.) There are exactly two islands in grid.
 
+Time Complexity = O(grid.length ^ 2)
+Space Complexity = O(grid.length ^ 2)
+
+One of the question where DFS && BFS have been used together
  * */
 
 public class ShortestBridge {
