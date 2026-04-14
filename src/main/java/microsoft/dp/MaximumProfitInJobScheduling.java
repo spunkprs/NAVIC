@@ -17,7 +17,7 @@ a.) 1 <= startTime.length == endTime.length == profit.length <= 5 * 10^4
 b.) 1 <= startTime[i] < endTime[i] <= 10^9
 c.) 1 <= profit[i] <= 10^4
 
-23 / 35 testcases passed
+23 / 35 testcases passed [Instead of fetching all nodes for finding children, it shall be sorted so that that potential children becomes pretty less using binary search ]
 Approach Used : DP
 
 Time Complexity = O(N^2)
