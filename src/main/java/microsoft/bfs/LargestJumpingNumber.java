@@ -14,7 +14,9 @@ Space Complexity = O(K) where K is the total number of jumping numbers less than
 
 Approach Used : BFS
 
-Not a leet code question rather it was asked during Amazon interview which I was not able to solve convincingly !!
+Reference : https://placewit.medium.com/jumping-numbers-3f871c232fed
+
+Not a leet code question rather it was asked during Amazon interview which I was NOT able to solve convincingly !!
 
  * */
 
@@ -22,7 +24,7 @@ public class LargestJumpingNumber {
 
     public static void main(String ar[]) {
         LargestJumpingNumber unit = new LargestJumpingNumber();
-        int number = 50;
+        int number = 102;
         System.out.println("Largest jumping number less than " + number + " is " + unit.fetchLargestJumpingNumber(number));
     }
 
@@ -49,8 +51,8 @@ public class LargestJumpingNumber {
             int lastDigit = peekedNum % 10;
 
             if (lastDigit != 0) {
-                int numOne = Integer.parseInt(sb + (lastDigit + 1));
-                int numTwo = Integer.parseInt(sb + (lastDigit - 1));
+                int numOne = Integer.parseInt(sb + (lastDigit - 1));
+                int numTwo = Integer.parseInt(sb + (lastDigit + 1));
                 if (numOne < number) {
                     queue.add(numOne);
                 }
