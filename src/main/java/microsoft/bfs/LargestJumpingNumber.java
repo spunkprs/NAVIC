@@ -3,6 +3,21 @@ package microsoft.bfs;
 import java.util.LinkedList;
 import java.util.Queue;
 
+
+/**
+A jumping number is defined as a number where all adjacent digits have an absolute difference of 1 (e.g., 7, 43, 898).
+All single-digit numbers (0–9) are considered jumping numbers
+
+Time Complexity = O(K) where K is the total number of jumping numbers less than or equal to provided number
+
+Space Complexity = O(K) where K is the total number of jumping numbers less than or equal to provided number
+
+Approach Used : BFS
+
+Not a leet code question rather it was asked during Amazon interview which I was not able to solve convincingly !!
+
+ * */
+
 public class LargestJumpingNumber {
 
     public static void main(String ar[]) {
