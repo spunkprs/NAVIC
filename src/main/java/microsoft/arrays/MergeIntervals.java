@@ -4,6 +4,23 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+Problem : 56
+Given an array of intervals where intervals[i] = [starti, endi], merge all
+overlapping intervals, and return an array of the non-overlapping intervals that cover all the intervals in the input.
+
+ Constraints:-
+
+a.) 1 <= intervals.length <= 10^4
+b.) intervals[i].length == 2
+c.) 0 <= starti <= endi <= 10^4
+
+Time Complexity = O(N*Log(N))
+Space Complexity = O(N)
+
+Reference : https://www.youtube.com/watch?v=44H3cEC2fFM
+ * */
+
 public class MergeIntervals {
 
     public static void main(String ar[]) {
