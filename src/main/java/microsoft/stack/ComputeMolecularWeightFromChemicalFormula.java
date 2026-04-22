@@ -22,7 +22,8 @@ b.) atomicWeights will contain valid mappings for all elements in formula.
 c.) formula length will be between 1 and 1000.
 d.) Calculated weight will fit within a standard integer type.
 
-
+Time Complexity = O(N)
+Space Complexity = O(N)
  * */
 
 public class ComputeMolecularWeightFromChemicalFormula {
