@@ -24,6 +24,9 @@ d.) Calculated weight will fit within a standard integer type.
 
 Time Complexity = O(N)
 Space Complexity = O(N)
+
+
+Reference : https://enginebogie.com/public/question/compute-molecular-weight-from-chemical-formula/2851?srsltid=AfmBOopdIeC_41aZ3GFL6Pdj6gNdDcoLgivEs1fcN0EWPDP1qUaxWL-2
  * */
 
 public class ComputeMolecularWeightFromChemicalFormula {
