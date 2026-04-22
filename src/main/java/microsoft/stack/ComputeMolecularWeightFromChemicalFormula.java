@@ -4,6 +4,27 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
 
+/**
+You are provided with a mapping of chemical element symbols to their atomic weights: {'C': 12, 'H': 1, 'O': 8}.
+Your task is to implement a function that takes a chemical formula string and calculates its total molecular weight.
+
+The chemical formula string can include:
+
+Uppercase letters for element symbols (e.g., 'C', 'H', 'O').
+Numbers immediately following an element symbol to denote its count (e.g., 'H2' means two Hydrogen atoms).
+Parentheses for grouping (e.g., '(CH4)' represents a methane molecule).
+Numbers immediately following a closing parenthesis to denote a multiplier for the entire group (e.g., '(CH4)2' means two methane molecules).
+Your solution should correctly parse the nested structure and multipliers to compute the final weight.
+
+Constraints:-
+a.) formula will only contain uppercase English letters, digits, and parentheses.
+b.) atomicWeights will contain valid mappings for all elements in formula.
+c.) formula length will be between 1 and 1000.
+d.) Calculated weight will fit within a standard integer type.
+
+
+ * */
+
 public class ComputeMolecularWeightFromChemicalFormula {
 
     public static void main(String ar[]) {
