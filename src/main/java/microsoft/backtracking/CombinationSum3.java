@@ -3,6 +3,20 @@ package microsoft.backtracking;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+Problem : 216
+Find all valid combinations of k numbers that sum up to n such that the following conditions are true:
+
+Only numbers 1 through 9 are used.
+Each number is used at most once.
+Return a list of all possible valid combinations. The list must not contain the same combination twice, and the combinations may be returned in any order.
+
+Constraints:-
+
+a.) 2 <= k <= 9
+b.) 1 <= n <= 60
+ * */
+
 public class CombinationSum3 {
 
     private List<List<Integer>> result = new ArrayList<>();
