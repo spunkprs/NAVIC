@@ -15,9 +15,13 @@ Constraints:-
 a.) The number of nodes in the tree is in the range [2, 5 * 104].
 b.) 1 <= Node.val <= 104
 
+https://leetcode.com/problems/maximum-product-of-splitted-binary-tree/description/
 
 Time Complexity : O(N), where N being number of nodes in the binary tree
-Space Complexity : O(N) [Would be implicit memory stack which can be N in the worst case]
+Space Complexity : O(N) [Would be implicit memory stack which can be N in the worst case] + Building another tree of same size would
+again require O(N) memory space ~Would be more than O(N) because Node class has both value[int type] && sum[long type]
+where as TreeNode class has only val[int type]
+
  * */
 
 public class MaximumProductOfSplittedBinaryTree {
@@ -114,7 +118,7 @@ public class MaximumProductOfSplittedBinaryTree {
     }
 
     static class Node {
-        private long val;
+        private int val;
         private long sum;
         private Node left;
         private Node right;
