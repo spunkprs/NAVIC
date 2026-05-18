@@ -14,6 +14,10 @@ Constraints:-
 
 a.) The number of nodes in the tree is in the range [2, 5 * 104].
 b.) 1 <= Node.val <= 104
+
+
+Time Complexity : O(N), where N being number of nodes in the binary tree
+Space Complexity : O(N) [Would be implicit memory stack which can be N in the worst case]
  * */
 
 public class MaximumProductOfSplittedBinaryTree {
