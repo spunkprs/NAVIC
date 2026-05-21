@@ -31,11 +31,14 @@ public class WordSearchTwo {
     public static void main(String ar[]) {
         WordSearchTwo unit = new WordSearchTwo();
 
-        char [][]board = {{'o','a','a','n'},{'e','t','a','e'},{'i','h','k','r'},{'i','f','l','v'}};
-        String words[] = {"oath","pea","eat","rain"};
+        //char [][]board = {{'o','a','a','n'},{'e','t','a','e'},{'i','h','k','r'},{'i','f','l','v'}};
+        //String words[] = {"oath","pea","eat","rain"};
 
         //char [][] board = {{'a'}};
         //String words[] = {"a"};
+
+        char [][]board = {{'a','b','c'},{'a','e','d'},{'a','f','g'}};
+        String words[] = {"eaafgdcba","eaabcdgfa"};
 
         List<String> result = unit.findWords(board, words);
 
@@ -46,6 +49,7 @@ public class WordSearchTwo {
     }
 
     private Set<String> resultantWords = new HashSet<>();
+    private boolean shallContinue = true;
 
     public List<String> findWords(char[][] board, String[] words) {
         for (String word: words) {
@@ -58,6 +62,7 @@ public class WordSearchTwo {
         char arr[] = word.toCharArray();
         int currentIndex = 0;
         Set<Node> visitedNodes = new HashSet<>();
+        shallContinue = true;
 
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
@@ -65,7 +70,7 @@ public class WordSearchTwo {
                     if (word.length() > 1) {
                         Node startNode = new Node(currentIndex, i, j);
                         visitedNodes.add(startNode);
-                        process(startNode, visitedNodes, board, arr, word);
+                        processUsingDFS(startNode, visitedNodes, board, arr, word);
                     } else {
                         resultantWords.add(word);
                     }
@@ -74,7 +79,7 @@ public class WordSearchTwo {
         }
     }
 
-    private void process(Node node, Set<Node> visitedNodes, char[][] board, char[] arr, String word) {
+    private void processBfsApproach(Node node, Set<Node> visitedNodes, char[][] board, char[] arr, String word) {
         Queue<Node> queue = new LinkedList<>();
 
         queue.add(node);
@@ -98,6 +103,23 @@ public class WordSearchTwo {
         }
     }
 
+    private void processUsingDFS(Node node, Set<Node> visitedNodes, char[][] board, char[] arr, String word) {
+            visitedNodes.add(node);
+            for (Node childNode : fetchChildren(node, board, visitedNodes, node.index + 1, arr)) {
+                if (shallContinue) {
+                    if (childNode.index == arr.length - 1) {
+                        resultantWords.add(word);
+                        shallContinue = false;
+                    } else {
+                        processUsingDFS(childNode, visitedNodes, board, arr, word);
+                    }
+                }
+            }
+            if (shallContinue) {
+                visitedNodes.remove(node);
+            }
+    }
+
     private List<Node> fetchChildren(Node node, char[][] board, Set<Node> visitedNodes, int nextIndex, char[] arr) {
         List<Node> children = new ArrayList<>();
 
@@ -105,7 +127,6 @@ public class WordSearchTwo {
             Node childNode = new Node(nextIndex, node.xIndex + 1, node.yIndex);
             if (!visitedNodes.contains(childNode)) {
                 children.add(childNode);
-                visitedNodes.add(childNode);
             }
         }
 
@@ -113,7 +134,6 @@ public class WordSearchTwo {
             Node childNode = new Node(nextIndex, node.xIndex, node.yIndex + 1);
             if (!visitedNodes.contains(childNode)) {
                 children.add(childNode);
-                visitedNodes.add(childNode);
             }
         }
 
@@ -121,7 +141,6 @@ public class WordSearchTwo {
             Node childNode = new Node(nextIndex, node.xIndex - 1, node.yIndex);
             if (!visitedNodes.contains(childNode)) {
                 children.add(childNode);
-                visitedNodes.add(childNode);
             }
         }
 
@@ -129,7 +148,6 @@ public class WordSearchTwo {
             Node childNode = new Node(nextIndex, node.xIndex, node.yIndex - 1);
             if (!visitedNodes.contains(childNode)) {
                 children.add(childNode);
-                visitedNodes.add(childNode);
             }
         }
         return children;
