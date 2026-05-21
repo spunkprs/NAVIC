@@ -24,6 +24,15 @@ g.) words[i] consists of lowercase English letters.
 h.) All the strings of words are unique.
 
 Level : HARD
+
+Current complexity: O(W*M*N*pow(4,L))
+
+Suggested complexity: O(M*N*pow(3,L))
+
+Suggestions: Implement a Trie to store the word list, allowing the DFS to search for multiple words
+simultaneously and prune paths that do not match any prefix.
+
+Current complexity : O(W+L)
  * */
 
 public class WordSearchTwo {
@@ -70,7 +79,8 @@ public class WordSearchTwo {
                     if (word.length() > 1) {
                         Node startNode = new Node(currentIndex, i, j);
                         visitedNodes.add(startNode);
-                        processUsingDFS(startNode, visitedNodes, board, arr, word);
+                        processUsingDFS(startNode, visitedNodes, board, arr, word); //Made use of DFS instead of BFS because there would be cases
+                        //where backtracking is required && DFS is suited for that
                     } else {
                         resultantWords.add(word);
                     }
@@ -102,6 +112,11 @@ public class WordSearchTwo {
             }
         }
     }
+
+    /**
+     Always remember BFS && DFS both are used to explore nodes in a graph but cases where we need to explore paths &&
+     usage of backtracking is imperative make use of DFS instead !!
+     * */
 
     private void processUsingDFS(Node node, Set<Node> visitedNodes, char[][] board, char[] arr, String word) {
             visitedNodes.add(node);
