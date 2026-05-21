@@ -3,6 +3,29 @@ package microsoft.bfs;
 import java.util.*;
 import java.util.stream.Collectors;
 
+
+/**
+Problem : 212
+Given an m x n board of characters and a list of strings words, return all words on the board.
+
+Each word must be constructed from letters of sequentially adjacent cells, where adjacent cells are
+horizontally or vertically neighboring. The same letter cell may not be used more than once in a word
+
+
+Constraints:-
+
+a.) m == board.length
+b.) n == board[i].length
+c.) 1 <= m, n <= 12
+d.) board[i][j] is a lowercase English letter.
+e.) 1 <= words.length <= 3 * 104
+f.) 1 <= words[i].length <= 10
+g.) words[i] consists of lowercase English letters.
+h.) All the strings of words are unique.
+
+Level : HARD
+ * */
+
 public class WordSearchTwo {
 
     public static void main(String ar[]) {
