@@ -1,4 +1,4 @@
-package microsoft.bfs;
+package microsoft.dfs;
 
 import java.util.*;
 import java.util.stream.Collectors;
