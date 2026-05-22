@@ -18,6 +18,9 @@ Return a list of indices (0-indexed) of buildings that have an ocean view, sorte
 Constraints:-
 a.) 1 <= heights.length <= pow(10,5)
 b.) 1 <= heights[i] <= pow(10,9)
+
+Time Complexity = O(N), where N being length of array
+Space Complexity = O(N)
  * */
 
 public class BuildingsWithOceanView {
