@@ -18,6 +18,14 @@ a.) 2 <= s.length <= 50
 b.) s consists of only '(' and ')'.
 c.) s is a balanced parentheses string.
 
+
+Link : https://leetcode.com/problems/score-of-parentheses/description/?envType=problem-list-v2&envId=stack
+
+Time Complexity = O(N), where N is the size of String
+Space Complexity = O(N)
+
+Level : Medium
+
  * */
 
 public class ScoreOfParentheses {
