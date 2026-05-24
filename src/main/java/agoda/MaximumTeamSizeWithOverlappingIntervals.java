@@ -2,6 +2,28 @@ package agoda;
 
 import java.util.*;
 
+/**
+Problem : 3893
+Link : https://leetcode.com/problems/maximum-team-size-with-overlapping-intervals/description/?envType=company&envId=agoda&favoriteSlug=agoda-all
+You are given two integer arrays startTime and endTime of length n.
+
+startTime[i] represents the start time of the ith employee.
+endTime[i] represents the end time of the ith employee.
+
+Two employees i and j can interact if their time intervals overlap. Two intervals are considered overlapping if
+they share at least one common time point.
+
+A team is valid if there exists at least one employee in the team who can interact with every other member of the team.
+
+Return an integer denoting the maximum possible size of such a team.
+
+Time Complexity = O(NLogN)
+Space Complexity = O(N)
+
+Got confused with the solution myself because of involved edge case scenarios, hence will deal with it later
+Level : Medium
+ * */
+
 public class MaximumTeamSizeWithOverlappingIntervals {
 
     private int startTimeIndex = -1;
