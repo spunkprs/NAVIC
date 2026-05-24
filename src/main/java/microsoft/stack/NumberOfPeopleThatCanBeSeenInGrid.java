@@ -4,6 +4,31 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
 
+/**
+Problem : 2282
+Link : https://leetcode.com/problems/number-of-people-that-can-be-seen-in-a-grid/description/?envType=problem-list-v2&envId=stack
+
+You are given an m x n 0-indexed 2D array of positive integers heights where heights[i][j] is the height of the person
+standing at position (i, j).
+
+A person standing at position (row1, col1) can see a person standing at position (row2, col2) if:
+
+The person at (row2, col2) is to the right or below the person at (row1, col1). More formally, this means that either row1 == row2
+and col1 < col2 or row1 < row2 and col1 == col2.
+Everyone in between them is shorter than both of them.
+Return an m x n 2D array of integers answer where answer[i][j] is the number of people that the person at position (i, j) can see.
+
+
+Constraints:-
+
+a.) 1 <= heights.length <= 400
+b.) 1 <= heights[i].length <= 400
+c.) 1 <= heights[i][j] <= pow(10,5)
+
+Time Complexity = O(M * N)
+Space Complexity = O(M * N)
+ * */
+
 public class NumberOfPeopleThatCanBeSeenInGrid {
 
     public static void main(String ar[]) {
