@@ -6,6 +6,7 @@ import java.util.Map;
 /**
 
 Problem : 325
+Link : https://leetcode.com/problems/maximum-size-subarray-sum-equals-k/description/
 Given an integer array nums and an integer k, return the maximum length of a subarray that sums to k. If there is not one, return 0 instead
 
 
