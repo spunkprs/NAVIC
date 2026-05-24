@@ -27,6 +27,9 @@ c.) 1 <= heights[i][j] <= pow(10,5)
 
 Time Complexity = O(M * N)
 Space Complexity = O(M * N)
+
+Verdict : 50/78 test cases are getting passed, need to have a look into it
+
  * */
 
 public class NumberOfPeopleThatCanBeSeenInGrid {
