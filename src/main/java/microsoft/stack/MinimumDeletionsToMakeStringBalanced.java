@@ -16,6 +16,11 @@ Constraints:-
 
 a.) 1 <= s.length <= 10^5
 b.) s[i] is 'a' or 'b'
+
+Level : Medium
+
+Time Complexity = O(N), where N being length of String
+Space Complexity = O(N)
  * */
 
 public class MinimumDeletionsToMakeStringBalanced {
