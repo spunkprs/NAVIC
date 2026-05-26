@@ -4,6 +4,23 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+Problem : 2602
+Link : https://leetcode.com/problems/minimum-operations-to-make-all-array-elements-equal/description/?envType=company&envId=jpmorgan&favoriteSlug=jpmorgan-all
+
+You are given an array nums consisting of positive integers.
+
+You are also given an integer array queries of size m. For the ith query, you want to make all of the elements of nums equal to queries[i]. You can perform the following operation on the array any number of times:
+
+Increase or decrease an element of the array by 1.
+Return an array answer of size m where answer[i] is the minimum number of operations to make all elements of nums equal to queries[i].
+
+Note that after each query the array is reset to its original state.
+
+Level : Medium
+
+ * */
+
 public class MinimmumOperationsToMakeAllArrayElementsEqual {
 
     private int greaterIndex = -1;
