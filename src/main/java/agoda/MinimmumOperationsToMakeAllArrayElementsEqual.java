@@ -26,6 +26,9 @@ b.) m == queries.length
 c.) 1 <= n, m <= 10^5
 d.) 1 <= nums[i], queries[i] <= 10^9
 
+Reference Link for solution : https://www.youtube.com/watch?v=5vB9ibp3K6Y
+
+Shall go through more of questions where subarray sum is involved && for the same prefix sum is used !!
  * */
 
 public class MinimmumOperationsToMakeAllArrayElementsEqual {

@@ -29,7 +29,7 @@ Level : Medium
 For now 13/84 test cases are getting passed, will definitely coming back on it
 Approach : Top Down Dynamic Programming
 
-Current Time Complexity = O(N^2), but how this is coming to it, having issues against making the menral model hence ask same from ChatGPT
+Current Time Complexity = O(N^2), but how this is coming to it, having issues against making the mental model hence ask same from ChatGPT
 Space Complexity : O(N)
  * */
 
