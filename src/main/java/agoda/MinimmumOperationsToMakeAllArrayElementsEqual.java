@@ -19,6 +19,13 @@ Note that after each query the array is reset to its original state.
 
 Level : Medium
 
+Constraints:
+
+a.) n == nums.length
+b.) m == queries.length
+c.) 1 <= n, m <= 10^5
+d.) 1 <= nums[i], queries[i] <= 10^9
+
  * */
 
 public class MinimmumOperationsToMakeAllArrayElementsEqual {
