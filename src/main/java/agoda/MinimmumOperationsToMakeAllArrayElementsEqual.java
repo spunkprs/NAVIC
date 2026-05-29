@@ -1,8 +1,6 @@
 package agoda;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
 Problem : 2602
@@ -38,8 +36,11 @@ public class MinimmumOperationsToMakeAllArrayElementsEqual {
 
     public static void main(String ar[]) {
         MinimmumOperationsToMakeAllArrayElementsEqual unit = new MinimmumOperationsToMakeAllArrayElementsEqual();
-        int nums[] = {3, 1, 6, 8};
-        int queries[] = {1, 5};
+        //int nums[] = {3, 1, 6, 8};
+        //int queries[] = {1, 5};
+
+        int nums[] = {2, 9, 6, 3};
+        int queries[] = {10};
 
         List<Long> resultList = unit.minOperations(nums, queries);
         System.out.print(resultList);
@@ -78,84 +79,66 @@ public class MinimmumOperationsToMakeAllArrayElementsEqual {
      Hence total time complexity = O(N * log(N)) + O(P * log(N))
 
      Space Complexity = O(N)
-
-     But I am getting ArrayIndexOutOfBoundsException for it, which I will have to check && fix
+     Have fixed the issue now && solution is accepted
      * */
 
     private List<Long> processToComputeMinOperationsOne(int[] nums, int[] queries) {
         List<Long> operationsList = new ArrayList<>();
         Arrays.sort(nums);
 
+        TreeMap<Integer, Node> treeMap = new TreeMap<>();
+
+        prepareTreeMap(nums, treeMap);
+
         long prefixSum[] = preparePrefixSum(nums);
         long operationSum = 0;
+
         for (int i = 0; i < queries.length; i++) {
             int queryVal = queries[i];
-            indexGreaterThanQueryVal(queryVal, nums);
-            indexLesserThanQueryVal(queryVal, nums);
-
-            if (greaterIndex != -1 && smallerIndex != -1) {
-                long sumOne = queryVal * (nums.length - greaterIndex);
-                long sumTwo = prefixSum[nums.length] - prefixSum[greaterIndex];
-
-                long sumThree = queryVal * (smallerIndex + 1);
-                long sumFour = prefixSum[smallerIndex + 1] - prefixSum[0];
-                operationSum += Math.abs(sumOne - sumTwo) + Math.abs(sumThree - sumFour);
-            } else if (greaterIndex == -1 && smallerIndex != -1) {
-                long sumOne = queryVal * (smallerIndex + 1);
-                long sumTwo = prefixSum[smallerIndex + 1] - prefixSum[0];
-                operationSum += Math.abs(sumOne - sumTwo);
-            } else if (greaterIndex != -1 && smallerIndex == -1) {
-                long sumOne = queryVal * (nums.length - greaterIndex);
-                long sumTwo = prefixSum[nums.length] - prefixSum[greaterIndex];
-                operationSum += Math.abs(sumOne - sumTwo);
+            Map.Entry<Integer, Node> higherEntry = treeMap.higherEntry(queryVal);
+            if (higherEntry != null) {
+                greaterIndex = higherEntry.getValue().startIndex;
             }
+
+            Map.Entry<Integer, Node> lowerEntry = treeMap.lowerEntry(queryVal);
+            if (lowerEntry != null) {
+                smallerIndex = lowerEntry.getValue().endIndex;
+            }
+
+            operationSum = prepareOperationSum(nums, prefixSum, queryVal);
+
             operationsList.add(operationSum);
-            operationSum = 0;
             smallerIndex = -1;
             greaterIndex = -1;
         }
-
         return operationsList;
     }
 
-    private void indexLesserThanQueryVal(int queryVal, int[] nums) {
-        fetchSmallerIndex(queryVal, nums, 0, nums.length - 1);
-    }
-
-    private void fetchSmallerIndex(int queryVal, int[] nums, int startIndex, int endIndex) {
-        int midIndex = (startIndex + endIndex) / 2;
-        if (nums[midIndex] < queryVal && nums[midIndex + 1] >= queryVal) {
-            smallerIndex = midIndex;
-            return;
-        } else if (nums[midIndex - 1] < queryVal && nums[midIndex] >= queryVal && midIndex < nums.length - 1) {
-            smallerIndex = midIndex;
-            return;
-        } else if (nums[midIndex] >= queryVal && midIndex > 0) {
-            fetchSmallerIndex(queryVal, nums, startIndex, midIndex - 1);
-        } else if (nums[midIndex] < queryVal && midIndex + 1 < nums.length) {
-            fetchSmallerIndex(queryVal, nums, midIndex + 1, endIndex);
+    private long prepareOperationSum(int[] nums, long[] prefixSum, int queryVal) {
+        long result = 0;
+        if (greaterIndex != -1) {
+            long sumOne = prefixSum[nums.length] - prefixSum[greaterIndex];
+            long sumTwo = 1L * (nums.length - greaterIndex) * queryVal;
+            result += sumOne - sumTwo;
         }
+
+        if (smallerIndex != -1) {
+            long sumTwo = 1L * (smallerIndex + 1) * queryVal;
+            long sumOne = prefixSum[smallerIndex + 1];
+            result += sumTwo - sumOne;
+        }
+
+        return result;
     }
 
-    private void indexGreaterThanQueryVal(int queryVal, int[] nums) {
-        fetchGreaterIndex(queryVal, nums, 0, nums.length - 1);
-    }
-
-    private void fetchGreaterIndex(int queryVal, int[] nums, int startIndex, int endIndex) {
-        int midIndex = (startIndex + endIndex) / 2;
-        if (nums[midIndex] > queryVal && nums[midIndex - 1] <= queryVal) {
-            greaterIndex = midIndex;
-            return;
-        } else if (nums[midIndex - 1] <= queryVal && nums[midIndex] > queryVal && midIndex > 0) {
-            greaterIndex = midIndex;
-            return;
-        } else if (nums[midIndex] > queryVal && midIndex == 0) {
-            greaterIndex = midIndex;
-            return;
-        } else if (nums[midIndex] <= queryVal && midIndex + 1 < nums.length) {
-            fetchGreaterIndex(queryVal, nums, midIndex + 1, endIndex);
-        } else {
-            fetchGreaterIndex(queryVal, nums, startIndex, midIndex - 1);
+    private void prepareTreeMap(int[] nums, TreeMap<Integer, Node> treeMap) {
+        for (int i = 0; i < nums.length; i++) {
+            if (treeMap.containsKey(nums[i])) {
+                Node node = treeMap.get(nums[i]);
+                node.endIndex = i;
+            } else {
+                treeMap.put(nums[i], new Node(i, i));
+            }
         }
     }
 
@@ -165,5 +148,15 @@ public class MinimmumOperationsToMakeAllArrayElementsEqual {
             prefixSum[i + 1] = prefixSum[i] + nums[i];
         }
         return prefixSum;
+    }
+
+    static class Node {
+        private int startIndex;
+        private int endIndex;
+
+        public Node(int startIndex, int endIndex) {
+            this.startIndex = startIndex;
+            this.endIndex = endIndex;
+        }
     }
 }
