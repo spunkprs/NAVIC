@@ -19,6 +19,11 @@ Constraints:-
 a.) n == nums.length
 b.) 1 <= nums.length <= 10^5
 c.) -10^9 <= nums[i] <= 10^9
+
+Level : Medium
+
+Time Complexity : O(N*Log(N)), where N being number of elements in the array
+Space Complexity : O(N*Log(N))
  * */
 
 public class MinimumMovesToEqualArrayElements {
