@@ -29,13 +29,13 @@ Reference Link for solution : https://www.youtube.com/watch?v=5vB9ibp3K6Y
 Shall go through more of questions where subarray sum is involved && for the same prefix sum is used !!
  * */
 
-public class MinimmumOperationsToMakeAllArrayElementsEqual {
+public class MinimumOperationsToMakeAllArrayElementsEqual {
 
     private int greaterIndex = -1;
     private int smallerIndex = -1;
 
     public static void main(String ar[]) {
-        MinimmumOperationsToMakeAllArrayElementsEqual unit = new MinimmumOperationsToMakeAllArrayElementsEqual();
+        MinimumOperationsToMakeAllArrayElementsEqual unit = new MinimumOperationsToMakeAllArrayElementsEqual();
         //int nums[] = {3, 1, 6, 8};
         //int queries[] = {1, 5};
 
