@@ -20,6 +20,9 @@ c.) 1 <= m, n <= 200
 d.) board[i][j] is either '.' or 'X'.
 
 Level : Medium
+
+Time Complexity : O(m * n)
+Space Complexity : O(m * n), will be lesser than exact O(m*n) as per the conditions provided in the problem but still it will be on the similar lines
  * */
 
 public class BattleshipsInTheBoard {
