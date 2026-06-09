@@ -29,6 +29,8 @@ f.) Only one process has no parent.
 g.) All the values of pid are unique.
 h.) kill is guaranteed to be in pid.
 
+Time Complexity = O(N), where N being number of nodes in the tree
+Space Complexity = O(N)
 
  * */
 
