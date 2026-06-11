@@ -1,6 +1,8 @@
 package microsoft.arrays;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -26,7 +28,12 @@ public class MaximumGoodSubArraySum {
         MaximumGoodSubArraySum unit = new MaximumGoodSubArraySum();
         int nums[] = {1,3,8,9,5};
         int k = 4;
-        System.out.print("Maximum good subarray sum is " + unit.maximumSubarraySum(nums, k));
+
+        //int nums[] = {1, 5};
+        //int k = 2;
+
+        System.out.println("Maximum good subarray sum is " + unit.maximumSubarraySum(nums, k));
+        System.out.println("Maximum good subarray sum is " + unit.maximumSubarraySumOne(nums, k));
     }
 
     public long maximumSubarraySum(int[] nums, int k) {
@@ -55,6 +62,41 @@ public class MaximumGoodSubArraySum {
         return maximumSum == Integer.MIN_VALUE ? 0 : maximumSum;
     }
 
+    public long maximumSubarraySumOne(int[] nums, int k) {
+        long maximumSum = Long.MIN_VALUE;
+        long prefixSumArr[] = preparePrefixSum(nums);
+        Map<Long, List<Integer>> map = populateMapOne(nums);
+
+        for (int i = 1; i < nums.length; i++) {
+            long numOne = k + nums[i];
+            long numTwo = nums[i] - k;
+            if (map.containsKey(numOne)) {
+                //int index = map.get(numOne);
+                List<Integer> indexes = map.get(numOne);
+                for (int index : indexes) {
+                    if (index < i) {
+                        long fetchedSum = prefixSumArr[i + 1] - prefixSumArr[index];
+                        maximumSum = Math.max(maximumSum, fetchedSum);
+                    }
+                }
+
+            }
+
+            if (map.containsKey(numTwo)) {
+                //int index = map.get(numTwo);
+                List<Integer> indexes = map.get(numTwo);
+
+                for (int index : indexes) {
+                    if (index < i) {
+                        long fetchedSum = prefixSumArr[i + 1] - prefixSumArr[index];
+                        maximumSum = Math.max(maximumSum, fetchedSum);
+                    }
+                }
+            }
+        }
+        return maximumSum == Long.MIN_VALUE ? 0 : maximumSum;
+    }
+
     private Map<Integer, Integer> populateMap(long[] prefixSumArr, int[] nums) {
         Map<Integer, Integer> map = new HashMap<>();
         for (int i = 0; i < nums.length; i++) {
@@ -67,6 +109,26 @@ public class MaximumGoodSubArraySum {
                 if (nextPrefixSum < existingPrefixSum) {
                     map.put(nums[i], i);
                 }
+            }
+        }
+        return map;
+    }
+
+    private Map<Long, List<Integer>> populateMapOne(int[] nums) {
+        Map<Long, List<Integer>> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            if (!map.containsKey(1L * nums[i])) {
+                List<Integer> indexes = new ArrayList<>();
+                indexes.add(i);
+                map.put(1L * nums[i], indexes);
+            } else {
+                /*int existingIndex = map.get(nums[i]);
+                long existingPrefixSum = prefixSumArr[existingIndex + 1];
+                long nextPrefixSum = prefixSumArr[i + 1];
+                if (nextPrefixSum < existingPrefixSum) {
+                    map.put(nums[i], i);
+                }*/
+                map.get(1L * nums[i]).add(i);
             }
         }
         return map;
