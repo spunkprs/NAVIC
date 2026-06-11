@@ -27,6 +27,9 @@ Constraints:-
 8.) 0 <= startcol, destinationcol < n
 9.) Both the ball and the destination exist in an empty space, and they will not be in the same position initially.
 10.) The maze contains at least 2 empty spaces.
+
+Time Complexity = O(m * n * 4) --> O(m * n)
+Space Complexity = O(m * n * 4) --> O(m * n)
  * */
 
 public class TheMaze {
