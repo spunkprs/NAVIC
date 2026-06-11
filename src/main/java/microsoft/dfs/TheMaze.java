@@ -30,6 +30,8 @@ Constraints:-
 
 Time Complexity = O(m * n * 4) --> O(m * n)
 Space Complexity = O(m * n * 4) --> O(m * n)
+
+Observation : This question was bit different from the usual DFS question but I enjoyed solving it !!
  * */
 
 public class TheMaze {
