@@ -16,9 +16,18 @@ Return the maximum sum of a good subarray of nums. If there are no good subarray
 
 Referred Link : https://www.youtube.com/watch?v=So4VkfDiF2M
 
-Information : 754 / 783 testcases passed [One of the nicest question]
+Information : 754 / 783 testcases passed [One of the nicest question] --> Approach 1
 
 Time Complexity = O(N), where N being number of elements in the array
+Space Complexity = O(N)
+
+Information : 780 / 783 testcases passed --> Approach 2
+
+Time Complexity = O(N^2), where N being number of elements in the array[this will happen only for those cases where duplication of elements is
+huge hence computations for finding max subarray sum needs to be computed for all the indexes for which Math.abs(nums[i]- nums[j]) == k is
+satisfied]
+Cases where no duplicates are there or little duplicates are there time complexity would be O(N) only
+
 Space Complexity = O(N)
  * */
 
@@ -71,7 +80,6 @@ public class MaximumGoodSubArraySum {
             long numOne = k + nums[i];
             long numTwo = nums[i] - k;
             if (map.containsKey(numOne)) {
-                //int index = map.get(numOne);
                 List<Integer> indexes = map.get(numOne);
                 for (int index : indexes) {
                     if (index < i) {
@@ -83,7 +91,6 @@ public class MaximumGoodSubArraySum {
             }
 
             if (map.containsKey(numTwo)) {
-                //int index = map.get(numTwo);
                 List<Integer> indexes = map.get(numTwo);
 
                 for (int index : indexes) {
