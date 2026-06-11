@@ -2,6 +2,33 @@ package microsoft.dfs;
 
 import java.util.*;
 
+/**
+Problem : 490
+Link : https://leetcode.com/problems/the-maze/description/?envType=problem-list-v2&envId=depth-first-search
+
+There is a ball in a maze with empty spaces (represented as 0) and walls (represented as 1).
+The ball can go through the empty spaces by rolling up, down, left or right, but it won't stop rolling until hitting a wall. When the ball stops, it could choose the next direction.
+
+Given the m x n maze, the ball's start position and the destination, where start = [startrow, startcol]
+and destination = [destinationrow, destinationcol], return true if the ball can stop at the destination, otherwise return false.
+
+You may assume that the borders of the maze are all walls (see examples).
+
+
+Constraints:-
+
+1.) m == maze.length
+2.) n == maze[i].length
+3.) 1 <= m, n <= 100
+4.) maze[i][j] is 0 or 1.
+5.) start.length == 2
+6.) destination.length == 2
+7.) 0 <= startrow, destinationrow < m
+8.) 0 <= startcol, destinationcol < n
+9.) Both the ball and the destination exist in an empty space, and they will not be in the same position initially.
+10.) The maze contains at least 2 empty spaces.
+ * */
+
 public class TheMaze {
 
     public static void main(String ar[]) {
