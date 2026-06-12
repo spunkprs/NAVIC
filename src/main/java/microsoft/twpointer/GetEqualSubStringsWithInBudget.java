@@ -23,10 +23,10 @@ Time Complexity = O(N)
 Space Complexity = O(N), ideally shall be O(1) but converting String to char arr is getting considered as O(N) instead
  * */
 
-public class GetEqualSubStringsWIthInBudget {
+public class GetEqualSubStringsWithInBudget {
 
     public static void main(String ar[]) {
-        GetEqualSubStringsWIthInBudget unit = new GetEqualSubStringsWIthInBudget();
+        GetEqualSubStringsWithInBudget unit = new GetEqualSubStringsWithInBudget();
         String s = "anryddgaqpjdw";
         String t = "zjhotgdlmadcf";
         int maxCost = 5;
