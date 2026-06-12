@@ -4,6 +4,24 @@ import java.util.Arrays;
 import java.util.Map;
 import java.util.TreeMap;
 
+/**
+Problem : 3422
+Link : https://leetcode.com/problems/minimum-operations-to-make-subarray-elements-equal/description/
+
+You are given an integer array nums and an integer k. You can perform the following operation any number of times:
+
+Increase or decrease any element of nums by 1.
+Return the minimum number of operations required to ensure that at least one subarray of size k in nums has all elements equal.
+
+Constraints:-
+
+a.) 2 <= nums.length <= 10^5
+b.) -10^6 <= nums[i] <= 10^6
+c.) 2 <= k <= nums.length
+
+Verdict : Time Limit Exceeded [714/773 test cases passed !!]
+ * */
+
 public class MinimumOperationsToMakeSubArrayElementsEqual {
 
     private int smallerIndex = -1;
