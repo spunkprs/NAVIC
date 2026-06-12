@@ -1,4 +1,4 @@
-package agoda.greedy;
+package microsoft.arrays;
 
 import java.util.Arrays;
 import java.util.Map;
