@@ -18,6 +18,9 @@ a.) 1 <= s.length <= 10^5
 b.) t.length == s.length
 c.) 0 <= maxCost <= 10^6
 d.) s and t consist of only lowercase English letters.
+
+Time Complexity = O(N)
+Space Complexity = O(N), ideally shall be O(1) but converting String to char arr is getting considered as O(N) instead
  * */
 
 public class GetEqualSubStringsWIthInBudget {
