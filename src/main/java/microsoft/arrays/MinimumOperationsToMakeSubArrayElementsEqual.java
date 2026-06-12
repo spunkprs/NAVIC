@@ -20,6 +20,9 @@ b.) -10^6 <= nums[i] <= 10^6
 c.) 2 <= k <= nums.length
 
 Verdict : Time Limit Exceeded [714/773 test cases passed !!]
+
+Current time complexity : O((N-k) * K * log(k)), where N being number of elements in the array && K being length of substring
+Current Space Complexity : O(K)
  * */
 
 public class MinimumOperationsToMakeSubArrayElementsEqual {
