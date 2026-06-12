@@ -33,7 +33,7 @@ public class MinimumMovesToEqualArrayElements {
     public static void main(String ar[]) {
         MinimumMovesToEqualArrayElements unit = new MinimumMovesToEqualArrayElements();
 
-        int nums[] = {1, 1, 2};
+        int nums[] = {1, 2, 3};
         System.out.print("Minimum moves required is " + unit.minMoves2(nums));
     }
 
@@ -53,16 +53,16 @@ public class MinimumMovesToEqualArrayElements {
             long result = 0;
             if (higherEntry != null) {
                 long numOne = prefixSum[nums.length] - prefixSum[higherEntry.getValue().startIndex];
-                long numTwo = 1L * (nums.length - higherEntry.getValue().endIndex) * nums[midIndex];
+                long numTwo = 1L * (nums.length - higherEntry.getValue().startIndex) * nums[midIndex];
                 result += numOne - numTwo;
             }
 
             if (lowerEntry != null) {
                 long numTwo = 1L * (lowerEntry.getValue().endIndex + 1) * nums[midIndex];
-                long numOne = prefixSum[lowerEntry.getValue().startIndex + 1];
+                long numOne = prefixSum[lowerEntry.getValue().endIndex + 1];
                 result += numTwo - numOne;
             }
-            return (int) result;
+            return (int)result;
         } else {
             int midIndex = (nums.length - 1) / 2;
             int indexOne = midIndex;
@@ -74,13 +74,13 @@ public class MinimumMovesToEqualArrayElements {
 
             if (higherEntryOne != null) {
                 long numOne = prefixSum[nums.length] - prefixSum[higherEntryOne.getValue().startIndex];
-                long numTwo = 1L * (nums.length - higherEntryOne.getValue().endIndex) * nums[indexOne];
+                long numTwo = 1L * (nums.length - higherEntryOne.getValue().startIndex) * nums[indexOne];
                 resultOne += numOne - numTwo;
             }
 
             if (lowerEntryOne != null) {
                 long numTwo = 1L * (lowerEntryOne.getValue().endIndex + 1) * nums[indexOne];
-                long numOne = prefixSum[lowerEntryOne.getValue().startIndex + 1];
+                long numOne = prefixSum[lowerEntryOne.getValue().endIndex + 1];
                 resultOne += numTwo - numOne;
             }
 
@@ -94,13 +94,13 @@ public class MinimumMovesToEqualArrayElements {
 
                 if (higherEntryTwo != null) {
                     long numOne = prefixSum[nums.length] - prefixSum[higherEntryTwo.getValue().startIndex];
-                    long numTwo = 1L * (nums.length - higherEntryTwo.getValue().endIndex) * nums[indexTwo];
+                    long numTwo = 1L * (nums.length - higherEntryTwo.getValue().startIndex) * nums[indexTwo];
                     resultTwo += numOne - numTwo;
                 }
 
                 if (lowerEntryTwo != null) {
                     long numTwo = 1L * (lowerEntryTwo.getValue().endIndex + 1) * nums[indexTwo];
-                    long numOne = prefixSum[lowerEntryTwo.getValue().startIndex + 1];
+                    long numOne = prefixSum[lowerEntryTwo.getValue().endIndex + 1];
                     resultTwo += numTwo - numOne;
                 }
             }
