@@ -23,7 +23,9 @@ c.) -10^9 <= nums[i] <= 10^9
 Level : Medium
 
 Time Complexity : O(N*Log(N)), where N being number of elements in the array
-Space Complexity : O(N*Log(N))
+Space Complexity : O(N)
+
+Observation : Awesome Question !!
  * */
 
 public class MinimumMovesToEqualArrayElements {
@@ -43,7 +45,7 @@ public class MinimumMovesToEqualArrayElements {
         int prefixSum[] = preparePrefixSum(nums);
         TreeMap<Integer, Node> treeMap = prepareTreeMap(nums);
 
-        if (nums.length % 2 == 0) {
+        if (nums.length % 2 != 0) {
             int midIndex = (nums.length - 1) / 2;
 
             Map.Entry<Integer, Node> higherEntry = treeMap.higherEntry(nums[midIndex]);
@@ -60,14 +62,12 @@ public class MinimumMovesToEqualArrayElements {
                 long numOne = prefixSum[lowerEntry.getValue().startIndex + 1];
                 result += numTwo - numOne;
             }
-
             return (int) result;
         } else {
             int midIndex = (nums.length - 1) / 2;
             int indexOne = midIndex;
             int indexTwo = midIndex + 1;
 
-            long result = 0;
             long resultOne = 0;
             Map.Entry<Integer, Node> higherEntryOne = treeMap.higherEntry(nums[indexOne]);
             Map.Entry<Integer, Node> lowerEntryOne = treeMap.lowerEntry(nums[indexOne]);
