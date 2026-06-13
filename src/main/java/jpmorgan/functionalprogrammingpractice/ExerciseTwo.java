@@ -2,7 +2,6 @@ package jpmorgan.functionalprogrammingpractice;
 
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
 
@@ -19,7 +18,16 @@ e.) Avoid explicit loops.
 public class ExerciseTwo {
 
     public static void main(String ar[]) {
+        ExerciseTwo unit = new ExerciseTwo();
+        Employee empOne = new Employee("IT", "ABC", 5000);
+        Employee empTwo = new Employee("Legal", "PQR", 6000);
+        Employee empThree = new Employee(null, "ABCD", 5000);
+        Employee empFour = new Employee("IT", "ABCK", 5500);
 
+        Map<String, Employee> result = unit.highestPaidEmployeeByDepartment(Arrays.asList(empOne, empTwo,
+                empThree, empFour));
+
+        System.out.print(result);
     }
 
     Map<String, Employee> highestPaidEmployeeByDepartment(
@@ -52,6 +60,7 @@ public class ExerciseTwo {
 
                 */
 
+        //Approach 3
         return Optional.ofNullable(employees)
                 .orElseGet(Collections::emptyList)
                 .stream()
@@ -82,6 +91,14 @@ public class ExerciseTwo {
 
         public int getSalary() {
             return salary;
+        }
+
+        @Override
+        public String toString() {
+            return "Employee{" +
+                    "name='" + name + '\'' +
+                    ", salary=" + salary +
+                    '}';
         }
     }
 }
