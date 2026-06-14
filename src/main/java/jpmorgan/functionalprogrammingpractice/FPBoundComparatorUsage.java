@@ -31,10 +31,10 @@ d.) and then alphabetically if lengths are equal.
 [ALEX, ALICE, AMANDA, ANDREW]
  * */
 
-public class ExerciseOne {
+public class FPBoundComparatorUsage {
 
     public static void main(String ar[]) {
-        ExerciseOne unit = new ExerciseOne();
+        FPBoundComparatorUsage unit = new FPBoundComparatorUsage();
 
         List<String> inputList = Arrays.asList(
                 "John",
