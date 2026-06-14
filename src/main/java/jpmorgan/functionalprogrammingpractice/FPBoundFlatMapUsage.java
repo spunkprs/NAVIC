@@ -3,6 +3,17 @@ package jpmorgan.functionalprogrammingpractice;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+Constraints:-
+a.) traders itself may be null.
+b.) Ignore traders with null desks.
+c.) Ignore null transaction lists.
+d.) Ignore transactions with null instruments.
+e.) Avoid explicit loops.
+f.) Try to avoid intermediate maps.
+g.) Use flatMapping() as part of the solution.
+ * */
+
 public class FPBoundFlatMapUsage {
 
     public static void main(String ar[]) {
