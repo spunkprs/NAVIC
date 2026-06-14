@@ -15,10 +15,10 @@ e.) Avoid explicit loops.
 
  * */
 
-public class ExerciseTwo {
+public class FPBoundHashMapUsage {
 
     public static void main(String ar[]) {
-        ExerciseTwo unit = new ExerciseTwo();
+        FPBoundHashMapUsage unit = new FPBoundHashMapUsage();
         Employee empOne = new Employee("IT", "ABC", 5000);
         Employee empTwo = new Employee("Legal", "PQR", 6000);
         Employee empThree = new Employee(null, "ABCD", 5000);
