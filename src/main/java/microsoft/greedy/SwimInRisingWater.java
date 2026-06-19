@@ -23,6 +23,10 @@ b.) n == grid[i].length
 c.) 1 <= n <= 50
 d.) 0 <= grid[i][j] < n2
 e.) Each value grid[i][j] is unique.
+
+Information : Classic problem on the lines of application of Dijkstra's Algorithm
+Time Complexity = O(E*log(V)) --> O(r*c*log(r*c))
+Space Complexity = O(V) --> O(r*c)
  * */
 
 public class SwimInRisingWater {
