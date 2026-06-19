@@ -1,4 +1,4 @@
-package microsoft.arrays;
+package microsoft.greedy;
 
 import java.util.*;
 
