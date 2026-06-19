@@ -20,6 +20,9 @@ b.) columns == heights[i].length
 c.) 1 <= rows, columns <= 100
 d.) 1 <= heights[i][j] <= 10^6
 
+Information : Classic problem on the lines of application of Dijkstra's Algorithm
+Time Complexity = O(E*log(V)) --> O(r*c*log(r*c))
+Space Complexity = O(V) --> O(r*c)
 
  * */
 
