@@ -19,6 +19,9 @@ Constraints:-
 a.) 1 <= nums.length, queries.length <= 10^5
 b.) 1 <= queries[i] <= 10^5
 c.) 1 <= nums[i], x <= 10^4
+
+Time Complexity = O(N)
+Space Complexity = O(N)
  * */
 
 public class FindOccurenceOfAnElementInAnArray {
