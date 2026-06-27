@@ -11,6 +11,15 @@ A consecutive path is a path where the values of the consecutive nodes in the pa
 
 For example, [1,2,3,4] and [4,3,2,1] are both considered valid, but the path [1,2,4,3] is not valid.
 On the other hand, the path can be in the child-Parent-child order, where not necessarily be parent-child order.
+
+
+Constraints:-
+
+a.) The number of nodes in the tree is in the range [1, 3 * 10^4].
+b.) -3 * 10^4 <= Node.val <= 3 * 10^4
+
+Time Complexity : O(N^2), where N being number of nodes in the tree in the worst case but this can be solved in O(N) as well
+Space Complexity : O(H), where H could be N being number of nodes in the tree in the worst case
  * */
 
 public class BinaryTreeLongestConsecutiveSequence2 {
