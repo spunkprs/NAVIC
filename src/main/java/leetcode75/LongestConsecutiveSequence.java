@@ -4,10 +4,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+Problem : 128
+Link : https://leetcode.com/problems/longest-consecutive-sequence/
+
 Given an unsorted array of integers nums, return the length of the
 longest consecutive elements sequence.
 
 You must write an algorithm that runs in O(n) time
+
+Constraints:-
+
+a.) 0 <= nums.length <= 10^5
+b.) -10^9 <= nums[i] <= 10^9
 
 Time Complexity = O(n)
 Space Complexity = O(n)
@@ -38,14 +46,13 @@ public class LongestConsecutiveSequence {
                 int numTwo = value - 1;
                 int count = 0;
 
-                while (map.containsKey(numOne) && map.get(numOne) == 0)     {
+                while (map.containsKey(numOne) && map.get(numOne) == 0) {
                     count++;
                     map.put(numOne, 1);
                     numOne++;
-
                 }
 
-                while (map.containsKey(numTwo) && map.get(numTwo) == 0)           {
+                while (map.containsKey(numTwo) && map.get(numTwo) == 0) {
                     count++;
                     map.put(numTwo, 1);
                     numTwo--;
@@ -74,5 +81,4 @@ public class LongestConsecutiveSequence {
         }
         return map;
     }
-
 }
