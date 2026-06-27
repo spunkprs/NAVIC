@@ -1,4 +1,4 @@
-package microsoft.binarytree;
+package microsoft.binarytree.consecutiveSequence;
 
 
 /**
