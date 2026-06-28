@@ -15,6 +15,11 @@ Constraints:-
 a.) 1 <= s1.length <= 2 * 10^4
 b.) 1 <= s2.length <= 100
 c.) s1 and s2 consist of lowercase English letters.
+
+Time Complexity = O(N), where N being length of String 1
+Space Complexity = O(1)
+
+Current state : 61 / 68 testcases passed
  * */
 
 
@@ -55,7 +60,6 @@ public class MinimumWindowSubSequence {
         char arrTwo[] = s2.toCharArray();
 
         int startIndexOne = 0;
-        int startIndexTwo = 0;
         int endIndexOne = 0;
         int endIndexTwo = 0;
         boolean foundFirstCharacterMatch = false;
@@ -80,7 +84,6 @@ public class MinimumWindowSubSequence {
                     }
                 }
             } else {
-                startIndexTwo = 0;
                 endIndexTwo = 0;
                 foundFirstCharacterMatch = false;
                 length = updateLength(endIndexOne - 1, startIndexOne, length);
