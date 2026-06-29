@@ -24,7 +24,8 @@ a.) 1 <= bombs.length <= 100
 b.) bombs[i].length == 3
 c.) 1 <= xi, yi, ri <= 10^5
 
-
+Time Complexity = O(N^3), where N being number of bombs in the grid
+Space Complexity = O(N^2)
  * */
 
 public class DetonateMaximumBombs {
