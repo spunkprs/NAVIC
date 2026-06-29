@@ -5,6 +5,31 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+/**
+Problem : 261
+Link : https://leetcode.com/problems/graph-valid-tree/description/
+
+You have a graph of n nodes labeled from 0 to n - 1. You are given an integer n and a list of edges where edges[i] = [ai, bi]
+indicates that there is an undirected edge between nodes ai and bi in the graph.
+
+Return true if the edges of the given graph make up a valid tree, and false otherwise.
+
+
+Constraints:-
+
+a.) 1 <= n <= 2000
+b.) 0 <= edges.length <= 5000
+c.) edges[i].length == 2
+d.) 0 <= ai, bi < n
+e.) ai != bi
+f.) There are no self-loops or repeated edges.
+
+Time Complexity : O(N + E)
+Space Complexity : O(N + E)
+
+Verdict : 46 / 47 testcases passed !!
+ * */
+
 public class GraphValidTree {
 
     boolean result = false;
