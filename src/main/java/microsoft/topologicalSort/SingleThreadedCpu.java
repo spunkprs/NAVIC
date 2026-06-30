@@ -22,6 +22,11 @@ Constraints:-
 a.) tasks.length == n
 b.) 1 <= n <= 10^5
 c.) 1 <= enqueueTimei, processingTimei <= 10^9
+
+Time Complexity = O(N^2), suggested is O(N*Log(N))
+Space Complexity = O(N)
+
+Information = Time Limit Exceeded, 26 / 39 testcases passed !!
  * */
 
 public class SingleThreadedCpu {
