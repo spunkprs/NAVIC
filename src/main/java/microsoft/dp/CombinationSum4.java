@@ -17,6 +17,9 @@ a.) 1 <= nums.length <= 200
 b.) 1 <= nums[i] <= 1000
 c.) All the elements of nums are unique.
 d.) 1 <= target <= 1000
+
+Time Complexity = O(N * target)
+Space Complexity = O(N * target)
  * */
 
 public class CombinationSum4 {
