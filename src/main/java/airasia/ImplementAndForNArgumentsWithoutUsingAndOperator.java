@@ -1,6 +1,6 @@
 package airasia;
 
-public class ImplementAndForNArgumentsWIthoutUsingAndOperator {
+public class ImplementAndForNArgumentsWithoutUsingAndOperator {
 
     public static void main(String ar[]) {
 
