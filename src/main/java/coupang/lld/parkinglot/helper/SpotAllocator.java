@@ -5,11 +5,12 @@ import coupang.lld.parkinglot.strategy.SpotTypePreferenceStrategy;
 
 
 import java.util.List;
+import java.util.Optional;
 import java.util.TreeMap;
 
 public class SpotAllocator {
 
-    public Spot allocateSpot(ParkingStructure parkingStructure, SpotTypePreferenceStrategy spotTypePreferenceStrategy) {
+    public Optional<Spot> allocateSpot(ParkingStructure parkingStructure, SpotTypePreferenceStrategy spotTypePreferenceStrategy) {
 
         if (parkingStructure != null) {
             TreeMap<LevelSpotTypeCombination, List<Spot>> spotsAgainstLevelMap =  parkingStructure.getSpotsAgainstLevelMap();
@@ -20,12 +21,12 @@ public class SpotAllocator {
                     for (Spot spot : spotsAgainstLevelMap.get(key)) {
                         if (spot.getStatus() == SpotStatus.Available) {
                             spot.setStatus(SpotStatus.Occupied);
-                            return spot;
+                            return Optional.of(spot);
                         }
                     }
                 }
             }
-            throw new RuntimeException("No Spot Available !!");
+            return Optional.empty();
         }
         throw new NullPointerException("ParkingStructure Is Null !!");
     }
