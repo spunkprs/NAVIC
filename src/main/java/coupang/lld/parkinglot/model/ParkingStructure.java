@@ -5,6 +5,10 @@ import java.util.TreeMap;
 
 public class ParkingStructure {
     private String parkingStructureId;
-    private TreeMap<Level, List<Spot>> spotsAgainstLevelMap;
+    private TreeMap<LevelSpotTypeCombination, List<Spot>> spotsAgainstLevelMap;
     private String parkingStructureName;
+
+    public TreeMap<LevelSpotTypeCombination, List<Spot>> getSpotsAgainstLevelMap() {
+        return spotsAgainstLevelMap;
+    }
 }
