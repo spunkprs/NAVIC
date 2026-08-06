@@ -20,7 +20,8 @@ b.) -100 <= Node.val <= 100
 Level : Medium
 Link : https://leetcode.com/problems/find-leaves-of-binary-tree/description/?envType=problem-list-v2&envId=depth-first-search
 
-
+Time Complexity : O(N^2)
+Space Complexity : O(N)
  * */
 
 public class LeavesOfBinaryTree {
