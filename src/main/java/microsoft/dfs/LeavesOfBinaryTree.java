@@ -5,6 +5,24 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+Problem : 366
+Given the root of a binary tree, collect a tree's nodes as if you were doing this:
+
+Collect all the leaf nodes.
+Remove all the leaf nodes.
+Repeat until the tree is empty.
+
+Constraints:-
+a.) The number of nodes in the tree is in the range [1, 100].
+b.) -100 <= Node.val <= 100
+
+Level : Medium
+Link : https://leetcode.com/problems/find-leaves-of-binary-tree/description/?envType=problem-list-v2&envId=depth-first-search
+
+
+ * */
+
 public class LeavesOfBinaryTree {
 
     public static void main(String ar[]) {
