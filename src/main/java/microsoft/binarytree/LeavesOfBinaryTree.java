@@ -1,4 +1,4 @@
-package microsoft.dfs;
+package microsoft.binarytree;
 
 import java.util.ArrayList;
 import java.util.HashSet;
