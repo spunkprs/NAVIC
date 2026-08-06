@@ -7,11 +7,11 @@ import java.util.Set;
 
 /**
 Problem : 366
-Given the root of a binary tree, collect a tree's nodes as if you were doing this:
+Given the root of a binary tree, collect a tree's nodes as if you were doing this:-
 
-Collect all the leaf nodes.
-Remove all the leaf nodes.
-Repeat until the tree is empty.
+a.) Collect all the leaf nodes.
+b.) Remove all the leaf nodes.
+c.) Repeat until the tree is empty.
 
 Constraints:-
 a.) The number of nodes in the tree is in the range [1, 100].
