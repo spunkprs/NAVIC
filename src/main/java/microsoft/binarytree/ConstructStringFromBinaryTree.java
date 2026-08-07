@@ -29,6 +29,12 @@ Constraints:-
 
 a.) The number of nodes in the tree is in the range [1, 10^4].
 b.) -1000 <= Node.val <= 1000
+
+
+Time Complexity : O(N)
+Explicit Space Complexity : O(1)
+Implicit Space Complexity : O(N), because of use of Recursive approach && in case tree is highly unbalanced then it could be O(N),
+where N being depth of tree
  * */
 
 public class ConstructStringFromBinaryTree {
