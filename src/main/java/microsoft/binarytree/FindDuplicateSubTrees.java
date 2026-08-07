@@ -2,6 +2,23 @@ package microsoft.binarytree;
 
 import java.util.*;
 
+/**
+Problem : 652
+Level : Medium
+Link : https://leetcode.com/problems/find-duplicate-subtrees/description/?envType=problem-list-v2&envId=depth-first-search
+
+Given the root of a binary tree, return all duplicate subtrees.
+
+For each kind of duplicate subtrees, you only need to return the root node of any one of them.
+
+Two trees are duplicate if they have the same structure with the same node values.
+
+Constraints:-
+
+a.) The number of the nodes in the tree will be in the range [1, 5000]
+b.) -200 <= Node.val <= 200
+ * */
+
 public class FindDuplicateSubTrees {
 
     public static void main(String ar[]) {
