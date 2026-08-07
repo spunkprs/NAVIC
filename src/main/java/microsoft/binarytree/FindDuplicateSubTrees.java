@@ -17,6 +17,11 @@ Constraints:-
 
 a.) The number of the nodes in the tree will be in the range [1, 5000]
 b.) -200 <= Node.val <= 200
+
+Time Complexity : O(N^2)
+Explicit Space Complexity : O(N)
+Implicit Space Complexity : O(N), because of use of Recursive approach && in case tree is highly unbalanced then it could be O(N),
+where N being depth of tree
  * */
 
 public class FindDuplicateSubTrees {
