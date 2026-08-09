@@ -19,6 +19,9 @@ You always start to construct the left child node of the parent first if it exis
 a.) 0 <= s.length <= 3 * 10^4
 b.) s consists of digits, '(', ')', and '-' only.
 c.) All numbers in the tree have value at most than 2^30.
+
+Time Complexity : O(N)
+Explicit Space Complexity : O(N), because of usage of explicit Stack
  * */
 
 public class ConstructBinaryTreeFromString {
