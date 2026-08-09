@@ -2,6 +2,25 @@ package microsoft.binarytree;
 
 import java.util.Stack;
 
+/**
+Problem : 536
+Level : Medium
+Link : https://leetcode.com/problems/construct-binary-tree-from-string/description/
+
+You need to construct a binary tree from a string consisting of parenthesis and integers.
+
+The whole input represents a binary tree. It contains an integer followed by zero, one or two pairs of parenthesis.
+The integer represents the root's value and a pair of parenthesis contains a child binary tree with the same structure.
+
+You always start to construct the left child node of the parent first if it exists.
+
+ Constraints:-
+
+a.) 0 <= s.length <= 3 * 10^4
+b.) s consists of digits, '(', ')', and '-' only.
+c.) All numbers in the tree have value at most than 2^30.
+ * */
+
 public class ConstructBinaryTreeFromString {
 
     static class TreeNode {
