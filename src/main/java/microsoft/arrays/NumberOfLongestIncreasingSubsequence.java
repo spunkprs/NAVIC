@@ -16,6 +16,8 @@ a.) 1 <= nums.length <= 2000
 b.) -10^6 <= nums[i] <= 10^6
 c.) The answer is guaranteed to fit inside a 32-bit integer.
 
+Time Complexity = O(N^2)
+Space Complexity = O(N)
  * */
 
 public class NumberOfLongestIncreasingSubsequence {
