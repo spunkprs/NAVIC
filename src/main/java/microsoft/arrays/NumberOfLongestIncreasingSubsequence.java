@@ -1,11 +1,11 @@
 package microsoft.arrays;
 
-public class NumebrOfLongestINcreasingSubsequence {
+public class NumberOfLongestIncreasingSubsequence {
 
     private boolean flag = false;
 
     public static void main(String ar[]) {
-        NumebrOfLongestINcreasingSubsequence unit = new NumebrOfLongestINcreasingSubsequence();
+        NumberOfLongestIncreasingSubsequence unit = new NumberOfLongestIncreasingSubsequence();
         int arr[] = {2, 4, 6, 5, 8, 2};
         //int arr[] = {1,2,4,3,5,4,7,2};
 
