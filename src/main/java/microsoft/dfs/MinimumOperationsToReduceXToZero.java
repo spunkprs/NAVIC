@@ -18,7 +18,14 @@ a.) 1 <= nums.length <= 10^5
 b.) 1 <= nums[i] <= 10^4
 c.) 1 <= x <= 10^9
 
+Current Time Complexity = O(N^2)
+Suggested Time Complexity = O(N)
 
+Current Space Complexity = O(N^2)
+Suggested Space Complexity = O(1)
+
+
+Information : 67/97 test cases are getting passed !!
  * */
 
 public class MinimumOperationsToReduceXToZero {
