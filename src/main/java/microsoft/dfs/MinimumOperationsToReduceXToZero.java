@@ -2,6 +2,25 @@ package microsoft.dfs;
 
 import java.util.*;
 
+/**
+Problem : 1658
+Link : https://leetcode.com/problems/minimum-operations-to-reduce-x-to-zero/description/?envType=company&envId=amazon&favoriteSlug=amazon-three-months
+Level : Medium
+
+You are given an integer array nums and an integer x. In one operation, you can either remove the leftmost or the rightmost element from
+the array nums and subtract its value from x. Note that this modifies the array for future operations.
+
+Return the minimum number of operations to reduce x to exactly 0 if it is possible, otherwise, return -1.
+
+ Constraints:-
+
+a.) 1 <= nums.length <= 10^5
+b.) 1 <= nums[i] <= 10^4
+c.) 1 <= x <= 10^9
+
+
+ * */
+
 public class MinimumOperationsToReduceXToZero {
 
     public static void main(String ar[]) {
