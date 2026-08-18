@@ -3,6 +3,22 @@ package microsoft.arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
+/**
+Problem : 1248
+Link : https://leetcode.com/problems/count-number-of-nice-subarrays/description/?envType=company&envId=amazon&favoriteSlug=amazon-thirty-days
+Level : Medium
+
+Given an array of integers nums and an integer k. A continuous subarray is called nice if there are k odd numbers on it.
+
+Return the number of nice sub-arrays.
+
+Constraints:-
+
+a.) 1 <= nums.length <= 50000
+b.) 1 <= nums[i] <= 10^5
+c.) 1 <= k <= nums.length
+ * */
+
 public class CountNumberOfNiceSubArrays {
 
     public static void main(String ar[]) {
