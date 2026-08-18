@@ -17,6 +17,9 @@ Constraints:-
 a.) 1 <= nums.length <= 50000
 b.) 1 <= nums[i] <= 10^5
 c.) 1 <= k <= nums.length
+
+Time Complexity = O(N)
+Space Complexity = O(N)
  * */
 
 public class CountNumberOfNiceSubArrays {
