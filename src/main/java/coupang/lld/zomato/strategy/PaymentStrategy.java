@@ -2,7 +2,7 @@ package coupang.lld.zomato.strategy;
 
 import coupang.lld.zomato.model.payment.PaymentRequest;
 
-public interface PaymentStrategy {
+public interface PaymentStrategy<T extends PaymentRequest> {
 
-    boolean processPayment(PaymentRequest paymentRequest, double amount);
+    boolean processPayment(T paymentRequest, double amount);
 }
