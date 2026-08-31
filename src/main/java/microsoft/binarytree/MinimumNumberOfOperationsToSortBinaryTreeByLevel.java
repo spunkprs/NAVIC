@@ -21,6 +21,12 @@ Constraints:-
 a.) The number of nodes in the tree is in the range [1, 10^5].
 b.) 1 <= Node.val <= 10^5
 c.) All the values of the tree are unique.
+
+Time Complexity = O(N * log(N))
+Space Complexity = O(N)
+
+Most important aspect of this problem is the usage of Cycle Sort Algorithm
+More detailing here : https://www.youtube.com/watch?v=JfinxytTYFQ
  * */
 
 public class MinimumNumberOfOperationsToSortBinaryTreeByLevel {
