@@ -11,6 +11,33 @@ public class OrchestratorService {
     private MessageCreationFactory messageCreationFactory;
     private Map<Channels, SendNotificationOverChannelStrategy> strategyMap;
 
+    /**
+     strategyMap.put(
+     Channels.SMS,
+     new RetryingNotificationSender(new SmsStrategy(smsSenderService), 4)
+     );
+
+     strategyMap.put(
+     Channels.SMS,
+     new RetryingNotificationSender(new MailStrategy(smsSenderService), 4)
+     );
+
+     strategyMap.put(
+     Channels.SMS,
+     new RetryingNotificationSender(new WhatsAppStrategy(smsSenderService), 4)
+     );
+
+     OR
+
+     strategyMap.put(
+     Channels.SMS,
+     new WhatsAppStrategy(smsSenderService)
+     );
+
+     We can choose to skip retries entirely for some of the strategy hence decorator is the best pattern to be made use of
+
+     * */
+
     public OrchestratorService(MessageCreationFactory messageCreationFactory,
                                Map<Channels, SendNotificationOverChannelStrategy> strategyMap) {
         this.messageCreationFactory = messageCreationFactory;
