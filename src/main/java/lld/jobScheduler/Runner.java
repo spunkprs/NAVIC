@@ -10,6 +10,12 @@ import java.util.concurrent.DelayQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+It's responsible for setting the input && dependencies && run the dispatcher process
+
+For now JobScheduler can take care only of non recurring task but will extend it to include recurring task as well !!
+ * */
+
 public class Runner {
 
     public static void main(String ar[]) {
