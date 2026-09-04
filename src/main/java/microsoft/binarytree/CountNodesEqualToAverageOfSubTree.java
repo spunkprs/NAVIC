@@ -1,5 +1,29 @@
 package microsoft.binarytree;
 
+
+/**
+Problem : 2265
+Level : Medium
+Link : https://leetcode.com/problems/count-nodes-equal-to-average-of-subtree/description/?envType=problem-list-v2&envId=binary-tree
+
+Given the root of a binary tree, return the number of nodes where the value of the node is equal to the average of the values in its subtree.
+
+Note:-
+
+The average of n elements is the sum of the n elements divided by n and rounded down to the nearest integer.
+A subtree of root is a tree consisting of root and all of its descendants.
+
+Constraints:-
+
+a.) The number of nodes in the tree is in the range [1, 1000].
+b.) 0 <= Node.val <= 1000
+
+Time Complexity : O(N)
+Space Complexity : O(N)
+
+Where N being number of nodes in th tree
+ * */
+
 public class CountNodesEqualToAverageOfSubTree {
 
     public static void main(String ar[]) {
