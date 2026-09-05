@@ -25,7 +25,8 @@ c.) parents[0] == -1
 d.) 0 <= parents[i] <= n - 1 for i != 0
 e.) parents represents a valid binary tree.
 
-
+Time Complexity = O(N * Log(N)) --> Because of the usage of TreeMap, I could have avoided it && then this T.C would drop to O(N) instead
+Space Complexity = (N)
  * */
 
 public class CountNodesWithHighestScore {
