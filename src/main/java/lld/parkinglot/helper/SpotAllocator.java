@@ -1,7 +1,7 @@
-package coupang.lld.parkinglot.helper;
+package lld.parkinglot.helper;
 
-import coupang.lld.parkinglot.model.*;
-import coupang.lld.parkinglot.strategy.SpotTypePreferenceStrategy;
+import lld.parkinglot.model.*;
+import lld.parkinglot.strategy.SpotTypePreferenceStrategy;
 
 import java.util.*;
 import java.util.stream.Collectors;

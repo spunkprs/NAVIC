@@ -1,4 +1,4 @@
-package coupang.lld.parkinglot.model;
+package lld.parkinglot.model;
 
 public class Spot {
     private int index;

@@ -1,4 +1,4 @@
-package coupang.lld.parkinglot.model;
+package lld.parkinglot.model;
 
 import java.util.List;
 import java.util.Map;

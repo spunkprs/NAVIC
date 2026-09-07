@@ -1,4 +1,4 @@
-package coupang.lld.parkinglot.model;
+package lld.parkinglot.model;
 
 public abstract class Vehicle {
     private String vehicleNumber; //Unique number will be there for each vehicle

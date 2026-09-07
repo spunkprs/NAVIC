@@ -1,16 +1,15 @@
-package coupang.lld.parkinglot.strategy;
+package lld.parkinglot.strategy;
 
-import coupang.lld.parkinglot.model.SpotType;
+import lld.parkinglot.model.SpotType;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SpotTypePreferenceStrategyForBike implements SpotTypePreferenceStrategy {
+public class SpotTypePreferenceStrategyForCar implements SpotTypePreferenceStrategy {
 
     @Override
     public List<SpotType> fetchSpotTypePreference() {
         List<SpotType> spotTypes = new ArrayList<>();
-        spotTypes.add(SpotType.Bike);
         spotTypes.add(SpotType.Car);
         spotTypes.add(SpotType.Truck);
         return spotTypes;
