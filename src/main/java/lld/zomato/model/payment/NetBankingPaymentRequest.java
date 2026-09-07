@@ -1,4 +1,4 @@
-package coupang.lld.zomato.model.payment;
+package lld.zomato.model.payment;
 
 public class NetBankingPaymentRequest extends PaymentRequest {
 

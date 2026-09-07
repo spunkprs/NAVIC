@@ -1,6 +1,6 @@
-package coupang.lld.zomato.strategy;
+package lld.zomato.strategy;
 
-import coupang.lld.zomato.model.payment.CardPaymentRequest;
+import lld.zomato.model.payment.CardPaymentRequest;
 
 public class PaymentByCard implements PaymentStrategy<CardPaymentRequest> {
 

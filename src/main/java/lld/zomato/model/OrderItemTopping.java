@@ -1,4 +1,4 @@
-package coupang.lld.zomato.model;
+package lld.zomato.model;
 
 public class OrderItemTopping {
     private String orderId;

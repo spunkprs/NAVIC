@@ -1,6 +1,6 @@
-package coupang.lld.zomato.strategy;
+package lld.zomato.strategy;
 
-import coupang.lld.zomato.model.payment.UpiPaymentRequest;
+import lld.zomato.model.payment.UpiPaymentRequest;
 
 public class PaymentByUpi implements PaymentStrategy<UpiPaymentRequest> {
 

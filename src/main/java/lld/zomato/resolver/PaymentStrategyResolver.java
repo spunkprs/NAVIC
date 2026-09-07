@@ -1,13 +1,13 @@
-package coupang.lld.zomato.resolver;
+package lld.zomato.resolver;
 
-import coupang.lld.zomato.model.payment.CardPaymentRequest;
-import coupang.lld.zomato.model.payment.NetBankingPaymentRequest;
-import coupang.lld.zomato.model.payment.PaymentRequest;
-import coupang.lld.zomato.model.payment.UpiPaymentRequest;
-import coupang.lld.zomato.strategy.PaymentByCard;
-import coupang.lld.zomato.strategy.PaymentByNetBanking;
-import coupang.lld.zomato.strategy.PaymentByUpi;
-import coupang.lld.zomato.strategy.PaymentStrategy;
+import lld.zomato.model.payment.CardPaymentRequest;
+import lld.zomato.model.payment.NetBankingPaymentRequest;
+import lld.zomato.model.payment.PaymentRequest;
+import lld.zomato.model.payment.UpiPaymentRequest;
+import lld.zomato.strategy.PaymentByCard;
+import lld.zomato.strategy.PaymentByNetBanking;
+import lld.zomato.strategy.PaymentByUpi;
+import lld.zomato.strategy.PaymentStrategy;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,6 +1,6 @@
-package coupang.lld.zomato.strategy;
+package lld.zomato.strategy;
 
-import coupang.lld.zomato.model.payment.PaymentRequest;
+import lld.zomato.model.payment.PaymentRequest;
 
 public interface PaymentStrategy<T extends PaymentRequest> {
 

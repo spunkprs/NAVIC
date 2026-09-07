@@ -1,6 +1,6 @@
-package coupang.lld.zomato.strategy;
+package lld.zomato.strategy;
 
-import coupang.lld.zomato.model.payment.NetBankingPaymentRequest;
+import lld.zomato.model.payment.NetBankingPaymentRequest;
 
 public class PaymentByNetBanking implements PaymentStrategy<NetBankingPaymentRequest> {
 
