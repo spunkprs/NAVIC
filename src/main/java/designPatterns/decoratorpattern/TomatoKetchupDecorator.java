@@ -1,4 +1,4 @@
-package decoratorpattern;
+package designPatterns.decoratorpattern;
 
 public class TomatoKetchupDecorator extends ToppingDecorator {
 

@@ -1,4 +1,4 @@
-package decoratorpattern;
+package designPatterns.decoratorpattern;
 
 public abstract class ToppingDecorator implements Pizza {
 	
