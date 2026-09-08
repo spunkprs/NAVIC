@@ -17,6 +17,10 @@ a.) n == nums.length
 b.) 1 <= nums.length <= 10^5
 c.) -10^9 <= nums[i] <= 10^9
 d.) The answer is guaranteed to fit in a 32-bit integer.
+
+Time Complexity = O(N * log(N))
+Implicit Space Complexity = O(N)
+Explicit Space Complexity = O(1)
  * */
 
 public class MinimumMovesToEqualArrayElementsOne {
