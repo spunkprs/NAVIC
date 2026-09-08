@@ -28,10 +28,10 @@ Space Complexity : O(N)
 Observation : Awesome Question !!
  * */
 
-public class MinimumMovesToEqualArrayElements {
+public class MinimumMovesToEqualArrayElementsTwo {
 
     public static void main(String ar[]) {
-        MinimumMovesToEqualArrayElements unit = new MinimumMovesToEqualArrayElements();
+        MinimumMovesToEqualArrayElementsTwo unit = new MinimumMovesToEqualArrayElementsTwo();
 
         int nums[] = {1, 2, 3};
         System.out.print("Minimum moves required is " + unit.minMoves2(nums));
