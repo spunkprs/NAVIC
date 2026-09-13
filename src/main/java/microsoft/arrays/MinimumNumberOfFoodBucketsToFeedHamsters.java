@@ -5,6 +5,30 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+
+/**
+Problem : 2086
+Level : Medium
+Link :  https://leetcode.com/problems/minimum-number-of-food-buckets-to-feed-the-hamsters/description/?envType=company&envId=grab&favoriteSlug=grab-all
+
+You are given a 0-indexed string hamsters where hamsters[i] is either:
+
+ a.) 'H' indicating that there is a hamster at index i, or
+ b.) '.' indicating that index i is empty.
+
+You will add some number of food buckets at the empty indices in order to feed the hamsters.
+A hamster can be fed if there is at least one food bucket to its left or to its right. More formally,
+ a hamster at index i can be fed if you place a food bucket at index i - 1 and/or at index i + 1.
+
+Return the minimum number of food buckets you should place at empty indices to feed all the hamsters
+or -1 if it is impossible to feed all of them.
+
+Constraints:-
+
+a.) 1 <= hamsters.length <= 10^5
+b.) hamsters[i] is either'H' or '.'
+ * */
+
 public class MinimumNumberOfFoodBucketsToFeedHamsters {
 
     public static void main(String ar[]) {
