@@ -27,6 +27,11 @@ Constraints:-
 
 a.) 1 <= hamsters.length <= 10^5
 b.) hamsters[i] is either'H' or '.'
+
+Time Complexity = O(N)
+Space Complexity = O(N)
+
+Approach : Greedy
  * */
 
 public class MinimumNumberOfFoodBucketsToFeedHamsters {
