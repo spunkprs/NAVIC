@@ -26,6 +26,9 @@ b.) lights[i].length == 2
 c.) -10^8 <= positioni <= 10^8
 d.) 0 <= rangei <= 10^8
 
+Time Complexity = O(N * log(N))
+Explicit time  Complexity = O(1)
+Implicit time  Complexity = O(N)
  * */
 
 public class BrightestPositionOnStreet {
