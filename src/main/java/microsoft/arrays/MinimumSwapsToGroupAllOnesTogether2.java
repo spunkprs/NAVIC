@@ -3,6 +3,10 @@ package microsoft.arrays;
 import java.util.Arrays;
 
 /**
+Problem : 2134
+Level : Medium
+Link : https://leetcode.com/problems/minimum-swaps-to-group-all-1s-together-ii/description/?envType=company&envId=amazon&favoriteSlug=amazon-thirty-days
+
 A swap is defined as taking two distinct positions in an array and swapping the values in them.
 
 A circular array is defined as an array where we consider the first element and the last element to be adjacent.
@@ -14,6 +18,9 @@ Constraints:-
 
 a.) 1 <= nums.length <= 10^5
 b.) nums[i] is either 0 or 1.
+
+Time Complexity = O(N)
+Space Complexity = O(1)
 
  * */
 
