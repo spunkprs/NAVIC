@@ -116,8 +116,6 @@ public class LowestCommonAncestorOfBinaryTree4 {
 
         TreeNode resultLcaTwo = resultOne.get(indexOne - 1);
 
-        //return resultOne.get(indexOne - 1);
-
         if (resultLcaOne.val == resultLcaTwo.val) {
             return resultLcaOne;
         } else {
