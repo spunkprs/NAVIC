@@ -3,6 +3,30 @@ package microsoft.binarytree;
 import java.util.*;
 import java.util.stream.Collectors;
 
+
+/**
+Problem : 1676
+Level : Medium
+Link : https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-iv/description/?envType=problem-list-v2&envId=binary-tree
+Given the root of a binary tree and an array of TreeNode objects nodes, return the lowest common ancestor (LCA) of all the nodes in nodes. All the nodes will
+exist in the tree, and all values of the tree's nodes are unique.
+
+Extending the definition of LCA on Wikipedia: "The lowest common ancestor of n nodes p1, p2, ..., pn in a binary tree T is the lowest node that has every pi
+as a descendant (where we allow a node to be a descendant of itself) for every valid i".
+A descendant of a node x is a node y that is on the path from node x to some leaf node.
+
+Constraints:-
+
+a.) The number of nodes in the tree is in the range [1, 10^4].
+b.) -10^9 <= Node.val <= 10^9
+c.) All Node.val are unique.
+d.) All nodes[i] will exist in the tree.
+e.) All nodes[i] are distinct.
+
+Time Complexity = O(N)
+Space Complexity = O(N)
+ * */
+
 public class LowestCommonAncestorOfBinaryTree4 {
 
     private boolean flag = false;
