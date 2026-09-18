@@ -19,6 +19,14 @@ Constraints:-
 
 a.) 1 <= n == nums.length <= 10^5
 b.) 1 <= nums[i] <= 10^9
+
+
+Status : Partially Solved [Need to come back on it]
+
+Time Complexity : O(N)
+Space Complexity : O(N)
+
+Comments : Time complexity is fine but the code is not that readable, hence I need to tweak the approach will come back on it
  * */
 
 public class MinimumOperationsToMakeArrayNonDecreasing {
