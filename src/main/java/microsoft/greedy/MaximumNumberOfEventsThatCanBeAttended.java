@@ -2,6 +2,25 @@ package microsoft.greedy;
 
 import java.util.*;
 
+/**
+Problem : 1353
+Level : Medium
+Link : https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended/description/
+Reference : https://www.youtube.com/watch?v=dTVB1W7-BvY
+
+You are given an array of events where events[i] = [startDayi, endDayi]. Every event i starts at startDayi and ends at endDayi.
+
+You can attend an event i at any day d where startDayi <= d <= endDayi. You can only attend one event at any time d.
+
+Return the maximum number of events you can attend.
+
+Constraints:-
+
+a.) 1 <= events.length <= 10^5
+b.) events[i].length == 2
+c.) 1 <= startDayi <= endDayi <= 10^5
+ * */
+
 public class MaximumNumberOfEventsThatCanBeAttended {
 
     public static void main(String ar[]) {
