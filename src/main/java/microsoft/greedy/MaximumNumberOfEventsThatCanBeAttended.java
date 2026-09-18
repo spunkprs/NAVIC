@@ -19,6 +19,9 @@ Constraints:-
 a.) 1 <= events.length <= 10^5
 b.) events[i].length == 2
 c.) 1 <= startDayi <= endDayi <= 10^5
+
+Time Complexity = O(N * log(N))
+Explicit time complexity = O(N)
  * */
 
 public class MaximumNumberOfEventsThatCanBeAttended {
