@@ -3,6 +3,32 @@ package microsoft.dp;
 import java.util.Arrays;
 import java.util.HashSet;
 
+/**
+Problem : 983
+Level : Medium
+Link : https://leetcode.com/problems/minimum-cost-for-tickets/description/?envType=company&envId=grab&favoriteSlug=grab-all
+
+You have planned some train traveling one year in advance. The days of the year in which you will travel are given as an
+integer array days. Each day is an integer from 1 to 365.
+
+Train tickets are sold in three different ways:
+1.) a 1-day pass is sold for costs[0] dollars,
+2.) a 7-day pass is sold for costs[1] dollars, and
+3.) a 30-day pass is sold for costs[2] dollars.
+
+The passes allow that many days of consecutive travel.
+
+For example, if we get a 7-day pass on day 2, then we can travel for 7 days: 2, 3, 4, 5, 6, 7, and 8.
+
+Return the minimum number of dollars you need to travel every day in the given list of days
+
+Time Complexity : O(K)
+Space Complexity : O(K)
+
+Where K is the highest day of travel
+ * */
+
+
 public class MinimumCostForTickets {
 
     public static void main(String ar[]) {
