@@ -4,6 +4,25 @@ import java.util.Comparator;
 import java.util.TreeMap;
 import java.util.stream.IntStream;
 
+/**
+Problem : 3720
+Level : Medium
+Link : https://leetcode.com/problems/lexicographically-smallest-permutation-greater-than-target/description/?envType=company&envId=amazon&favoriteSlug=amazon-thirty-days
+
+You are given two strings s and target, both having length n, consisting of lowercase English letters.
+
+Return the lexicographically smallest permutation of s that is strictly greater than target. If no
+permutation of s is lexicographically strictly greater than target, return an empty string.
+
+A string a is lexicographically strictly greater than a string b (of the same length) if in the first position
+where a and b differ, string a has a letter that appears later in the alphabet than the corresponding letter in b.
+
+Constraints:-
+
+a.) 1 <= s.length == target.length <= 300
+b.) s and target consist of only lowercase English letters.
+ * */
+
 public class LexicographicallySmallestStringGreaterThanTarget {
 
     public static void main(String ar[]) {
