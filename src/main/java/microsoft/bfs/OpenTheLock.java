@@ -26,6 +26,10 @@ b.) deadends[i].length == 4
 c.) target.length == 4
 d.) target will not be in the list deadends.
 e.) target and deadends[i] consist of digits only.
+
+Time Complexity = O(8^depth), where depth is the minimum steps to reach from source to destination
+Space Complexity = O(8^depth)
+
  * */
 
 public class OpenTheLock {
