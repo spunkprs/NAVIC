@@ -21,6 +21,9 @@ Constraints:-
 
 a.) 1 <= s.length == target.length <= 300
 b.) s and target consist of only lowercase English letters.
+
+Time Complexity : O(N * log 26)
+Space Complexity : O(N)
  * */
 
 public class LexicographicallySmallestStringGreaterThanTarget {
