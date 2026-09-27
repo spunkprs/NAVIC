@@ -17,6 +17,11 @@ int sumRegion(int row1, int col1, int row2, int col2) Returns the sum of the ele
 of matrix inside the rectangle defined by its upper left corner (row1, col1) and lower right corner (row2, col2).
 
 You must design an algorithm where sumRegion works on O(1) time complexity.
+
+Time Complexity for computing sumRegion --> O(1)
+Space Complexity --> O(M * N) --> For building helper matrix
+
+Time Complexity for preparing helper matrix --> O(M * N)
  * */
 
 public class RangeSumQuery2D {
