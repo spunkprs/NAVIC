@@ -3,6 +3,37 @@ package microsoft.bfs;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+Problem : 126
+Link : https://leetcode.com/problems/word-ladder-ii/description/?envType=company&envId=okta&favoriteSlug=okta-all
+Level : Hard
+
+A transformation sequence from word beginWord to word endWord using a dictionary wordList is a sequence of words
+beginWord -> s1 -> s2 -> ... -> sk such that:
+
+Every adjacent pair of words differs by a single letter.
+Every si for 1 <= i <= k is in wordList. Note that beginWord does not need to be in wordList.
+sk == endWord
+
+Given two words, beginWord and endWord, and a dictionary wordList, return all the shortest
+transformation sequences from beginWord to endWord, or an empty list if no such sequence exists.
+Each sequence should be returned as a list of the words [beginWord, s1, s2, ..., sk].
+
+
+Constraints:-
+
+1.) 1 <= beginWord.length <= 5
+2.) endWord.length == beginWord.length
+3.) 1 <= wordList.length <= 500
+4.) wordList[i].length == beginWord.length
+5.) beginWord, endWord, and wordList[i] consist of lowercase English letters.
+6.) beginWord != endWord
+7.) All the words in wordList are unique.
+8.) The sum of all shortest transformation sequences does not exceed 105.
+
+Status : Partially Accepted [33/38 test cases accepted, for remaining getting TLE, will get it rectified]
+ * */
+
 public class WordLadder2 {
 
     private int minDepth = Integer.MAX_VALUE;
