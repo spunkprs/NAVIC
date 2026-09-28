@@ -27,6 +27,10 @@ b.) trips[i].length == 3
 c.) 1 <= numPassengersi <= 100
 d.) 0 <= fromi < toi <= 1000
 e.) 1 <= capacity <= 10^5
+
+Time Complexity = O(N * log(N))
+Space Complexity = O(N)
+Where N = trips.length * 2
  * */
 
 public class CarPooling {
