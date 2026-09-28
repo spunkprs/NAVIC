@@ -75,7 +75,7 @@ public class DesignMovieRentalSystem {
 
     public List<Integer> search(int movie) {
         TreeSet<PriceShopCombination> treeSet = mapUsedForSearchingMovies.get(movie);
-        if (treeSet.isEmpty()) {
+        if (treeSet == null || treeSet.isEmpty()) {
             return new ArrayList<>();
         }
         return treeSet.stream().map(record -> record.shopId).limit(5).collect(Collectors.toList());
