@@ -4,6 +4,31 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+/**
+Problem : 1094
+Level : Medium
+Link : https://leetcode.com/problems/car-pooling/description/?envType=company&envId=amazon&favoriteSlug=amazon-thirty-days
+
+There is a car with capacity empty seats. The vehicle only drives east (i.e., it cannot turn around and drive west).
+
+You are given the integer capacity and an array trips where trips[i] = [numPassengersi, fromi, toi] indicates that
+the ith trip has numPassengersi passengers and the locations to pick them up and drop them off are fromi and toi
+respectively. The locations are given as the number of kilometers due east from the car's initial location.
+
+Passengers are dropped off before new passengers are picked up at the same location. At every point along the route,
+the total number of passengers in the car must not exceed capacity.
+
+Return true if it is possible to pick up and drop off all passengers for all the given trips, or false otherwise.
+
+Constraints:-
+
+a.) 1 <= trips.length <= 1000
+b.) trips[i].length == 3
+c.) 1 <= numPassengersi <= 100
+d.) 0 <= fromi < toi <= 1000
+e.) 1 <= capacity <= 10^5
+ * */
+
 public class CarPooling {
 
     public static void main(String ar[]) {
