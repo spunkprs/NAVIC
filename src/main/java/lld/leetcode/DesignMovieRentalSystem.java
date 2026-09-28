@@ -1,4 +1,4 @@
-package lld;
+package lld.leetcode;
 
 import java.util.*;
 import java.util.stream.Collectors;
