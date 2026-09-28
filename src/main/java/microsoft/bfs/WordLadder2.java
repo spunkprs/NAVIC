@@ -32,6 +32,9 @@ Constraints:-
 8.) The sum of all shortest transformation sequences does not exceed 105.
 
 Status : Partially Accepted [33/38 test cases accepted, for remaining getting TLE, will get it rectified]
+
+Suggestions:--> Store parent relations in the BFS to avoid copying full paths for every node, then use DFS to
+reconstruct all shortest paths from the endWord back to the beginWord.
  * */
 
 public class WordLadder2 {
