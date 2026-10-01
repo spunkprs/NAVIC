@@ -38,6 +38,6 @@ public class Singleton implements Serializable {
      * */
 
     private Object readResolve() throws ObjectStreamException {
-        return instance;
+        return getInstance();
     }
 }
