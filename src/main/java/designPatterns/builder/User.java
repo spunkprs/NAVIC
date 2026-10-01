@@ -18,6 +18,18 @@ public class User {
         this.isPremium = builder.isPremium;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", city='" + city + '\'' +
+                ", isPremium=" + isPremium +
+                '}';
+    }
+
     static class UserBuilder {
         private final String name; // required
         private int age;
