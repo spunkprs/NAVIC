@@ -10,4 +10,12 @@ public class Response {
         this.statusCode = statusCode;
         this.responseBody = responseBody;
     }
+
+    public int getStatusCode() {
+        return statusCode;
+    }
+
+    public Map<String, Object> getResponseBody() {
+        return responseBody;
+    }
 }
