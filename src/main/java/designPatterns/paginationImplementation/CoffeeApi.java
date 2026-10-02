@@ -14,6 +14,20 @@ public class CoffeeApi {
     //GET call
     public Response fetchCoffeeOrders(boolean status, int pageNumber, int size) {
 
+        //Handling edge case for Bad Request i.e 400
+        if (pageNumber < 1 || size < 1) {
+            Map<String, Object> responseMap = new HashMap<>();
+            responseMap.put("Bad Request", "Page number OR asked size shall be > 1");
+            return new Response(400, responseMap);
+        }
+
+        if (pageNumber > 100 || size > 100) {
+            Map<String, Object> responseMap = new HashMap<>();
+            responseMap.put("Bad Request", "Page number OR asked size shall be <= 100");
+            return new Response(400, responseMap);
+        }
+
+
         List<CoffeeOrder> result = inMemoryCoffeeOrders.stream().filter(coffeeOrder ->
                 coffeeOrder.isCompletionStatus() == status).collect(Collectors.toList());
 

@@ -16,6 +16,9 @@ public class Runner {
 
         CoffeeApi coffeeApi = new CoffeeApi(orders);
 
+        printResponse(coffeeApi.fetchCoffeeOrders(false, 0, -1));
+        printResponse(coffeeApi.fetchCoffeeOrders(false, 90, 101));
+
         Response responseForUnPreparedCoffeeOrders = coffeeApi.fetchCoffeeOrders(false, 2, 2);
 
         printResponse(responseForUnPreparedCoffeeOrders);
@@ -37,11 +40,18 @@ public class Runner {
     private static void printResponse(Response response) {
         System.out.println("Response status is " + response.getStatusCode());
 
-        System.out.println("Printing response body ::");
+        System.out.println("Printing response body :: ");
 
-        for (String orderId : response.getResponseBody().keySet()) {
-            CoffeeOrder responseOrder = (CoffeeOrder) response.getResponseBody().get(orderId);
-            System.out.println(responseOrder);
+        if (response.getStatusCode() == 200) {
+            for (String orderId : response.getResponseBody().keySet()) {
+                CoffeeOrder responseOrder = (CoffeeOrder) response.getResponseBody().get(orderId);
+                System.out.println(responseOrder);
+            }
+        } else if (response.getStatusCode() == 400) {
+            for (String key : response.getResponseBody().keySet()) {
+                String errorResponse = (String)response.getResponseBody().get(key);
+                System.out.println(errorResponse);
+            }
         }
     }
 }
