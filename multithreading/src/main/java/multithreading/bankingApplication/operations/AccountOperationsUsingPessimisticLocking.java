@@ -60,6 +60,11 @@ public enum AccountOperationsUsingPessimisticLocking {
         }
     }
 
+    /**
+     Deadlock handling is not taken care of it here, kindly take care of it
+     Though atomicity is being taken care of which is good
+     * */
+
     public void transferFunds(Account holderFrom, Account holderTo, int amount) {
             if (amount > 0) {
                 ReentrantReadWriteLock.WriteLock writeLockFrom = holderFrom.getReentrantReadWriteLock().writeLock();
